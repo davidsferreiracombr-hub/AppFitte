@@ -103,10 +103,10 @@ export default function Home() {
 
         <div className="mb-8 text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
-                Doces Fit, Sabor sem Culpa.
+                Bem-vindo ao Fitte, seu novo universo de receitas.
             </h2>
             <p className="text-muted-foreground mt-4 text-lg">
-                Encontre receitas de doces saudáveis para uma vida mais equilibrada.
+                Que alegria ter você aqui! O Fitte é o seu novo cantinho para descobrir que é possível comer doces deliciosos e ainda assim manter uma vida saudável e equilibrada. Navegue pelas categorias, use a busca para encontrar algo específico ou simplesmente explore nossas sugestões diárias. Cada receita foi pensada para ser fácil, nutritiva e, claro, muito saborosa. Bom apetite!
             </p>
         </div>
         
