@@ -96,7 +96,7 @@ export default function CategoriesPage() {
         <main>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
             {categories.map((category) => (
-              <Link href="#" key={category.name}>
+              <Link href={`/category/${encodeURIComponent(category.name)}`} key={category.name}>
                 <div className={cn(
                     "group flex flex-col items-center justify-center p-6 rounded-2xl border-2 text-center h-40 transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 hover:border-primary/50",
                     category.color
