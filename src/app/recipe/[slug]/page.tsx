@@ -14,33 +14,31 @@ import { AppLayout } from '@/components/app-layout';
 // Função para extrair tempo de cozimento/geladeira das instruções
 const extractActionTime = (instructions: string[]): number => {
     const timePatterns = [
-      /asse por (\d+)\s*a\s*(\d+)?\s*minutos/i,
-      /assar por (\d+)\s*a\s*(\d+)?\s*minutos/i,
-      /asse por (\d+)-(\d+)?\s*minutos/i,
-      /assar por (\d+)-(\d+)?\s*minutos/i,
-      /gele por (\d+)\s*a\s*(\d+)?\s*horas/i,
-      /refrigere por (\d+)\s*a\s*(\d+)?\s*horas/i,
-      /cozinhe por (\d+)\s*a\s*(\d+)?\s*minutos/i,
-      /deixe esfriar por (\d+)\s*a\s*(\d+)?\s*minutos/i,
-      /geladeira por pelo menos (\d+)\s*minutos/i,
-      /gelar por pelo menos (\d+)\s*horas/i,
-      /asse por (\d+)\s*minutos/i,
-      /assar por (\d+)\s*minutos/i,
-      /gele por (\d+)\s*horas/i,
-      /gele por (\d+)\s*minutos/i,
-      /refrigere por (\d+)\s*horas/i,
-      /refrigere por (\d+)\s*minutos/i,
-      /cozinhe por (\d+)\s*minutos/i,
-      /deixe esfriar por (\d+)\s*minutos/i,
+      /por cerca de (\d+)\s*a\s*(\d+)?\s*minutos/i, // "por cerca de 10 a 15 minutos"
+      /por (\d+)-(\d+)\s*minutos/i, // "por 25-30 minutos"
+      /por (\d+)\s*a\s*(\d+)?\s*minutos/i, // "por 2 a 3 minutos"
+      /por (\d+)\s*minutos/i, // "por 30 minutos"
+      /por pelo menos (\d+)\s*minutos/i, // "por pelo menos 30 minutos"
+      
+      /por cerca de (\d+)\s*a\s*(\d+)?\s*horas/i,
+      /por (\d+)\s*horas/i,
+      /por pelo menos (\d+)\s*horas/i,
+      
+      // Padrões mais genéricos que incluem palavras como fogo, forno, assar, cozinhar, gelar, etc.
+      /(?:asse|assar|forno|fogo|cozinhe|mexendo) por (?:cerca de )?(\d+)(?: a |-| até )?(\d+)? minutos/i,
+      /(?:gele|geladeira|refrigere) por (?:pelo menos )?(\d+)(?: a |-| até )?(\d+)? horas/i,
+      /(?:gele|geladeira|refrigere) por (?:pelo menos )?(\d+)(?: a |-| até )?(\d+)? minutos/i,
     ];
   
     for (const instruction of instructions) {
       for (const pattern of timePatterns) {
         const match = instruction.match(pattern);
-        if (match && match[1]) {
-          let time = parseInt(match[1], 10);
-          if (instruction.includes('hora')) {
-            time *= 60; // Convert hours to minutes
+        if (match) {
+          // Usa o maior tempo do intervalo (ex: de 10-15 minutos, usa 15)
+          const time = match[2] ? parseInt(match[2], 10) : parseInt(match[1], 10);
+          
+          if (instruction.toLowerCase().includes('hora')) {
+            return time * 60; // Converte horas para minutos
           }
           return time;
         }
