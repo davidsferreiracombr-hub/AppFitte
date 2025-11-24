@@ -75,7 +75,7 @@ const recipes: Recipe[] = [
         "Asse por 25 a 30 minutos. O brownie deve estar firme nas bordas e ligeiramente úmido no centro.",
         "Deixe esfriar completamente na forma antes de cortar em 9 quadrados."
     ],
-    notes: "A batata-doce deve estar bem cozida para que o purê fique lisinho. Você pode cozinhá-la no vapor ou assada. Se não tiver forno, algumas pessoas relatam sucesso cozinhando porções individuais no micro-ondas por 2-3 minutos em um recipiente seguro, mas a textura pode variar."
+    notes: "A batata-doce deve estar bem cozida para que o purê fique lisinho. Você pode cozinhá-la no vapor ou assada. Se não tiver forno, pode tentar cozinhar porções individuais no micro-ondas por 2-3 minutos em um recipiente seguro, mas a textura pode variar."
   },
   { 
     id: 3, 
@@ -101,7 +101,7 @@ const recipes: Recipe[] = [
         "Asse por 15-20 minutos, ou até que as bordas estejam douradas e firmes.",
         "Deixe esfriar na assadeira por alguns minutos antes de transferir para uma grade."
     ],
-    notes: "Para uma versão ainda mais rápida, você pode cozinhar os cookies na airfryer a 160°C por cerca de 8-10 minutos."
+    notes: "Para uma versão ainda mais rápida, você pode cozinhar os cookies na airfryer a 160°C por cerca de 8-10 minutos. Fica ótimo!"
   },
   { 
     id: 4, 
@@ -411,12 +411,100 @@ const recipes: Recipe[] = [
         "Desenforme o manjar e sirva com a calda de ameixas fria por cima."
     ]
   },
+  {
+    id: 16,
+    slug: "bolo-de-banana-fit",
+    title: "Bolo de Banana Fit com Aveia",
+    description: "Um bolo úmido e saboroso, sem açúcar refinado, perfeito para aproveitar aquelas bananas maduras.",
+    tags: ["bolo", "sem glúten", "lanche"],
+    prepTime: "45 min",
+    calories: "190 kcal por fatia",
+    difficulty: "Fácil",
+    servings: "12 fatias",
+    ingredients: [
+      "4 bananas nanicas bem maduras",
+      "3 ovos",
+      "1/4 xícara de óleo de coco",
+      "1/2 xícara de uvas passas (opcional)",
+      "2 xícaras de aveia em flocos",
+      "1 colher de sopa de canela em pó",
+      "1 colher de sopa de fermento em pó"
+    ],
+    instructions: [
+      "Pré-aqueça o forno a 180°C e unte uma forma de bolo inglês.",
+      "No liquidificador, bata as bananas, os ovos e o óleo de coco até obter uma mistura cremosa.",
+      "Em uma tigela, misture a aveia, a canela e as uvas passas.",
+      "Despeje a mistura líquida sobre os ingredientes secos e incorpore bem.",
+      "Adicione o fermento e mexa delicadamente.",
+      "Despeje a massa na forma e asse por cerca de 30-35 minutos, ou até dourar.",
+      "Deixe esfriar para desenformar e servir."
+    ],
+    notes: "Fica delicioso com uma pasta de amendoim por cima. Você pode usar a airfryer a 180ºC por cerca de 20-25 minutos, dependendo da potência."
+  },
+  {
+    id: 17,
+    slug: "bolo-de-fuba-cremoso-fit",
+    title: "Bolo de Fubá Cremoso Fit",
+    description: "Aquele bolo de fubá com textura de pudim, mas em uma versão saudável e sem culpa para o seu café da tarde.",
+    tags: ["bolo", "sem glúten"],
+    prepTime: "1h",
+    calories: "210 kcal por fatia",
+    difficulty: "Média",
+    servings: "10 fatias",
+    ingredients: [
+      "4 ovos",
+      "2 xícaras de leite desnatado ou vegetal",
+      "1 xícara de fubá mimoso",
+      "1/2 xícara de açúcar de coco ou xilitol",
+      "2 colheres de sopa de óleo de coco",
+      "50g de coco ralado sem açúcar",
+      "1 colher de sopa de fermento em pó"
+    ],
+    instructions: [
+      "Pré-aqueça o forno a 180°C.",
+      "No liquidificador, bata todos os ingredientes, exceto o fermento, por 3 minutos.",
+      "Adicione o fermento e bata rapidamente, apenas para misturar.",
+      "Despeje a massa, que é bem líquida, em uma forma untada e enfarinhada.",
+      "Asse por cerca de 40-50 minutos. O bolo cria duas camadas: uma cremosa embaixo e uma fofinha em cima.",
+      "Espere esfriar completamente para cortar, pois ele é delicado."
+    ],
+    notes: "Este bolo é naturalmente cremoso, então não se assuste com a consistência da massa. A mágica acontece no forno!"
+  },
+  {
+    id: 18,
+    slug: "bolo-de-chocolate-low-carb",
+    title: "Bolo de Chocolate Low Carb",
+    description: "Um bolo de chocolate intenso, fofinho e totalmente low carb, feito com farinha de amêndoas.",
+    tags: ["bolo", "low carb", "sem glúten"],
+    prepTime: "40 min",
+    calories: "250 kcal por fatia",
+    difficulty: "Média",
+    servings: "8 fatias",
+    ingredients: [
+      "4 ovos",
+      "1 xícara de farinha de amêndoas",
+      "1/2 xícara de cacau em pó 100%",
+      "1/2 xícara de adoçante xilitol ou eritritol",
+      "100ml de leite de coco",
+      "3 colheres de sopa de óleo de coco",
+      "1 colher de sopa de fermento em pó"
+    ],
+    instructions: [
+      "Pré-aqueça o forno a 180°C.",
+      "Bata os ovos com o adoçante até obter um creme claro.",
+      "Adicione o óleo de coco e o leite de coco, e misture.",
+      "Incorpore a farinha de amêndoas e o cacau em pó peneirados.",
+      "Por último, adicione o fermento e misture delicadamente.",
+      "Asse em forma untada por cerca de 30 minutos.",
+      "Faça uma calda com chocolate 70% e leite de coco para cobrir, se desejar."
+    ]
+  },
   ...Array.from({ length: 700 }, (_, i) => ({
-    id: 16 + i,
-    slug: `receita-fit-${16 + i}`,
+    id: 19 + i,
+    slug: `receita-fit-${19 + i}`,
     title: `Doce Fit Delicioso`,
     description: "Uma receita de doce saudável, rápida e incrivelmente saborosa, perfeita para qualquer ocasião.",
-    tags: ["doce", "fit", i % 2 === 0 ? "vegano" : "sem glúten"],
+    tags: ["doce", "fit", i % 3 === 0 ? "bolo" : (i % 2 === 0 ? "vegano" : "sem glúten")],
     prepTime: `${Math.floor(Math.random() * 20) + 10} min`,
     calories: `${Math.floor(Math.random() * 150) + 100} kcal`,
     difficulty: (["Fácil", "Média", "Difícil"] as const)[Math.floor(Math.random() * 3)],

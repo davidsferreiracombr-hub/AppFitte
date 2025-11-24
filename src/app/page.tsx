@@ -125,9 +125,9 @@ export default function Home() {
     return (
       <>
         <Dialog open={showWelcome} onOpenChange={setShowWelcome}>
-          <DialogContent className="sm:max-w-md text-center">
+          <DialogContent className="sm:max-w-md text-center bg-card border-border">
             <DialogHeader>
-              <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto">
+              <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto text-foreground">
                 <ChefHat className="h-8 w-8 text-primary" /> Bem-vindo(a) ao Fitte!
               </DialogTitle>
               <DialogDescription className="pt-3 text-lg text-muted-foreground">
@@ -143,9 +143,9 @@ export default function Home() {
         </Dialog>
         
         <Dialog open={showIntro} onOpenChange={setShowIntro}>
-          <DialogContent className="sm:max-w-[425px]">
+          <DialogContent className="sm:max-w-[425px] bg-card border-border">
             <DialogHeader>
-              <DialogTitle className="text-center text-2xl font-bold flex items-center justify-center gap-2">
+              <DialogTitle className="text-center text-2xl font-bold flex items-center justify-center gap-2 text-foreground">
                 Como funciona o App
               </DialogTitle>
                <DialogDescription className="text-center pt-2 text-muted-foreground">
@@ -160,20 +160,20 @@ export default function Home() {
             <Button onClick={handleIntroFinish}>Vamos Cozinhar!</Button>
           </DialogContent>
         </Dialog>
-        <div className="min-h-screen" />
+        <div className="min-h-screen bg-background" />
       </>
     )
   }
 
   return (
-    <div className="min-h-screen font-body relative overflow-x-hidden">
+    <div className="min-h-screen font-body relative overflow-x-hidden bg-background">
         <div className="background-animation">
             <div className="circle xxl shade1"></div>
             <div className="circle xl shade2"></div>
             <div className="circle l shade3"></div>
             <div className="circle m shade4"></div>
             <div className="circle s shade5"></div>
-             <div className="circle xs shade1" style={{animationDelay: '-1s', animationDuration: '20s'}}></div>
+            <div className="circle xs shade1" style={{animationDelay: '-1s', animationDuration: '20s'}}></div>
             <div className="circle xxl shade2" style={{animationDelay: '-5s', animationDuration: '30s', right: '5%', left: 'auto'}}></div>
             <div className="circle xl shade3" style={{animationDelay: '-10s', right: '15%', left: 'auto'}}></div>
         </div>
@@ -194,7 +194,7 @@ export default function Home() {
             <div className="flex justify-between items-center py-4">
                 <div className="flex items-center gap-3">
                     <ChefHat className="h-9 w-9 text-primary" />
-                    <h1 className="text-4xl font-headline font-bold text-foreground">
+                    <h1 className="text-5xl font-headline font-bold text-foreground">
                         Fitte
                     </h1>
                 </div>
@@ -210,14 +210,14 @@ export default function Home() {
       </header>
 
        <div className="relative z-10 border-b border-border/50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-20 text-center">
-            <h2 className="text-6xl md:text-8xl font-headline font-extrabold text-foreground tracking-tight">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12 text-center">
+            <h2 className="text-5xl md:text-7xl font-headline font-extrabold text-foreground tracking-tight">
                 Receitas Saudáveis, Sabor Irresistível.
             </h2>
-            <p className="text-muted-foreground mt-6 text-lg max-w-3xl mx-auto">
+            <p className="text-muted-foreground mt-4 text-lg max-w-3xl mx-auto">
                 Explore mais de 700 receitas de doces fit para uma vida mais gostosa e equilibrada. Perfeito para quem treina, busca saúde ou simplesmente ama um bom doce sem culpa.
             </p>
-             <div className="mt-10 flex justify-center">
+             <div className="mt-8 flex justify-center">
                 <div className="relative w-full max-w-lg">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <Input
@@ -234,16 +234,16 @@ export default function Home() {
       
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12">
         <main>
-          <div className="mb-10 space-y-8">
+          <div className="mb-8 space-y-6">
             <div>
-              <h3 className="text-center text-xl font-semibold text-foreground mb-5">Navegue por Dificuldade</h3>
+              <h3 className="text-center text-xl font-semibold text-foreground mb-4">Navegue por Dificuldade</h3>
               <div className="flex flex-wrap justify-center gap-3">
                 {difficulties.map(difficulty => (
                   <Button
                     key={difficulty}
                     variant={selectedDifficulty === difficulty ? 'default' : 'secondary'}
                     onClick={() => setSelectedDifficulty(difficulty)}
-                    className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-200"
+                    className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-300 transform-gpu hover:scale-105 hover:shadow-lg"
                   >
                     {difficulty}
                   </Button>
@@ -252,14 +252,14 @@ export default function Home() {
             </div>
 
             <div>
-              <h3 className="text-center text-xl font-semibold text-foreground mb-5">Navegue por Categoria</h3>
-              <div className="flex flex-wrap justify-center gap-3">
+              <h3 className="text-center text-xl font-semibold text-foreground mb-4">Navegue por Categoria</h3>
+              <div className="flex flex-wrap justify-center gap-3 [perspective:1000px]">
                 {categories.map(category => (
                   <Button
                     key={category}
                     variant={selectedCategory === category ? 'default' : 'secondary'}
                     onClick={() => setSelectedCategory(category)}
-                    className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-200"
+                    className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-300 transform-gpu hover:[transform:rotateY(15deg)_translateZ(10px)] hover:shadow-primary/20"
                   >
                     {category}
                   </Button>
@@ -278,7 +278,7 @@ export default function Home() {
               return (
                 <Link href={`/recipe/${recipe.slug}`} key={recipe.id} legacyBehavior>
                   <a className="block group">
-                    <Card className="h-full flex flex-col rounded-xl shadow-md transition-all duration-300 overflow-hidden transform-gpu group-hover:[transform:rotateY(10deg)_translateZ(20px)] hover:!transform-none hover:shadow-2xl hover:shadow-primary/20">
+                    <Card className="h-full flex flex-col rounded-xl shadow-md transition-all duration-300 overflow-hidden bg-card/50 backdrop-blur-sm transform-gpu group-hover:[transform:rotateY(10deg)_translateZ(20px)] hover:!transform-none hover:shadow-2xl hover:shadow-primary/20">
                       <CardHeader className="flex-row items-center gap-4 pb-4">
                         <div className="bg-primary/10 p-3 rounded-lg">
                            <Icon className="h-6 w-6 text-primary" />
