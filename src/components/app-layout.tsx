@@ -72,7 +72,7 @@ function SidebarNav() {
 function Sidebar() {
   return (
     <aside className="hidden lg:flex flex-col border-r bg-background transition-all duration-300 ease-in-out w-64">
-      <div className="flex flex-col items-center justify-center h-24 px-6 border-b">
+      <div className="flex items-center justify-center h-24 px-6 border-b">
         <Link href="/" className="flex flex-col items-center gap-2">
           <svg className="h-8 w-8 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <span className="font-bold text-xl text-foreground">Fitte</span>
