@@ -65,7 +65,6 @@ export default function Home() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showIntro, setShowIntro] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
-  const [isAppReady, setIsAppReady] = useState(false);
   const [visibleCount, setVisibleCount] = useState(INITIAL_LOAD_COUNT);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const loaderRef = useRef<HTMLDivElement | null>(null);
@@ -77,7 +76,6 @@ export default function Home() {
   
   const handleIntroFinish = () => {
     setShowIntro(false);
-    setIsAppReady(true);
   }
 
   const checkScrollTop = () => {
@@ -160,7 +158,7 @@ export default function Home() {
   }, [handleLoadMore, visibleCount, filteredRecipes.length]);
 
 
-  if (!isAppReady) {
+  if (showWelcome || showIntro) {
     return (
       <>
         <Dialog open={showWelcome} onOpenChange={setShowWelcome}>
@@ -321,7 +319,7 @@ export default function Home() {
             Mostrando {visibleRecipes.length} de {filteredRecipes.length} receitas.
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {visibleRecipes.map(recipe => {
               const Icon = getCategoryIcon(recipe.tags);
               return (
