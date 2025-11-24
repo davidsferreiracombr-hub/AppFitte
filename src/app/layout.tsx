@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import { cn } from '@/lib/utils';
 import { Inter, Nunito_Sans } from 'next/font/google';
+import { SidebarProvider } from '@/components/app-layout';
 
 const nunito_sans = Nunito_Sans({
   subsets: ['latin'],
@@ -28,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={cn("min-h-screen font-body antialiased", inter.variable, nunito_sans.variable)}>
-        {children}
+        <SidebarProvider>
+          {children}
+        </SidebarProvider>
         <Toaster />
       </body>
     </html>
