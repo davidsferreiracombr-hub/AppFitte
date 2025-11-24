@@ -15,6 +15,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { useIsMobile } from '@/hooks/use-mobile';
 
 
 const categoryIcons: { [key: string]: React.ElementType } = {
@@ -68,6 +69,8 @@ export default function Home() {
   const [visibleCount, setVisibleCount] = useState(INITIAL_LOAD_COUNT);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const loaderRef = useRef<HTMLDivElement | null>(null);
+  const isMobile = useIsMobile();
+
 
   useEffect(() => {
     try {
@@ -309,21 +312,36 @@ export default function Home() {
 
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-3 text-center">Navegue por Categoria</h3>
-                <ScrollArea className="w-full whitespace-nowrap">
-                  <div className="flex space-x-3 p-2">
+                {isMobile ? (
+                  <div className="grid grid-cols-4 gap-3">
                     {categories.map(category => (
                         <Button
                             key={category}
                             variant={selectedCategory === category ? 'default' : 'secondary'}
                             onClick={() => setSelectedCategory(category)}
-                            className="capitalize px-5 py-2 h-auto text-sm font-medium rounded-md transition-transform duration-200 hover:scale-105"
+                             className="capitalize px-3 py-2 h-auto text-xs sm:text-sm font-medium rounded-md transition-transform duration-200 hover:scale-105 whitespace-nowrap overflow-hidden text-ellipsis"
                         >
                             {category}
                         </Button>
                     ))}
                   </div>
-                  <ScrollBar orientation="horizontal" />
-                </ScrollArea>
+                ) : (
+                  <ScrollArea className="w-full whitespace-nowrap">
+                    <div className="flex space-x-3 p-2">
+                      {categories.map(category => (
+                          <Button
+                              key={category}
+                              variant={selectedCategory === category ? 'default' : 'secondary'}
+                              onClick={() => setSelectedCategory(category)}
+                              className="capitalize px-5 py-2 h-auto text-sm font-medium rounded-md transition-transform duration-200 hover:scale-105"
+                          >
+                              {category}
+                          </Button>
+                      ))}
+                    </div>
+                    <ScrollBar orientation="horizontal" />
+                  </ScrollArea>
+                )}
             </div>
 
           </div>
