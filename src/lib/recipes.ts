@@ -42,7 +42,7 @@ const recipes: Recipe[] = [
         "Leve à geladeira por pelo menos 30 minutos para firmar e gelar. Este passo é crucial para a textura final.",
         "Antes de servir, decore com raspas de chocolate amargo."
     ],
-    notes: "Para um sabor mais intenso, utilize um cacau de boa qualidade. Se o abacate não estiver muito maduro, pode ser necessário adicionar um pouco mais de leite vegetal para ajudar a bater."
+    notes: "Para um sabor mais intenso, utilize um cacau de boa qualidade. Se o abacate não estiver muito maduro, pode ser necessário adicionar um pouco mais de leite vegetal para ajudar a bater. Na airfryer, não é uma boa opção, pois é uma sobremesa fria."
   },
   { 
     id: 2, 
@@ -499,31 +499,51 @@ const recipes: Recipe[] = [
       "Faça uma calda com chocolate 70% e leite de coco para cobrir, se desejar."
     ]
   },
-  ...Array.from({ length: 700 }, (_, i) => ({
-    id: 19 + i,
-    slug: `receita-fit-${19 + i}`,
-    title: `Doce Fit Delicioso`,
-    description: "Uma receita de doce saudável, rápida e incrivelmente saborosa, perfeita para qualquer ocasião.",
-    tags: ["doce", "fit", i % 3 === 0 ? "bolo" : (i % 2 === 0 ? "vegano" : "sem glúten")],
-    prepTime: `${Math.floor(Math.random() * 20) + 10} min`,
-    calories: `${Math.floor(Math.random() * 150) + 100} kcal`,
-    difficulty: (["Fácil", "Média", "Difícil"] as const)[Math.floor(Math.random() * 3)],
-    servings: `${Math.floor(Math.random() * 4) + 2} porções`,
-    ingredients: [
-      "Ingrediente principal (ex: 1 xícara de fruta)",
-      "Adoçante natural (ex: 2 colheres de sopa de mel)",
-      "Agente de liga (ex: 1/4 xícara de aveia)",
-      "Saborizante (ex: 1 colher de chá de canela)"
-    ],
-    instructions: [
-      "Misture todos os ingredientes secos em uma tigela.",
-      "Adicione os ingredientes molhados e misture bem.",
-      "Modele a massa no formato desejado (bolinhas, barras, etc.).",
-      "Leve ao forno pré-aquecido a 180°C por 15 minutos ou à geladeira por 30 minutos, dependendo da receita.",
-      "Decore a gosto e sirva."
-    ],
-    notes: "Seja criativo! Você pode adicionar nozes, sementes ou gotas de chocolate amargo para dar um toque especial."
-  }))
+  ...Array.from({ length: 700 }, (_, i) => {
+    const difficulties: Array<"Fácil" | "Média" | "Difícil"> = ["Fácil", "Média", "Difícil"];
+    const tagsOptions = ["doce", "fit", "bolo", "vegano", "sem glúten", "torta", "cookie", "lanche", "café da manhã"];
+    const mainIngredient = ["Maçã", "Banana", "Morango", "Chocolate", "Amendoim", "Coco", "Cenoura", "Limão", "Laranja", "Abóbora"];
+    const recipeType = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra", "Muffin", "Panqueca", "Sorvete", "Pudim"];
+
+    const currentType = recipeType[i % recipeType.length];
+    const currentIngredient = mainIngredient[i % mainIngredient.length];
+    const randomTags = new Set<string>();
+    randomTags.add(tagsOptions[i % tagsOptions.length]);
+    randomTags.add(tagsOptions[(i + 3) % tagsOptions.length]);
+    
+    // Add specific tags based on type/ingredient
+    if (currentType === 'Bolo') randomTags.add('bolo');
+    if (currentType === 'Torta') randomTags.add('torta');
+    if (currentType === 'Cookie') randomTags.add('cookie');
+
+    return {
+      id: 19 + i,
+      slug: `receita-fit-${currentType.toLowerCase()}-${currentIngredient.toLowerCase()}-${19 + i}`,
+      title: `${currentType} Fit de ${currentIngredient}`,
+      description: `Uma deliciosa e saudável receita de ${currentType.toLowerCase()} de ${currentIngredient.toLowerCase()}, perfeita para um lanche nutritivo.`,
+      tags: Array.from(randomTags),
+      prepTime: `${Math.floor(Math.random() * 40) + 10} min`,
+      calories: `${Math.floor(Math.random() * 200) + 150} kcal`,
+      difficulty: difficulties[i % difficulties.length],
+      servings: `${Math.floor(Math.random() * 6) + 2} porções`,
+      ingredients: [
+        `1 xícara de ${currentIngredient.toLowerCase()}`,
+        "1 xícara de farinha de aveia",
+        "2 ovos",
+        "3 colheres de sopa de adoçante natural (xilitol ou stevia)",
+        "1 colher de chá de essência de baunilha"
+      ],
+      instructions: [
+        `Pré-aqueça o forno a 180°C.`,
+        `Em uma tigela, misture a farinha, o adoçante e outros ingredientes secos.`,
+        `Adicione os ovos, a essência de baunilha e o(a) ${currentIngredient.toLowerCase()} amassado(a) ou processado(a).`,
+        `Misture tudo até obter uma massa homogênea.`,
+        `Asse por 20-30 minutos ou até dourar.`,
+        `Sirva em seguida.`
+      ],
+      notes: "Experimente adicionar canela em pó para um sabor extra. Se a massa ficar muito seca, adicione um pouco de leite vegetal."
+    };
+  })
 ];
 
 export function getRecipes(): Recipe[] {
@@ -533,3 +553,4 @@ export function getRecipes(): Recipe[] {
 export function getRecipeBySlug(slug: string): Recipe | undefined {
   return recipes.find((recipe) => recipe.slug === slug);
 }
+
