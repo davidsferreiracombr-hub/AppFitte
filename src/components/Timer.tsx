@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Cupcake } from 'lucide-react';
+import { CakeSlice } from 'lucide-react';
 
 interface TimerProps {
   durationInMinutes: number;
@@ -147,12 +147,12 @@ export function Timer({ durationInMinutes }: TimerProps) {
       </div>
       
       <div className="relative w-32 h-32 my-6 flex items-center justify-center">
-        <Cupcake className="absolute inset-0 h-32 w-32 text-white/20" strokeWidth={1}/>
+        <CakeSlice className="absolute inset-0 h-32 w-32 text-white/20" strokeWidth={1}/>
         <div 
           className="absolute bottom-0 left-0 w-full overflow-hidden"
           style={{ height: `${fillHeight}%` }}
         >
-          <Cupcake 
+          <CakeSlice 
             className="h-32 w-32 text-white" 
             strokeWidth={1}
           />
