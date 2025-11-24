@@ -501,37 +501,42 @@ const recipes: Recipe[] = [
   },
   ...Array.from({ length: 700 }, (_, i) => {
     const difficulties: Array<"Fácil" | "Média" | "Difícil"> = ["Fácil", "Média", "Difícil"];
-    const tagsOptions = ["doce", "fit", "bolo", "vegano", "sem glúten", "torta", "cookie", "lanche", "café da manhã"];
-    const mainIngredient = ["Maçã", "Banana", "Morango", "Chocolate", "Amendoim", "Coco", "Cenoura", "Limão", "Laranja", "Abóbora", "Maracujá", "Milho"];
-    const recipeType = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra de Cereal", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca"];
+    const tagsOptions = ["doce", "fit", "bolo", "vegano", "sem glúten", "torta", "cookie", "lanche", "café da manhã", "sobremesa", "rápido"];
+    const mainIngredient = ["Maçã", "Banana", "Morango", "Chocolate", "Amendoim", "Coco", "Cenoura", "Limão", "Laranja", "Abóbora", "Maracujá", "Milho", "Aveia", "Iogurte", "Batata-Doce"];
+    const recipeType = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca", "Bombom", "Trufa"];
+    const adjective = ["Funcional", "Proteico", "Low Carb", "Refrescante", "Energético", "Leve", "Cremoso", "Crocante", "Rápido", "Simples"];
 
     const uniqueId = 19 + i;
     const currentType = recipeType[i % recipeType.length];
     const currentIngredient = mainIngredient[i % mainIngredient.length];
+    const currentAdjective = adjective[i % adjective.length];
+    
+    // Create a more unique title
+    const title = `${currentType} de ${currentIngredient} ${currentAdjective}`;
+    
+    // Create a unique slug from the title
+    const slug = `${title.toLowerCase().replace(/ /g, '-')}-${uniqueId}`;
+
     const randomTags = new Set<string>();
     randomTags.add(tagsOptions[i % tagsOptions.length]);
     randomTags.add(tagsOptions[(i + 3) % tagsOptions.length]);
-    
-    // Add specific tags based on type/ingredient
-    if (currentType.toLowerCase().includes('bolo')) randomTags.add('bolo');
-    if (currentType.toLowerCase().includes('torta')) randomTags.add('torta');
-    if (currentType.toLowerCase().includes('cookie')) randomTags.add('cookie');
-    
-    // Correção: Slug agora é único e segue um padrão consistente.
-    const slug = `${currentType.toLowerCase().replace(/ /g, '-')}-de-${currentIngredient.toLowerCase().replace(/ /g, '-')}-${uniqueId}`;
+    randomTags.add(currentType.toLowerCase());
+    if (title.toLowerCase().includes('low carb')) randomTags.add('low carb');
+    if (title.toLowerCase().includes('proteico')) randomTags.add('proteico');
+
 
     return {
       id: uniqueId,
       slug: slug,
-      title: `${currentType} de ${currentIngredient} Fit`,
-      description: `Uma deliciosa e saudável receita de ${currentType.toLowerCase()} de ${currentIngredient.toLowerCase()}, perfeita para um lanche nutritivo e sem culpa.`,
+      title: title,
+      description: `Uma deliciosa e saudável receita de ${currentType.toLowerCase()} de ${currentIngredient.toLowerCase()}, no estilo ${currentAdjective.toLowerCase()}. Perfeito para um lanche nutritivo e sem culpa.`,
       tags: Array.from(randomTags),
       prepTime: `${Math.floor(Math.random() * 40) + 10} min`,
       calories: `${Math.floor(Math.random() * 200) + 150} kcal`,
       difficulty: difficulties[i % difficulties.length],
       servings: `${Math.floor(Math.random() * 6) + 2} porções`,
       ingredients: [
-        `1 xícara de ${currentIngredient.toLowerCase()} (fresco, em purê ou em pó, dependendo da receita)`,
+        `1 xícara de ${currentIngredient.toLowerCase()}`,
         "1 xícara de farinha de aveia (ou amêndoas para low carb)",
         "2 ovos (ou 'ovos' de linhaça para vegano)",
         "3 colheres de sopa de adoçante natural (xilitol ou stevia)",
@@ -539,21 +544,24 @@ const recipes: Recipe[] = [
       ],
       instructions: [
         `Pré-aqueça o forno (ou airfryer) a 180°C.`,
-        `Em uma tigela, misture os ingredientes secos, como a farinha e o adoçante.`,
-        `Adicione os ingredientes úmidos, como os ovos, a baunilha e o(a) ${currentIngredient.toLowerCase()}.`,
+        `Em uma tigela, misture os ingredientes secos.`,
+        `Adicione os ingredientes úmidos, incluindo o(a) ${currentIngredient.toLowerCase()}.`,
         `Misture tudo até obter uma massa homogênea.`,
         `Despeje em uma forma untada e asse por 20-30 minutos ou até dourar.`,
-        `Sirva em seguida e aproveite seu doce saudável!`
+        `Sirva em seguida e aproveite!`
       ],
       notes: "Para uma versão vegana, substitua os ovos por 2 colheres de sopa de semente de linhaça triturada misturada com 6 colheres de sopa de água. Deixe descansar por 5 minutos antes de usar."
     };
   })
 ];
 
+// Simple deduplication based on slug
+const uniqueRecipes = Array.from(new Map(recipes.map(recipe => [recipe.slug, recipe])).values());
+
 export function getRecipes(): Recipe[] {
-  return recipes;
+  return uniqueRecipes;
 }
 
 export function getRecipeBySlug(slug: string): Recipe | undefined {
-  return recipes.find((recipe) => recipe.slug === slug);
+  return uniqueRecipes.find((recipe) => recipe.slug === slug);
 }
