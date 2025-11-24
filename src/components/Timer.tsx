@@ -93,7 +93,7 @@ export function Timer({ durationInMinutes, context }: TimerProps) {
       <div className="text-center my-2">
         <div className="font-mono tabular-nums text-foreground">
           <span className="text-7xl sm:text-8xl font-bold tracking-tighter">
-              {minutes}{seconds}
+              {minutes}:{seconds}
           </span>
         </div>
       </div>
