@@ -62,12 +62,24 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState<'Todos' | 'Fácil' | 'Média' | 'Difícil'>('Todos');
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
-  const [showWelcome, setShowWelcome] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(false);
   const [showIntro, setShowIntro] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
   const [visibleCount, setVisibleCount] = useState(INITIAL_LOAD_COUNT);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const loaderRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    try {
+      const hasSeenIntro = sessionStorage.getItem('fitte_intro_seen');
+      if (!hasSeenIntro) {
+        setShowWelcome(true);
+      }
+    } catch (error) {
+      console.warn("Could not access sessionStorage. Welcome screen may appear on every visit.");
+      setShowWelcome(true);
+    }
+  }, []);
   
   const handleWelcomeContinue = () => {
     setShowWelcome(false);
@@ -76,6 +88,11 @@ export default function Home() {
   
   const handleIntroFinish = () => {
     setShowIntro(false);
+     try {
+      sessionStorage.setItem('fitte_intro_seen', 'true');
+    } catch (error) {
+       console.warn("Could not write to sessionStorage.");
+    }
   }
 
   const checkScrollTop = () => {
@@ -162,7 +179,7 @@ export default function Home() {
     return (
       <>
         <Dialog open={showWelcome} onOpenChange={setShowWelcome}>
-          <DialogContent className="sm:max-w-md text-center bg-card border-border rounded-lg">
+          <DialogContent className="sm:max-w-[425px] text-center bg-card border-border rounded-lg">
             <DialogHeader>
               <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto text-foreground">
                 <CakeSlice className="h-8 w-8 text-primary" /> Bem-vindo(a) ao Fitte!
@@ -231,7 +248,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="flex justify-between items-center py-4">
                 <div className="flex items-center gap-3">
-                    <CakeSlice className="h-9 w-9 text-primary" />
+                    <img src="https://i.imgur.com/Phh9w5C.png" alt="Fitte Logo" className="h-9 w-auto"/>
                     <h1 className="text-3xl md:text-4xl font-headline font-bold text-foreground">
                         Fitte
                     </h1>
@@ -372,3 +389,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

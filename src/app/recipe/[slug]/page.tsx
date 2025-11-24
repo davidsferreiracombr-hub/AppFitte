@@ -69,7 +69,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
 
         <Card className="overflow-hidden shadow-lg bg-card/50 backdrop-blur-sm">
           <CardHeader className="text-center p-8 md:p-12">
-            <ChefHat className="mx-auto h-14 w-14 text-primary mb-4" />
+            <img src="https://i.imgur.com/Phh9w5C.png" alt="Fitte Logo" className="h-14 w-auto mx-auto mb-4"/>
             <h1 className="text-4xl md:text-5xl font-headline font-bold text-foreground">
               {recipe.title}
             </h1>
