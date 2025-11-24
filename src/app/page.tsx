@@ -54,15 +54,19 @@ export default function Home() {
   const recipes = useMemo(() => getRecipes(), []);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState<'Todos' | 'Fácil' | 'Média' | 'Difícil'>('Todos');
+  const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [showWelcome, setShowWelcome] = useState(false);
   const [showIntro, setShowIntro] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
+  const [isAppReady, setIsAppReady] = useState(false);
 
   useEffect(() => {
     const hasVisited = localStorage.getItem('hasVisitedFitDoce');
     if (!hasVisited) {
       setShowWelcome(true);
       localStorage.setItem('hasVisitedFitDoce', 'true');
+    } else {
+      setIsAppReady(true);
     }
   }, []);
   
@@ -70,6 +74,11 @@ export default function Home() {
     setShowWelcome(false);
     setShowIntro(true);
   };
+  
+  const handleIntroFinish = () => {
+    setShowIntro(false);
+    setIsAppReady(true);
+  }
 
   const checkScrollTop = () => {
     if (!showScroll && window.pageYOffset > 400){
@@ -90,6 +99,12 @@ export default function Home() {
 
   const difficulties: Array<'Todos' | 'Fácil' | 'Média' | 'Difícil'> = ['Todos', 'Fácil', 'Média', 'Difícil'];
 
+  const categories = useMemo(() => {
+    const allTags = recipes.flatMap(r => r.tags);
+    const uniqueTags = ['Todos', ...Array.from(new Set(allTags))];
+    return uniqueTags;
+  }, [recipes]);
+
   const filteredRecipes = useMemo(() => {
     return recipes.filter(recipe => {
       const matchesSearch =
@@ -97,49 +112,58 @@ export default function Home() {
         recipe.description.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesDifficulty =
         selectedDifficulty === 'Todos' || recipe.difficulty === selectedDifficulty;
-      return matchesSearch && matchesDifficulty;
+      const matchesCategory = 
+        selectedCategory === 'Todos' || recipe.tags.map(t => t.toLowerCase()).includes(selectedCategory.toLowerCase());
+      return matchesSearch && matchesDifficulty && matchesCategory;
     });
-  }, [recipes, searchTerm, selectedDifficulty]);
+  }, [recipes, searchTerm, selectedDifficulty, selectedCategory]);
+
+  if (!isAppReady) {
+    return (
+      <>
+        <Dialog open={showWelcome} onOpenChange={setShowWelcome}>
+          <DialogContent className="sm:max-w-md text-center">
+            <DialogHeader>
+              <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto">
+                <ChefHat className="h-8 w-8 text-primary" /> Bem-vindo(a) ao FitDoce!
+              </DialogTitle>
+              <DialogDescription className="pt-3 text-lg">
+                Sua jornada para uma vida mais doce e saudável começa agora.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="py-4">
+              <Button size="lg" onClick={handleWelcomeContinue}>
+                Continuar <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+        
+        <Dialog open={showIntro} onOpenChange={setShowIntro}>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle className="text-center text-2xl font-bold flex items-center justify-center gap-2">
+                Como funciona o App
+              </DialogTitle>
+               <DialogDescription className="text-center pt-2">
+                 É muito fácil encontrar e fazer sua receita fit!
+              </DialogDescription>
+            </DialogHeader>
+            <div className="py-4 text-sm text-gray-600 space-y-4 text-left">
+              <p className="flex items-start gap-3"><Search className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-gray-800">Explore:</strong> Use a barra de busca para encontrar sua receita favorita.</div></p>
+              <p className="flex items-start gap-3"><Info className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-gray-800">Filtre:</strong> Navegue pelas categorias e dificuldades para encontrar a receita perfeita.</div></p>
+              <p className="flex items-start gap-3"><Clock className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-gray-800">Cozinhe com Precisão:</strong> Dentro de cada receita, você encontrará um cronômetro para te ajudar com o tempo de preparo.</div></p>
+            </div>
+            <Button onClick={handleIntroFinish}>Vamos Cozinhar!</Button>
+          </DialogContent>
+        </Dialog>
+        <div className="bg-gray-50 min-h-screen" />
+      </>
+    )
+  }
 
   return (
     <div className="bg-gray-50 min-h-screen font-body">
-       <Dialog open={showWelcome} onOpenChange={setShowWelcome}>
-        <DialogContent className="sm:max-w-md text-center">
-          <DialogHeader>
-            <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto">
-              <ChefHat className="h-8 w-8 text-primary" /> Bem-vindo(a) ao FitDoce!
-            </DialogTitle>
-            <DialogDescription className="pt-3 text-lg">
-              Sua jornada para uma vida mais doce e saudável começa agora.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="py-4">
-            <Button size="lg" onClick={handleWelcomeContinue}>
-              Continuar <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-      
-      <Dialog open={showIntro} onOpenChange={setShowIntro}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle className="text-center text-2xl font-bold flex items-center justify-center gap-2">
-              Como funciona o App
-            </DialogTitle>
-             <DialogDescription className="text-center pt-2">
-               É muito fácil encontrar e fazer sua receita fit!
-            </DialogDescription>
-          </DialogHeader>
-          <div className="py-4 text-sm text-gray-600 space-y-4 text-left">
-            <p className="flex items-start gap-3"><Search className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-gray-800">Explore:</strong> Use a barra de busca para encontrar sua receita favorita.</div></p>
-            <p className="flex items-start gap-3"><Info className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-gray-800">Filtre:</strong> Navegue pelas dificuldades para encontrar a receita perfeita para seu nível de habilidade.</div></p>
-            <p className="flex items-start gap-3"><Clock className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-gray-800">Cozinhe com Precisão:</strong> Dentro de cada receita, você encontrará um cronômetro para te ajudar com o tempo de preparo.</div></p>
-          </div>
-          <Button onClick={() => setShowIntro(false)}>Vamos Cozinhar!</Button>
-        </DialogContent>
-      </Dialog>
-      
       {showScroll && (
         <Button 
           onClick={scrollTop} 
@@ -196,19 +220,37 @@ export default function Home() {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-12">
         <main>
-          <div className="mb-10">
-            <h3 className="text-center text-xl font-semibold text-gray-800 mb-6">Navegue por Dificuldade</h3>
-            <div className="flex flex-wrap justify-center gap-2">
-              {difficulties.map(difficulty => (
-                <Button
-                  key={difficulty}
-                  variant={selectedDifficulty === difficulty ? 'default' : 'outline'}
-                  onClick={() => setSelectedDifficulty(difficulty)}
-                  className={`capitalize rounded-full px-4 py-1.5 h-auto text-sm font-medium transition-all duration-200 ${selectedDifficulty === difficulty ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow' : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100 hover:border-gray-400'}`}
-                >
-                  {difficulty}
-                </Button>
-              ))}
+          <div className="mb-10 space-y-8">
+            <div>
+              <h3 className="text-center text-xl font-semibold text-gray-800 mb-6">Navegue por Dificuldade</h3>
+              <div className="flex flex-wrap justify-center gap-2">
+                {difficulties.map(difficulty => (
+                  <Button
+                    key={difficulty}
+                    variant={selectedDifficulty === difficulty ? 'default' : 'outline'}
+                    onClick={() => setSelectedDifficulty(difficulty)}
+                    className={`capitalize rounded-full px-4 py-1.5 h-auto text-sm font-medium transition-all duration-200 ${selectedDifficulty === difficulty ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow' : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100 hover:border-gray-400'}`}
+                  >
+                    {difficulty}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-center text-xl font-semibold text-gray-800 mb-6">Navegue por Categoria</h3>
+              <div className="flex flex-wrap justify-center gap-2">
+                {categories.map(category => (
+                  <Button
+                    key={category}
+                    variant={selectedCategory === category ? 'default' : 'outline'}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`capitalize rounded-full px-4 py-1.5 h-auto text-sm font-medium transition-all duration-200 ${selectedCategory === category ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow' : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100 hover:border-gray-400'}`}
+                  >
+                    {category}
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
           
