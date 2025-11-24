@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
@@ -88,27 +87,27 @@ export function Timer({ durationInMinutes }: TimerProps) {
   const fillHeight = isFinished ? 100 : (isActive || timeRemaining < durationInSeconds ? 100 - progress : 0);
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-primary/90 rounded-2xl shadow-2xl border border-primary/80 w-full max-w-sm mx-auto text-white">
+    <div className="flex flex-col items-center justify-center p-6 bg-card rounded-2xl shadow-2xl border border-border/80 w-full max-w-sm mx-auto text-foreground">
       <div className="text-center my-8">
         <div className="flex items-baseline justify-center font-mono" style={{fontVariantNumeric: 'tabular-nums'}}>
-          <span className="text-8xl font-bold text-white tracking-tighter">
+          <span className="text-8xl font-bold tracking-tighter">
               {String(minutes).padStart(2, '0')}
           </span>
-          <span className="text-8xl font-bold text-white tracking-tighter pb-2">:</span>
-          <span className="text-8xl font-bold text-white tracking-tighter">
+          <span className="text-8xl font-bold tracking-tighter pb-2">:</span>
+          <span className="text-8xl font-bold tracking-tighter">
               {String(seconds).padStart(2, '0')}
           </span>
         </div>
       </div>
       
       <div className="relative w-32 h-32 my-6 flex items-center justify-center">
-        <CakeSlice className="absolute inset-0 h-32 w-32 text-white/20" strokeWidth={1}/>
+        <CakeSlice className="absolute inset-0 h-32 w-32 text-foreground/20" strokeWidth={1}/>
         <div 
           className="absolute bottom-0 left-0 w-full overflow-hidden transition-all duration-1000 ease-linear"
           style={{ height: `${fillHeight}%` }}
         >
           <CakeSlice 
-            className="h-32 w-32 text-white" 
+            className="h-32 w-32 text-primary" 
             strokeWidth={1}
             style={{ position: 'absolute', bottom: 0, left: 0 }}
           />
@@ -120,7 +119,7 @@ export function Timer({ durationInMinutes }: TimerProps) {
         <Button 
           onClick={startTimer} 
           className={cn(
-            "w-32 py-3 text-base font-semibold rounded-lg transition-all duration-300 text-primary bg-white hover:bg-gray-200"
+            "w-32 py-3 text-base font-semibold rounded-lg transition-all duration-300"
           )}
         >
           {isFinished ? 'De novo!' : isActive ? 'Pausar' : (timeRemaining < durationInSeconds ? 'Continuar' : 'Começar')}
@@ -128,8 +127,8 @@ export function Timer({ durationInMinutes }: TimerProps) {
         
         <Button 
           onClick={resetTimer}
-          variant="outline" 
-          className="w-32 py-3 text-base font-semibold rounded-lg text-white border-white/50 bg-transparent hover:bg-white/10 hover:text-white" 
+          variant="secondary" 
+          className="w-32 py-3 text-base font-semibold rounded-lg" 
           aria-label="Cancelar Cronômetro"
         >
           Cancelar

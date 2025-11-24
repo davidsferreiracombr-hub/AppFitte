@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { type Recipe, getRecipes } from '@/lib/recipes';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Heart, ChefHat, Cookie, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat, Clock, Flame, Info, ArrowUp, ArrowRight } from 'lucide-react';
+import { Search, Heart, ChefHat, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat, Clock, Flame, Info, ArrowUp, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import {
@@ -16,8 +16,8 @@ import {
 } from "@/components/ui/dialog";
 
 const categoryIcons: { [key: string]: React.ElementType } = {
-  'brownie': Cookie,
-  'cookie': Cookie,
+  'brownie': CakeSlice,
+  'cookie': CakeSlice,
   'bolo': CakeSlice,
   'torta': CakeSlice,
   'cheesecake': CakeSlice,
@@ -130,7 +130,7 @@ export default function Home() {
               <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto">
                 <ChefHat className="h-8 w-8 text-primary" /> Bem-vindo(a) ao Fitte!
               </DialogTitle>
-              <DialogDescription className="pt-3 text-lg">
+              <DialogDescription className="pt-3 text-lg text-muted-foreground">
                 Sua jornada para uma vida mais doce e saudável começa agora.
               </DialogDescription>
             </DialogHeader>
@@ -148,25 +148,25 @@ export default function Home() {
               <DialogTitle className="text-center text-2xl font-bold flex items-center justify-center gap-2">
                 Como funciona o App
               </DialogTitle>
-               <DialogDescription className="text-center pt-2">
+               <DialogDescription className="text-center pt-2 text-muted-foreground">
                  É muito fácil encontrar e fazer sua receita fit!
               </DialogDescription>
             </DialogHeader>
-            <div className="py-4 text-sm text-gray-600 space-y-4 text-left">
-              <p className="flex items-start gap-3"><Search className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-gray-800">Explore:</strong> Use a barra de busca para encontrar sua receita favorita.</div></p>
-              <p className="flex items-start gap-3"><Info className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-gray-800">Filtre:</strong> Navegue pelas categorias e dificuldades para encontrar a receita perfeita.</div></p>
-              <p className="flex items-start gap-3"><Clock className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-gray-800">Cozinhe com Precisão:</strong> Dentro de cada receita, você encontrará um cronômetro para te ajudar com o tempo de preparo.</div></p>
+            <div className="py-4 text-sm text-muted-foreground space-y-4 text-left">
+              <p className="flex items-start gap-3"><Search className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-foreground">Explore:</strong> Use a barra de busca para encontrar sua receita favorita.</div></p>
+              <p className="flex items-start gap-3"><Info className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-foreground">Filtre:</strong> Navegue pelas categorias e dificuldades para encontrar a receita perfeita.</div></p>
+              <p className="flex items-start gap-3"><Clock className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-foreground">Cozinhe com Precisão:</strong> Dentro de cada receita, você encontrará um cronômetro para te ajudar com o tempo de preparo.</div></p>
             </div>
             <Button onClick={handleIntroFinish}>Vamos Cozinhar!</Button>
           </DialogContent>
         </Dialog>
-        <div className="bg-gray-50 min-h-screen" />
+        <div className="min-h-screen" />
       </>
     )
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen font-body relative overflow-x-hidden">
+    <div className="min-h-screen font-body relative overflow-x-hidden">
         <div className="background-animation">
             <div className="circle xxl shade1"></div>
             <div className="circle xl shade2"></div>
@@ -189,12 +189,12 @@ export default function Home() {
         </Button>
       )}
 
-      <header className="bg-white shadow-sm sticky top-0 z-20">
+      <header className="bg-background/80 backdrop-blur-sm shadow-sm sticky top-0 z-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="flex justify-between items-center py-4">
                 <div className="flex items-center gap-3">
                     <ChefHat className="h-9 w-9 text-primary" />
-                    <h1 className="text-4xl font-headline font-bold text-gray-800">
+                    <h1 className="text-4xl font-headline font-bold text-foreground">
                         Fitte
                     </h1>
                 </div>
@@ -209,21 +209,21 @@ export default function Home() {
         </div>
       </header>
 
-       <div className="relative z-10 bg-white border-b border-gray-200">
+       <div className="relative z-10 border-b border-border/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-24 text-center">
-            <h2 className="text-5xl md:text-7xl font-headline font-extrabold text-gray-900 tracking-tight">
+            <h2 className="text-6xl md:text-8xl font-headline font-extrabold text-foreground tracking-tight">
                 Receitas Saudáveis, Sabor Irresistível.
             </h2>
-            <p className="text-gray-600 mt-8 text-lg max-w-3xl mx-auto">
+            <p className="text-muted-foreground mt-8 text-lg max-w-3xl mx-auto">
                 Explore mais de 700 receitas de doces fit para uma vida mais gostosa e equilibrada. Perfeito para quem treina, busca saúde ou simplesmente ama um bom doce sem culpa.
             </p>
              <div className="mt-12 flex justify-center">
                 <div className="relative w-full max-w-lg">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <Input
                         type="search"
                         placeholder="Encontre sua receita favorita..."
-                        className="pl-12 w-full h-12 rounded-full bg-gray-100 border-transparent focus:ring-2 focus:ring-primary focus:border-transparent text-base"
+                        className="pl-12 w-full h-12 rounded-full bg-card border-transparent focus:ring-2 focus:ring-primary focus:border-transparent text-base"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -236,14 +236,14 @@ export default function Home() {
         <main>
           <div className="mb-12 space-y-10">
             <div>
-              <h3 className="text-center text-xl font-semibold text-gray-800 mb-6">Navegue por Dificuldade</h3>
+              <h3 className="text-center text-xl font-semibold text-foreground mb-6">Navegue por Dificuldade</h3>
               <div className="flex flex-wrap justify-center gap-3">
                 {difficulties.map(difficulty => (
                   <Button
                     key={difficulty}
-                    variant={selectedDifficulty === difficulty ? 'default' : 'outline'}
+                    variant={selectedDifficulty === difficulty ? 'default' : 'secondary'}
                     onClick={() => setSelectedDifficulty(difficulty)}
-                    className={`capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-200 ${selectedDifficulty === difficulty ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-md' : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100 hover:border-gray-400'}`}
+                    className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-200"
                   >
                     {difficulty}
                   </Button>
@@ -252,14 +252,14 @@ export default function Home() {
             </div>
 
             <div>
-              <h3 className="text-center text-xl font-semibold text-gray-800 mb-6">Navegue por Categoria</h3>
+              <h3 className="text-center text-xl font-semibold text-foreground mb-6">Navegue por Categoria</h3>
               <div className="flex flex-wrap justify-center gap-3">
                 {categories.map(category => (
                   <Button
                     key={category}
-                    variant={selectedCategory === category ? 'default' : 'outline'}
+                    variant={selectedCategory === category ? 'default' : 'secondary'}
                     onClick={() => setSelectedCategory(category)}
-                    className={`capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-200 ${selectedCategory === category ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-md' : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100 hover:border-gray-400'}`}
+                    className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-200"
                   >
                     {category}
                   </Button>
@@ -268,7 +268,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="text-sm text-gray-500 mb-8 text-center">
+          <div className="text-sm text-muted-foreground mb-8 text-center">
             Mostrando {filteredRecipes.length} de {recipes.length} receitas.
           </div>
 
@@ -278,24 +278,24 @@ export default function Home() {
               return (
                 <Link href={`/recipe/${recipe.slug}`} key={recipe.id} legacyBehavior>
                   <a className="block group">
-                    <Card className="h-full flex flex-col bg-white rounded-xl shadow-md transition-all duration-300 overflow-hidden transform-gpu group-hover:[transform:rotateY(10deg)_translateZ(20px)] hover:!transform-none hover:shadow-2xl">
+                    <Card className="h-full flex flex-col rounded-xl shadow-md transition-all duration-300 overflow-hidden transform-gpu group-hover:[transform:rotateY(10deg)_translateZ(20px)] hover:!transform-none hover:shadow-2xl hover:shadow-primary/20">
                       <CardHeader className="flex-row items-center gap-4 pb-4">
                         <div className="bg-primary/10 p-3 rounded-lg">
                            <Icon className="h-6 w-6 text-primary" />
                         </div>
-                        <CardTitle className="text-lg font-headline leading-tight flex-1 text-gray-800">{recipe.title}</CardTitle>
+                        <CardTitle className="text-lg font-headline leading-tight flex-1 text-foreground">{recipe.title}</CardTitle>
                       </CardHeader>
                       <CardContent className="flex-grow flex flex-col justify-between pt-0">
-                        <p className="text-gray-600 text-sm mb-4 line-clamp-3">{recipe.description}</p>
-                        <div className="text-xs text-gray-500 space-y-2 pt-4 border-t mt-auto">
+                        <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{recipe.description}</p>
+                        <div className="text-xs text-muted-foreground space-y-2 pt-4 border-t border-border/50 mt-auto">
                            <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4 text-gray-400"/> <span>{recipe.prepTime}</span>
+                            <Clock className="h-4 w-4"/> <span>{recipe.prepTime}</span>
                            </div>
                            <div className="flex items-center gap-2">
-                            <Flame className="h-4 w-4 text-gray-400"/> <span>{recipe.calories}</span>
+                            <Flame className="h-4 w-4"/> <span>{recipe.calories}</span>
                            </div>
                            <div className="flex items-center gap-2">
-                            <Info className="h-4 w-4 text-gray-400"/> <span>Dificuldade: {recipe.difficulty}</span>
+                            <Info className="h-4 w-4"/> <span>Dificuldade: {recipe.difficulty}</span>
                            </div>
                         </div>
                       </CardContent>
