@@ -14,20 +14,15 @@ import { AppLayout } from '@/components/app-layout';
 // Função para extrair tempo de cozimento/geladeira das instruções
 const extractActionTime = (instructions: string[]): number => {
     const timePatterns = [
-      /por cerca de (\d+)\s*a\s*(\d+)?\s*minutos/i, // "por cerca de 10 a 15 minutos"
-      /por (\d+)-(\d+)\s*minutos/i, // "por 25-30 minutos"
-      /por (\d+)\s*a\s*(\d+)?\s*minutos/i, // "por 2 a 3 minutos"
-      /por (\d+)\s*minutos/i, // "por 30 minutos"
-      /por pelo menos (\d+)\s*minutos/i, // "por pelo menos 30 minutos"
+      // Padrão mais robusto: busca por palavras-chave e tempo na mesma frase.
+      /(?:fogo|forno|assar|cozinhe|geladeira|refrigere|mexendo)(?:.*?) por (?:cerca de |pelo menos )?(\d+)(?:(?: a |-| até )(\d+))? (minutos|horas)/i,
       
-      /por cerca de (\d+)\s*a\s*(\d+)?\s*horas/i,
-      /por (\d+)\s*horas/i,
-      /por pelo menos (\d+)\s*horas/i,
-      
-      // Padrões mais genéricos que incluem palavras como fogo, forno, assar, cozinhar, gelar, etc.
-      /(?:asse|assar|forno|fogo|cozinhe|mexendo) por (?:cerca de )?(\d+)(?: a |-| até )?(\d+)? minutos/i,
-      /(?:gele|geladeira|refrigere) por (?:pelo menos )?(\d+)(?: a |-| até )?(\d+)? horas/i,
-      /(?:gele|geladeira|refrigere) por (?:pelo menos )?(\d+)(?: a |-| até )?(\d+)? minutos/i,
+      // Padrões originais como fallback
+      /por cerca de (\d+)\s*a\s*(\d+)?\s*(minutos|horas)/i,
+      /por (\d+)-(\d+)\s*(minutos|horas)/i,
+      /por (\d+)\s*a\s*(\d+)?\s*(minutos|horas)/i,
+      /por (\d+)\s*(minutos|horas)/i,
+      /por pelo menos (\d+)\s*(minutos|horas)/i,
     ];
   
     for (const instruction of instructions) {
@@ -35,12 +30,13 @@ const extractActionTime = (instructions: string[]): number => {
         const match = instruction.match(pattern);
         if (match) {
           // Usa o maior tempo do intervalo (ex: de 10-15 minutos, usa 15)
-          const time = match[2] ? parseInt(match[2], 10) : parseInt(match[1], 10);
-          
-          if (instruction.toLowerCase().includes('hora')) {
-            return time * 60; // Converte horas para minutos
+          const timeValue = match[2] ? parseInt(match[2], 10) : parseInt(match[1], 10);
+          const unit = match[3] || 'minutos';
+
+          if (unit.toLowerCase().includes('hora')) {
+            return timeValue * 60; // Converte horas para minutos
           }
-          return time;
+          return timeValue;
         }
       }
     }
