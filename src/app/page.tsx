@@ -273,13 +273,13 @@ export default function Home() {
             <div>
               <h3 className="text-center text-xl font-semibold text-foreground mb-4">Navegue por Categoria</h3>
               <ScrollArea className="w-full whitespace-nowrap rounded-md">
-                <div className="flex w-max space-x-3 p-4 [perspective:1000px]">
+                <div className="flex w-max space-x-3 p-4">
                   {categories.map(category => (
                     <Button
                       key={category}
                       variant={selectedCategory === category ? 'default' : 'secondary'}
                       onClick={() => setSelectedCategory(category)}
-                      className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-300 transform-gpu hover:[transform:rotateY(15deg)_translateZ(10px)] hover:shadow-primary/20"
+                      className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-shadow hover:shadow-lg"
                     >
                       {category}
                     </Button>
@@ -294,13 +294,13 @@ export default function Home() {
             Mostrando {visibleRecipes.length} de {filteredRecipes.length} receitas.
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 [perspective:1000px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {visibleRecipes.map(recipe => {
               const Icon = getCategoryIcon(recipe.tags);
               return (
                 <Link href={`/recipe/${recipe.slug}`} key={recipe.id} legacyBehavior>
                   <a className="block group">
-                    <Card className="h-full flex flex-col rounded-xl shadow-md transition-all duration-300 overflow-hidden bg-card/50 backdrop-blur-sm transform-gpu group-hover:[transform:rotateY(10deg)_translateZ(20px)] hover:!transform-none hover:shadow-2xl hover:shadow-primary/20">
+                    <Card className="h-full flex flex-col rounded-xl shadow-md transition-all duration-300 overflow-hidden bg-card/50 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-1">
                       <CardHeader className="flex-row items-center gap-4 pb-4">
                         <div className="bg-primary/10 p-3 rounded-lg">
                            <Icon className="h-6 w-6 text-primary" />
