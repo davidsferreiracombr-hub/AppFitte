@@ -157,7 +157,7 @@ export default function Home() {
           ) : (
             <>
               <div className="text-sm mb-6 text-muted-foreground text-center">
-                {`Mostrando ${visibleRecipes.length} de ${filteredRecipes.length} receitas.`}
+                {`Mostrando ${visibleRecipes.length} de ${allRecipes.length} receitas.`}
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
