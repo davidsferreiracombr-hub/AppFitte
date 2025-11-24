@@ -44,7 +44,7 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className }: 
         <p className="text-sm text-muted-foreground line-clamp-3 mt-1">
           {recipe.description}
         </p>
-        <div className="flex items-center justify-between gap-4 text-xs text-muted-foreground mt-4 pt-4 border-t">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground mt-4 pt-4 border-t">
             <div className="flex items-center gap-1.5">
                 <Clock className="h-4 w-4" />
                 <span>{recipe.prepTime}</span>

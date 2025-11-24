@@ -39,7 +39,7 @@ const initialRecipes: Recipe[] = [
     slug: "mousse-de-abacate-com-cacau", 
     title: "Mousse de Abacate com Cacau", 
     description: "Cremoso, saudável e delicioso. Uma sobremesa rica em gorduras boas, perfeita para um doce sem culpa após as refeições.", 
-    tags: ["vegano", "sem glúten", "mousse"],
+    tags: ["vegano", "sem glúten", "mousse", "sobremesa"],
     prepTime: "15 min",
     calories: "250 kcal",
     difficulty: "Fácil",
@@ -68,7 +68,7 @@ const initialRecipes: Recipe[] = [
     slug: "brownie-de-batata-doce", 
     title: "Brownie de Batata-Doce", 
     description: "Um brownie funcional, sem farinha e super macio. Ideal para o pós-treino ou um lanche da tarde nutritivo.", 
-    tags: ["vegano", "sem glúten", "brownie"],
+    tags: ["vegano", "sem glúten", "brownie", "lanche"],
     prepTime: "40 min",
     calories: "180 kcal por porção",
     difficulty: "Média",
@@ -101,7 +101,7 @@ const initialRecipes: Recipe[] = [
     slug: "cookie-de-banana-com-aveia", 
     title: "Cookie de Banana com Aveia", 
     description: "Apenas 2 ingredientes para um cookie rápido, prático e saudável. Perfeito para quando bate a vontade de um doce.", 
-    tags: ["vegano", "sem glúten", "cookie"],
+    tags: ["vegano", "sem glúten", "cookie", "rápido"],
     prepTime: "20 min",
     calories: "90 kcal por cookie",
     difficulty: "Fácil",
@@ -156,7 +156,7 @@ const initialRecipes: Recipe[] = [
     slug: "pudim-de-chia-com-manga", 
     title: "Pudim de Chia com Manga", 
     description: "Uma opção leve e refrescante para o café da manhã ou sobremesa. Cheio de fibras e vitaminas.", 
-    tags: ["vegano", "sem glúten", "pudim"],
+    tags: ["vegano", "sem glúten", "pudim", "café da manhã"],
     prepTime: "10 min + 4h de geladeira",
     calories: "200 kcal",
     difficulty: "Fácil",
@@ -206,11 +206,10 @@ const initialRecipes: Recipe[] = [
     ]
   },
   { 
-    id: 7, 
-    slug: "trufa-de-tamara-com-nozes", 
+    id: 7, slug: "trufa-de-tamara-com-nozes", 
     title: "Trufa de Tâmara com Nozes", 
     description: "Docinho rápido e energético, perfeito para antes do treino ou para matar a vontade de chocolate.", 
-    tags: ["vegano", "sem glúten", "doce"],
+    tags: ["vegano", "sem glúten", "doce", "rápido"],
     prepTime: "10 min",
     calories: "70 kcal por trufa",
     difficulty: "Fácil",
@@ -260,8 +259,7 @@ const initialRecipes: Recipe[] = [
     id: 9, 
     slug: "creme-de-papaia-com-cassis-fit", 
     title: "Creme de Papaia com Cassis Fit", 
-    description: "Sobremesa digestiva e elegante, sem álcool e sem açúcar, para um toque gourmet no seu dia.", 
-    tags: ["sem glúten", "creme"],
+    description: "Sobremesa digestiva e elegante, sem álcool e sem açúcar, para um toque gourmet no seu dia.", tags: ["sem glúten", "creme", "sobremesa"],
     prepTime: "5 min",
     calories: "150 kcal",
     difficulty: "Fácil",
@@ -308,7 +306,7 @@ const initialRecipes: Recipe[] = [
     slug: "danoninho-caseiro-fit", 
     title: "Danoninho Caseiro Fit", 
     description: "Iogurte de morango caseiro, rico em proteínas e probióticos, sem corantes ou conservantes.", 
-    tags: ["crianças", "lanche"],
+    tags: ["crianças", "lanche", "proteico"],
     prepTime: "10 min",
     calories: "120 kcal",
     difficulty: "Fácil",
@@ -357,7 +355,7 @@ const initialRecipes: Recipe[] = [
     slug: "cheesecake-de-frutas-vermelhas-sem-acucar", 
     title: "Cheesecake de Frutas Vermelhas", 
     description: "Cheesecake cremoso com calda de frutas vermelhas, sem adição de açúcar e com base low carb.", 
-    tags: ["torta", "cheesecake"],
+    tags: ["torta", "cheesecake", "low carb"],
     prepTime: "1h + 4h de geladeira",
     calories: "320 kcal por fatia",
     difficulty: "Difícil",
@@ -382,7 +380,7 @@ const initialRecipes: Recipe[] = [
     slug: "panqueca-de-aveia-com-frutas", 
     title: "Panqueca de Aveia com Frutas", 
     description: "Café da manhã reforçado, proteico e delicioso para começar o dia com energia total.", 
-    tags: ["panqueca", "café da manhã"],
+    tags: ["panqueca", "café da manhã", "proteico"],
     prepTime: "15 min",
     calories: "250 kcal por porção",
     difficulty: "Fácil",
@@ -409,7 +407,7 @@ const initialRecipes: Recipe[] = [
     slug: "manjar-de-coco-com-calda-de-ameixa", 
     title: "Manjar de Coco Fit", 
     description: "Sobremesa clássica em versão saudável, com leite de coco caseiro, sem açúcar e naturalmente doce.", 
-    tags: ["vegano", "sem glúten", "manjar"],
+    tags: ["vegano", "sem glúten", "manjar", "sobremesa"],
     prepTime: "25 min + 3h de geladeira",
     calories: "270 kcal",
     difficulty: "Média",
@@ -465,7 +463,7 @@ const initialRecipes: Recipe[] = [
     slug: "bolo-de-fuba-cremoso-fit",
     title: "Bolo de Fubá Cremoso Fit",
     description: "Aquele bolo de fubá com textura de pudim, mas em uma versão saudável e sem culpa para o seu café da tarde.",
-    tags: ["bolo", "sem glúten"],
+    tags: ["bolo", "sem glúten", "café da manhã"],
     prepTime: "1h",
     calories: "210 kcal por fatia",
     difficulty: "Média",
@@ -522,10 +520,10 @@ const initialRecipes: Recipe[] = [
 
 const generatedRecipes: Recipe[] = Array.from({ length: 700 }, (_, i) => {
     const difficulties: Array<"Fácil" | "Média" | "Difícil"> = ["Fácil", "Média", "Difícil"];
-    const tagsOptions = ["doce", "fit", "bolo", "vegano", "sem glúten", "torta", "cookie", "lanche", "café da manhã", "sobremesa", "rápido", "low carb", "proteico"];
     const mainIngredient = ["Maçã", "Banana", "Morango", "Chocolate", "Amendoim", "Coco", "Cenoura", "Limão", "Laranja", "Abóbora", "Maracujá", "Milho", "Aveia", "Iogurte", "Batata-Doce", "Abacate", "Manga", "Beterraba"];
     const recipeType = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra de Cereal", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca", "Bombom", "Trufa", "Biscoito", "Donut"];
     const adjective = ["Funcional", "Proteico", "Low Carb", "Refrescante", "Energético", "Leve", "Cremoso", "Crocante", "Rápido", "Simples", "Surpreendente", "Diferente", "Exótico"];
+    const generalTags = ["fit", "vegano", "sem glúten", "lanche", "café da manhã", "sobremesa"];
 
     const uniqueId = 19 + i;
     const currentType = recipeType[i % recipeType.length];
@@ -536,12 +534,18 @@ const generatedRecipes: Recipe[] = Array.from({ length: 700 }, (_, i) => {
     const slug = createSlug(title, uniqueId);
 
     const randomTags = new Set<string>();
+    // Add the main recipe type as a tag
     randomTags.add(currentType.toLowerCase().replace(/ /g, '-'));
-    randomTags.add(tagsOptions[i % tagsOptions.length]);
-    randomTags.add(tagsOptions[(i + 3) % tagsOptions.length]);
+    // Add 1-2 general tags
+    randomTags.add(generalTags[i % generalTags.length]);
+    if (i % 2 === 0) {
+        randomTags.add(generalTags[(i + 2) % generalTags.length]);
+    }
+    
     if (title.toLowerCase().includes('low carb')) randomTags.add('low carb');
     if (title.toLowerCase().includes('vegano')) randomTags.add('vegano');
     if (title.toLowerCase().includes('proteico')) randomTags.add('proteico');
+    if (title.toLowerCase().includes('rápido')) randomTags.add('rápido');
 
     return {
       id: uniqueId,
