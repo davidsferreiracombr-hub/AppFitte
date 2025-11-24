@@ -86,8 +86,8 @@ export function Timer({ durationInMinutes, context }: TimerProps) {
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-sm mx-auto">
       <div className="flex items-center justify-center gap-2 text-primary mb-4">
-        <TimerIcon className="h-5 w-5" />
-        <p className="text-base font-semibold">{context}</p>
+        <TimerIcon className="h-6 w-6" />
+        <p className="text-lg font-bold">{context}</p>
       </div>
       
       <div className="text-center my-2">
