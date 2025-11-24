@@ -37,14 +37,16 @@ const categoryIcons: { [key: string]: React.ElementType } = {
 
 const getCategoryIcon = (tags: string[]) => {
   const lowerCaseTags = tags.map(tag => tag.toLowerCase());
-  for (const key in categoryIcons) {
-    if (lowerCaseTags.includes(key)) {
-      return categoryIcons[key];
+  // Exact match first
+  for (const tag of lowerCaseTags) {
+    if (categoryIcons[tag]) {
+      return categoryIcons[tag];
     }
   }
+  // Partial match if no exact match is found
   for (const tag of lowerCaseTags) {
      for (const key in categoryIcons) {
-        if (tag.includes(key)) {
+        if (key !== 'default' && tag.includes(key)) {
             return categoryIcons[key];
         }
      }
