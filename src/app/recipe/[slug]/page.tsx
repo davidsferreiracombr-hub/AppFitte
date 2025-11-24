@@ -2,36 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { getRecipeBySlug, type Recipe } from '@/lib/recipes';
-import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon } from 'lucide-react';
+import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon, CakeSlice } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Timer } from '@/components/Timer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function RecipePage({ params }: { params: { slug: string } }) {
-  const [recipe, setRecipe] = useState<Recipe | undefined>(undefined);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    const foundRecipe = getRecipeBySlug(params.slug);
-    if (foundRecipe) {
-      setRecipe(foundRecipe);
-    } else {
-      console.log('Recipe not found');
-    }
-  }, [params.slug]);
-
-  const prepTimeInMinutes = recipe?.prepTime ? parseInt(recipe.prepTime.split(' ')[0]) : 0;
-
-  if (!isMounted) {
-    return (
-        <div className="flex justify-center items-center h-screen">
-          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary"></div>
-        </div>
-      );
-  }
-
+  // Otimização: Carrega a receita diretamente sem `useEffect` para evitar "flashes" de conteúdo e múltiplos re-renders.
+  const recipe = getRecipeBySlug(params.slug);
+  
   if (!recipe) {
     return (
       <div className="flex flex-col justify-center items-center h-screen text-center px-4">
@@ -47,6 +27,8 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
       </div>
     );
   }
+  
+  const prepTimeInMinutes = recipe?.prepTime ? parseInt(recipe.prepTime.split(' ')[0]) : 0;
 
   return (
     <div className="min-h-screen font-body">

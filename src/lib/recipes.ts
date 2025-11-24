@@ -42,7 +42,7 @@ const recipes: Recipe[] = [
         "Leve à geladeira por pelo menos 30 minutos para firmar e gelar. Este passo é crucial para a textura final.",
         "Antes de servir, decore com raspas de chocolate amargo."
     ],
-    notes: "Para um sabor mais intenso, utilize um cacau de boa qualidade. Se o abacate não estiver muito maduro, pode ser necessário adicionar um pouco mais de leite vegetal para ajudar a bater. Na airfryer, não é uma boa opção, pois é uma sobremesa fria."
+    notes: "Para um sabor mais intenso, utilize um cacau de boa qualidade. Se o abacate não estiver muito maduro, pode ser necessário adicionar um pouco mais de leite vegetal para ajudar a bater."
   },
   { 
     id: 2, 
@@ -502,9 +502,10 @@ const recipes: Recipe[] = [
   ...Array.from({ length: 700 }, (_, i) => {
     const difficulties: Array<"Fácil" | "Média" | "Difícil"> = ["Fácil", "Média", "Difícil"];
     const tagsOptions = ["doce", "fit", "bolo", "vegano", "sem glúten", "torta", "cookie", "lanche", "café da manhã"];
-    const mainIngredient = ["Maçã", "Banana", "Morango", "Chocolate", "Amendoim", "Coco", "Cenoura", "Limão", "Laranja", "Abóbora"];
-    const recipeType = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra", "Muffin", "Panqueca", "Sorvete", "Pudim"];
+    const mainIngredient = ["Maçã", "Banana", "Morango", "Chocolate", "Amendoim", "Coco", "Cenoura", "Limão", "Laranja", "Abóbora", "Maracujá", "Milho"];
+    const recipeType = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra de Cereal", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca"];
 
+    const uniqueId = 19 + i;
     const currentType = recipeType[i % recipeType.length];
     const currentIngredient = mainIngredient[i % mainIngredient.length];
     const randomTags = new Set<string>();
@@ -512,36 +513,39 @@ const recipes: Recipe[] = [
     randomTags.add(tagsOptions[(i + 3) % tagsOptions.length]);
     
     // Add specific tags based on type/ingredient
-    if (currentType === 'Bolo') randomTags.add('bolo');
-    if (currentType === 'Torta') randomTags.add('torta');
-    if (currentType === 'Cookie') randomTags.add('cookie');
+    if (currentType.toLowerCase().includes('bolo')) randomTags.add('bolo');
+    if (currentType.toLowerCase().includes('torta')) randomTags.add('torta');
+    if (currentType.toLowerCase().includes('cookie')) randomTags.add('cookie');
+    
+    // Correção: Slug agora é único e segue um padrão consistente.
+    const slug = `${currentType.toLowerCase().replace(/ /g, '-')}-de-${currentIngredient.toLowerCase().replace(/ /g, '-')}-${uniqueId}`;
 
     return {
-      id: 19 + i,
-      slug: `receita-fit-${currentType.toLowerCase()}-${currentIngredient.toLowerCase()}-${19 + i}`,
-      title: `${currentType} Fit de ${currentIngredient}`,
-      description: `Uma deliciosa e saudável receita de ${currentType.toLowerCase()} de ${currentIngredient.toLowerCase()}, perfeita para um lanche nutritivo.`,
+      id: uniqueId,
+      slug: slug,
+      title: `${currentType} de ${currentIngredient} Fit`,
+      description: `Uma deliciosa e saudável receita de ${currentType.toLowerCase()} de ${currentIngredient.toLowerCase()}, perfeita para um lanche nutritivo e sem culpa.`,
       tags: Array.from(randomTags),
       prepTime: `${Math.floor(Math.random() * 40) + 10} min`,
       calories: `${Math.floor(Math.random() * 200) + 150} kcal`,
       difficulty: difficulties[i % difficulties.length],
       servings: `${Math.floor(Math.random() * 6) + 2} porções`,
       ingredients: [
-        `1 xícara de ${currentIngredient.toLowerCase()}`,
-        "1 xícara de farinha de aveia",
-        "2 ovos",
+        `1 xícara de ${currentIngredient.toLowerCase()} (fresco, em purê ou em pó, dependendo da receita)`,
+        "1 xícara de farinha de aveia (ou amêndoas para low carb)",
+        "2 ovos (ou 'ovos' de linhaça para vegano)",
         "3 colheres de sopa de adoçante natural (xilitol ou stevia)",
         "1 colher de chá de essência de baunilha"
       ],
       instructions: [
-        `Pré-aqueça o forno a 180°C.`,
-        `Em uma tigela, misture a farinha, o adoçante e outros ingredientes secos.`,
-        `Adicione os ovos, a essência de baunilha e o(a) ${currentIngredient.toLowerCase()} amassado(a) ou processado(a).`,
+        `Pré-aqueça o forno (ou airfryer) a 180°C.`,
+        `Em uma tigela, misture os ingredientes secos, como a farinha e o adoçante.`,
+        `Adicione os ingredientes úmidos, como os ovos, a baunilha e o(a) ${currentIngredient.toLowerCase()}.`,
         `Misture tudo até obter uma massa homogênea.`,
-        `Asse por 20-30 minutos ou até dourar.`,
-        `Sirva em seguida.`
+        `Despeje em uma forma untada e asse por 20-30 minutos ou até dourar.`,
+        `Sirva em seguida e aproveite seu doce saudável!`
       ],
-      notes: "Experimente adicionar canela em pó para um sabor extra. Se a massa ficar muito seca, adicione um pouco de leite vegetal."
+      notes: "Para uma versão vegana, substitua os ovos por 2 colheres de sopa de semente de linhaça triturada misturada com 6 colheres de sopa de água. Deixe descansar por 5 minutos antes de usar."
     };
   })
 ];
@@ -553,4 +557,3 @@ export function getRecipes(): Recipe[] {
 export function getRecipeBySlug(slug: string): Recipe | undefined {
   return recipes.find((recipe) => recipe.slug === slug);
 }
-
