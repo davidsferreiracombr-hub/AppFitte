@@ -8,18 +8,28 @@ import { Timer } from '@/components/Timer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { cn } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
 
 export default function RecipePage({ params }: { params: { slug: string } }) {
   const recipe = getRecipeBySlug(params.slug);
   const { favorites, addFavorite, removeFavorite } = useFavorites();
+  const { toast } = useToast();
   const isFavorite = recipe ? favorites.includes(recipe.slug) : false;
 
   const handleFavoriteClick = () => {
     if (!recipe) return;
     if (isFavorite) {
       removeFavorite(recipe.slug);
+      toast({
+        title: "Receita Removida!",
+        description: `"${recipe.title}" foi removida dos seus favoritos.`,
+      });
     } else {
       addFavorite(recipe.slug);
+      toast({
+        title: "Receita Adicionada!",
+        description: `"${recipe.title}" foi adicionada aos seus favoritos.`,
+      });
     }
   };
   
@@ -42,7 +52,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
   const prepTimeInMinutes = recipe?.prepTime ? parseInt(recipe.prepTime.split(' ')[0]) : 0;
 
   return (
-    <div className="min-h-screen font-body">
+    <div className="min-h-screen font-body bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl py-12">
         <div className="mb-8 flex justify-between items-center">
             <Link href="/" legacyBehavior>
@@ -57,7 +67,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
             </Button>
         </div>
 
-        <Card className="overflow-hidden shadow-lg">
+        <Card className="overflow-hidden shadow-lg bg-card/50 backdrop-blur-sm">
           <CardHeader className="text-center p-8 md:p-12">
             <ChefHat className="mx-auto h-14 w-14 text-primary mb-4" />
             <h1 className="text-4xl md:text-5xl font-headline font-bold text-foreground">
@@ -69,22 +79,22 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
           </CardHeader>
           <CardContent className="px-6 py-8 md:px-10 md:py-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 text-center">
-                <div className="bg-card p-4 rounded-lg flex flex-col items-center justify-center">
+                <div className="bg-background/50 p-4 rounded-lg flex flex-col items-center justify-center border">
                     <Clock className="h-7 w-7 text-primary mb-2" />
                     <p className="font-semibold text-sm text-foreground">Tempo</p>
                     <p className="text-muted-foreground">{recipe.prepTime}</p>
                 </div>
-                 <div className="bg-card p-4 rounded-lg flex flex-col items-center justify-center">
+                 <div className="bg-background/50 p-4 rounded-lg flex flex-col items-center justify-center border">
                     <Flame className="h-7 w-7 text-primary mb-2" />
                     <p className="font-semibold text-sm text-foreground">Calorias</p>
                     <p className="text-muted-foreground">{recipe.calories}</p>
                 </div>
-                 <div className="bg-card p-4 rounded-lg flex flex-col items-center justify-center">
+                 <div className="bg-background/50 p-4 rounded-lg flex flex-col items-center justify-center border">
                     <Award className="h-7 w-7 text-primary mb-2" />
                     <p className="font-semibold text-sm text-foreground">Dificuldade</p>
                     <p className="text-muted-foreground">{recipe.difficulty}</p>
                 </div>
-                <div className="bg-card p-4 rounded-lg flex flex-col items-center justify-center">
+                <div className="bg-background/50 p-4 rounded-lg flex flex-col items-center justify-center border">
                     <BookText className="h-7 w-7 text-primary mb-2" />
                     <p className="font-semibold text-sm text-foreground">Rendimento</p>
                     <p className="text-muted-foreground">{recipe.servings}</p>
@@ -96,7 +106,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
                     <div className="space-y-10">
                         <div>
                             <h2 className="text-2xl font-headline font-bold text-foreground mb-4 flex items-center gap-3"><Utensils className="h-6 w-6 text-primary" /> Ingredientes</h2>
-                            <ul className="list-disc list-inside space-y-3 text-muted-foreground bg-card/70 p-6 rounded-lg border">
+                            <ul className="list-disc list-inside space-y-3 text-muted-foreground bg-background/70 p-6 rounded-lg border">
                                 {recipe.ingredients.map((item, index) => (
                                     <li key={index} className="leading-relaxed">{item}</li>
                                 ))}
@@ -105,7 +115,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
 
                         <div>
                             <h2 className="text-2xl font-headline font-bold text-foreground mb-4 flex items-center gap-3"><ChefHat className="h-6 w-6 text-primary" /> Modo de Preparo</h2>
-                             <ol className="list-decimal list-inside space-y-4 text-muted-foreground bg-card/70 p-6 rounded-lg border">
+                             <ol className="list-decimal list-inside space-y-4 text-muted-foreground bg-background/70 p-6 rounded-lg border">
                                 {recipe.instructions.map((item, index) => (
                                     <li key={index} className="leading-relaxed pl-2">{item}</li>
                                 ))}
@@ -142,5 +152,3 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
     </div>
   );
 }
-
-    

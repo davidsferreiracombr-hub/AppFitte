@@ -54,8 +54,8 @@ const getCategoryIcon = (tags: string[]) => {
   return categoryIcons['default'];
 };
 
-const INITIAL_LOAD_COUNT = 24;
-const LOAD_MORE_COUNT = 24;
+const INITIAL_LOAD_COUNT = 12;
+const LOAD_MORE_COUNT = 8;
 
 export default function Home() {
   const recipes = useMemo(() => getRecipes(), []);
