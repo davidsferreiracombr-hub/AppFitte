@@ -14,6 +14,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+
 
 const categoryIcons: { [key: string]: React.ElementType } = {
   'brownie': CakeSlice,
@@ -270,18 +272,21 @@ export default function Home() {
 
             <div>
               <h3 className="text-center text-xl font-semibold text-foreground mb-4">Navegue por Categoria</h3>
-              <div className="flex flex-wrap justify-center gap-3 [perspective:1000px]">
-                {categories.map(category => (
-                  <Button
-                    key={category}
-                    variant={selectedCategory === category ? 'default' : 'secondary'}
-                    onClick={() => setSelectedCategory(category)}
-                    className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-300 transform-gpu hover:[transform:rotateY(15deg)_translateZ(10px)] hover:shadow-primary/20"
-                  >
-                    {category}
-                  </Button>
-                ))}
-              </div>
+              <ScrollArea className="w-full whitespace-nowrap rounded-md">
+                <div className="flex w-max space-x-3 p-4 [perspective:1000px]">
+                  {categories.map(category => (
+                    <Button
+                      key={category}
+                      variant={selectedCategory === category ? 'default' : 'secondary'}
+                      onClick={() => setSelectedCategory(category)}
+                      className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-300 transform-gpu hover:[transform:rotateY(15deg)_translateZ(10px)] hover:shadow-primary/20"
+                    >
+                      {category}
+                    </Button>
+                  ))}
+                </div>
+                <ScrollBar orientation="horizontal" />
+              </ScrollArea>
             </div>
           </div>
           
