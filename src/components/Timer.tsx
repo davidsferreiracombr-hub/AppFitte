@@ -4,6 +4,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, Pause, RotateCcw } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface TimerProps {
   durationInMinutes: number;
@@ -21,8 +22,7 @@ export function Timer({ durationInMinutes }: TimerProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
   useEffect(() => {
-    // Carregar o áudio apenas no cliente
-    if (!audioRef.current) {
+    if (!audioRef.current && typeof window !== 'undefined') {
         audioRef.current = new Audio('https://media.jpk.superfastech.com/notification/notification_1.mp3');
     }
   }, []);
@@ -44,28 +44,31 @@ export function Timer({ durationInMinutes }: TimerProps) {
     setIsActive(true);
     setIsFinished(false);
     
-    // Se for um "resume", use o tempo restante. Senão, comece do zero.
     const startTime = Date.now();
-    endTimeRef.current = startTime + timeRemaining * 1000;
+    // Se o timer está sendo retomado, use o tempo que já restava.
+    // Se está começando do zero, use a duração total.
+    const remaining = (endTimeRef.current && timeRemaining < durationInSeconds) ? timeRemaining : durationInSeconds;
+    endTimeRef.current = startTime + remaining * 1000;
     
     const tick = () => {
       if (endTimeRef.current) {
-        const remaining = Math.round((endTimeRef.current - Date.now()) / 1000);
-        if (remaining <= 0) {
+        const remainingSeconds = Math.round((endTimeRef.current - Date.now()) / 1000);
+        if (remainingSeconds <= 0) {
           setTimeRemaining(0);
           setIsFinished(true);
           setIsActive(false);
           stopTimer();
           playFinishSound();
         } else {
-          setTimeRemaining(remaining);
+          setTimeRemaining(remainingSeconds);
         }
       }
     };
     
-    stopTimer(); // Limpa qualquer timer anterior
+    stopTimer(); 
     timerIdRef.current = setInterval(tick, 1000);
-  }, [timeRemaining, stopTimer, playFinishSound]);
+    tick();
+  }, [timeRemaining, durationInSeconds, stopTimer, playFinishSound]);
 
   const pauseTimer = useCallback(() => {
     setIsActive(false);
@@ -84,7 +87,6 @@ export function Timer({ durationInMinutes }: TimerProps) {
     resetTimer();
   }, [durationInMinutes, resetTimer]);
   
-  // Efeito para lidar com a visibilidade da página
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible' && isActive && endTimeRef.current) {
@@ -92,13 +94,10 @@ export function Timer({ durationInMinutes }: TimerProps) {
          if (remaining > 0) {
            setTimeRemaining(remaining);
          } else {
-           // O tempo acabou enquanto a aba estava inativa
            setTimeRemaining(0);
            setIsFinished(true);
            setIsActive(false);
            stopTimer();
-           // Não podemos tocar som automaticamente em todos os navegadores,
-           // mas o estado visual estará correto.
          }
       }
     };
@@ -106,6 +105,7 @@ export function Timer({ durationInMinutes }: TimerProps) {
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      stopTimer();
     };
   }, [isActive, stopTimer]);
 
@@ -125,24 +125,20 @@ export function Timer({ durationInMinutes }: TimerProps) {
     }
   };
   
-  const getButtonIcon = () => {
-      if (isFinished) return <RotateCcw className="h-8 w-8" />;
-      if (isActive) return <Pause className="h-8 w-8" />;
-      return <Play className="h-8 w-8" />;
-  }
-
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-lg border w-full max-w-sm mx-auto">
+    <div className="flex flex-col items-center justify-center p-6 bg-gray-900 rounded-2xl shadow-2xl border border-gray-700 w-full max-w-sm mx-auto text-white">
       <div className="relative w-64 h-64">
-        <svg className="w-full h-full" viewBox="0 0 100 100">
+        <svg className="w-full h-full" viewBox="0 0 100 100" transform="rotate(-90)">
+          {/* Background Circle */}
           <circle
-            className="text-gray-200 stroke-current"
+            className="text-gray-700/50 stroke-current"
             strokeWidth="8"
             cx="50"
             cy="50"
             r="45"
             fill="transparent"
           ></circle>
+          {/* Progress Circle */}
           <circle
             className="text-primary stroke-current"
             strokeWidth="8"
@@ -151,29 +147,46 @@ export function Timer({ durationInMinutes }: TimerProps) {
             cy="50"
             r="45"
             fill="transparent"
-            strokeDasharray="283"
-            strokeDashoffset={283 - (progress / 100) * 283}
-            transform="rotate(-90 50 50)"
-            style={{ transition: 'stroke-dashoffset 0.5s linear' }}
+            strokeDasharray="282.74" // 2 * PI * 45
+            strokeDashoffset={282.74 - (progress / 100) * 282.74}
+            style={{ transition: 'stroke-dashoffset 1s linear' }}
           ></circle>
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
             {isFinished ? (
-                 <span className="text-4xl font-bold text-primary animate-pulse">Pronto!</span>
+                 <span className="text-3xl font-bold text-primary animate-pulse">Pronto!</span>
             ) : (
-                <span className="text-6xl font-bold text-gray-800 tabular-nums tracking-tighter">
-                    {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
-                </span>
+                <div className="text-center">
+                  <span className="text-5xl font-bold text-white tabular-nums tracking-tighter">
+                      {String(minutes).padStart(2, '0')}:<span className={cn(isActive && "text-primary transition-colors duration-500")}>{String(seconds).padStart(2, '0')}</span>
+                  </span>
+                  <p className="text-gray-400 text-sm mt-2">Cozinhando</p>
+                </div>
             )}
         </div>
       </div>
       
       <div className="flex items-center justify-center gap-4 mt-8 w-full">
-        <Button onClick={handleToggle} size="icon" className="h-20 w-20 rounded-full shadow-lg">
-          {getButtonIcon()}
+        <Button 
+          onClick={handleToggle} 
+          size="icon" 
+          className={cn(
+            "h-20 w-20 rounded-full shadow-lg transition-all duration-300",
+            isActive ? "bg-primary/20 text-primary hover:bg-primary/30" : "bg-primary text-primary-foreground",
+            isFinished && "bg-gray-600 hover:bg-gray-500"
+          )}
+        >
+          {isFinished ? <RotateCcw className="h-8 w-8" /> : isActive ? <Pause className="h-8 w-8" /> : <Play className="h-8 w-8" />}
         </Button>
+        
         {(!isActive && timeRemaining < durationInSeconds && !isFinished) && (
-            <Button onClick={resetTimer} variant="outline" size="icon" className="h-16 w-16 rounded-full" aria-label="Resetar Cronômetro">
+            <Button 
+              onClick={resetTimer} 
+              variant="ghost" 
+              size="icon" 
+              className="h-16 w-16 rounded-full text-gray-400 hover:bg-gray-700 hover:text-white" 
+              aria-label="Resetar Cronômetro"
+            >
               <RotateCcw className="h-6 w-6"/>
             </Button>
         )}

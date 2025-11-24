@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -64,8 +65,8 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
             </Link>
         </div>
 
-        <Card className="overflow-hidden shadow-lg">
-          <CardHeader className="text-center p-8 bg-white">
+        <Card className="overflow-hidden shadow-lg bg-white">
+          <CardHeader className="text-center p-8">
             <ChefHat className="mx-auto h-12 w-12 text-primary mb-4" />
             <h1 className="text-3xl md:text-4xl font-headline font-bold text-gray-800">
               {recipe.title}
@@ -74,7 +75,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
               {recipe.description}
             </p>
           </CardHeader>
-          <CardContent className="p-8 bg-white">
+          <CardContent className="p-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10 text-center">
                 <div className="bg-primary/5 p-4 rounded-lg flex flex-col items-center justify-center">
                     <Clock className="h-7 w-7 text-primary mb-2" />
@@ -98,28 +99,44 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="md:col-span-1">
-                    <h2 className="text-2xl font-headline font-bold text-gray-800 mb-4 flex items-center gap-3"><Utensils className="h-6 w-6 text-primary" /> Ingredientes</h2>
-                    <ul className="list-disc list-inside space-y-2 text-gray-700 bg-gray-50 p-6 rounded-lg border">
-                        {recipe.ingredients.map((item, index) => (
-                            <li key={index} className="leading-relaxed">{item}</li>
-                        ))}
-                    </ul>
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+                <div className="lg:col-span-3">
+                    <div className="space-y-8">
+                        <div>
+                            <h2 className="text-2xl font-headline font-bold text-gray-800 mb-4 flex items-center gap-3"><Utensils className="h-6 w-6 text-primary" /> Ingredientes</h2>
+                            <ul className="list-disc list-inside space-y-2 text-gray-700 bg-gray-50 p-6 rounded-lg border">
+                                {recipe.ingredients.map((item, index) => (
+                                    <li key={index} className="leading-relaxed">{item}</li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h2 className="text-2xl font-headline font-bold text-gray-800 mb-4 flex items-center gap-3"><ChefHat className="h-6 w-6 text-primary" /> Modo de Preparo</h2>
+                             <ol className="list-decimal list-inside space-y-4 text-gray-700 bg-gray-50 p-6 rounded-lg border">
+                                {recipe.instructions.map((item, index) => (
+                                    <li key={index} className="leading-relaxed pl-2">{item}</li>
+                                ))}
+                            </ol>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="md:col-span-2">
-                    <h2 className="text-2xl font-headline font-bold text-gray-800 mb-4 flex items-center gap-3"><ChefHat className="h-6 w-6 text-primary" /> Modo de Preparo</h2>
-                     <ol className="list-decimal list-inside space-y-4 text-gray-700 bg-gray-50 p-6 rounded-lg border">
-                        {recipe.instructions.map((item, index) => (
-                            <li key={index} className="leading-relaxed pl-2">{item}</li>
-                        ))}
-                    </ol>
+                <div className="lg:col-span-2">
+                    {prepTimeInMinutes > 0 && (
+                      <div className="sticky top-28">
+                          <h2 className="text-2xl font-headline font-bold text-gray-800 mb-4 flex items-center justify-center gap-3">
+                              <TimerIcon className="h-6 w-6 text-primary" />
+                              Cronômetro
+                          </h2>
+                          <Timer durationInMinutes={prepTimeInMinutes} />
+                      </div>
+                    )}
                 </div>
             </div>
             
             {recipe.notes && (
-                 <div className="mt-8">
+                 <div className="mt-12">
                     <h3 className="text-xl font-headline font-bold text-gray-800 mb-3 flex items-center gap-3"><Info className="h-5 w-5 text-primary" /> Dicas do Chef</h3>
                     <div className="bg-blue-50 border-l-4 border-blue-400 text-blue-800 p-4 rounded-r-lg">
                         <p className="text-sm leading-relaxed">{recipe.notes}</p>
@@ -127,15 +144,6 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
                 </div>
             )}
 
-            {prepTimeInMinutes > 0 && (
-              <div className="mt-12 text-center">
-                  <h2 className="text-2xl font-headline font-bold text-gray-800 mb-4 flex items-center justify-center gap-3">
-                      <TimerIcon className="h-6 w-6 text-primary" />
-                      Cronômetro da Receita
-                  </h2>
-                  <Timer durationInMinutes={prepTimeInMinutes} />
-              </div>
-            )}
           </CardContent>
         </Card>
       </div>
