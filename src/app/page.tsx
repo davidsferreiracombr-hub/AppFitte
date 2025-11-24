@@ -164,7 +164,7 @@ export default function Home() {
     return (
       <>
         <Dialog open={showWelcome} onOpenChange={setShowWelcome}>
-          <DialogContent className="sm:max-w-md text-center bg-card border-border">
+          <DialogContent className="sm:max-w-md text-center bg-card border-border rounded-lg">
             <DialogHeader>
               <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto text-foreground">
                 <CakeSlice className="h-8 w-8 text-primary" /> Bem-vindo(a) ao Fitte!
@@ -182,7 +182,7 @@ export default function Home() {
         </Dialog>
         
         <Dialog open={showIntro} onOpenChange={setShowIntro}>
-          <DialogContent className="sm:max-w-[425px] bg-card border-border">
+          <DialogContent className="max-w-sm sm:max-w-md bg-card border-border rounded-lg">
             <DialogHeader>
               <DialogTitle className="text-center text-2xl font-bold flex items-center justify-center gap-2 text-foreground">
                 Como funciona o App
