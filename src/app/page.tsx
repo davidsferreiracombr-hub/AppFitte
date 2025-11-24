@@ -210,14 +210,14 @@ export default function Home() {
       </header>
 
        <div className="relative z-10 border-b border-border/50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-24 text-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-20 text-center">
             <h2 className="text-6xl md:text-8xl font-headline font-extrabold text-foreground tracking-tight">
                 Receitas Saudáveis, Sabor Irresistível.
             </h2>
-            <p className="text-muted-foreground mt-8 text-lg max-w-3xl mx-auto">
+            <p className="text-muted-foreground mt-6 text-lg max-w-3xl mx-auto">
                 Explore mais de 700 receitas de doces fit para uma vida mais gostosa e equilibrada. Perfeito para quem treina, busca saúde ou simplesmente ama um bom doce sem culpa.
             </p>
-             <div className="mt-12 flex justify-center">
+             <div className="mt-10 flex justify-center">
                 <div className="relative w-full max-w-lg">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <Input
@@ -232,11 +232,11 @@ export default function Home() {
         </div>
       </div>
       
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12">
         <main>
-          <div className="mb-12 space-y-10">
+          <div className="mb-10 space-y-8">
             <div>
-              <h3 className="text-center text-xl font-semibold text-foreground mb-6">Navegue por Dificuldade</h3>
+              <h3 className="text-center text-xl font-semibold text-foreground mb-5">Navegue por Dificuldade</h3>
               <div className="flex flex-wrap justify-center gap-3">
                 {difficulties.map(difficulty => (
                   <Button
@@ -252,7 +252,7 @@ export default function Home() {
             </div>
 
             <div>
-              <h3 className="text-center text-xl font-semibold text-foreground mb-6">Navegue por Categoria</h3>
+              <h3 className="text-center text-xl font-semibold text-foreground mb-5">Navegue por Categoria</h3>
               <div className="flex flex-wrap justify-center gap-3">
                 {categories.map(category => (
                   <Button
@@ -268,7 +268,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="text-sm text-muted-foreground mb-8 text-center">
+          <div className="text-sm text-muted-foreground mb-6 text-center">
             Mostrando {filteredRecipes.length} de {recipes.length} receitas.
           </div>
 
