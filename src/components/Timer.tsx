@@ -3,12 +3,14 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { TimerIcon } from 'lucide-react';
 
 interface TimerProps {
   durationInMinutes: number;
+  context: string;
 }
 
-export function Timer({ durationInMinutes }: TimerProps) {
+export function Timer({ durationInMinutes, context }: TimerProps) {
   const durationInSeconds = durationInMinutes * 60;
   
   const [isActive, setIsActive] = useState(false);
@@ -83,13 +85,18 @@ export function Timer({ durationInMinutes }: TimerProps) {
 
   return (
     <div className="flex flex-col items-center justify-center p-6 bg-card rounded-2xl shadow-sm border w-full max-w-sm mx-auto">
-      <div className="text-center my-4">
+      <div className="flex items-center justify-center gap-2 text-primary mb-4">
+        <TimerIcon className="h-5 w-5" />
+        <p className="text-base font-semibold">{context}</p>
+      </div>
+      
+      <div className="text-center my-2">
         <div className="flex items-baseline justify-center font-mono tabular-nums text-foreground">
-          <span className="text-8xl font-bold tracking-tighter">
+          <span className="text-7xl sm:text-8xl font-bold tracking-tighter">
               {String(minutes).padStart(2, '0')}
           </span>
-          <span className="text-8xl font-bold tracking-tighter pb-2">:</span>
-          <span className="text-8xl font-bold tracking-tighter">
+          <span className="text-7xl sm:text-8xl font-bold tracking-tighter pb-2">:</span>
+          <span className="text-7xl sm:text-8xl font-bold tracking-tighter">
               {String(seconds).padStart(2, '0')}
           </span>
         </div>
@@ -99,8 +106,8 @@ export function Timer({ durationInMinutes }: TimerProps) {
         <Button 
           onClick={startTimer} 
           className={cn(
-            "w-32 py-3 text-base font-semibold rounded-lg transition-all duration-300",
-             isActive ? 'bg-destructive text-destructive-foreground' : 'bg-primary text-primary-foreground'
+            "w-full py-3 text-base font-semibold rounded-lg transition-all duration-300",
+             isActive ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90' : 'bg-primary text-primary-foreground hover:bg-primary/90'
           )}
         >
           {isFinished ? 'De novo!' : isActive ? 'Pausar' : (timeRemaining < durationInSeconds ? 'Continuar' : 'Começar')}
@@ -108,8 +115,8 @@ export function Timer({ durationInMinutes }: TimerProps) {
         
         <Button 
           onClick={resetTimer}
-          variant="secondary" 
-          className="w-32 py-3 text-base font-semibold rounded-lg" 
+          variant="outline" 
+          className="w-full py-3 text-base font-semibold rounded-lg" 
           aria-label="Cancelar Cronômetro"
         >
           Cancelar

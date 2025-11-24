@@ -11,37 +11,66 @@ import { useToast } from '@/hooks/use-toast';
 import { useEffect, useState } from 'react';
 import { AppLayout } from '@/components/app-layout';
 
+type TimerInfo = {
+  duration: number;
+  context: string;
+};
+
 // Função para extrair tempo de cozimento/geladeira das instruções
-const extractActionTime = (instructions: string[]): number => {
+const extractActionTime = (instructions: string[]): TimerInfo | null => {
     const timePatterns = [
-      // Padrão mais robusto: busca por palavras-chave e tempo na mesma frase.
-      /(?:fogo|forno|assar|cozinhe|geladeira|refrigere|mexendo)(?:.*?) por (?:cerca de |pelo menos )?(\d+)(?:(?: a |-| até )(\d+))? (minutos|horas)/i,
-      
-      // Padrões originais como fallback
-      /por cerca de (\d+)\s*a\s*(\d+)?\s*(minutos|horas)/i,
-      /por (\d+)-(\d+)\s*(minutos|horas)/i,
-      /por (\d+)\s*a\s*(\d+)?\s*(minutos|horas)/i,
-      /por (\d+)\s*(minutos|horas)/i,
-      /por pelo menos (\d+)\s*(minutos|horas)/i,
+      {
+        pattern: /(?:forno|assar|asse)(?:.*?) por (?:cerca de |pelo menos )?(\d+)(?:(?: a |-| até )(\d+))? (minutos|horas)/i,
+        context: "Tempo de forno"
+      },
+      {
+        pattern: /(?:geladeira|refrigere|gelar)(?:.*?) por (?:cerca de |pelo menos )?(\d+)(?:(?: a |-| até )(\d+))? (minutos|horas)/i,
+        context: "Tempo de geladeira"
+      },
+      {
+        pattern: /(?:fogo|cozinhe|mexendo)(?:.*?) por (?:cerca de |pelo menos )?(\d+)(?:(?: a |-| até )(\d+))? (minutos|horas)/i,
+        context: "Continue mexendo"
+      },
+       {
+        pattern: /por cerca de (\d+)\s*a\s*(\d+)?\s*(minutos|horas)/i,
+        context: "Tempo de ação"
+      },
+      {
+        pattern: /por (\d+)-(\d+)\s*(minutos|horas)/i,
+        context: "Tempo de ação"
+      },
+      {
+        pattern: /por (\d+)\s*a\s*(\d+)?\s*(minutos|horas)/i,
+        context: "Tempo de ação"
+      },
+      {
+        pattern: /por (\d+)\s*(minutos|horas)/i,
+        context: "Tempo de ação"
+      },
+      {
+        pattern: /por pelo menos (\d+)\s*(minutos|horas)/i,
+        context: "Tempo de ação"
+      },
     ];
   
     for (const instruction of instructions) {
-      for (const pattern of timePatterns) {
+      for (const { pattern, context } of timePatterns) {
         const match = instruction.match(pattern);
         if (match) {
-          // Usa o maior tempo do intervalo (ex: de 10-15 minutos, usa 15)
           const timeValue = match[2] ? parseInt(match[2], 10) : parseInt(match[1], 10);
           const unit = match[3] || 'minutos';
 
+          let durationInMinutes = timeValue;
           if (unit.toLowerCase().includes('hora')) {
-            return timeValue * 60; // Converte horas para minutos
+            durationInMinutes = timeValue * 60;
           }
-          return timeValue;
+          
+          return { duration: durationInMinutes, context };
         }
       }
     }
   
-    return 0; // Retorna 0 se não encontrar um tempo de ação específico
+    return null;
   };
 
 export default function RecipePage({ params }: { params: { slug: string } }) {
@@ -49,12 +78,12 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const { toast } = useToast();
   const isFavorite = recipe ? favorites.includes(recipe.slug) : false;
-  const [timerDuration, setTimerDuration] = useState(0);
+  const [timerInfo, setTimerInfo] = useState<TimerInfo | null>(null);
 
   useEffect(() => {
     if (recipe) {
-      const actionTime = extractActionTime(recipe.instructions);
-      setTimerDuration(actionTime);
+      const info = extractActionTime(recipe.instructions);
+      setTimerInfo(info);
     }
   }, [recipe]);
 
@@ -170,13 +199,9 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
                 </div>
 
                 <div className="lg:col-span-2">
-                    {timerDuration > 0 && (
+                    {timerInfo && (
                       <div className="sticky top-28">
-                          <h2 className="text-2xl font-bold mb-4 flex items-center justify-center gap-3 text-foreground">
-                              <TimerIcon className="h-6 w-6 text-primary" />
-                              Cronômetro
-                          </h2>
-                          <Timer durationInMinutes={timerDuration} />
+                          <Timer durationInMinutes={timerInfo.duration} context={timerInfo.context} />
                       </div>
                     )}
                 </div>
