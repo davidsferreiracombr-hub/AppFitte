@@ -518,7 +518,14 @@ const initialRecipes: Recipe[] = [
   }
 ];
 
-const generatedRecipes: Recipe[] = Array.from({ length: 700 }, (_, i) => {
+const generatedRecipes: Recipe[] = [];
+const recipeTitleMap = new Map<string, Recipe>();
+
+// First, add initial recipes to the map to ensure they are not overwritten
+initialRecipes.forEach(recipe => recipeTitleMap.set(recipe.title, recipe));
+
+
+for (let i = 0; i < 700; i++) {
     const difficulties: Array<"Fácil" | "Média" | "Difícil"> = ["Fácil", "Média", "Difícil"];
     const mainIngredient = ["Maçã", "Banana", "Morango", "Chocolate", "Amendoim", "Coco", "Cenoura", "Limão", "Laranja", "Abóbora", "Maracujá", "Milho", "Aveia", "Iogurte", "Batata-Doce", "Abacate", "Manga", "Beterraba"];
     const recipeType = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra de Cereal", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca", "Bombom", "Trufa", "Biscoito", "Donut"];
@@ -526,17 +533,23 @@ const generatedRecipes: Recipe[] = Array.from({ length: 700 }, (_, i) => {
     const generalTags = ["fit", "vegano", "sem glúten", "lanche", "café da manhã", "sobremesa"];
 
     const uniqueId = 19 + i;
+    
+    // Shuffle arrays to create more unique combinations
     const currentType = recipeType[i % recipeType.length];
-    const currentIngredient = mainIngredient[i % mainIngredient.length];
-    const currentAdjective = adjective[i % adjective.length];
+    const currentIngredient = mainIngredient[(i + 1) % mainIngredient.length];
+    const currentAdjective = adjective[(i + 2) % adjective.length];
     
     const title = `${currentType} de ${currentIngredient} ${currentAdjective}`;
+
+    // Skip if title already exists
+    if (recipeTitleMap.has(title)) {
+      continue;
+    }
+
     const slug = createSlug(title, uniqueId);
 
     const randomTags = new Set<string>();
-    // Add the main recipe type as a tag
     randomTags.add(currentType.toLowerCase().replace(/ /g, '-'));
-    // Add 1-2 general tags
     randomTags.add(generalTags[i % generalTags.length]);
     if (i % 2 === 0) {
         randomTags.add(generalTags[(i + 2) % generalTags.length]);
@@ -547,7 +560,7 @@ const generatedRecipes: Recipe[] = Array.from({ length: 700 }, (_, i) => {
     if (title.toLowerCase().includes('proteico')) randomTags.add('proteico');
     if (title.toLowerCase().includes('rápido')) randomTags.add('rápido');
 
-    return {
+    const newRecipe: Recipe = {
       id: uniqueId,
       slug: slug,
       title: title,
@@ -574,16 +587,16 @@ const generatedRecipes: Recipe[] = Array.from({ length: 700 }, (_, i) => {
       ],
       notes: "Para uma versão vegana, substitua os ovos por 2 colheres de sopa de semente de linhaça triturada misturada com 6 colheres de sopa de água. Deixe descansar por 5 minutos antes de usar."
     };
-  });
+    
+    recipeTitleMap.set(title, newRecipe);
+  };
   
-// Combine and ensure no duplicates by ID and slug
-const allRecipes = [...initialRecipes, ...generatedRecipes];
-const uniqueRecipes = Array.from(new Map(allRecipes.map(recipe => [recipe.slug, recipe])).values());
+const allRecipes = Array.from(recipeTitleMap.values());
 
 export function getRecipes(): Recipe[] {
-  return uniqueRecipes;
+  return allRecipes;
 }
 
 export function getRecipeBySlug(slug: string): Recipe | undefined {
-  return uniqueRecipes.find((recipe) => recipe.slug === slug);
+  return allRecipes.find((recipe) => recipe.slug === slug);
 }
