@@ -67,7 +67,7 @@ export default function Home() {
   const [showIntro, setShowIntro] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
   const isMobile = useIsMobile();
-  const [carouselApi, setCarouselApi] = useState<CarouselApi>()
+  const [carouselApi, setCarouselApi] = useState<CarouselApi | undefined>(undefined);
 
   useEffect(() => {
     try {
@@ -334,24 +334,38 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredRecipes.map(recipe => {
-              const Icon = getCategoryIcon(recipe.tags);
-              return (
-                <Link href={`/recipe/${recipe.slug}`} key={recipe.id} legacyBehavior>
-                  <a className="block group">
-                    <Card className="h-full flex flex-col rounded-xl shadow-md transition-all duration-300 overflow-hidden bg-card/50 backdrop-blur-sm hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1">
-                      <CardContent className="flex flex-col items-center justify-center text-center p-6 flex-grow">
-                        <div className="bg-primary/10 p-4 rounded-full mb-4">
-                           <Icon className="h-8 w-8 text-primary" />
-                        </div>
-                        <CardTitle className="text-lg font-headline font-semibold leading-tight text-foreground">{recipe.title}</CardTitle>
-                      </CardContent>
-                    </Card>
-                  </a>
-                </Link>
-              );
-            })}
-          </div>
+              {filteredRecipes.map(recipe => {
+                const Icon = getCategoryIcon(recipe.tags);
+                return (
+                  <Link href={`/recipe/${recipe.slug}`} key={recipe.id} legacyBehavior>
+                    <a className="block group">
+                      <Card className="h-full flex flex-col rounded-xl shadow-md transition-all duration-300 overflow-hidden bg-card/50 backdrop-blur-sm hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1">
+                        <CardHeader className="flex-row items-center gap-4 pb-4">
+                          <div className="bg-primary/10 p-3 rounded-lg">
+                            <Icon className="h-6 w-6 text-primary" />
+                          </div>
+                          <CardTitle className="text-base font-headline leading-tight flex-1 text-foreground">{recipe.title}</CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex-grow flex flex-col justify-between pt-0">
+                          <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{recipe.description}</p>
+                          <div className="text-xs text-muted-foreground space-y-2 pt-4 border-t border-border/50 mt-auto">
+                            <div className="flex items-center gap-2">
+                              <Clock className="h-4 w-4"/> <span>{recipe.prepTime}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Flame className="h-4 w-4"/> <span>{recipe.calories}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Info className="h-4 w-4"/> <span>Dificuldade: {recipe.difficulty}</span>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </a>
+                  </Link>
+                );
+              })}
+            </div>
         </main>
       </div>
        <footer className="relative z-10 border-t border-border/50 mt-12">
