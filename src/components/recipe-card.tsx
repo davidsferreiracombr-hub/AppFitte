@@ -28,7 +28,7 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className }: 
     >
       <div className="p-4">
         <div className="flex justify-between items-start">
-            <h3 className="font-extrabold tracking-tight text-base leading-tight line-clamp-2 mb-2 text-foreground flex-1 pr-2">
+            <h3 className="font-extrabold tracking-tight text-lg leading-tight line-clamp-2 mb-2 text-foreground flex-1 pr-2">
                 {recipe.title}
             </h3>
             <Button
