@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react'
 import { type Recipe, getRecipes } from '@/lib/recipes';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Heart, ChefHat, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat, Clock, Flame, Info, ArrowUp, ArrowRight, Loader } from 'lucide-react';
+import { Search, Heart, ChefHat, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat, Clock, Flame, Info, ArrowUp, ArrowRight, Loader, ChevronLeft, ChevronRight as ChevronRightIcon } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import {
@@ -55,6 +55,7 @@ const getCategoryIcon = (tags: string[]) => {
 
 const INITIAL_LOAD_COUNT = 12;
 const LOAD_MORE_COUNT = 8;
+const CATEGORIES_PER_PAGE_MOBILE = 8;
 
 export default function Home() {
   const recipes = useMemo(() => getRecipes(), []);
@@ -67,6 +68,7 @@ export default function Home() {
   const [visibleCount, setVisibleCount] = useState(INITIAL_LOAD_COUNT);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const loaderRef = useRef<HTMLDivElement | null>(null);
+  const [categoryPage, setCategoryPage] = useState(0);
 
   useEffect(() => {
     try {
@@ -142,6 +144,15 @@ export default function Home() {
   const visibleRecipes = useMemo(() => {
     return filteredRecipes.slice(0, visibleCount);
   }, [filteredRecipes, visibleCount]);
+  
+  const totalCategoryPages = Math.ceil(categories.length / CATEGORIES_PER_PAGE_MOBILE);
+
+  const visibleCategoriesMobile = useMemo(() => {
+    const start = categoryPage * CATEGORIES_PER_PAGE_MOBILE;
+    const end = start + CATEGORIES_PER_PAGE_MOBILE;
+    return categories.slice(start, end);
+  }, [categories, categoryPage]);
+
 
   const handleLoadMore = useCallback(() => {
     if (isLoadingMore) return;
@@ -181,7 +192,7 @@ export default function Home() {
           <DialogContent className="sm:max-w-[425px] text-center bg-card border-border rounded-lg">
             <DialogHeader>
               <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto text-foreground">
-                <CakeSlice className="h-8 w-8 text-primary" /> Bem-vindo(a) ao Fitte!
+                <img src="https://i.imgur.com/Phh9w5C.png" alt="Fitte Logo" className="h-9 w-auto"/> Fitte
               </DialogTitle>
               <DialogDescription className="pt-3 text-lg text-muted-foreground">
                 Sua jornada para uma vida mais doce e saudável começa agora.
@@ -298,7 +309,7 @@ export default function Home() {
                     key={difficulty}
                     variant={selectedDifficulty === difficulty ? 'default' : 'secondary'}
                     onClick={() => setSelectedDifficulty(difficulty)}
-                    className="capitalize px-5 py-2 h-auto text-sm font-medium transition-transform duration-200 hover:scale-105"
+                    className="capitalize px-5 py-2 h-auto text-sm font-medium rounded-full transition-transform duration-200 hover:scale-105"
                   >
                     {difficulty}
                   </Button>
@@ -307,20 +318,62 @@ export default function Home() {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold text-foreground mb-3 text-center">Navegue por Categoria</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                {categories.map(category => (
-                  <Button
-                    key={category}
-                    variant={selectedCategory === category ? 'default' : 'secondary'}
-                    onClick={() => setSelectedCategory(category)}
-                    className="capitalize text-base font-medium transition-transform duration-200 hover:scale-105 w-full"
-                  >
-                    {category}
-                  </Button>
-                ))}
-              </div>
+                <h3 className="text-lg font-semibold text-foreground mb-3 text-center">Navegue por Categoria</h3>
+                
+                {/* Mobile Carousel */}
+                <div className="md:hidden">
+                    <div className="grid grid-cols-2 gap-3">
+                        {visibleCategoriesMobile.map(category => (
+                            <Button
+                                key={category}
+                                variant={selectedCategory === category ? 'default' : 'secondary'}
+                                onClick={() => setSelectedCategory(category)}
+                                className="capitalize text-base font-medium rounded-full transition-transform duration-200 hover:scale-105 w-full"
+                            >
+                                {category}
+                            </Button>
+                        ))}
+                    </div>
+                    <div className="flex justify-center items-center mt-4 gap-4">
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            onClick={() => setCategoryPage(p => Math.max(0, p - 1))}
+                            disabled={categoryPage === 0}
+                            className="rounded-full"
+                        >
+                            <ChevronLeft className="h-4 w-4" />
+                        </Button>
+                        <span className="text-sm text-muted-foreground">
+                            {categoryPage + 1} / {totalCategoryPages}
+                        </span>
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            onClick={() => setCategoryPage(p => Math.min(totalCategoryPages - 1, p + 1))}
+                            disabled={categoryPage === totalCategoryPages - 1}
+                            className="rounded-full"
+                        >
+                            <ChevronRightIcon className="h-4 w-4" />
+                        </Button>
+                    </div>
+                </div>
+
+                {/* Desktop Grid */}
+                <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-3">
+                    {categories.map(category => (
+                        <Button
+                            key={category}
+                            variant={selectedCategory === category ? 'default' : 'secondary'}
+                            onClick={() => setSelectedCategory(category)}
+                            className="capitalize text-base font-medium rounded-full transition-transform duration-200 hover:scale-105 w-full"
+                        >
+                            {category}
+                        </Button>
+                    ))}
+                </div>
             </div>
+
           </div>
           
           <div className="text-sm text-muted-foreground mb-6 text-center">
