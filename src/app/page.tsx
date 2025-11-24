@@ -92,7 +92,7 @@ export default function Home() {
                 Receitas Saudáveis, Sabor Irresistível.
             </h2>
             <p className="text-gray-600 mt-6 text-lg max-w-3xl mx-auto">
-                Explore mais de 500 receitas de doces fit para uma vida mais gostosa e equilibrada. Perfeito para quem treina, busca saúde ou simplesmente ama um bom doce sem culpa.
+                Explore mais de 700 receitas de doces fit para uma vida mais gostosa e equilibrada. Perfeito para quem treina, busca saúde ou simplesmente ama um bom doce sem culpa.
             </p>
              <div className="mt-8 flex justify-center">
                 <div className="relative w-full max-w-md">

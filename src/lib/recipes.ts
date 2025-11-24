@@ -412,16 +412,16 @@ const recipes: Recipe[] = [
 
 const difficulties: Array<"Fácil" | "Média" | "Difícil"> = ["Fácil", "Média", "Difícil"];
 
-// Preenchendo com mais receitas para chegar a 500
+// Preenchendo com mais receitas para chegar a 700
 const baseRecipes = [...recipes];
 let currentId = recipes.length + 1;
-while (recipes.length < 500) {
+while (recipes.length < 700) {
   const baseRecipe = baseRecipes[Math.floor(Math.random() * baseRecipes.length)];
   recipes.push({
     ...baseRecipe,
     id: currentId,
     slug: `${baseRecipe.slug}-${currentId}`,
-    title: `${baseRecipe.title} #${currentId - baseRecipes.length}`,
+    title: `${baseRecipe.title} #${currentId - baseRecipes.length + 1}`,
     prepTime: `${Math.floor(Math.random() * 50) + 10} min`,
     calories: `${Math.floor(Math.random() * 300) + 100} kcal`,
     difficulty: difficulties[Math.floor(Math.random() * difficulties.length)],
