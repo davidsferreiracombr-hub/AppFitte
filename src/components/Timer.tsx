@@ -3,12 +3,35 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Play, Pause, RotateCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Cupcake } from 'lucide-react';
 
 interface TimerProps {
   durationInMinutes: number;
 }
+
+const CupcakeIcon = () => (
+    <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="120" 
+        height="120" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        strokeWidth="1" 
+        strokeLinecap="round" 
+        strokeLinejoin="round" 
+        className="text-white opacity-80"
+    >
+        <path d="M17.5 10c0-2.2-1.8-4-4-4s-4 1.8-4 4"/>
+        <path d="M12 10v1.1c0 .5.4.9.9.9h1.1c.5 0 .9-.4.9-.9V10h-3Z"/>
+        <path d="M12 18H5.1a2 2 0 0 1-1.8-2.7l2.4-7.2c.5-1.4 1.9-2.3 3.4-1.9l.2.1"/>
+        <path d="m19 12 1-5a2 2 0 0 0-3-2l-1 5"/>
+        <path d="M12 18c0 1.1.9 2 2 2h3.8a2 2 0 0 0 1.8-2.7l-2.4-7.2c-.5-1.4-1.9-2.3-3.4-1.9l-.2.1"/>
+        <path d="M12 18v3"/>
+    </svg>
+);
+
 
 export function Timer({ durationInMinutes }: TimerProps) {
   const durationInSeconds = durationInMinutes * 60;
@@ -107,67 +130,64 @@ export function Timer({ durationInMinutes }: TimerProps) {
     };
   }, [isActive, stopTimer]);
 
-  const handleToggle = () => {
-    if (isFinished) {
-      resetTimer();
-    } else if (isActive) {
+  const handleTogglePause = () => {
+    if (isActive) {
       pauseTimer();
     } else {
       startTimer();
     }
   };
 
-  const hours = Math.floor(timeRemaining / 3600);
-  const minutes = Math.floor((timeRemaining % 3600) / 60);
+  const handleReset = () => {
+    resetTimer();
+    startTimer();
+  }
+
+  const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
   
+  const progress = (timeRemaining / durationInSeconds) * 100;
+
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-gray-900 rounded-2xl shadow-2xl border border-gray-700 w-full max-w-sm mx-auto text-white">
-      <div className="text-center mb-8">
-        {isFinished ? (
-           <span className="text-5xl font-bold text-primary animate-pulse">Pronto!</span>
-        ) : (
-            <div className="flex items-end justify-center font-mono" style={{fontVariantNumeric: 'tabular-nums'}}>
-                {hours > 0 && (
-                    <>
-                        <span className="text-6xl font-bold text-white tracking-tighter">{String(hours).padStart(2, '0')}</span>
-                        <span className="text-2xl font-medium text-gray-400 ml-1 mr-3">h</span>
-                    </>
-                )}
-                <span className={cn("text-6xl font-bold tracking-tighter", isActive ? "text-primary" : "text-white")}>
-                    {String(minutes).padStart(2, '0')}
-                </span>
-                <span className="text-2xl font-medium text-gray-400 ml-1 mr-3">m</span>
-                <span className="text-6xl font-bold text-white tracking-tighter">
-                    {String(seconds).padStart(2, '0')}
-                </span>
-                <span className="text-2xl font-medium text-gray-400 ml-1">s</span>
-            </div>
-        )}
+    <div className="flex flex-col items-center justify-center p-6 bg-primary/90 rounded-2xl shadow-2xl border border-primary/80 w-full max-w-sm mx-auto text-white">
+      <div className="text-center my-8">
+        <div className="flex items-baseline justify-center font-mono" style={{fontVariantNumeric: 'tabular-nums'}}>
+          <span className="text-8xl font-bold text-white tracking-tighter">
+              {String(minutes).padStart(2, '0')}
+          </span>
+          <span className="text-8xl font-bold text-white tracking-tighter pb-2">:</span>
+          <span className="text-8xl font-bold text-white tracking-tighter">
+              {String(seconds).padStart(2, '0')}
+          </span>
+        </div>
       </div>
       
-      <div className="flex items-center justify-center gap-4 w-full">
+      <div className="relative w-32 h-32 my-6">
+        <CupcakeIcon />
+        <div 
+          className="absolute bottom-0 left-0 w-full bg-white/30 transition-all duration-500 ease-out"
+          style={{ height: `${isFinished ? 100 : (isActive ? 100 - progress : 0)}%`, maskImage: 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="black" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 10c0-2.2-1.8-4-4-4s-4 1.8-4 4"/><path d="M12 10v1.1c0 .5.4.9.9.9h1.1c.5 0 .9-.4.9-.9V10h-3Z"/><path d="M12 18H5.1a2 2 0 0 1-1.8-2.7l2.4-7.2c.5-1.4 1.9-2.3 3.4-1.9l.2.1"/><path d="m19 12 1-5a2 2 0 0 0-3-2l-1 5"/><path d="M12 18c0 1.1.9 2 2 2h3.8a2 2 0 0 0 1.8-2.7l-2.4-7.2c-.5-1.4-1.9-2.3-3.4-1.9l-.2.1"/><path d="M12 18v3"/></svg>\')', maskRepeat: 'no-repeat', maskPosition: 'center', maskSize: 'contain'}}
+        />
+      </div>
+
+      <div className="flex items-center justify-center gap-4 w-full mt-8">
         <Button 
-          onClick={handleToggle} 
+          onClick={handleTogglePause} 
           className={cn(
-            "w-32 py-3 text-base font-semibold rounded-lg transition-all duration-300",
-            isActive ? "bg-primary/20 text-primary border border-primary/30 hover:bg-primary/30" : "bg-primary text-primary-foreground",
-            isFinished && "bg-gray-600 hover:bg-gray-500"
+            "w-32 py-3 text-base font-semibold rounded-lg transition-all duration-300 text-primary bg-white hover:bg-gray-200"
           )}
         >
-          {isFinished ? 'Recomeçar' : isActive ? 'Pausar' : 'Começar'}
+          {isFinished ? 'Pronto!' : isActive ? 'Pausar' : 'Começar'}
         </Button>
         
-        {(!isActive && timeRemaining < durationInSeconds && !isFinished) && (
-            <Button 
-              onClick={resetTimer} 
-              variant="ghost" 
-              className="w-32 py-3 text-base font-semibold rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white" 
-              aria-label="Resetar Cronômetro"
-            >
-              Resetar
-            </Button>
-        )}
+        <Button 
+          onClick={handleReset}
+          variant="outline" 
+          className="w-32 py-3 text-base font-semibold rounded-lg text-white border-white/50 bg-transparent hover:bg-white/10 hover:text-white" 
+          aria-label="Cancelar Cronômetro"
+        >
+          Cancelar
+        </Button>
       </div>
     </div>
   );
