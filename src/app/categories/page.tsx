@@ -31,6 +31,8 @@ const categoryStyleMap: { [key: string]: { icon: Category['icon']; color: string
   'default': { icon: Apple, color: 'bg-gray-100 border-gray-200' },
 };
 
+const mainCategories = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra de Cereal", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca", "Bombom", "Trufa", "Biscoito", "Donut"];
+
 
 export default function CategoriesPage() {
   const allRecipes = useMemo(() => getRecipes(), []);
@@ -40,35 +42,46 @@ export default function CategoriesPage() {
   useEffect(() => {
     const calculateCategories = () => {
         const categoryCounts: { [key: string]: number } = {};
-        
+        let outrosCount = 0;
+
         allRecipes.forEach(recipe => {
-            const mainCategory = recipe.tags.find(tag => 
-                Object.keys(categoryStyleMap).includes(tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '))
-            );
+            const normalizedTags = recipe.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '));
+            const mainCategoryTag = normalizedTags.find(tag => mainCategories.includes(tag));
+            const mainCategoryTitle = mainCategories.find(cat => recipe.title.toLowerCase().includes(cat.toLowerCase()));
 
-            const categoryKey = mainCategory 
-                ? mainCategory.charAt(0).toUpperCase() + mainCategory.slice(1).replace(/-/g, ' ') 
-                : 'Outros';
-
-            if (categoryCounts[categoryKey]) {
-                categoryCounts[categoryKey]++;
+            if (mainCategoryTag) {
+                if (categoryCounts[mainCategoryTag]) {
+                    categoryCounts[mainCategoryTag]++;
+                } else {
+                    categoryCounts[mainCategoryTag] = 1;
+                }
+            } else if (mainCategoryTitle) {
+                 if (categoryCounts[mainCategoryTitle]) {
+                    categoryCounts[mainCategoryTitle]++;
+                } else {
+                    categoryCounts[mainCategoryTitle] = 1;
+                }
             } else {
-                categoryCounts[categoryKey] = 1;
+                outrosCount++;
             }
         });
-
-        const recipeTypes = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra de Cereal", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca", "Bombom", "Trufa", "Biscoito", "Donut"];
         
-        recipeTypes.forEach(type => {
+        mainCategories.forEach(type => {
             if (!categoryCounts[type]) {
                 let count = 0;
                 allRecipes.forEach(r => {
-                    if (r.title.toLowerCase().includes(type.toLowerCase())) count++;
+                    const normalizedTags = r.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '));
+                    if (!mainCategories.some(mc => normalizedTags.includes(mc) || r.title.toLowerCase().includes(mc.toLowerCase())) && r.title.toLowerCase().includes(type.toLowerCase())) {
+                       count++;
+                    }
                 })
-                if (count > 0) categoryCounts[type] = count;
+                if (count > 0 && !categoryCounts[type]) categoryCounts[type] = count;
             }
         });
 
+        if (outrosCount > 0) {
+            categoryCounts['Outros'] = outrosCount;
+        }
 
         const processedCategories = Object.entries(categoryCounts)
             .map(([name, count]) => {
@@ -87,7 +100,6 @@ export default function CategoriesPage() {
     };
 
     setIsLoading(true);
-    // Simulate a short delay to show loading state, as calculation can be fast
     const timer = setTimeout(calculateCategories, 100); 
 
     return () => clearTimeout(timer);
