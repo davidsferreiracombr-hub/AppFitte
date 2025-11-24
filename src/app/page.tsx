@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { type Recipe, getRecipes } from '@/lib/recipes';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Heart, ChefHat, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat, Clock, Flame, Info, ArrowUp, ArrowRight } from 'lucide-react';
+import { Search, Heart, ChefHat, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat, Clock, Flame, Info, ArrowUp, ArrowRight, Loader } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import {
@@ -50,6 +50,9 @@ const getCategoryIcon = (tags: string[]) => {
   return categoryIcons['default'];
 };
 
+const INITIAL_LOAD_COUNT = 24;
+const LOAD_MORE_COUNT = 24;
+
 export default function Home() {
   const recipes = useMemo(() => getRecipes(), []);
   const [searchTerm, setSearchTerm] = useState('');
@@ -59,7 +62,8 @@ export default function Home() {
   const [showIntro, setShowIntro] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
   const [isAppReady, setIsAppReady] = useState(false);
-
+  const [visibleCount, setVisibleCount] = useState(INITIAL_LOAD_COUNT);
+  
   useEffect(() => {
     const hasVisited = localStorage.getItem('hasVisitedFitte');
     if (!hasVisited) {
@@ -120,6 +124,19 @@ export default function Home() {
       return matchesSearch && matchesDifficulty && matchesCategory;
     });
   }, [recipes, searchTerm, selectedDifficulty, selectedCategory]);
+
+  useEffect(() => {
+    setVisibleCount(INITIAL_LOAD_COUNT);
+  }, [searchTerm, selectedDifficulty, selectedCategory]);
+
+  const visibleRecipes = useMemo(() => {
+    return filteredRecipes.slice(0, visibleCount);
+  }, [filteredRecipes, visibleCount]);
+
+  const handleLoadMore = () => {
+    setVisibleCount(prevCount => prevCount + LOAD_MORE_COUNT);
+  };
+
 
   if (!isAppReady) {
     return (
@@ -234,7 +251,7 @@ export default function Home() {
       
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12">
         <main>
-          <div className="mb-8 space-y-6">
+          <div className="mb-8 space-y-4">
             <div>
               <h3 className="text-center text-xl font-semibold text-foreground mb-4">Navegue por Dificuldade</h3>
               <div className="flex flex-wrap justify-center gap-3">
@@ -269,11 +286,11 @@ export default function Home() {
           </div>
           
           <div className="text-sm text-muted-foreground mb-6 text-center">
-            Mostrando {filteredRecipes.length} de {recipes.length} receitas.
+            Mostrando {visibleRecipes.length} de {filteredRecipes.length} receitas.
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 [perspective:1000px]">
-            {filteredRecipes.map(recipe => {
+            {visibleRecipes.map(recipe => {
               const Icon = getCategoryIcon(recipe.tags);
               return (
                 <Link href={`/recipe/${recipe.slug}`} key={recipe.id} legacyBehavior>
@@ -305,6 +322,16 @@ export default function Home() {
               );
             })}
           </div>
+
+           {visibleCount < filteredRecipes.length && (
+            <div className="mt-12 text-center">
+              <Button onClick={handleLoadMore} size="lg">
+                <Loader className="mr-2 h-5 w-5 animate-spin" />
+                Carregar mais receitas
+              </Button>
+            </div>
+          )}
+
         </main>
       </div>
     </div>

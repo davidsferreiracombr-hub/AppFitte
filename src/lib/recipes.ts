@@ -14,7 +14,26 @@ export type Recipe = {
   notes?: string;
 };
 
-const recipes: Recipe[] = [
+// Helper function to create a URL-friendly slug
+function createSlug(title: string, id: number): string {
+    const accents: { [key: string]: string } = {
+        'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
+        'à': 'a', 'è': 'e', 'ì': 'i', 'ò': 'o', 'ù': 'u',
+        'ã': 'a', 'õ': 'o', 'â': 'a', 'ê': 'e', 'î': 'i', 'ô': 'o', 'û': 'u',
+        'ç': 'c'
+    };
+    
+    return title
+        .toLowerCase()
+        .replace(/[áéíóúàèìòùãõâêîôûç]/g, char => accents[char])
+        .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+        .replace(/\s+/g, '-') // Replace spaces with hyphens
+        .replace(/-+/g, '-') // Replace multiple hyphens with a single one
+        + `-${id}`;
+}
+
+
+const initialRecipes: Recipe[] = [
   { 
     id: 1, 
     slug: "mousse-de-abacate-com-cacau", 
@@ -498,32 +517,31 @@ const recipes: Recipe[] = [
       "Asse em forma untada por cerca de 30 minutos.",
       "Faça uma calda com chocolate 70% e leite de coco para cobrir, se desejar."
     ]
-  },
-  ...Array.from({ length: 700 }, (_, i) => {
+  }
+];
+
+const generatedRecipes: Recipe[] = Array.from({ length: 700 }, (_, i) => {
     const difficulties: Array<"Fácil" | "Média" | "Difícil"> = ["Fácil", "Média", "Difícil"];
-    const tagsOptions = ["doce", "fit", "bolo", "vegano", "sem glúten", "torta", "cookie", "lanche", "café da manhã", "sobremesa", "rápido"];
-    const mainIngredient = ["Maçã", "Banana", "Morango", "Chocolate", "Amendoim", "Coco", "Cenoura", "Limão", "Laranja", "Abóbora", "Maracujá", "Milho", "Aveia", "Iogurte", "Batata-Doce"];
-    const recipeType = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca", "Bombom", "Trufa"];
-    const adjective = ["Funcional", "Proteico", "Low Carb", "Refrescante", "Energético", "Leve", "Cremoso", "Crocante", "Rápido", "Simples"];
+    const tagsOptions = ["doce", "fit", "bolo", "vegano", "sem glúten", "torta", "cookie", "lanche", "café da manhã", "sobremesa", "rápido", "low carb", "proteico"];
+    const mainIngredient = ["Maçã", "Banana", "Morango", "Chocolate", "Amendoim", "Coco", "Cenoura", "Limão", "Laranja", "Abóbora", "Maracujá", "Milho", "Aveia", "Iogurte", "Batata-Doce", "Abacate", "Manga", "Beterraba"];
+    const recipeType = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra de Cereal", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca", "Bombom", "Trufa", "Biscoito", "Donut"];
+    const adjective = ["Funcional", "Proteico", "Low Carb", "Refrescante", "Energético", "Leve", "Cremoso", "Crocante", "Rápido", "Simples", "Surpreendente", "Diferente", "Exótico"];
 
     const uniqueId = 19 + i;
     const currentType = recipeType[i % recipeType.length];
     const currentIngredient = mainIngredient[i % mainIngredient.length];
     const currentAdjective = adjective[i % adjective.length];
     
-    // Create a more unique title
     const title = `${currentType} de ${currentIngredient} ${currentAdjective}`;
-    
-    // Create a unique slug from the title
-    const slug = `${title.toLowerCase().replace(/ /g, '-')}-${uniqueId}`;
+    const slug = createSlug(title, uniqueId);
 
     const randomTags = new Set<string>();
+    randomTags.add(currentType.toLowerCase().replace(/ /g, '-'));
     randomTags.add(tagsOptions[i % tagsOptions.length]);
     randomTags.add(tagsOptions[(i + 3) % tagsOptions.length]);
-    randomTags.add(currentType.toLowerCase());
     if (title.toLowerCase().includes('low carb')) randomTags.add('low carb');
+    if (title.toLowerCase().includes('vegano')) randomTags.add('vegano');
     if (title.toLowerCase().includes('proteico')) randomTags.add('proteico');
-
 
     return {
       id: uniqueId,
@@ -552,11 +570,11 @@ const recipes: Recipe[] = [
       ],
       notes: "Para uma versão vegana, substitua os ovos por 2 colheres de sopa de semente de linhaça triturada misturada com 6 colheres de sopa de água. Deixe descansar por 5 minutos antes de usar."
     };
-  })
-];
-
-// Simple deduplication based on slug
-const uniqueRecipes = Array.from(new Map(recipes.map(recipe => [recipe.slug, recipe])).values());
+  });
+  
+// Combine and ensure no duplicates by ID and slug
+const allRecipes = [...initialRecipes, ...generatedRecipes];
+const uniqueRecipes = Array.from(new Map(allRecipes.map(recipe => [recipe.slug, recipe])).values());
 
 export function getRecipes(): Recipe[] {
   return uniqueRecipes;
