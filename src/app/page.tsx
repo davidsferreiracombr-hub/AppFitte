@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { type Recipe, getRecipes } from '@/lib/recipes';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -67,6 +67,8 @@ export default function Home() {
   const [showScroll, setShowScroll] = useState(false);
   const [isAppReady, setIsAppReady] = useState(false);
   const [visibleCount, setVisibleCount] = useState(INITIAL_LOAD_COUNT);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const loaderRef = useRef<HTMLDivElement | null>(null);
   
   useEffect(() => {
     // We use a try-catch block to handle potential SecurityError
@@ -144,9 +146,35 @@ export default function Home() {
     return filteredRecipes.slice(0, visibleCount);
   }, [filteredRecipes, visibleCount]);
 
-  const handleLoadMore = () => {
-    setVisibleCount(prevCount => prevCount + LOAD_MORE_COUNT);
-  };
+  const handleLoadMore = useCallback(() => {
+    if (isLoadingMore) return;
+    setIsLoadingMore(true);
+    setTimeout(() => {
+      setVisibleCount(prevCount => prevCount + LOAD_MORE_COUNT);
+      setIsLoadingMore(false);
+    }, 500); // Small delay to show loader
+  }, [isLoadingMore]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting && visibleCount < filteredRecipes.length) {
+          handleLoadMore();
+        }
+      },
+      { threshold: 1.0 }
+    );
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
+
+    return () => {
+      if (loaderRef.current) {
+        observer.unobserve(loaderRef.current);
+      }
+    };
+  }, [handleLoadMore, visibleCount, filteredRecipes.length]);
 
 
   if (!isAppReady) {
@@ -344,11 +372,11 @@ export default function Home() {
           </div>
 
            {visibleCount < filteredRecipes.length && (
-            <div className="mt-12 text-center">
-              <Button onClick={handleLoadMore} size="lg">
-                <Loader className="mr-2 h-5 w-5 animate-spin" />
-                Carregar mais receitas
-              </Button>
+            <div ref={loaderRef} className="mt-12 text-center">
+              <div className="flex justify-center items-center gap-2 text-muted-foreground">
+                <Loader className="h-5 w-5 animate-spin" />
+                <span>Carregando mais receitas...</span>
+              </div>
             </div>
           )}
 
@@ -362,5 +390,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
