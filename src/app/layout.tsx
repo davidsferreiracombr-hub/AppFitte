@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import { cn } from '@/lib/utils';
-import { Inter, Poppins } from 'next/font/google';
+import { Inter, Nunito_Sans } from 'next/font/google';
 
-const poppins = Poppins({
+const nunito_sans = Nunito_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '600', '700', '800'],
   variable: '--font-headline',
 });
 
@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={cn("min-h-screen bg-background font-body antialiased", inter.variable, poppins.variable)}>
+      <body className={cn("min-h-screen font-body antialiased", inter.variable, nunito_sans.variable)}>
         {children}
         <Toaster />
       </body>
