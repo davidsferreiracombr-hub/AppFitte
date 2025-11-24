@@ -137,12 +137,9 @@ function Header() {
   const { toggleSidebar } = useSidebar();
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background/80 backdrop-blur-sm px-4 lg:hidden">
-      <Button variant="ghost" size="icon" onClick={toggleSidebar}>
-        <Menu className="h-6 w-6" />
-        <span className="sr-only">Toggle Menu</span>
-      </Button>
+      
       <Link href="/" className="flex items-center gap-2">
-        <svg className="h-7 w-7 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        <svg className="h-7 w-7 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2-7l10 5 10-5-10-5zM2 17l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
         <h1 className="text-lg font-bold text-foreground">Fitte</h1>
       </Link>
     </header>
@@ -151,17 +148,13 @@ function Header() {
 
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
-  const { toggleSidebar } = useSidebar();
 
   return (
     <div className="flex min-h-screen w-full bg-muted/40">
       <Sidebar />
       <div className="flex flex-col flex-1">
         <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 backdrop-blur-sm px-4 lg:hidden">
-            <Button variant="ghost" size="icon" onClick={toggleSidebar}>
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle Menu</span>
-            </Button>
+            
             <Link href="/" className="flex items-center gap-2">
                 <svg className="h-7 w-7 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 <h1 className="text-lg font-bold text-foreground">Fitte</h1>
