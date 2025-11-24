@@ -9,12 +9,47 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
+import { useEffect, useState } from 'react';
+
+// Função para extrair tempo de cozimento/geladeira das instruções
+const extractActionTime = (instructions: string[]): number => {
+    const timePatterns = [
+      /asse por (\d+)\s*minutos/i,
+      /gele por (\d+)\s*horas/i,
+      /refrigere por (\d+)\s*horas/i,
+      /cozinhe por (\d+)\s*minutos/i,
+      /deixe esfriar por (\d+)\s*minutos/i
+    ];
+  
+    for (const instruction of instructions) {
+      for (const pattern of timePatterns) {
+        const match = instruction.match(pattern);
+        if (match && match[1]) {
+          let time = parseInt(match[1], 10);
+          if (instruction.includes('hora')) {
+            time *= 60; // Convert hours to minutes
+          }
+          return time;
+        }
+      }
+    }
+  
+    return 0; // Retorna 0 se não encontrar um tempo de ação específico
+  };
 
 export default function RecipePage({ params }: { params: { slug: string } }) {
   const recipe = getRecipeBySlug(params.slug);
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const { toast } = useToast();
   const isFavorite = recipe ? favorites.includes(recipe.slug) : false;
+  const [timerDuration, setTimerDuration] = useState(0);
+
+  useEffect(() => {
+    if (recipe) {
+      const actionTime = extractActionTime(recipe.instructions);
+      setTimerDuration(actionTime);
+    }
+  }, [recipe]);
 
   const handleFavoriteClick = () => {
     if (!recipe) return;
@@ -48,8 +83,6 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
       </div>
     );
   }
-  
-  const prepTimeInMinutes = recipe?.prepTime ? parseInt(recipe.prepTime.split(' ')[0]) : 0;
 
   return (
     <div className="min-h-screen font-body bg-background">
@@ -125,13 +158,13 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
                 </div>
 
                 <div className="lg:col-span-2">
-                    {prepTimeInMinutes > 0 && (
+                    {timerDuration > 0 && (
                       <div className="sticky top-28">
                           <h2 className="text-2xl font-headline font-bold text-foreground mb-4 flex items-center justify-center gap-3">
                               <TimerIcon className="h-6 w-6 text-primary" />
                               Cronômetro
                           </h2>
-                          <Timer durationInMinutes={prepTimeInMinutes} />
+                          <Timer durationInMinutes={timerDuration} />
                       </div>
                     )}
                 </div>

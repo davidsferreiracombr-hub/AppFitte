@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { type Recipe, getRecipes } from '@/lib/recipes';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Heart, ChefHat, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat, Clock, Flame, Info, ArrowUp, ArrowRight, Loader } from 'lucide-react';
+import { Search, Heart, ChefHat, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat, Clock, Flame, Info, ArrowUp, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import {
@@ -56,8 +56,6 @@ const getCategoryIcon = (tags: string[]) => {
   return categoryIcons['default'];
 };
 
-const INITIAL_LOAD_COUNT = 12;
-const LOAD_MORE_COUNT = 8;
 const CATEGORIES_PER_PAGE_MOBILE = 12;
 
 export default function Home() {
@@ -68,9 +66,6 @@ export default function Home() {
   const [showWelcome, setShowWelcome] = useState(false);
   const [showIntro, setShowIntro] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(INITIAL_LOAD_COUNT);
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const loaderRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useIsMobile();
   const [carouselApi, setCarouselApi] = useState<CarouselApi>()
 
@@ -141,44 +136,6 @@ export default function Home() {
     });
   }, [recipes, searchTerm, selectedDifficulty, selectedCategory]);
 
-  useEffect(() => {
-    setVisibleCount(INITIAL_LOAD_COUNT);
-  }, [searchTerm, selectedDifficulty, selectedCategory]);
-
-  const visibleRecipes = useMemo(() => {
-    return filteredRecipes.slice(0, visibleCount);
-  }, [filteredRecipes, visibleCount]);
-  
-  const handleLoadMore = useCallback(() => {
-    if (isLoadingMore) return;
-    setIsLoadingMore(true);
-    setTimeout(() => {
-      setVisibleCount(prevCount => prevCount + LOAD_MORE_COUNT);
-      setIsLoadingMore(false);
-    }, 500); // Small delay to show loader
-  }, [isLoadingMore]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        if (entries[0].isIntersecting && visibleCount < filteredRecipes.length) {
-          handleLoadMore();
-        }
-      },
-      { threshold: 1.0 }
-    );
-
-    if (loaderRef.current) {
-      observer.observe(loaderRef.current);
-    }
-
-    return () => {
-      if (loaderRef.current) {
-        observer.unobserve(loaderRef.current);
-      }
-    };
-  }, [handleLoadMore, visibleCount, filteredRecipes.length]);
-  
   const mobileCategoryChunks = useMemo(() => {
     const chunks = [];
     for (let i = 0; i < categories.length; i += CATEGORIES_PER_PAGE_MOBILE) {
@@ -370,35 +327,24 @@ export default function Home() {
           </div>
           
           <div className="text-sm text-muted-foreground mb-6 text-center">
-            Mostrando {visibleRecipes.length} de {filteredRecipes.length} receitas.
+            {filteredRecipes.length > 0
+              ? `Mostrando ${filteredRecipes.length} receitas.`
+              : 'Nenhuma receita encontrada.'
+            }
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {visibleRecipes.map(recipe => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {filteredRecipes.map(recipe => {
               const Icon = getCategoryIcon(recipe.tags);
               return (
                 <Link href={`/recipe/${recipe.slug}`} key={recipe.id} legacyBehavior>
                   <a className="block group">
                     <Card className="h-full flex flex-col rounded-xl shadow-md transition-all duration-300 overflow-hidden bg-card/50 backdrop-blur-sm hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1">
-                      <CardHeader className="flex-row items-center gap-4 pb-4">
-                        <div className="bg-primary/10 p-3 rounded-lg">
-                           <Icon className="h-6 w-6 text-primary" />
+                      <CardContent className="flex flex-col items-center justify-center text-center p-6 flex-grow">
+                        <div className="bg-primary/10 p-4 rounded-full mb-4">
+                           <Icon className="h-8 w-8 text-primary" />
                         </div>
-                        <CardTitle className="text-base font-headline leading-tight flex-1 text-foreground">{recipe.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="flex-grow flex flex-col justify-between pt-0">
-                        <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{recipe.description}</p>
-                        <div className="text-xs text-muted-foreground space-y-2 pt-4 border-t border-border/50 mt-auto">
-                           <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4"/> <span>{recipe.prepTime}</span>
-                           </div>
-                           <div className="flex items-center gap-2">
-                            <Flame className="h-4 w-4"/> <span>{recipe.calories}</span>
-                           </div>
-                           <div className="flex items-center gap-2">
-                            <Info className="h-4 w-4"/> <span>Dificuldade: {recipe.difficulty}</span>
-                           </div>
-                        </div>
+                        <CardTitle className="text-lg font-headline font-semibold leading-tight text-foreground">{recipe.title}</CardTitle>
                       </CardContent>
                     </Card>
                   </a>
@@ -406,16 +352,6 @@ export default function Home() {
               );
             })}
           </div>
-
-           {visibleCount < filteredRecipes.length && (
-            <div ref={loaderRef} className="mt-12 text-center">
-              <div className="flex justify-center items-center gap-2 text-muted-foreground">
-                <Loader className="h-5 w-5 animate-spin" />
-                <span>Carregando mais receitas...</span>
-              </div>
-            </div>
-          )}
-
         </main>
       </div>
        <footer className="relative z-10 border-t border-border/50 mt-12">
