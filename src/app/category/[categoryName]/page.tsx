@@ -6,6 +6,8 @@ import { RecipeCard } from '@/components/recipe-card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { getRecipes, type Recipe } from '@/lib/recipes';
 
+const mainCategories = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra de Cereal", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca", "Bombom", "Trufa", "Biscoito", "Donut"];
+
 export default function CategoryPage({ params }: { params: { categoryName: string } }) {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const allRecipes = useMemo(() => getRecipes(), []);
@@ -13,6 +15,15 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
   const categoryName = decodeURIComponent(params.categoryName);
 
   const filteredRecipes = useMemo(() => {
+    if (categoryName === 'Outros') {
+      return allRecipes.filter(recipe => {
+        const normalizedTags = recipe.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '));
+        const hasMainCategory = normalizedTags.some(tag => mainCategories.includes(tag));
+        const hasMainCategoryInTitle = mainCategories.some(cat => recipe.title.toLowerCase().includes(cat.toLowerCase()));
+        return !hasMainCategory && !hasMainCategoryInTitle;
+      });
+    }
+
     return allRecipes.filter(recipe => {
       const normalizedTags = recipe.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '));
       return normalizedTags.includes(categoryName) || recipe.title.toLowerCase().includes(categoryName.toLowerCase());
