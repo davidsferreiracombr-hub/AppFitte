@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { Inter } from 'next/font/google';
 import { SidebarProvider } from '@/components/app-layout';
 import { WelcomeScreenProvider } from '@/hooks/use-welcome-screen';
+import { WelcomeScreen } from '@/components/welcome-screen';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={cn("min-h-screen font-body antialiased", inter.variable)}>
         <WelcomeScreenProvider>
+          <WelcomeScreen />
           <SidebarProvider>
             {children}
           </SidebarProvider>
