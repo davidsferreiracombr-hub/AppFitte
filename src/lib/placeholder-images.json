@@ -1,3 +1,46 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "A beautiful spread of healthy desserts on a wooden table.",
+      "imageUrl": "https://images.unsplash.com/photo-1623064260173-0a6be82d216e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoZWFsdGh5JTIwZGVzc2VydHN8ZW58MHx8fHwxNzYzOTU3NTUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy desserts"
+    },
+    {
+      "id": "recipe-1",
+      "description": "Avocado Chocolate Mousse",
+      "imageUrl": "https://images.unsplash.com/photo-1551578657-a7e74acb0135?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjaG9jb2xhdGUlMjBtb3Vzc2V8ZW58MHx8fHwxNzYzODc5NjQxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "chocolate mousse"
+    },
+    {
+      "id": "recipe-2",
+      "description": "Berry Chia Seed Pudding",
+      "imageUrl": "https://images.unsplash.com/photo-1459162141474-3bd9d0fb079d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjaGlhJTIwcHVkZGluZ3xlbnwwfHx8fDE3NjM5NTc1NTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "chia pudding"
+    },
+    {
+      "id": "recipe-3",
+      "description": "No-Bake Energy Bites",
+      "imageUrl": "https://images.unsplash.com/photo-1734773487516-078839ea277f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbmVyZ3klMjBiaXRlc3xlbnwwfHx8fDE3NjM5NTc1NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "energy bites"
+    },
+    {
+      "id": "recipe-4",
+      "description": "Sweet Potato Brownies",
+      "imageUrl": "https://images.unsplash.com/photo-1629856428041-6f9721807b05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxicm93bmllc3xlbnwwfHx8fDE3NjM5NTc1NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "brownies"
+    },
+    {
+      "id": "recipe-5",
+      "description": "Greek Yogurt Parfait",
+      "imageUrl": "https://images.unsplash.com/photo-1560513880-651eec4710c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx5b2d1cnQlMjBwYXJmYWl0fGVufDB8fHx8MTc2MzkyODA5Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "yogurt parfait"
+    },
+    {
+      "id": "recipe-6",
+      "description": "Baked Apples with Cinnamon",
+      "imageUrl": "https://images.unsplash.com/photo-1591719316362-9b028d0df864?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxiYWtlZCUyMGFwcGxlc3xlbnwwfHx8fDE3NjM5NTc1NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "baked apples"
+    }
+  ]
 }
