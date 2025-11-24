@@ -221,7 +221,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="flex justify-between items-center py-4">
                 <div className="flex items-center gap-3">
-                    <ChefHat className="h-9 w-9 text-primary" />
+                    <CakeSlice className="h-9 w-9 text-primary" />
                     <h1 className="text-3xl md:text-4xl font-headline font-bold text-foreground">
                         Fitte
                     </h1>
@@ -354,6 +354,11 @@ export default function Home() {
 
         </main>
       </div>
+       <footer className="relative z-10 border-t border-border/50 mt-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-6 text-center text-muted-foreground">
+          <p>&copy; {new Date().getFullYear()} Todos os direitos reservados por @davidifly.</p>
+        </div>
+      </footer>
     </div>
   );
 }

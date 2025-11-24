@@ -5,7 +5,7 @@ import { getRecipes, type Recipe } from '@/lib/recipes';
 import { useFavorites } from '@/hooks/use-favorites';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
-import { ChefHat, Clock, Flame, Info, Heart, ArrowLeft } from 'lucide-react';
+import { ChefHat, Clock, Flame, Info, Heart, ArrowLeft, CakeSlice } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const categoryIcons: { [key: string]: React.ElementType } = {
@@ -51,7 +51,7 @@ export default function FavoritesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="flex justify-between items-center py-4">
                 <div className="flex items-center gap-3">
-                    <ChefHat className="h-9 w-9 text-primary" />
+                    <CakeSlice className="h-9 w-9 text-primary" />
                     <h1 className="text-3xl md:text-4xl font-headline font-bold text-foreground">
                         Fitte
                     </h1>
