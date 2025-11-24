@@ -14,7 +14,6 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 
 const categoryIcons: { [key: string]: React.ElementType } = {
@@ -299,7 +298,7 @@ export default function Home() {
                     key={difficulty}
                     variant={selectedDifficulty === difficulty ? 'default' : 'secondary'}
                     onClick={() => setSelectedDifficulty(difficulty)}
-                    className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-transform duration-200 hover:scale-105"
+                    className="capitalize px-5 py-2 h-auto text-sm font-medium transition-transform duration-200 hover:scale-105"
                   >
                     {difficulty}
                   </Button>
@@ -309,25 +308,17 @@ export default function Home() {
 
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-3 text-center">Navegue por Categoria</h3>
-              <div className="relative">
-                <ScrollArea className="w-full whitespace-nowrap rounded-md">
-                  <div className="flex w-max space-x-3 p-4">
-                    {categories.map(category => (
-                      <Button
-                        key={category}
-                        variant={selectedCategory === category ? 'default' : 'secondary'}
-                        onClick={() => setSelectedCategory(category)}
-                        className="capitalize rounded-full px-6 py-3 h-auto text-base font-medium transition-transform duration-200 hover:scale-105"
-                      >
-                        {category}
-                      </Button>
-                    ))}
-                  </div>
-                  <ScrollBar orientation="horizontal" />
-                </ScrollArea>
-                <div className="pointer-events-none absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-background to-transparent flex items-center justify-end pr-2">
-                    <ArrowRight className="h-5 w-5 text-muted-foreground animate-pulse" />
-                </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                {categories.map(category => (
+                  <Button
+                    key={category}
+                    variant={selectedCategory === category ? 'default' : 'secondary'}
+                    onClick={() => setSelectedCategory(category)}
+                    className="capitalize text-base font-medium transition-transform duration-200 hover:scale-105 w-full"
+                  >
+                    {category}
+                  </Button>
+                ))}
               </div>
             </div>
           </div>
@@ -389,5 +380,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
