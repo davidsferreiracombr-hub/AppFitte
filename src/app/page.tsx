@@ -179,11 +179,11 @@ export default function Home() {
       )}
 
       <header className="bg-white shadow-sm sticky top-0 z-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="flex justify-between items-center py-4">
                 <div className="flex items-center gap-3">
-                    <ChefHat className="h-8 w-8 text-primary" />
-                    <h1 className="text-2xl font-headline font-bold text-gray-800">
+                    <ChefHat className="h-9 w-9 text-primary" />
+                    <h1 className="text-3xl font-headline font-bold text-gray-800">
                         Fitte
                     </h1>
                 </div>
@@ -198,16 +198,16 @@ export default function Home() {
         </div>
       </header>
 
-       <div className="bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-16 text-center">
-            <h2 className="text-4xl md:text-5xl font-headline font-extrabold text-gray-900 tracking-tight">
+       <div className="bg-white border-b border-gray-200">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-20 text-center">
+            <h2 className="text-5xl md:text-6xl font-headline font-extrabold text-gray-900 tracking-tight animate-title-glow">
                 Receitas Saudáveis, Sabor Irresistível.
             </h2>
-            <p className="text-gray-600 mt-6 text-lg max-w-3xl mx-auto">
+            <p className="text-gray-600 mt-8 text-lg max-w-3xl mx-auto">
                 Explore mais de 700 receitas de doces fit para uma vida mais gostosa e equilibrada. Perfeito para quem treina, busca saúde ou simplesmente ama um bom doce sem culpa.
             </p>
-             <div className="mt-8 flex justify-center">
-                <div className="relative w-full max-w-md">
+             <div className="mt-10 flex justify-center">
+                <div className="relative w-full max-w-lg">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                     <Input
                         type="search"
@@ -221,18 +221,18 @@ export default function Home() {
         </div>
       </div>
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16">
         <main>
-          <div className="mb-10 space-y-8">
+          <div className="mb-12 space-y-10">
             <div>
               <h3 className="text-center text-xl font-semibold text-gray-800 mb-6">Navegue por Dificuldade</h3>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-3">
                 {difficulties.map(difficulty => (
                   <Button
                     key={difficulty}
                     variant={selectedDifficulty === difficulty ? 'default' : 'outline'}
                     onClick={() => setSelectedDifficulty(difficulty)}
-                    className={`capitalize rounded-full px-4 py-1.5 h-auto text-sm font-medium transition-all duration-200 ${selectedDifficulty === difficulty ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow' : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100 hover:border-gray-400'}`}
+                    className={`capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-200 ${selectedDifficulty === difficulty ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-md' : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100 hover:border-gray-400'}`}
                   >
                     {difficulty}
                   </Button>
@@ -242,13 +242,13 @@ export default function Home() {
 
             <div>
               <h3 className="text-center text-xl font-semibold text-gray-800 mb-6">Navegue por Categoria</h3>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-3">
                 {categories.map(category => (
                   <Button
                     key={category}
                     variant={selectedCategory === category ? 'default' : 'outline'}
                     onClick={() => setSelectedCategory(category)}
-                    className={`capitalize rounded-full px-4 py-1.5 h-auto text-sm font-medium transition-all duration-200 ${selectedCategory === category ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow' : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100 hover:border-gray-400'}`}
+                    className={`capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-200 ${selectedCategory === category ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-md' : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100 hover:border-gray-400'}`}
                   >
                     {category}
                   </Button>
@@ -257,7 +257,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="text-sm text-gray-500 mb-6 text-center">
+          <div className="text-sm text-gray-500 mb-8 text-center">
             Mostrando {filteredRecipes.length} de {recipes.length} receitas.
           </div>
 

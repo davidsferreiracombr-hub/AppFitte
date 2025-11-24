@@ -3,7 +3,6 @@
 
 import { useEffect, useState } from 'react';
 import { getRecipeBySlug, type Recipe } from '@/lib/recipes';
-import { notFound } from 'next/navigation';
 import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -20,15 +19,12 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
     if (foundRecipe) {
       setRecipe(foundRecipe);
     } else {
-      // Em um app de produção, você poderia redirecionar para uma página 404
-      // notFound() é para Server Components, então logamos no console aqui
       console.log('Recipe not found');
     }
   }, [params.slug]);
 
   const prepTimeInMinutes = recipe?.prepTime ? parseInt(recipe.prepTime.split(' ')[0]) : 0;
 
-  // Evita problemas de hidratação
   if (!isMounted) {
     return (
         <div className="flex justify-center items-center h-screen bg-gray-50">
@@ -55,7 +51,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
 
   return (
     <div className="bg-gray-50 min-h-screen font-body">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl py-12">
         <div className="mb-8">
             <Link href="/" legacyBehavior>
                 <a className="inline-flex items-center text-primary hover:text-primary/90 transition-colors font-semibold">
@@ -66,17 +62,17 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
         </div>
 
         <Card className="overflow-hidden shadow-lg bg-white">
-          <CardHeader className="text-center p-8">
-            <ChefHat className="mx-auto h-12 w-12 text-primary mb-4" />
-            <h1 className="text-3xl md:text-4xl font-headline font-bold text-gray-800">
+          <CardHeader className="text-center p-8 md:p-12">
+            <ChefHat className="mx-auto h-14 w-14 text-primary mb-4" />
+            <h1 className="text-4xl md:text-5xl font-headline font-bold text-gray-800">
               {recipe.title}
             </h1>
-            <p className="text-gray-500 mt-3 text-base max-w-2xl mx-auto">
+            <p className="text-gray-500 mt-4 text-base max-w-2xl mx-auto">
               {recipe.description}
             </p>
           </CardHeader>
-          <CardContent className="p-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10 text-center">
+          <CardContent className="px-6 py-8 md:px-10 md:py-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 text-center">
                 <div className="bg-primary/5 p-4 rounded-lg flex flex-col items-center justify-center">
                     <Clock className="h-7 w-7 text-primary mb-2" />
                     <p className="font-semibold text-sm text-gray-700">Tempo</p>
@@ -101,10 +97,10 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
 
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
                 <div className="lg:col-span-3">
-                    <div className="space-y-8">
+                    <div className="space-y-10">
                         <div>
                             <h2 className="text-2xl font-headline font-bold text-gray-800 mb-4 flex items-center gap-3"><Utensils className="h-6 w-6 text-primary" /> Ingredientes</h2>
-                            <ul className="list-disc list-inside space-y-2 text-gray-700 bg-gray-50 p-6 rounded-lg border">
+                            <ul className="list-disc list-inside space-y-3 text-gray-700 bg-gray-50/70 p-6 rounded-lg border">
                                 {recipe.ingredients.map((item, index) => (
                                     <li key={index} className="leading-relaxed">{item}</li>
                                 ))}
@@ -113,7 +109,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
 
                         <div>
                             <h2 className="text-2xl font-headline font-bold text-gray-800 mb-4 flex items-center gap-3"><ChefHat className="h-6 w-6 text-primary" /> Modo de Preparo</h2>
-                             <ol className="list-decimal list-inside space-y-4 text-gray-700 bg-gray-50 p-6 rounded-lg border">
+                             <ol className="list-decimal list-inside space-y-4 text-gray-700 bg-gray-50/70 p-6 rounded-lg border">
                                 {recipe.instructions.map((item, index) => (
                                     <li key={index} className="leading-relaxed pl-2">{item}</li>
                                 ))}
@@ -138,7 +134,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
             {recipe.notes && (
                  <div className="mt-12">
                     <h3 className="text-xl font-headline font-bold text-gray-800 mb-3 flex items-center gap-3"><Info className="h-5 w-5 text-primary" /> Dicas do Chef</h3>
-                    <div className="bg-blue-50 border-l-4 border-blue-400 text-blue-800 p-4 rounded-r-lg">
+                    <div className="bg-blue-50 border-l-4 border-blue-400 text-blue-800 p-5 rounded-r-lg">
                         <p className="text-sm leading-relaxed">{recipe.notes}</p>
                     </div>
                 </div>
