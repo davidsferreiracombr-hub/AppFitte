@@ -14,6 +14,16 @@ import { useEffect, useState } from 'react';
 // Função para extrair tempo de cozimento/geladeira das instruções
 const extractActionTime = (instructions: string[]): number => {
     const timePatterns = [
+      /asse por (\d+)\s*a\s*(\d+)?\s*minutos/i,
+      /assar por (\d+)\s*a\s*(\d+)?\s*minutos/i,
+      /asse por (\d+)-(\d+)?\s*minutos/i,
+      /assar por (\d+)-(\d+)?\s*minutos/i,
+      /gele por (\d+)\s*a\s*(\d+)?\s*horas/i,
+      /refrigere por (\d+)\s*a\s*(\d+)?\s*horas/i,
+      /cozinhe por (\d+)\s*a\s*(\d+)?\s*minutos/i,
+      /deixe esfriar por (\d+)\s*a\s*(\d+)?\s*minutos/i,
+      /geladeira por pelo menos (\d+)\s*minutos/i,
+      /gelar por pelo menos (\d+)\s*horas/i,
       /asse por (\d+)\s*minutos/i,
       /assar por (\d+)\s*minutos/i,
       /gele por (\d+)\s*horas/i,
@@ -22,8 +32,6 @@ const extractActionTime = (instructions: string[]): number => {
       /refrigere por (\d+)\s*minutos/i,
       /cozinhe por (\d+)\s*minutos/i,
       /deixe esfriar por (\d+)\s*minutos/i,
-      /geladeira por pelo menos (\d+)\s*minutos/i,
-      /gelar por pelo menos (\d+)\s*horas/i,
     ];
   
     for (const instruction of instructions) {
