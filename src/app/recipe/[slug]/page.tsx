@@ -200,7 +200,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
 
                 <div className="lg:col-span-2">
                     {timerInfo && (
-                      <div className="sticky top-28">
+                      <div className="sticky top-28 pt-8">
                           <Timer durationInMinutes={timerInfo.duration} context={timerInfo.context} />
                       </div>
                     )}

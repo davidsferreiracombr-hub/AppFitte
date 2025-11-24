@@ -80,24 +80,20 @@ export function Timer({ durationInMinutes, context }: TimerProps) {
     resetTimer();
   }, [durationInMinutes, resetTimer]);
 
-  const minutes = Math.floor(timeRemaining / 60);
-  const seconds = timeRemaining % 60;
+  const minutes = String(Math.floor(timeRemaining / 60)).padStart(2, '0');
+  const seconds = String(timeRemaining % 60).padStart(2, '0');
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-card rounded-2xl shadow-sm border w-full max-w-sm mx-auto">
+    <div className="flex flex-col items-center justify-center w-full max-w-sm mx-auto">
       <div className="flex items-center justify-center gap-2 text-primary mb-4">
         <TimerIcon className="h-5 w-5" />
         <p className="text-base font-semibold">{context}</p>
       </div>
       
       <div className="text-center my-2">
-        <div className="flex items-baseline justify-center font-mono tabular-nums text-foreground">
+        <div className="font-mono tabular-nums text-foreground">
           <span className="text-7xl sm:text-8xl font-bold tracking-tighter">
-              {String(minutes).padStart(2, '0')}
-          </span>
-          <span className="text-7xl sm:text-8xl font-bold tracking-tighter pb-2">:</span>
-          <span className="text-7xl sm:text-8xl font-bold tracking-tighter">
-              {String(seconds).padStart(2, '0')}
+              {minutes}{seconds}
           </span>
         </div>
       </div>
