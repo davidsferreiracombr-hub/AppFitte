@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react'
 import { type Recipe, getRecipes } from '@/lib/recipes';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Heart, ChefHat, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat, Clock, Flame, Info, ArrowUp, ArrowRight, Loader } from 'lucide-react';
+import { Search, Heart, ChefHat, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat, Clock, Flame, Info, ArrowUp, ArrowRight, Loader, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import {
@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 
 const categoryIcons: { [key: string]: React.ElementType } = {
@@ -57,6 +58,7 @@ const getCategoryIcon = (tags: string[]) => {
 
 const INITIAL_LOAD_COUNT = 12;
 const LOAD_MORE_COUNT = 8;
+const CATEGORIES_PER_PAGE_MOBILE = 12;
 
 export default function Home() {
   const recipes = useMemo(() => getRecipes(), []);
@@ -70,7 +72,7 @@ export default function Home() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const loaderRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useIsMobile();
-
+  const [mobileCategoryPage, setMobileCategoryPage] = useState(0);
 
   useEffect(() => {
     try {
@@ -176,22 +178,29 @@ export default function Home() {
       }
     };
   }, [handleLoadMore, visibleCount, filteredRecipes.length]);
-
+  
+  const mobileCategoryChunks = useMemo(() => {
+    const chunks = [];
+    for (let i = 0; i < categories.length; i += CATEGORIES_PER_PAGE_MOBILE) {
+      chunks.push(categories.slice(i, i + CATEGORIES_PER_PAGE_MOBILE));
+    }
+    return chunks;
+  }, [categories]);
 
   if (showWelcome || showIntro) {
     return (
       <>
         <Dialog open={showWelcome} onOpenChange={setShowWelcome}>
-          <DialogContent className="sm:max-w-[425px] text-center bg-card border-border rounded-lg">
+          <DialogContent className="sm:max-w-md bg-card border-border rounded-lg">
             <DialogHeader>
               <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto text-foreground">
                 <img src="https://i.imgur.com/Phh9w5C.png" alt="Fitte Logo" className="h-9 w-auto"/> Fitte
               </DialogTitle>
-              <DialogDescription className="pt-3 text-lg text-muted-foreground">
+              <DialogDescription className="pt-3 text-lg text-muted-foreground text-center">
                 Sua jornada para uma vida mais doce e saudável começa agora.
               </DialogDescription>
             </DialogHeader>
-            <div className="py-4">
+            <div className="py-4 text-center">
               <Button size="lg" onClick={handleWelcomeContinue}>
                 Continuar <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -313,18 +322,28 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-3 text-center">Navegue por Categoria</h3>
                 {isMobile ? (
-                  <div className="grid grid-cols-4 gap-3">
-                    {categories.map(category => (
-                        <Button
-                            key={category}
-                            variant={selectedCategory === category ? 'default' : 'secondary'}
-                            onClick={() => setSelectedCategory(category)}
-                             className="capitalize px-3 py-2 h-auto text-xs sm:text-sm font-medium rounded-md transition-transform duration-200 hover:scale-105 whitespace-nowrap overflow-hidden text-ellipsis"
-                        >
-                            {category}
-                        </Button>
-                    ))}
-                  </div>
+                  <Carousel className="w-full max-w-xs mx-auto" setApi={(api) => api?.on("select", (e) => setMobileCategoryPage(e.selectedScrollSnap()))}>
+                    <CarouselContent>
+                      {mobileCategoryChunks.map((chunk, index) => (
+                        <CarouselItem key={index}>
+                          <div className="grid grid-cols-4 gap-3 p-1">
+                             {chunk.map(category => (
+                                <Button
+                                    key={category}
+                                    variant={selectedCategory === category ? 'default' : 'secondary'}
+                                    onClick={() => setSelectedCategory(category)}
+                                    className="capitalize px-2 py-2 h-auto text-xs font-medium rounded-md whitespace-nowrap overflow-hidden text-ellipsis"
+                                >
+                                    {category}
+                                </Button>
+                            ))}
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                  </Carousel>
                 ) : (
                   <ScrollArea className="w-full whitespace-nowrap">
                     <div className="flex space-x-3 p-2">
