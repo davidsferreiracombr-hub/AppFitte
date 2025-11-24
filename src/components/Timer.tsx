@@ -82,9 +82,9 @@ export function Timer({ durationInMinutes }: TimerProps) {
   const seconds = timeRemaining % 60;
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-xl border border-gray-200/80 w-full max-w-sm mx-auto">
+    <div className="flex flex-col items-center justify-center p-6 bg-card rounded-2xl shadow-sm border w-full max-w-sm mx-auto">
       <div className="text-center my-4">
-        <div className="flex items-baseline justify-center font-mono" style={{fontVariantNumeric: 'tabular-nums', color: "hsl(var(--accent-cocoa))"}}>
+        <div className="flex items-baseline justify-center font-mono tabular-nums text-foreground">
           <span className="text-8xl font-bold tracking-tighter">
               {String(minutes).padStart(2, '0')}
           </span>
@@ -100,7 +100,7 @@ export function Timer({ durationInMinutes }: TimerProps) {
           onClick={startTimer} 
           className={cn(
             "w-32 py-3 text-base font-semibold rounded-lg transition-all duration-300",
-             isActive ? 'bg-accent-berry text-white' : 'bg-primary text-white'
+             isActive ? 'bg-destructive text-destructive-foreground' : 'bg-primary text-primary-foreground'
           )}
         >
           {isFinished ? 'De novo!' : isActive ? 'Pausar' : (timeRemaining < durationInSeconds ? 'Continuar' : 'Começar')}

@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react'
 import { type Recipe, getRecipes } from '@/lib/recipes';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, ArrowUp } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { RecipeCard } from '@/components/recipe-card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { AppLayout } from '@/components/app-layout';
@@ -109,7 +109,7 @@ export default function Home() {
         {showScroll && (
           <Button 
             onClick={scrollTop} 
-            className="fixed bottom-20 right-6 h-12 w-12 rounded-full shadow-lg z-50 bg-accent-cocoa text-white hover:bg-accent-cocoa/90"
+            className="fixed bottom-20 right-6 h-12 w-12 rounded-full shadow-lg z-50 bg-primary text-primary-foreground hover:bg-primary/90"
             size="icon"
             aria-label="Voltar ao topo"
           >
@@ -117,55 +117,36 @@ export default function Home() {
           </Button>
         )}
 
-        <div className="mb-8">
-            <h2 className="text-3xl md:text-4xl font-headline font-extrabold tracking-tight" style={{color: "hsl(var(--accent-cocoa))"}}>
+        <div className="mb-8 text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
                 Doces Fit, Sabor sem Culpa.
             </h2>
-            <p style={{color: "hsl(var(--text-primary))"}} className="opacity-70 mt-2 text-lg max-w-3xl">
+            <p className="text-muted-foreground mt-4 text-lg">
                 Encontre receitas de doces saudáveis para uma vida mais equilibrada.
             </p>
         </div>
         
         <main>
           <div className="mb-8 space-y-6">
-            <div>
-              <h3 className="text-lg font-semibold mb-3" style={{color: "hsl(var(--accent-cocoa))"}}>Navegue por Dificuldade</h3>
-              <div className="flex flex-wrap gap-3">
-                {difficulties.map(difficulty => (
-                  <Button
-                    key={difficulty}
-                    variant={selectedDifficulty === difficulty ? 'default' : 'secondary'}
-                    onClick={() => setSelectedDifficulty(difficulty)}
-                    className="capitalize px-5 py-2 h-auto text-sm font-medium rounded-md transition-transform duration-200 hover:scale-105"
-                  >
-                    {difficulty}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold mb-3" style={{color: "hsl(var(--accent-cocoa))"}}>Navegue por Categoria</h3>
-              <div className="flex flex-wrap gap-3">
-                {categories.slice(0, 15).map(category => (
-                    <Button
-                        key={category}
-                        variant={selectedCategory === category ? 'default' : 'secondary'}
-                        onClick={() => setSelectedCategory(category)}
-                        className="capitalize px-5 py-2 h-auto text-sm font-medium rounded-md transition-transform duration-200 hover:scale-105"
-                    >
-                        {category}
-                    </Button>
-                ))}
-              </div>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {difficulties.map(difficulty => (
+                <Button
+                  key={difficulty}
+                  variant={selectedDifficulty === difficulty ? 'default' : 'ghost'}
+                  onClick={() => setSelectedDifficulty(difficulty)}
+                  className="capitalize px-5 py-2 h-auto text-sm font-medium rounded-md"
+                >
+                  {difficulty}
+                </Button>
+              ))}
             </div>
           </div>
           
-          <div className="text-sm mb-6" style={{color: "hsl(var(--text-primary))", opacity: 0.8}}>
+          <div className="text-sm mb-6 text-muted-foreground text-center">
             {`Mostrando ${visibleRecipes.length} de ${filteredRecipes.length} receitas.`}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
               {visibleRecipes.map(recipe => {
                 return (
                   <RecipeCard 
@@ -187,17 +168,17 @@ export default function Home() {
             <div ref={loader} className="h-10" />
 
             {hasMore && (
-              <div className="text-center py-8">
+              <div className="text-center py-8 text-muted-foreground">
                 <p>Carregando mais receitas...</p>
               </div>
             )}
             {!hasMore && visibleRecipes.length > 0 && (
-              <div className="text-center py-8">
+              <div className="text-center py-8 text-muted-foreground">
                 <p>Você chegou ao fim!</p>
               </div>
             )}
              {visibleRecipes.length === 0 && (
-              <div className="text-center py-16">
+              <div className="text-center py-16 text-muted-foreground">
                 <p>Nenhuma receita encontrada com esses filtros.</p>
               </div>
             )}

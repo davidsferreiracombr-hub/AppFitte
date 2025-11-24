@@ -4,52 +4,51 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(180deg, #FFF8F2 0%, #FFF4EA 100%);
+  background-color: hsl(var(--background));
 }
 
 @layer base {
   :root {
-    --background: 26 100% 97%; /* #FFF8F2 - Converted */
-    --foreground: 224 71.4% 4.1%; /* Default, will be overridden */
-    --card: 26 100% 97%;
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-    --popover: 26 100% 97%;
+    --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 118 36% 63%; /* #7CC577 (matcha) */
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 35 76% 75%; /* #F2B179 (caramelo) */
+    --primary: 242 81% 69%; /* Inspired by the vibrant blue/purple */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 349 88% 81%; /* #F7A6B8 (berry) */
+    --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 18px; /* Changed from 0.8rem to 18px */
+    --ring: 242 81% 69%;
+    --radius: 1rem;
 
-    /* Custom Palette */
-    --background-main: 33 100% 98%; /* #FFF8F2 */
-    --background-complementary: 32 100% 96%; /* #FFF4EA */
-    --accent-caramel: 35 76% 75%; /* #F2B179 */
-    --accent-matcha: 118 36% 63%; /* #7CC577 */
-    --accent-berry: 349 88% 81%; /* #F7A6B8 */
-    --accent-cocoa: 24 38% 30%; /* #6B4F3A */
-    --text-primary: 0 0% 18%; /* #2F2F2F */
-    --text-secondary: 220 5% 78%; /* #BFC3CA */
+    /* Custom Palette from previous theme (kept for potential fallback, but overridden) */
+    --background-main: 0 0% 100%;
+    --background-complementary: 210 40% 98%;
+    --accent-caramel: 35 76% 75%;
+    --accent-matcha: 118 36% 63%;
+    --accent-berry: 349 88% 81%;
+    --accent-cocoa: 24 38% 30%;
+    --text-primary: 224 71.4% 4.1%;
+    --text-secondary: 220 5% 45%;
   }
 
   .dark {
-    /* Keeping dark theme as a fallback, can be updated later */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
+    --primary: 242 81% 75%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -61,7 +60,7 @@ body {
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 210 40% 98%;
+    --ring: 242 81% 75%;
   }
 }
 
@@ -70,7 +69,7 @@ body {
     @apply border-border;
   }
   body {
-    background: linear-gradient(180deg, hsl(var(--background-main)) 0%, hsl(var(--background-complementary)) 100%);
+    background-color: hsl(var(--background));
     color: hsl(var(--text-primary));
   }
 }
