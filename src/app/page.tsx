@@ -213,16 +213,15 @@ export default function Home() {
             <div className="flex justify-between items-center py-4">
                 <div className="flex items-center gap-3">
                     <ChefHat className="h-9 w-9 text-primary" />
-                    <h1 className="text-5xl font-headline font-bold text-foreground">
+                    <h1 className="text-3xl md:text-4xl font-headline font-bold text-foreground">
                         Fitte
                     </h1>
                 </div>
-                <div className="flex items-center gap-4">
-                     <Button variant="ghost" className="text-primary hover:text-primary/90 hidden sm:inline-flex">
+                 <div className="flex items-center gap-4">
+                     <Button variant="ghost" className="text-primary hover:text-primary/90">
                         <Heart className="mr-2 h-4 w-4" />
                         Minhas Receitas
                     </Button>
-                    <Button>Comece a Cozinhar</Button>
                 </div>
             </div>
         </div>
@@ -251,18 +250,18 @@ export default function Home() {
         </div>
       </div>
       
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-8">
         <main>
-          <div className="mb-8 space-y-4">
+          <div className="mb-8 space-y-6">
             <div>
-              <h3 className="text-center text-xl font-semibold text-foreground mb-4">Navegue por Dificuldade</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-3 text-center">Navegue por Dificuldade</h3>
               <div className="flex flex-wrap justify-center gap-3">
                 {difficulties.map(difficulty => (
                   <Button
                     key={difficulty}
                     variant={selectedDifficulty === difficulty ? 'default' : 'secondary'}
                     onClick={() => setSelectedDifficulty(difficulty)}
-                    className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-all duration-300 transform-gpu hover:scale-105 hover:shadow-lg"
+                    className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-transform duration-200 hover:scale-105"
                   >
                     {difficulty}
                   </Button>
@@ -271,22 +270,27 @@ export default function Home() {
             </div>
 
             <div>
-              <h3 className="text-center text-xl font-semibold text-foreground mb-4">Navegue por Categoria</h3>
-              <ScrollArea className="w-full whitespace-nowrap rounded-md">
-                <div className="flex w-max space-x-3 p-4">
-                  {categories.map(category => (
-                    <Button
-                      key={category}
-                      variant={selectedCategory === category ? 'default' : 'secondary'}
-                      onClick={() => setSelectedCategory(category)}
-                      className="capitalize rounded-full px-5 py-2 h-auto text-sm font-medium transition-shadow hover:shadow-lg"
-                    >
-                      {category}
-                    </Button>
-                  ))}
+              <h3 className="text-lg font-semibold text-foreground mb-3 text-center">Navegue por Categoria</h3>
+              <div className="relative">
+                <ScrollArea className="w-full whitespace-nowrap rounded-md">
+                  <div className="flex w-max space-x-3 p-4">
+                    {categories.map(category => (
+                      <Button
+                        key={category}
+                        variant={selectedCategory === category ? 'default' : 'secondary'}
+                        onClick={() => setSelectedCategory(category)}
+                        className="capitalize rounded-full px-6 py-3 h-auto text-base font-medium transition-transform duration-200 hover:scale-105"
+                      >
+                        {category}
+                      </Button>
+                    ))}
+                  </div>
+                  <ScrollBar orientation="horizontal" />
+                </ScrollArea>
+                <div className="pointer-events-none absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-background to-transparent flex items-center justify-end pr-2">
+                    <ArrowRight className="h-5 w-5 text-muted-foreground animate-pulse" />
                 </div>
-                <ScrollBar orientation="horizontal" />
-              </ScrollArea>
+              </div>
             </div>
           </div>
           
@@ -294,18 +298,18 @@ export default function Home() {
             Mostrando {visibleRecipes.length} de {filteredRecipes.length} receitas.
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {visibleRecipes.map(recipe => {
               const Icon = getCategoryIcon(recipe.tags);
               return (
                 <Link href={`/recipe/${recipe.slug}`} key={recipe.id} legacyBehavior>
                   <a className="block group">
-                    <Card className="h-full flex flex-col rounded-xl shadow-md transition-all duration-300 overflow-hidden bg-card/50 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-1">
+                    <Card className="h-full flex flex-col rounded-xl shadow-md transition-all duration-300 overflow-hidden bg-card/50 backdrop-blur-sm hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1">
                       <CardHeader className="flex-row items-center gap-4 pb-4">
                         <div className="bg-primary/10 p-3 rounded-lg">
                            <Icon className="h-6 w-6 text-primary" />
                         </div>
-                        <CardTitle className="text-lg font-headline leading-tight flex-1 text-foreground">{recipe.title}</CardTitle>
+                        <CardTitle className="text-base font-headline leading-tight flex-1 text-foreground">{recipe.title}</CardTitle>
                       </CardHeader>
                       <CardContent className="flex-grow flex flex-col justify-between pt-0">
                         <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{recipe.description}</p>

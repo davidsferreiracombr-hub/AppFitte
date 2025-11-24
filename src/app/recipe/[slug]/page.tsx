@@ -1,15 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { getRecipeBySlug, type Recipe } from '@/lib/recipes';
-import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon, CakeSlice } from 'lucide-react';
+import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Timer } from '@/components/Timer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function RecipePage({ params }: { params: { slug: string } }) {
-  // Otimização: Carrega a receita diretamente sem `useEffect` para evitar "flashes" de conteúdo e múltiplos re-renders.
   const recipe = getRecipeBySlug(params.slug);
   
   if (!recipe) {
@@ -33,13 +31,17 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
   return (
     <div className="min-h-screen font-body">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl py-12">
-        <div className="mb-8">
+        <div className="mb-8 flex justify-between items-center">
             <Link href="/" legacyBehavior>
                 <a className="inline-flex items-center text-primary hover:text-primary/90 transition-colors font-semibold">
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    Voltar para todas as receitas
+                    Voltar
                 </a>
             </Link>
+            <Button variant="ghost" size="icon" className="text-primary hover:text-primary/90">
+                <Heart className="h-6 w-6" />
+                <span className="sr-only">Favoritar</span>
+            </Button>
         </div>
 
         <Card className="overflow-hidden shadow-lg">
