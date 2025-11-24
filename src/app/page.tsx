@@ -1,155 +1,140 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { getRecipes } from '@/lib/recipes';
-import RecipeCard from '@/components/recipe-card';
-import { ArrowRight, Leaf, Sparkles } from 'lucide-react';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+'use client';
 
-export default async function Home() {
-  const allRecipes = await getRecipes();
-  const featuredRecipes = allRecipes.slice(0, 3);
-  const heroImage = PlaceHolderImages.find((p) => p.id === 'hero-image');
+import React, { useState, useMemo } from 'react';
+import { type Recipe, getRecipes } from '@/lib/recipes';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Search, Heart, ChefHat, Cookie, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat } from 'lucide-react';
+
+const categoryIcons: { [key: string]: React.ElementType } = {
+  'brownie': Cookie,
+  'cookie': Cookie,
+  'bolo': CakeSlice,
+  'torta': CakeSlice,
+  'cheesecake': CakeSlice,
+  'mousse': IceCream,
+  'pudim': IceCream,
+  'manjar': IceCream,
+  'creme': IceCream,
+  'vegano': Vegan,
+  'doce': Lollipop,
+  'brigadeiro': Lollipop,
+  'panqueca': Soup,
+  'sem glúten': Wheat,
+  'default': ChefHat,
+};
+
+const getCategoryIcon = (tags: string[]) => {
+  const lowerCaseTags = tags.map(tag => tag.toLowerCase());
+  for (const key in categoryIcons) {
+    if (lowerCaseTags.includes(key)) {
+      return categoryIcons[key];
+    }
+  }
+  for (const tag of lowerCaseTags) {
+     for (const key in categoryIcons) {
+        if (tag.includes(key)) {
+            return categoryIcons[key];
+        }
+     }
+  }
+  return categoryIcons['default'];
+};
+
+export default function Home() {
+  const recipes = useMemo(() => getRecipes(), []);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('Todos');
+
+  const categories = useMemo(() => {
+    const allCategories = recipes.flatMap(recipe => recipe.tags);
+    return ['Todos', ...Array.from(new Set(allCategories)).sort()];
+  }, [recipes]);
+
+  const filteredRecipes = useMemo(() => {
+    return recipes.filter(recipe => {
+      const matchesSearch =
+        recipe.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        recipe.description.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory =
+        selectedCategory === 'Todos' || recipe.tags.includes(selectedCategory);
+      return matchesSearch && matchesCategory;
+    });
+  }, [recipes, searchTerm, selectedCategory]);
 
   return (
-    <div className="flex flex-col">
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center text-center text-white">
-          {heroImage && (
-            <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              fill
-              className="object-cover"
-              priority
-              data-ai-hint={heroImage.imageHint}
-            />
-          )}
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="relative z-10 p-4">
-            <h1 className="text-4xl md:text-6xl font-bold font-headline drop-shadow-lg">
-              Indulge Guilt-Free
-            </h1>
-            <p className="mt-4 text-lg md:text-2xl max-w-2xl mx-auto drop-shadow-md font-body">
-              Discover over 500 delicious and healthy dessert recipes to satisfy
-              your sweet tooth.
-            </p>
-            <Button
-              asChild
-              size="lg"
-              className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground"
-            >
-              <Link href="/recipes">Explore Recipes</Link>
-            </Button>
-          </div>
-        </section>
+    <div className="bg-white min-h-screen font-body">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-8">
+        <header className="text-center mb-10">
+          <ChefHat className="mx-auto h-12 w-12 text-primary mb-3" />
+          <h1 className="text-4xl md:text-5xl font-headline font-bold text-gray-800">
+            FitDoce - Receitas Saudáveis
+          </h1>
+          <p className="text-gray-500 mt-4 text-lg max-w-2xl mx-auto">
+            Mais de 500 receitas de doces fit para você emagrecer sem abrir mão do sabor. Perfeito para quem treina e busca uma alimentação saudável.
+          </p>
+        </header>
 
-        {/* AI Recommendation Section */}
-        <section id="ai-recommender" className="py-16 md:py-24 bg-card">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <Sparkles className="mx-auto h-12 w-12 text-primary mb-4" />
-              <h2 className="text-3xl md:text-4xl font-bold font-headline">
-                Personalized Sweet Suggestions
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
-                Let our AI find the perfect fit dessert for you based on your
-                preferences.
-              </p>
+        <main>
+          <div className="mb-8 sticky top-0 bg-white/80 backdrop-blur-sm py-4 z-10">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <Input
+                type="search"
+                placeholder="Buscar receitas..."
+                className="pl-10 w-full bg-gray-50 border-gray-200 focus:ring-primary focus:border-primary text-base"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
-            <Card className="max-w-3xl mx-auto shadow-lg">
-              <CardHeader>
-                <CardTitle className="font-headline text-2xl">
-                  Tell us what you like
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="goal">Dietary Goal</Label>
-                    <Select>
-                      <SelectTrigger id="goal">
-                        <SelectValue placeholder="Select a goal" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="weight-loss">Weight Loss</SelectItem>
-                        <SelectItem value="muscle-gain">Muscle Gain</SelectItem>
-                        <SelectItem value="maintenance">Maintenance</SelectItem>
-                        <SelectItem value="low-carb">Low Carb</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="allergies">Allergies</Label>
-                    <Select>
-                      <SelectTrigger id="allergies">
-                        <SelectValue placeholder="Any allergies?" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="none">None</SelectItem>
-                        <SelectItem value="gluten-free">Gluten-Free</SelectItem>
-                        <SelectItem value="dairy-free">Dairy-Free</SelectItem>
-                        <SelectItem value="nut-free">Nut-Free</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2 md:col-span-2">
-                    <Label htmlFor="flavors">Preferred Flavors</Label>
-                    <Input
-                      id="flavors"
-                      placeholder="e.g., chocolate, vanilla, fruity"
-                    />
-                  </div>
-                  <div className="md:col-span-2 text-center">
-                    <Button type="submit" size="lg" className="w-full md:w-auto">
-                      <Sparkles className="mr-2 h-4 w-4" />
-                      Find My Treat
-                    </Button>
-                  </div>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Featured Recipes Section */}
-        <section className="py-16 md:py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <Leaf className="mx-auto h-12 w-12 text-primary mb-4" />
-              <h2 className="text-3xl md:text-4xl font-bold font-headline">
-                Featured Desserts
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground">
-                Get a taste of our most popular healthy sweets.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredRecipes.map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
-              ))}
-            </div>
-            <div className="text-center mt-12">
-              <Button asChild variant="outline">
-                <Link href="/recipes">
-                  View All Recipes <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+            <div className="text-center mt-4">
+               <Button variant="link" className="text-primary hover:text-primary/90">
+                <Heart className="mr-2 h-4 w-4" />
+                Minhas Receitas Favoritas
               </Button>
             </div>
           </div>
-        </section>
-      </main>
+
+          <div className="mb-8">
+            <h2 className="text-center text-lg font-semibold text-gray-700 mb-4">Categorias</h2>
+            <div className="flex flex-wrap justify-center gap-2">
+              {categories.map(category => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? 'default' : 'outline'}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`capitalize rounded-full px-4 py-1 h-auto text-sm transition-all duration-200 ${selectedCategory === category ? 'bg-primary hover:bg-primary/90 text-primary-foreground' : 'text-gray-600 border-gray-300 hover:bg-gray-100'}`}
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
+          </div>
+          
+          <div className="text-sm text-gray-500 mb-4 text-center">
+            {filteredRecipes.length} de {recipes.length} receitas encontradas
+          </div>
+
+          <div className="space-y-4">
+            {filteredRecipes.map(recipe => {
+              const Icon = getCategoryIcon(recipe.tags);
+              return (
+                <div key={recipe.id} className="p-4 border rounded-lg bg-gray-50/50 hover:bg-accent transition-colors cursor-pointer shadow-sm hover:shadow-md">
+                  <div className="flex items-center gap-4">
+                     <div className="bg-primary/10 p-3 rounded-full">
+                       <Icon className="h-6 w-6 text-primary" />
+                     </div>
+                     <div className="flex-1">
+                       <h3 className="font-semibold font-headline text-lg text-gray-800">{recipe.title}</h3>
+                       <p className="text-gray-600 text-sm">{recipe.description}</p>
+                     </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
