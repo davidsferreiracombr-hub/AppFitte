@@ -25,7 +25,7 @@ export function BottomNav() {
                 "flex flex-col items-center justify-center gap-1 text-muted-foreground w-20 transition-colors",
                 isActive ? "text-primary" : "hover:text-foreground"
               )}>
-                <Icon className={cn("h-6 w-6", isActive ? "h-7 w-7" : "")} />
+                <Icon className={cn("h-6 w-6 transition-all", isActive ? "h-7 w-7" : "")} />
                 <span className={cn(
                   "text-xs font-medium",
                    isActive ? "font-bold" : ""

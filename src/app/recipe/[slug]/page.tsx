@@ -113,8 +113,11 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
                       Voltar
                   </Button>
               </Link>
-               <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="text-muted-foreground hover:text-primary rounded-full h-10 w-10">
-                    <Heart className={cn("h-5 w-5", isFavorite ? "fill-primary text-primary" : "fill-transparent")} />
+               <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group rounded-full h-10 w-10">
+                    <Heart className={cn(
+                        "h-5 w-5 text-muted-foreground group-hover:text-primary transition-all duration-200 group-active:scale-125", 
+                        isFavorite ? "fill-primary text-primary" : "fill-transparent"
+                    )} />
                     <span className="sr-only">{isFavorite ? 'Desfavoritar' : 'Favoritar'}</span>
                 </Button>
             </div>
