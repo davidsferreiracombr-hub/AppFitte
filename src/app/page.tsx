@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 
 const categoryIcons: { [key: string]: React.ElementType } = {
@@ -72,6 +72,7 @@ export default function Home() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const loaderRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useIsMobile();
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>()
   const [mobileCategoryPage, setMobileCategoryPage] = useState(0);
 
   useEffect(() => {
@@ -322,28 +323,32 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-3 text-center">Navegue por Categoria</h3>
                 {isMobile ? (
-                  <Carousel className="w-full max-w-xs mx-auto" setApi={(api) => api?.on("select", (e) => setMobileCategoryPage(e.selectedScrollSnap()))}>
-                    <CarouselContent>
-                      {mobileCategoryChunks.map((chunk, index) => (
-                        <CarouselItem key={index}>
-                          <div className="grid grid-cols-4 gap-3 p-1">
-                             {chunk.map(category => (
-                                <Button
-                                    key={category}
-                                    variant={selectedCategory === category ? 'default' : 'secondary'}
-                                    onClick={() => setSelectedCategory(category)}
-                                    className="capitalize px-2 py-2 h-auto text-xs font-medium rounded-md whitespace-nowrap overflow-hidden text-ellipsis"
-                                >
-                                    {category}
-                                </Button>
-                            ))}
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="visible" />
-                    <CarouselNext className="visible" />
-                  </Carousel>
+                  <div className="flex flex-col items-center">
+                    <Carousel className="w-full max-w-xs mx-auto" setApi={setCarouselApi}>
+                      <CarouselContent>
+                        {mobileCategoryChunks.map((chunk, index) => (
+                          <CarouselItem key={index}>
+                            <div className="grid grid-cols-4 gap-3 p-1">
+                               {chunk.map(category => (
+                                  <Button
+                                      key={category}
+                                      variant={selectedCategory === category ? 'default' : 'secondary'}
+                                      onClick={() => setSelectedCategory(category)}
+                                      className="capitalize px-2 py-2 h-auto text-xs font-medium rounded-md whitespace-nowrap overflow-hidden text-ellipsis"
+                                  >
+                                      {category}
+                                  </Button>
+                              ))}
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                    </Carousel>
+                     <div className="flex justify-center items-center gap-4 mt-4">
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </div>
+                  </div>
                 ) : (
                   <ScrollArea className="w-full whitespace-nowrap">
                     <div className="flex space-x-3 p-2">
@@ -369,7 +374,7 @@ export default function Home() {
             Mostrando {visibleRecipes.length} de {filteredRecipes.length} receitas.
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {visibleRecipes.map(recipe => {
               const Icon = getCategoryIcon(recipe.tags);
               return (
