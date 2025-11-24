@@ -8,6 +8,7 @@ import { RecipeCard } from '@/components/recipe-card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { AppLayout } from '@/components/app-layout';
 import { cn } from '@/lib/utils';
+import { LoadingSpinner } from '@/components/loading-spinner';
 
 const BATCH_SIZE = 20;
 
@@ -27,23 +28,32 @@ export default function Home() {
   const [visibleRecipes, setVisibleRecipes] = useState<Recipe[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const loader = useRef<HTMLDivElement | null>(null);
 
   const filteredRecipes = useMemo(() => {
-    const filtered = allRecipes.filter(recipe => {
+    return allRecipes.filter(recipe => {
       const matchesDifficulty =
         selectedDifficulty === 'Todos' || recipe.difficulty === selectedDifficulty;
       
       return matchesDifficulty;
     });
-    return filtered;
   }, [allRecipes, selectedDifficulty]);
 
   useEffect(() => {
-    setVisibleRecipes(filteredRecipes.slice(0, BATCH_SIZE));
+    setIsLoading(true);
+    const initialRecipes = filteredRecipes.slice(0, BATCH_SIZE);
+    setVisibleRecipes(initialRecipes);
     setPage(1);
     setHasMore(filteredRecipes.length > BATCH_SIZE);
+    
+    // Simulate a short delay for the initial data processing to show loading state
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, [filteredRecipes]);
 
   const loadMoreRecipes = useCallback(() => {
@@ -66,7 +76,7 @@ export default function Home() {
       },
       { rootMargin: '200px' }
     );
-    if (loader.current) {
+    if (loader.current && !isLoading) {
       observer.observe(loader.current);
     }
     return () => {
@@ -74,7 +84,7 @@ export default function Home() {
         observer.unobserve(loader.current);
       }
     };
-  }, [loader, hasMore, loadMoreRecipes]);
+  }, [loader, hasMore, loadMoreRecipes, isLoading]);
 
   const checkScrollTop = () => {
     if (!showScroll && window.pageYOffset > 400){
@@ -142,47 +152,52 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="text-sm mb-6 text-muted-foreground text-center">
-            {`Mostrando ${visibleRecipes.length} de ${filteredRecipes.length} receitas.`}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-              {visibleRecipes.map(recipe => {
-                return (
-                  <RecipeCard 
-                    key={recipe.id} 
-                    recipe={recipe} 
-                    isFavorite={favorites.includes(recipe.slug)}
-                    onToggleFavorite={() => {
-                      if (favorites.includes(recipe.slug)) {
-                        removeFavorite(recipe.slug);
-                      } else {
-                        addFavorite(recipe.slug);
-                      }
-                    }}
-                  />
-                );
-              })}
-            </div>
-            
-            <div ref={loader} className="h-10" />
-
-            {hasMore && (
-              <div className="text-center py-8 text-muted-foreground">
-                <p>Carregando mais receitas...</p>
+          {isLoading ? (
+            <LoadingSpinner text="Preparando as melhores receitas para você..." />
+          ) : (
+            <>
+              <div className="text-sm mb-6 text-muted-foreground text-center">
+                {`Mostrando ${visibleRecipes.length} de ${filteredRecipes.length} receitas.`}
               </div>
-            )}
-            {!hasMore && visibleRecipes.length > 0 && (
-              <div className="text-center py-8 text-muted-foreground">
-                <p>Você chegou ao fim!</p>
-              </div>
-            )}
-             {visibleRecipes.length === 0 && (
-              <div className="text-center py-16 text-muted-foreground">
-                <p>Nenhuma receita encontrada com esses filtros.</p>
-              </div>
-            )}
 
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                  {visibleRecipes.map(recipe => {
+                    return (
+                      <RecipeCard 
+                        key={recipe.id} 
+                        recipe={recipe} 
+                        isFavorite={favorites.includes(recipe.slug)}
+                        onToggleFavorite={() => {
+                          if (favorites.includes(recipe.slug)) {
+                            removeFavorite(recipe.slug);
+                          } else {
+                            addFavorite(recipe.slug);
+                          }
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+                
+                <div ref={loader} className="h-10" />
+
+                {hasMore && (
+                  <div className="text-center py-8 text-muted-foreground">
+                    <p>Carregando mais receitas...</p>
+                  </div>
+                )}
+                {!hasMore && visibleRecipes.length > 0 && (
+                  <div className="text-center py-8 text-muted-foreground">
+                    <p>Você chegou ao fim!</p>
+                  </div>
+                )}
+                {visibleRecipes.length === 0 && (
+                  <div className="text-center py-16 text-muted-foreground">
+                    <p>Nenhuma receita encontrada com esses filtros.</p>
+                  </div>
+                )}
+            </>
+          )}
         </main>
       </div>
     </AppLayout>

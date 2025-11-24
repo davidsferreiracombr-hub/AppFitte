@@ -6,6 +6,7 @@ import { useFavorites } from '@/hooks/use-favorites';
 import { RecipeCard } from '@/components/recipe-card';
 import { AppLayout } from '@/components/app-layout';
 import { Heart } from 'lucide-react';
+import { LoadingSpinner } from '@/components/loading-spinner';
 
 export default function FavoritesPage() {
   const { favorites, isLoaded, addFavorite, removeFavorite } = useFavorites();
@@ -30,9 +31,7 @@ export default function FavoritesPage() {
 
         <main>
           {!isLoaded && (
-            <div className="text-center text-muted-foreground">
-              Carregando seus favoritos...
-            </div>
+            <LoadingSpinner text="Procurando suas delícias preferidas..." />
           )}
 
           {isLoaded && favoriteRecipes.length === 0 && (
