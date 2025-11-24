@@ -61,10 +61,10 @@ export default function Home() {
   const [isAppReady, setIsAppReady] = useState(false);
 
   useEffect(() => {
-    const hasVisited = localStorage.getItem('hasVisitedFitDoce');
+    const hasVisited = localStorage.getItem('hasVisitedFitte');
     if (!hasVisited) {
       setShowWelcome(true);
-      localStorage.setItem('hasVisitedFitDoce', 'true');
+      localStorage.setItem('hasVisitedFitte', 'true');
     } else {
       setIsAppReady(true);
     }
@@ -107,9 +107,12 @@ export default function Home() {
 
   const filteredRecipes = useMemo(() => {
     return recipes.filter(recipe => {
+      const searchTermLower = searchTerm.toLowerCase();
       const matchesSearch =
-        recipe.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        recipe.description.toLowerCase().includes(searchTerm.toLowerCase());
+        recipe.title.toLowerCase().includes(searchTermLower) ||
+        recipe.description.toLowerCase().includes(searchTermLower) ||
+        recipe.tags.some(tag => tag.toLowerCase().includes(searchTermLower));
+
       const matchesDifficulty =
         selectedDifficulty === 'Todos' || recipe.difficulty === selectedDifficulty;
       const matchesCategory = 
@@ -125,7 +128,7 @@ export default function Home() {
           <DialogContent className="sm:max-w-md text-center">
             <DialogHeader>
               <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto">
-                <ChefHat className="h-8 w-8 text-primary" /> Bem-vindo(a) ao FitDoce!
+                <ChefHat className="h-8 w-8 text-primary" /> Bem-vindo(a) ao Fitte!
               </DialogTitle>
               <DialogDescription className="pt-3 text-lg">
                 Sua jornada para uma vida mais doce e saudável começa agora.
@@ -181,7 +184,7 @@ export default function Home() {
                 <div className="flex items-center gap-3">
                     <ChefHat className="h-8 w-8 text-primary" />
                     <h1 className="text-2xl font-headline font-bold text-gray-800">
-                        FitDoce
+                        Fitte
                     </h1>
                 </div>
                 <div className="flex items-center gap-4">
@@ -264,7 +267,7 @@ export default function Home() {
               return (
                 <Link href={`/recipe/${recipe.slug}`} key={recipe.id} legacyBehavior>
                   <a className="block group">
-                    <Card className="h-full flex flex-col bg-white rounded-xl shadow-md transition-all duration-300 overflow-hidden group-hover:[transform:rotateY(10deg)_translateZ(20px)] hover:!transform-none hover:shadow-2xl">
+                    <Card className="h-full flex flex-col bg-white rounded-xl shadow-md transition-all duration-300 overflow-hidden transform-gpu group-hover:[transform:rotateY(10deg)_translateZ(20px)] hover:!transform-none hover:shadow-2xl">
                       <CardHeader className="flex-row items-center gap-4 pb-4">
                         <div className="bg-primary/10 p-3 rounded-lg">
                            <Icon className="h-6 w-6 text-primary" />

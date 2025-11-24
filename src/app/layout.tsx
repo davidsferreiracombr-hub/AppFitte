@@ -4,8 +4,8 @@ import { Toaster } from "@/components/ui/toaster"
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'FitDoce - Receitas Saudáveis',
-  description: 'Mais de 500 receitas de doces fit para você emagrecer sem abrir mão do sabor.',
+  title: 'Fitte - Receitas Saudáveis',
+  description: 'Mais de 700 receitas de doces fit para você emagrecer sem abrir mão do sabor.',
 };
 
 export default function RootLayout({

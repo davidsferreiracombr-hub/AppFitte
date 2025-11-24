@@ -75,7 +75,7 @@ const recipes: Recipe[] = [
         "Asse por 25 a 30 minutos. O brownie deve estar firme nas bordas e ligeiramente úmido no centro.",
         "Deixe esfriar completamente na forma antes de cortar em 9 quadrados."
     ],
-    notes: "A batata-doce deve estar bem cozida para que o purê fique lisinho. Você pode cozinhá-la no vapor ou assada."
+    notes: "A batata-doce deve estar bem cozida para que o purê fique lisinho. Você pode cozinhá-la no vapor ou assada. Se não tiver forno, algumas pessoas relatam sucesso cozinhando porções individuais no micro-ondas por 2-3 minutos em um recipiente seguro, mas a textura pode variar."
   },
   { 
     id: 3, 
@@ -100,7 +100,8 @@ const recipes: Recipe[] = [
         "Com a ajuda de duas colheres, forme pequenas bolas de massa e coloque-as na assadeira, achatando-as levemente para formar os cookies.",
         "Asse por 15-20 minutos, ou até que as bordas estejam douradas e firmes.",
         "Deixe esfriar na assadeira por alguns minutos antes de transferir para uma grade."
-    ]
+    ],
+    notes: "Para uma versão ainda mais rápida, você pode cozinhar os cookies na airfryer a 160°C por cerca de 8-10 minutos."
   },
   { 
     id: 4, 
@@ -128,7 +129,8 @@ const recipes: Recipe[] = [
         "Despeje o recheio sobre a base e alise a superfície.",
         "Leve para gelar por pelo menos 4 horas, ou até que a torta esteja firme.",
         "Decore com mais raspas de limão antes de servir."
-    ]
+    ],
+    notes: "Esta é uma torta 'crua' (raw), então não precisa de forno, apenas geladeira. Se não tiver um processador potente, deixe as castanhas de molho por mais tempo (até 8 horas) para facilitar."
   },
   { 
     id: 5, 
@@ -412,7 +414,7 @@ const recipes: Recipe[] = [
   ...Array.from({ length: 700 }, (_, i) => ({
     id: 16 + i,
     slug: `receita-fit-${16 + i}`,
-    title: `Doce Fit Delicioso ${16 + i}`,
+    title: `Doce Fit Delicioso`,
     description: "Uma receita de doce saudável, rápida e incrivelmente saborosa, perfeita para qualquer ocasião.",
     tags: ["doce", "fit", i % 2 === 0 ? "vegano" : "sem glúten"],
     prepTime: `${Math.floor(Math.random() * 20) + 10} min`,
@@ -443,5 +445,3 @@ export function getRecipes(): Recipe[] {
 export function getRecipeBySlug(slug: string): Recipe | undefined {
   return recipes.find((recipe) => recipe.slug === slug);
 }
-
-    
