@@ -147,7 +147,7 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold mb-3" style={{color: "hsl(var(--accent-cocoa))"}}>Navegue por Categoria</h3>
               <div className="flex flex-wrap gap-3">
-                {categories.map(category => (
+                {categories.slice(0, 15).map(category => (
                     <Button
                         key={category}
                         variant={selectedCategory === category ? 'default' : 'secondary'}
