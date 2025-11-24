@@ -2,7 +2,6 @@
 
 import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { type Recipe, getRecipes } from '@/lib/recipes';
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ArrowUp } from 'lucide-react';
 import { RecipeCard } from '@/components/recipe-card';
@@ -13,9 +12,7 @@ const BATCH_SIZE = 20;
 
 export default function Home() {
   const allRecipes = useMemo(() => getRecipes(), []);
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState<'Todos' | 'Fácil' | 'Média' | 'Difícil'>('Todos');
-  const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [showScroll, setShowScroll] = useState(false);
   const [visibleRecipes, setVisibleRecipes] = useState<Recipe[]>([]);
   const [page, setPage] = useState(1);
@@ -25,28 +22,15 @@ export default function Home() {
 
   const difficulties: Array<'Todos' | 'Fácil' | 'Média' | 'Difícil'> = ['Todos', 'Fácil', 'Média', 'Difícil'];
 
-  const categories = useMemo(() => {
-    const allTags = allRecipes.flatMap(r => r.tags);
-    return ['Todos', ...Array.from(new Set(allTags))];
-  }, [allRecipes]);
-
   const filteredRecipes = useMemo(() => {
     const filtered = allRecipes.filter(recipe => {
-      const searchTermLower = searchTerm.toLowerCase();
-      const matchesSearch =
-        recipe.title.toLowerCase().includes(searchTermLower) ||
-        recipe.description.toLowerCase().includes(searchTermLower) ||
-        recipe.tags.some(tag => tag.toLowerCase().includes(searchTermLower));
-
       const matchesDifficulty =
         selectedDifficulty === 'Todos' || recipe.difficulty === selectedDifficulty;
-      const matchesCategory = 
-        selectedCategory === 'Todos' || recipe.tags.map(t => t.toLowerCase()).includes(selectedCategory.toLowerCase());
       
-      return matchesSearch && matchesDifficulty && matchesCategory;
+      return matchesDifficulty;
     });
     return filtered;
-  }, [allRecipes, searchTerm, selectedDifficulty, selectedCategory]);
+  }, [allRecipes, selectedDifficulty]);
 
   useEffect(() => {
     setVisibleRecipes(filteredRecipes.slice(0, BATCH_SIZE));
@@ -105,7 +89,7 @@ export default function Home() {
 
   return (
     <AppLayout>
-      <div className="flex-1 p-4 sm:p-6 lg:p-8 relative">
+      <div className="flex-1 p-4 sm:p-6 lg:p-8 relative pb-24 md:pb-8">
         {showScroll && (
           <Button 
             onClick={scrollTop} 

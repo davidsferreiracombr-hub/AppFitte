@@ -8,9 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { Home, Heart, Search, Menu } from 'lucide-react';
-
-const SIDEBAR_COOKIE_NAME = 'sidebar_state';
+import { Home, Heart, Search, Menu, LayoutGrid } from 'lucide-react';
+import { BottomNav } from './bottom-nav';
 
 type SidebarContextType = {
   isMobileSheetOpen: boolean;
@@ -44,13 +43,14 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
   return <SidebarContext.Provider value={value}>{children}</SidebarContext.Provider>;
 }
 
+const navItems = [
+    { href: '/', label: 'Início', icon: Home },
+    { href: '/categories', label: 'Categorias', icon: LayoutGrid },
+    { href: '/favorites', label: 'Favoritos', icon: Heart },
+];
+
 function SidebarNav() {
     const pathname = usePathname();
-  
-    const navItems = [
-      { href: '/', label: 'Início', icon: Home },
-      { href: '/favorites', label: 'Favoritos', icon: Heart },
-    ];
   
     return (
       <nav className="flex flex-col gap-2 px-4">
@@ -94,10 +94,6 @@ function Sidebar() {
 function MobileSheet() {
     const { isMobileSheetOpen, setMobileSheetOpen } = useSidebar();
     const pathname = usePathname();
-    const navItems = [
-      { href: '/', label: 'Início', icon: Home },
-      { href: '/favorites', label: 'Favoritos', icon: Heart },
-    ];
 
     return (
         <Sheet open={isMobileSheetOpen} onOpenChange={setMobileSheetOpen}>
@@ -153,16 +149,29 @@ function Header() {
   );
 }
 
+
 export function AppLayout({ children }: { children: React.ReactNode }) {
+  const { toggleSidebar } = useSidebar();
+
   return (
     <div className="flex min-h-screen w-full bg-muted/40">
       <Sidebar />
       <div className="flex flex-col flex-1">
-        <Header />
+        <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 backdrop-blur-sm px-4 lg:hidden">
+            <Button variant="ghost" size="icon" onClick={toggleSidebar}>
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle Menu</span>
+            </Button>
+            <Link href="/" className="flex items-center gap-2">
+                <svg className="h-7 w-7 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <h1 className="text-lg font-bold text-foreground">Fitte</h1>
+            </Link>
+        </header>
         <main className="flex-1">
           {children}
         </main>
         <MobileSheet />
+        <BottomNav />
       </div>
     </div>
   );
