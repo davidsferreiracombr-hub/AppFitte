@@ -62,30 +62,13 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState<'Todos' | 'Fácil' | 'Média' | 'Difícil'>('Todos');
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
-  const [showWelcome, setShowWelcome] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
   const [showIntro, setShowIntro] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
   const [isAppReady, setIsAppReady] = useState(false);
   const [visibleCount, setVisibleCount] = useState(INITIAL_LOAD_COUNT);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const loaderRef = useRef<HTMLDivElement | null>(null);
-  
-  useEffect(() => {
-    // We use a try-catch block to handle potential SecurityError
-    // if the user has disabled localStorage.
-    try {
-        const hasVisited = localStorage.getItem('hasVisitedFitte');
-        if (!hasVisited) {
-          setShowWelcome(true);
-          localStorage.setItem('hasVisitedFitte', 'true');
-        } else {
-          setIsAppReady(true);
-        }
-    } catch (error) {
-        console.warn("Could not access localStorage. Welcome flow disabled.");
-        setIsAppReady(true);
-    }
-  }, []);
   
   const handleWelcomeContinue = () => {
     setShowWelcome(false);
@@ -184,7 +167,7 @@ export default function Home() {
           <DialogContent className="sm:max-w-md text-center bg-card border-border">
             <DialogHeader>
               <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto text-foreground">
-                <ChefHat className="h-8 w-8 text-primary" /> Bem-vindo(a) ao Fitte!
+                <CakeSlice className="h-8 w-8 text-primary" /> Bem-vindo(a) ao Fitte!
               </DialogTitle>
               <DialogDescription className="pt-3 text-lg text-muted-foreground">
                 Sua jornada para uma vida mais doce e saudável começa agora.
@@ -209,9 +192,10 @@ export default function Home() {
               </DialogDescription>
             </DialogHeader>
             <div className="py-4 text-sm text-muted-foreground space-y-4 text-left">
-              <p className="flex items-start gap-3"><Search className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-foreground">Explore:</strong> Use a barra de busca para encontrar sua receita favorita.</div></p>
-              <p className="flex items-start gap-3"><Info className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-foreground">Filtre:</strong> Navegue pelas categorias e dificuldades para encontrar a receita perfeita.</div></p>
-              <p className="flex items-start gap-3"><Clock className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-foreground">Cozinhe com Precisão:</strong> Dentro de cada receita, você encontrará um cronômetro para te ajudar com o tempo de preparo.</div></p>
+              <p className="flex items-start gap-3"><Search className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-foreground">Explore:</strong> Use a busca para encontrar sua receita favorita.</div></p>
+              <p className="flex items-start gap-3"><Info className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-foreground">Filtre:</strong> Navegue por categorias e dificuldades.</div></p>
+              <p className="flex items-start gap-3"><Heart className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-foreground">Favorite:</strong> Salve suas receitas preferidas para acessá-las rapidamente.</div></p>
+              <p className="flex items-start gap-3"><Clock className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-foreground">Cozinhe com Precisão:</strong> Use o cronômetro para controlar o tempo de preparo.</div></p>
             </div>
             <Button onClick={handleIntroFinish}>Vamos Cozinhar!</Button>
           </DialogContent>
@@ -269,10 +253,10 @@ export default function Home() {
        <div className="relative z-10 border-b border-border/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12 text-center">
             <h2 className="text-5xl md:text-7xl font-headline font-extrabold text-foreground tracking-tight">
-                Receitas Saudáveis, Sabor Irresistível.
+                Doces Fit, Sabor sem Culpa.
             </h2>
             <p className="text-muted-foreground mt-4 text-lg max-w-3xl mx-auto">
-                Explore mais de 700 receitas de doces fit para uma vida mais gostosa e equilibrada. Perfeito para quem treina, busca saúde ou simplesmente ama um bom doce sem culpa.
+                Encontre receitas de doces saudáveis para uma vida mais equilibrada.
             </p>
              <div className="mt-8 flex justify-center">
                 <div className="relative w-full max-w-lg">
