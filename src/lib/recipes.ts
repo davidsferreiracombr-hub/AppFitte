@@ -1,3 +1,4 @@
+
 export type Recipe = {
   id: number;
   slug: string;
@@ -407,7 +408,32 @@ const recipes: Recipe[] = [
         "Para a calda, cozinhe as ameixas com a água em fogo baixo até que amoleçam e a calda engrosse ligeiramente.",
         "Desenforme o manjar e sirva com a calda de ameixas fria por cima."
     ]
-  }
+  },
+  ...Array.from({ length: 700 }, (_, i) => ({
+    id: 16 + i,
+    slug: `receita-fit-${16 + i}`,
+    title: `Doce Fit Delicioso ${16 + i}`,
+    description: "Uma receita de doce saudável, rápida e incrivelmente saborosa, perfeita para qualquer ocasião.",
+    tags: ["doce", "fit", i % 2 === 0 ? "vegano" : "sem glúten"],
+    prepTime: `${Math.floor(Math.random() * 20) + 10} min`,
+    calories: `${Math.floor(Math.random() * 150) + 100} kcal`,
+    difficulty: (["Fácil", "Média", "Difícil"] as const)[Math.floor(Math.random() * 3)],
+    servings: `${Math.floor(Math.random() * 4) + 2} porções`,
+    ingredients: [
+      "Ingrediente principal (ex: 1 xícara de fruta)",
+      "Adoçante natural (ex: 2 colheres de sopa de mel)",
+      "Agente de liga (ex: 1/4 xícara de aveia)",
+      "Saborizante (ex: 1 colher de chá de canela)"
+    ],
+    instructions: [
+      "Misture todos os ingredientes secos em uma tigela.",
+      "Adicione os ingredientes molhados e misture bem.",
+      "Modele a massa no formato desejado (bolinhas, barras, etc.).",
+      "Leve ao forno pré-aquecido a 180°C por 15 minutos ou à geladeira por 30 minutos, dependendo da receita.",
+      "Decore a gosto e sirva."
+    ],
+    notes: "Seja criativo! Você pode adicionar nozes, sementes ou gotas de chocolate amargo para dar um toque especial."
+  }))
 ];
 
 export function getRecipes(): Recipe[] {
@@ -417,3 +443,5 @@ export function getRecipes(): Recipe[] {
 export function getRecipeBySlug(slug: string): Recipe | undefined {
   return recipes.find((recipe) => recipe.slug === slug);
 }
+
+    
