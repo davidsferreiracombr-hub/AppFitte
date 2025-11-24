@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { cn } from '@/lib/utils';
 import { Inter } from 'next/font/google';
 import { SidebarProvider } from '@/components/app-layout';
+import { WelcomeScreenProvider } from '@/hooks/use-welcome-screen';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={cn("min-h-screen font-body antialiased", inter.variable)}>
-        <SidebarProvider>
-          {children}
-        </SidebarProvider>
+        <WelcomeScreenProvider>
+          <SidebarProvider>
+            {children}
+          </SidebarProvider>
+        </WelcomeScreenProvider>
         <Toaster />
       </body>
     </html>

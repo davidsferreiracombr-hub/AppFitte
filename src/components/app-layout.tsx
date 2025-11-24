@@ -10,6 +10,7 @@ import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { Home, Heart, Search, Menu, LayoutGrid } from 'lucide-react';
 import { BottomNav } from './bottom-nav';
+import { WelcomeScreen } from './welcome-screen';
 
 type SidebarContextType = {
   isMobileSheetOpen: boolean;
@@ -137,6 +138,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen w-full bg-muted/40">
+      <WelcomeScreen />
       <Sidebar />
       <div className="flex flex-col flex-1">
         <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 backdrop-blur-sm px-4 lg:hidden">
