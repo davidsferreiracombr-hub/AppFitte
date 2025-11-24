@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
@@ -123,47 +124,42 @@ export function Timer({ durationInMinutes }: TimerProps) {
       startTimer();
     }
   };
-
-  const getButtonLabel = () => {
-    if (isFinished) return "Recomeçar Cronômetro";
-    if (isActive) return "Pausar Cronômetro";
-    return "Começar Cronômetro";
-  };
   
   const getButtonIcon = () => {
-      if (isFinished) return <RotateCcw />;
-      if (isActive) return <Pause />;
-      return <Play />;
+      if (isFinished) return <RotateCcw className="h-8 w-8" />;
+      if (isActive) return <Pause className="h-8 w-8" />;
+      return <Play className="h-8 w-8" />;
   }
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-lg border w-full max-w-md mx-auto">
+    <div className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-lg border w-full max-w-sm mx-auto">
       <div className="relative w-64 h-64">
         <svg className="w-full h-full" viewBox="0 0 100 100">
           <circle
             className="text-gray-200 stroke-current"
-            strokeWidth="10"
+            strokeWidth="8"
             cx="50"
             cy="50"
-            r="42"
+            r="45"
             fill="transparent"
           ></circle>
           <circle
             className="text-primary stroke-current"
-            strokeWidth="10"
+            strokeWidth="8"
+            strokeLinecap="round"
             cx="50"
             cy="50"
-            r="42"
+            r="45"
             fill="transparent"
-            strokeDasharray="264"
-            strokeDashoffset={264 - (progress / 100) * 264}
+            strokeDasharray="283"
+            strokeDashoffset={283 - (progress / 100) * 283}
             transform="rotate(-90 50 50)"
             style={{ transition: 'stroke-dashoffset 0.5s linear' }}
           ></circle>
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
             {isFinished ? (
-                 <span className="text-4xl font-bold text-primary">Pronto!</span>
+                 <span className="text-4xl font-bold text-primary animate-pulse">Pronto!</span>
             ) : (
                 <span className="text-6xl font-bold text-gray-800 tabular-nums tracking-tighter">
                     {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
@@ -172,13 +168,12 @@ export function Timer({ durationInMinutes }: TimerProps) {
         </div>
       </div>
       
-      <div className="flex items-center gap-4 mt-8 w-full">
-        <Button onClick={handleToggle} size="lg" className="flex-grow text-lg h-14">
+      <div className="flex items-center justify-center gap-4 mt-8 w-full">
+        <Button onClick={handleToggle} size="icon" className="h-20 w-20 rounded-full shadow-lg">
           {getButtonIcon()}
-          {getButtonLabel()}
         </Button>
         {(!isActive && timeRemaining < durationInSeconds && !isFinished) && (
-            <Button onClick={resetTimer} variant="outline" size="icon" className="h-14 w-14" aria-label="Resetar Cronômetro">
+            <Button onClick={resetTimer} variant="outline" size="icon" className="h-16 w-16 rounded-full" aria-label="Resetar Cronômetro">
               <RotateCcw className="h-6 w-6"/>
             </Button>
         )}
