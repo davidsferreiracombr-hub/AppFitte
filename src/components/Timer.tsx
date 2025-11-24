@@ -45,8 +45,6 @@ export function Timer({ durationInMinutes }: TimerProps) {
     setIsFinished(false);
     
     const startTime = Date.now();
-    // Se o timer está sendo retomado, use o tempo que já restava.
-    // Se está começando do zero, use a duração total.
     const remaining = (endTimeRef.current && timeRemaining < durationInSeconds) ? timeRemaining : durationInSeconds;
     endTimeRef.current = startTime + remaining * 1000;
     
@@ -109,12 +107,6 @@ export function Timer({ durationInMinutes }: TimerProps) {
     };
   }, [isActive, stopTimer]);
 
-
-  const minutes = Math.floor(timeRemaining / 60);
-  const seconds = timeRemaining % 60;
-
-  const progress = (timeRemaining / durationInSeconds) * 100;
-  
   const handleToggle = () => {
     if (isFinished) {
       resetTimer();
@@ -124,70 +116,56 @@ export function Timer({ durationInMinutes }: TimerProps) {
       startTimer();
     }
   };
+
+  const hours = Math.floor(timeRemaining / 3600);
+  const minutes = Math.floor((timeRemaining % 3600) / 60);
+  const seconds = timeRemaining % 60;
   
   return (
     <div className="flex flex-col items-center justify-center p-6 bg-gray-900 rounded-2xl shadow-2xl border border-gray-700 w-full max-w-sm mx-auto text-white">
-      <div className="relative w-64 h-64">
-        <svg className="w-full h-full" viewBox="0 0 100 100" transform="rotate(-90)">
-          {/* Background Circle */}
-          <circle
-            className="text-gray-700/50 stroke-current"
-            strokeWidth="8"
-            cx="50"
-            cy="50"
-            r="45"
-            fill="transparent"
-          ></circle>
-          {/* Progress Circle */}
-          <circle
-            className="text-primary stroke-current"
-            strokeWidth="8"
-            strokeLinecap="round"
-            cx="50"
-            cy="50"
-            r="45"
-            fill="transparent"
-            strokeDasharray="282.74" // 2 * PI * 45
-            strokeDashoffset={282.74 - (progress / 100) * 282.74}
-            style={{ transition: 'stroke-dashoffset 1s linear' }}
-          ></circle>
-        </svg>
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-            {isFinished ? (
-                 <span className="text-3xl font-bold text-primary animate-pulse">Pronto!</span>
-            ) : (
-                <div className="text-center">
-                  <span className="text-5xl font-bold text-white tabular-nums tracking-tighter">
-                      {String(minutes).padStart(2, '0')}:<span className={cn(isActive && "text-primary transition-colors duration-500")}>{String(seconds).padStart(2, '0')}</span>
-                  </span>
-                  <p className="text-gray-400 text-sm mt-2">Cozinhando</p>
-                </div>
-            )}
-        </div>
+      <div className="text-center mb-8">
+        {isFinished ? (
+           <span className="text-5xl font-bold text-primary animate-pulse">Pronto!</span>
+        ) : (
+            <div className="flex items-end justify-center font-mono" style={{fontVariantNumeric: 'tabular-nums'}}>
+                {hours > 0 && (
+                    <>
+                        <span className="text-6xl font-bold text-white tracking-tighter">{String(hours).padStart(2, '0')}</span>
+                        <span className="text-2xl font-medium text-gray-400 ml-1 mr-3">h</span>
+                    </>
+                )}
+                <span className={cn("text-6xl font-bold tracking-tighter", isActive ? "text-primary" : "text-white")}>
+                    {String(minutes).padStart(2, '0')}
+                </span>
+                <span className="text-2xl font-medium text-gray-400 ml-1 mr-3">m</span>
+                <span className="text-6xl font-bold text-white tracking-tighter">
+                    {String(seconds).padStart(2, '0')}
+                </span>
+                <span className="text-2xl font-medium text-gray-400 ml-1">s</span>
+            </div>
+        )}
       </div>
       
-      <div className="flex items-center justify-center gap-4 mt-8 w-full">
+      <div className="flex items-center justify-center gap-4 w-full">
         <Button 
           onClick={handleToggle} 
-          size="icon" 
           className={cn(
-            "h-20 w-20 rounded-full shadow-lg transition-all duration-300",
-            isActive ? "bg-primary/20 text-primary hover:bg-primary/30" : "bg-primary text-primary-foreground",
+            "w-32 py-3 text-base font-semibold rounded-lg transition-all duration-300",
+            isActive ? "bg-primary/20 text-primary border border-primary/30 hover:bg-primary/30" : "bg-primary text-primary-foreground",
             isFinished && "bg-gray-600 hover:bg-gray-500"
           )}
         >
-          {isFinished ? <RotateCcw className="h-8 w-8" /> : isActive ? <Pause className="h-8 w-8" /> : <Play className="h-8 w-8" />}
+          {isFinished ? 'Recomeçar' : isActive ? 'Pausar' : 'Começar'}
         </Button>
         
         {(!isActive && timeRemaining < durationInSeconds && !isFinished) && (
             <Button 
               onClick={resetTimer} 
               variant="ghost" 
-              size="icon" 
-              className="h-16 w-16 rounded-full text-gray-400 hover:bg-gray-700 hover:text-white" 
+              className="w-32 py-3 text-base font-semibold rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white" 
               aria-label="Resetar Cronômetro"
             >
-              <RotateCcw className="h-6 w-6"/>
+              Resetar
             </Button>
         )}
       </div>
