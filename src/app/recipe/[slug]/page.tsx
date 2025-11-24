@@ -1,7 +1,7 @@
 'use client';
 
 import { getRecipeBySlug } from '@/lib/recipes';
-import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon, Heart } from 'lucide-react';
+import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon, Heart, CakeSlice } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Timer } from '@/components/Timer';
@@ -69,7 +69,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
 
         <Card className="overflow-hidden shadow-lg bg-card/50 backdrop-blur-sm">
           <CardHeader className="text-center p-8 md:p-12">
-            <img src="https://i.imgur.com/Phh9w5C.png" alt="Fitte Logo" className="h-14 w-auto mx-auto mb-4"/>
+            <CakeSlice className="h-14 w-14 text-primary mx-auto mb-4"/>
             <h1 className="text-4xl md:text-5xl font-headline font-bold text-foreground">
               {recipe.title}
             </h1>

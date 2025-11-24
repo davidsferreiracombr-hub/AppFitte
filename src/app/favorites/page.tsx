@@ -51,7 +51,7 @@ export default function FavoritesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="flex justify-between items-center py-4">
                 <div className="flex items-center gap-3">
-                    <img src="https://i.imgur.com/Phh9w5C.png" alt="Fitte Logo" className="h-9 w-auto"/>
+                    <CakeSlice className="h-9 w-9 text-primary"/>
                     <h1 className="text-3xl md:text-4xl font-headline font-bold text-foreground">
                         Fitte
                     </h1>
@@ -142,5 +142,3 @@ export default function FavoritesPage() {
     </div>
   );
 }
-
-    

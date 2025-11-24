@@ -73,7 +73,6 @@ export default function Home() {
   const loaderRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useIsMobile();
   const [carouselApi, setCarouselApi] = useState<CarouselApi>()
-  const [mobileCategoryPage, setMobileCategoryPage] = useState(0);
 
   useEffect(() => {
     try {
@@ -195,7 +194,7 @@ export default function Home() {
           <DialogContent className="sm:max-w-md bg-card border-border rounded-lg">
             <DialogHeader>
               <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto text-foreground">
-                <img src="https://i.imgur.com/Phh9w5C.png" alt="Fitte Logo" className="h-9 w-auto"/> Fitte
+                <CakeSlice className="h-9 w-9 text-primary"/> Fitte
               </DialogTitle>
               <DialogDescription className="pt-3 text-lg text-muted-foreground text-center">
                 Sua jornada para uma vida mais doce e saudável começa agora.
@@ -261,7 +260,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="flex justify-between items-center py-4">
                 <div className="flex items-center gap-3">
-                    <img src="https://i.imgur.com/Phh9w5C.png" alt="Fitte Logo" className="h-9 w-auto"/>
+                    <CakeSlice className="h-9 w-9 text-primary"/>
                     <h1 className="text-3xl md:text-4xl font-headline font-bold text-foreground">
                         Fitte
                     </h1>
@@ -374,7 +373,7 @@ export default function Home() {
             Mostrando {visibleRecipes.length} de {filteredRecipes.length} receitas.
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {visibleRecipes.map(recipe => {
               const Icon = getCategoryIcon(recipe.tags);
               return (
