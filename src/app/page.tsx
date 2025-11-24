@@ -56,7 +56,7 @@ const getCategoryIcon = (tags: string[]) => {
   return categoryIcons['default'];
 };
 
-const CATEGORIES_PER_PAGE_MOBILE = 12;
+const CATEGORIES_PER_PAGE_MOBILE = 9;
 
 export default function Home() {
   const recipes = useMemo(() => getRecipes(), []);
@@ -138,8 +138,10 @@ export default function Home() {
 
   const mobileCategoryChunks = useMemo(() => {
     const chunks = [];
-    for (let i = 0; i < categories.length; i += CATEGORIES_PER_PAGE_MOBILE) {
-      chunks.push(categories.slice(i, i + CATEGORIES_PER_PAGE_MOBILE));
+    const categoriesWithoutTodos = categories.filter(c => c !== 'Todos');
+    const allCategories = ['Todos', ...categoriesWithoutTodos];
+    for (let i = 0; i < allCategories.length; i += CATEGORIES_PER_PAGE_MOBILE) {
+      chunks.push(allCategories.slice(i, i + CATEGORIES_PER_PAGE_MOBILE));
     }
     return chunks;
   }, [categories]);
@@ -284,7 +286,7 @@ export default function Home() {
                       <CarouselContent>
                         {mobileCategoryChunks.map((chunk, index) => (
                           <CarouselItem key={index}>
-                            <div className="grid grid-cols-4 gap-3 p-1">
+                            <div className="grid grid-cols-3 gap-3 p-1">
                                {chunk.map(category => (
                                   <Button
                                       key={category}

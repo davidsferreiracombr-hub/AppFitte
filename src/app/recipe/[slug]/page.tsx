@@ -15,10 +15,15 @@ import { useEffect, useState } from 'react';
 const extractActionTime = (instructions: string[]): number => {
     const timePatterns = [
       /asse por (\d+)\s*minutos/i,
+      /assar por (\d+)\s*minutos/i,
       /gele por (\d+)\s*horas/i,
+      /gele por (\d+)\s*minutos/i,
       /refrigere por (\d+)\s*horas/i,
+      /refrigere por (\d+)\s*minutos/i,
       /cozinhe por (\d+)\s*minutos/i,
-      /deixe esfriar por (\d+)\s*minutos/i
+      /deixe esfriar por (\d+)\s*minutos/i,
+      /geladeira por pelo menos (\d+)\s*minutos/i,
+      /gelar por pelo menos (\d+)\s*horas/i,
     ];
   
     for (const instruction of instructions) {
