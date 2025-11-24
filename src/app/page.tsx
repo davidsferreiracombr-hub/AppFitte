@@ -166,7 +166,18 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen font-body">
+    <div className="bg-gray-50 min-h-screen font-body relative overflow-x-hidden">
+        <div className="background-animation">
+            <div className="circle xxl shade1"></div>
+            <div className="circle xl shade2"></div>
+            <div className="circle l shade3"></div>
+            <div className="circle m shade4"></div>
+            <div className="circle s shade5"></div>
+             <div className="circle xs shade1" style={{animationDelay: '-1s', animationDuration: '20s'}}></div>
+            <div className="circle xxl shade2" style={{animationDelay: '-5s', animationDuration: '30s', right: '5%', left: 'auto'}}></div>
+            <div className="circle xl shade3" style={{animationDelay: '-10s', right: '15%', left: 'auto'}}></div>
+        </div>
+
       {showScroll && (
         <Button 
           onClick={scrollTop} 
@@ -183,7 +194,7 @@ export default function Home() {
             <div className="flex justify-between items-center py-4">
                 <div className="flex items-center gap-3">
                     <ChefHat className="h-9 w-9 text-primary" />
-                    <h1 className="text-3xl font-headline font-bold text-gray-800">
+                    <h1 className="text-4xl font-headline font-bold text-gray-800">
                         Fitte
                     </h1>
                 </div>
@@ -198,15 +209,15 @@ export default function Home() {
         </div>
       </header>
 
-       <div className="bg-white border-b border-gray-200">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-20 text-center">
-            <h2 className="text-5xl md:text-6xl font-headline font-extrabold text-gray-900 tracking-tight animate-title-glow">
+       <div className="relative z-10 bg-white border-b border-gray-200">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-24 text-center">
+            <h2 className="text-5xl md:text-7xl font-headline font-extrabold text-gray-900 tracking-tight">
                 Receitas Saudáveis, Sabor Irresistível.
             </h2>
             <p className="text-gray-600 mt-8 text-lg max-w-3xl mx-auto">
                 Explore mais de 700 receitas de doces fit para uma vida mais gostosa e equilibrada. Perfeito para quem treina, busca saúde ou simplesmente ama um bom doce sem culpa.
             </p>
-             <div className="mt-10 flex justify-center">
+             <div className="mt-12 flex justify-center">
                 <div className="relative w-full max-w-lg">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                     <Input
@@ -221,7 +232,7 @@ export default function Home() {
         </div>
       </div>
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16">
         <main>
           <div className="mb-12 space-y-10">
             <div>

@@ -86,3 +86,28 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .background-animation {
+    @apply absolute top-0 left-0 w-full h-full -z-0 overflow-hidden;
+  }
+  .circle {
+    @apply absolute block list-none rounded-full;
+    background-color: hsl(var(--primary) / 0.1);
+    bottom: -150px;
+    animation: float 25s infinite linear;
+  }
+  .circle.xxl { @apply w-[150px] h-[150px]; left: 15%; }
+  .circle.xl { @apply w-[120px] h-[120px]; left: 35%; animation-delay: -2s; animation-duration: 18s; }
+  .circle.l { @apply w-[90px] h-[90px]; left: 55%; animation-delay: -4s; }
+  .circle.m { @apply w-[60px] h-[60px]; left: 75%; animation-delay: -3s; animation-duration: 22s; }
+  .circle.s { @apply w-[40px] h-[40px]; left: 90%; animation-delay: -5s; animation-duration: 30s; }
+  .circle.xs { @apply w-[20px] h-[20px]; left: 5%; animation-delay: 0s; }
+  
+  .shade1 { background-color: hsl(var(--primary) / 0.08); }
+  .shade2 { background-color: hsl(var(--primary) / 0.07); }
+  .shade3 { background-color: hsl(var(--primary) / 0.06); }
+  .shade4 { background-color: hsl(var(--primary) / 0.05); }
+  .shade5 { background-color: hsl(var(--primary) / 0.04); }
+}
+
