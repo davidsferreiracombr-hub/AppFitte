@@ -407,50 +407,8 @@ const recipes: Recipe[] = [
         "Para a calda, cozinhe as ameixas com a água em fogo baixo até que amoleçam e a calda engrosse ligeiramente.",
         "Desenforme o manjar e sirva com a calda de ameixas fria por cima."
     ]
-  },
+  }
 ];
-
-const difficulties: Array<"Fácil" | "Média" | "Difícil"> = ["Fácil", "Média", "Difícil"];
-
-// Preenchendo com mais receitas para chegar a 700
-const baseRecipes = [...recipes];
-let currentId = recipes.length + 1;
-
-const recipeTitles = baseRecipes.map(r => r.title);
-
-while (recipes.length < 700) {
-  const baseRecipe = baseRecipes[Math.floor(Math.random() * baseRecipes.length)];
-  
-  let newTitle = baseRecipe.title;
-  // Evita adicionar o mesmo título base várias vezes seguidas
-  if (recipes.some(r => r.title === newTitle)) {
-      const relatedWords = ['Fit', 'Saudável', 'Funcional', 'Light', 'Delícia'];
-      newTitle = `${relatedWords[Math.floor(Math.random() * relatedWords.length)]} de ${baseRecipe.title.split(' ').slice(-1)[0]}`;
-  }
-  
-  // Garante que o novo título seja único
-  let titleAttempt = newTitle;
-  let attemptCount = 2;
-  while(recipeTitles.includes(titleAttempt)) {
-    titleAttempt = `${newTitle} ${attemptCount}`;
-    attemptCount++;
-  }
-  newTitle = titleAttempt;
-  recipeTitles.push(newTitle);
-
-
-  recipes.push({
-    ...baseRecipe,
-    id: currentId,
-    slug: `${baseRecipe.slug}-${currentId}`,
-    title: newTitle,
-    prepTime: `${Math.floor(Math.random() * 50) + 10} min`,
-    calories: `${Math.floor(Math.random() * 300) + 100} kcal`,
-    difficulty: difficulties[Math.floor(Math.random() * difficulties.length)],
-  });
-  currentId++;
-}
-
 
 export function getRecipes(): Recipe[] {
   return recipes;

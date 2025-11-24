@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { type Recipe, getRecipes } from '@/lib/recipes';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Heart, ChefHat, Cookie, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat, Clock, Flame, Info, ArrowUp } from 'lucide-react';
+import { Search, Heart, ChefHat, Cookie, CakeSlice, IceCream, Vegan, Lollipop, Soup, Wheat, Clock, Flame, Info, ArrowUp, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import {
@@ -55,6 +55,7 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState<'Todos' | 'Fácil' | 'Média' | 'Difícil'>('Todos');
   const [showWelcome, setShowWelcome] = useState(false);
+  const [showIntro, setShowIntro] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
 
   useEffect(() => {
@@ -64,6 +65,11 @@ export default function Home() {
       localStorage.setItem('hasVisitedFitDoce', 'true');
     }
   }, []);
+  
+  const handleWelcomeContinue = () => {
+    setShowWelcome(false);
+    setShowIntro(true);
+  };
 
   const checkScrollTop = () => {
     if (!showScroll && window.pageYOffset > 400){
@@ -98,21 +104,39 @@ export default function Home() {
   return (
     <div className="bg-gray-50 min-h-screen font-body">
        <Dialog open={showWelcome} onOpenChange={setShowWelcome}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-md text-center">
           <DialogHeader>
-            <DialogTitle className="text-center text-2xl font-bold flex items-center justify-center gap-2">
-              <ChefHat className="h-6 w-6 text-primary" /> Bem-vindo(a) ao FitDoce!
+            <DialogTitle className="text-3xl font-bold flex items-center justify-center gap-3 mx-auto">
+              <ChefHat className="h-8 w-8 text-primary" /> Bem-vindo(a) ao FitDoce!
             </DialogTitle>
-            <DialogDescription className="text-center pt-2">
+            <DialogDescription className="pt-3 text-lg">
               Sua jornada para uma vida mais doce e saudável começa agora.
             </DialogDescription>
           </DialogHeader>
-          <div className="py-4 text-sm text-gray-600 space-y-3 text-left">
-            <p className="flex items-start gap-2"><Search className="h-4 w-4 text-primary mt-1 shrink-0"/> <strong>Explore:</strong> Use a barra de busca para encontrar sua receita favorita.</p>
-            <p className="flex items-start gap-2"><Info className="h-4 w-4 text-primary mt-1 shrink-0"/> <strong>Filtre:</strong> Navegue pelas dificuldades para encontrar a receita perfeita para seu nível de habilidade.</p>
-            <p className="flex items-start gap-2"><Clock className="h-4 w-4 text-primary mt-1 shrink-0"/> <strong>Cozinhe com Precisão:</strong> Dentro de cada receita, você encontrará um cronômetro para te ajudar com o tempo de preparo.</p>
+          <div className="py-4">
+            <Button size="lg" onClick={handleWelcomeContinue}>
+              Continuar <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
           </div>
-          <Button onClick={() => setShowWelcome(false)}>Vamos Cozinhar!</Button>
+        </DialogContent>
+      </Dialog>
+      
+      <Dialog open={showIntro} onOpenChange={setShowIntro}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle className="text-center text-2xl font-bold flex items-center justify-center gap-2">
+              Como funciona o App
+            </DialogTitle>
+             <DialogDescription className="text-center pt-2">
+               É muito fácil encontrar e fazer sua receita fit!
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4 text-sm text-gray-600 space-y-4 text-left">
+            <p className="flex items-start gap-3"><Search className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-gray-800">Explore:</strong> Use a barra de busca para encontrar sua receita favorita.</div></p>
+            <p className="flex items-start gap-3"><Info className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-gray-800">Filtre:</strong> Navegue pelas dificuldades para encontrar a receita perfeita para seu nível de habilidade.</div></p>
+            <p className="flex items-start gap-3"><Clock className="h-5 w-5 text-primary mt-0.5 shrink-0"/> <div><strong className="text-gray-800">Cozinhe com Precisão:</strong> Dentro de cada receita, você encontrará um cronômetro para te ajudar com o tempo de preparo.</div></p>
+          </div>
+          <Button onClick={() => setShowIntro(false)}>Vamos Cozinhar!</Button>
         </DialogContent>
       </Dialog>
       
