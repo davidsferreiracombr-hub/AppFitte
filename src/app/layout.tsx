@@ -14,7 +14,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'Fitte - Receitas Saudáveis',
-  description: 'Mais de 700 receitas de doces fit para você emagrecer sem abrir mão do sabor.',
+  description: 'Centenas de receitas de doces fit para você emagrecer sem abrir mão do sabor.',
 };
 
 export default function RootLayout({
