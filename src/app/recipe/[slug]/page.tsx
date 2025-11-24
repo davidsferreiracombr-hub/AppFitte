@@ -1,6 +1,6 @@
 'use client';
 
-import { getRecipeBySlug } from '@/lib/recipes';
+import { getRecipeBySlug, getRecipes } from '@/lib/recipes';
 import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon, Heart, CakeSlice } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -49,6 +49,13 @@ const extractActionTime = (instructions: string[]): number => {
   
     return 0; // Retorna 0 se não encontrar um tempo de ação específico
   };
+
+export async function generateStaticParams() {
+  const recipes = getRecipes();
+  return recipes.map((recipe) => ({
+    slug: recipe.slug,
+  }));
+}
 
 export default function RecipePage({ params }: { params: { slug: string } }) {
   const recipe = getRecipeBySlug(params.slug);
