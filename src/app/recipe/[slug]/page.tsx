@@ -1,14 +1,27 @@
 'use client';
 
-import { getRecipeBySlug, type Recipe } from '@/lib/recipes';
+import { getRecipeBySlug } from '@/lib/recipes';
 import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Timer } from '@/components/Timer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useFavorites } from '@/hooks/use-favorites';
+import { cn } from '@/lib/utils';
 
 export default function RecipePage({ params }: { params: { slug: string } }) {
   const recipe = getRecipeBySlug(params.slug);
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
+  const isFavorite = recipe ? favorites.includes(recipe.slug) : false;
+
+  const handleFavoriteClick = () => {
+    if (!recipe) return;
+    if (isFavorite) {
+      removeFavorite(recipe.slug);
+    } else {
+      addFavorite(recipe.slug);
+    }
+  };
   
   if (!recipe) {
     return (
@@ -38,9 +51,9 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
                     Voltar
                 </a>
             </Link>
-            <Button variant="ghost" size="icon" className="text-primary hover:text-primary/90">
-                <Heart className="h-6 w-6" />
-                <span className="sr-only">Favoritar</span>
+            <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="text-primary hover:text-primary/90">
+                <Heart className={cn("h-6 w-6", isFavorite && "fill-current text-primary")} />
+                <span className="sr-only">{isFavorite ? 'Desfavoritar' : 'Favoritar'}</span>
             </Button>
         </div>
 
@@ -129,3 +142,5 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
     </div>
   );
 }
+
+    

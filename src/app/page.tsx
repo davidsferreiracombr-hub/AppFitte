@@ -69,12 +69,19 @@ export default function Home() {
   const [visibleCount, setVisibleCount] = useState(INITIAL_LOAD_COUNT);
   
   useEffect(() => {
-    const hasVisited = localStorage.getItem('hasVisitedFitte');
-    if (!hasVisited) {
-      setShowWelcome(true);
-      localStorage.setItem('hasVisitedFitte', 'true');
-    } else {
-      setIsAppReady(true);
+    // We use a try-catch block to handle potential SecurityError
+    // if the user has disabled localStorage.
+    try {
+        const hasVisited = localStorage.getItem('hasVisitedFitte');
+        if (!hasVisited) {
+          setShowWelcome(true);
+          localStorage.setItem('hasVisitedFitte', 'true');
+        } else {
+          setIsAppReady(true);
+        }
+    } catch (error) {
+        console.warn("Could not access localStorage. Welcome flow disabled.");
+        setIsAppReady(true);
     }
   }, []);
   
@@ -220,10 +227,12 @@ export default function Home() {
                     </h1>
                 </div>
                  <div className="flex items-center gap-4">
-                     <Button variant="ghost" className="text-primary hover:text-primary/90">
-                        <Heart className="mr-2 h-4 w-4" />
-                        Minhas Receitas
-                    </Button>
+                     <Link href="/favorites" passHref>
+                        <Button variant="ghost" className="text-primary hover:text-primary/90">
+                            <Heart className="mr-2 h-4 w-4" />
+                            Minhas Receitas
+                        </Button>
+                     </Link>
                 </div>
             </div>
         </div>
@@ -348,3 +357,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
