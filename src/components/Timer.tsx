@@ -22,7 +22,7 @@ export function Timer({ durationInMinutes }: TimerProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
   useEffect(() => {
-    if (!audioRef.current && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
         audioRef.current = new Audio('https://media.jpk.superfastech.com/notification/notification_1.mp3');
     }
   }, []);
@@ -49,7 +49,9 @@ export function Timer({ durationInMinutes }: TimerProps) {
     endTimeRef.current = Date.now() + remaining * 1000;
     setTimeRemaining(remaining);
     
-    const tick = () => {
+    stopTimer(); 
+
+    timerIdRef.current = setInterval(() => {
       if (endTimeRef.current) {
         const remainingSeconds = Math.round((endTimeRef.current - Date.now()) / 1000);
         if (remainingSeconds <= 0) {
@@ -62,11 +64,8 @@ export function Timer({ durationInMinutes }: TimerProps) {
           setTimeRemaining(remainingSeconds);
         }
       }
-    };
-    
-    stopTimer(); 
-    timerIdRef.current = setInterval(tick, 250); // check more frequently
-    tick(); // run immediately
+    }, 1000);
+
   }, [timeRemaining, durationInSeconds, stopTimer, playFinishSound]);
 
   const pauseTimer = useCallback(() => {
@@ -131,7 +130,6 @@ export function Timer({ durationInMinutes }: TimerProps) {
   
   const progress = (timeRemaining / durationInSeconds) * 100;
   
-  // Garantir que a animação só ocorra quando o timer estiver ativo
   const fillHeight = isFinished ? 100 : (isActive || timeRemaining < durationInSeconds ? 100 - progress : 0);
 
   return (
@@ -149,17 +147,18 @@ export function Timer({ durationInMinutes }: TimerProps) {
       </div>
       
       <div className="relative w-32 h-32 my-6 flex items-center justify-center">
-        <div className="absolute inset-0 flex items-center justify-center">
-            <Cupcake className="h-28 w-28 text-white opacity-80" strokeWidth={1}/>
-        </div>
+        <Cupcake className="absolute inset-0 h-32 w-32 text-white/20" strokeWidth={1}/>
         <div 
-          className="absolute bottom-0 left-0 w-full bg-white/30 transition-all duration-500 ease-out"
-          style={{ 
-            height: `${fillHeight}%`, 
-            clipPath: 'path("M17.5 10c0-2.2-1.8-4-4-4s-4 1.8-4 4 M12 10v1.1c0 .5.4.9.9.9h1.1c.5 0 .9-.4.9-.9V10h-3Z M12 18H5.1a2 2 0 0 1-1.8-2.7l2.4-7.2c.5-1.4 1.9-2.3 3.4-1.9l.2.1 m7 4.8 1-5a2 2 0 0 0-3-2l-1 5 M12 18c0 1.1.9 2 2 2h3.8a2 2 0 0 0 1.8-2.7l-2.4-7.2c-.5-1.4-1.9-2.3-3.4-1.9l-.2.1 M12 18v3")'
-          }}
-        />
+          className="absolute bottom-0 left-0 w-full overflow-hidden"
+          style={{ height: `${fillHeight}%` }}
+        >
+          <Cupcake 
+            className="h-32 w-32 text-white" 
+            strokeWidth={1}
+          />
+        </div>
       </div>
+
 
       <div className="flex items-center justify-center gap-4 w-full mt-8">
         <Button 
