@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { type Recipe, getRecipes } from '@/lib/recipes';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -14,10 +14,6 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { useIsMobile } from '@/hooks/use-mobile';
-import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-
 
 const categoryIcons: { [key: string]: React.ElementType } = {
   'brownie': CakeSlice,
@@ -56,8 +52,6 @@ const getCategoryIcon = (tags: string[]) => {
   return categoryIcons['default'];
 };
 
-const CATEGORIES_PER_PAGE_MOBILE = 9;
-
 export default function Home() {
   const recipes = useMemo(() => getRecipes(), []);
   const [searchTerm, setSearchTerm] = useState('');
@@ -66,9 +60,7 @@ export default function Home() {
   const [showWelcome, setShowWelcome] = useState(false);
   const [showIntro, setShowIntro] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
-  const isMobile = useIsMobile();
-  const [carouselApi, setCarouselApi] = useState<CarouselApi | undefined>(undefined);
-
+  
   useEffect(() => {
     try {
       const hasSeenIntro = sessionStorage.getItem('fitte_intro_seen');
@@ -135,16 +127,6 @@ export default function Home() {
       return matchesSearch && matchesDifficulty && matchesCategory;
     });
   }, [recipes, searchTerm, selectedDifficulty, selectedCategory]);
-
-  const mobileCategoryChunks = useMemo(() => {
-    const chunks = [];
-    const categoriesWithoutTodos = categories.filter(c => c !== 'Todos');
-    const allCategories = ['Todos', ...categoriesWithoutTodos];
-    for (let i = 0; i < allCategories.length; i += CATEGORIES_PER_PAGE_MOBILE) {
-      chunks.push(allCategories.slice(i, i + CATEGORIES_PER_PAGE_MOBILE));
-    }
-    return chunks;
-  }, [categories]);
 
   if (showWelcome || showIntro) {
     return (
@@ -280,50 +262,18 @@ export default function Home() {
 
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-3 text-center">Navegue por Categoria</h3>
-                {isMobile ? (
-                  <div className="flex flex-col items-center">
-                    <Carousel className="w-full max-w-xs mx-auto" setApi={setCarouselApi}>
-                      <CarouselContent>
-                        {mobileCategoryChunks.map((chunk, index) => (
-                          <CarouselItem key={index}>
-                            <div className="grid grid-cols-3 gap-3 p-1">
-                               {chunk.map(category => (
-                                  <Button
-                                      key={category}
-                                      variant={selectedCategory === category ? 'default' : 'secondary'}
-                                      onClick={() => setSelectedCategory(category)}
-                                      className="capitalize px-2 py-2 h-auto text-xs font-medium rounded-md whitespace-nowrap overflow-hidden text-ellipsis"
-                                  >
-                                      {category}
-                                  </Button>
-                              ))}
-                            </div>
-                          </CarouselItem>
-                        ))}
-                      </CarouselContent>
-                    </Carousel>
-                     <div className="flex justify-center items-center gap-4 mt-4">
-                        <CarouselPrevious />
-                        <CarouselNext />
-                    </div>
-                  </div>
-                ) : (
-                  <ScrollArea className="w-full whitespace-nowrap">
-                    <div className="flex space-x-3 p-2">
-                      {categories.map(category => (
-                          <Button
-                              key={category}
-                              variant={selectedCategory === category ? 'default' : 'secondary'}
-                              onClick={() => setSelectedCategory(category)}
-                              className="capitalize px-5 py-2 h-auto text-sm font-medium rounded-md transition-transform duration-200 hover:scale-105"
-                          >
-                              {category}
-                          </Button>
-                      ))}
-                    </div>
-                    <ScrollBar orientation="horizontal" />
-                  </ScrollArea>
-                )}
+              <div className="flex flex-wrap justify-center gap-3">
+                {categories.map(category => (
+                    <Button
+                        key={category}
+                        variant={selectedCategory === category ? 'default' : 'secondary'}
+                        onClick={() => setSelectedCategory(category)}
+                        className="capitalize px-5 py-2 h-auto text-sm font-medium rounded-md transition-transform duration-200 hover:scale-105"
+                    >
+                        {category}
+                    </Button>
+                ))}
+              </div>
             </div>
 
           </div>
