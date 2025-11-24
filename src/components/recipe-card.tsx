@@ -23,15 +23,19 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className }: 
   };
 
   return (
-    <Link href={`/recipe/${recipe.slug}`} passHref>
-      <a className={cn("block group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300", className)} style={{ borderRadius: 'var(--radius)'}}>
+    <Link 
+        href={`/recipe/${recipe.slug}`} 
+        className={cn("block group relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300", className)} 
+        style={{ borderRadius: 'var(--radius)'}}
+    >
         <div className="aspect-w-4 aspect-h-3 w-full">
           <Image
             src={`https://picsum.photos/seed/${recipe.id}/400/300`}
             alt={recipe.title}
-            layout="fill"
-            objectFit="cover"
-            className="group-hover:scale-105 transition-transform duration-300"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
           />
         </div>
         
@@ -42,6 +46,7 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className }: 
           variant="ghost"
           size="icon"
           className="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/20 text-white backdrop-blur-sm hover:bg-white/30"
+          aria-label={isFavorite ? 'Desfavoritar receita' : 'Favoritar receita'}
         >
           <Heart className={cn('h-5 w-5', isFavorite ? 'fill-white' : 'fill-transparent')} />
         </Button>
@@ -65,7 +70,6 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className }: 
             </div>
           </div>
         </div>
-      </a>
     </Link>
   );
 }
