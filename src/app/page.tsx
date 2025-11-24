@@ -3,24 +3,32 @@
 import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { type Recipe, getRecipes } from '@/lib/recipes';
 import { Button } from '@/components/ui/button';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, SignalHigh, SignalLow, SignalMedium, ListFilter } from 'lucide-react';
 import { RecipeCard } from '@/components/recipe-card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { AppLayout } from '@/components/app-layout';
+import { cn } from '@/lib/utils';
 
 const BATCH_SIZE = 20;
 
+type Difficulty = 'Todos' | 'Fácil' | 'Média' | 'Difícil';
+
+const difficultyOptions: { name: Difficulty, icon: React.ElementType }[] = [
+  { name: 'Todos', icon: ListFilter },
+  { name: 'Fácil', icon: SignalLow },
+  { name: 'Média', icon: SignalMedium },
+  { name: 'Difícil', icon: SignalHigh },
+];
+
 export default function Home() {
   const allRecipes = useMemo(() => getRecipes(), []);
-  const [selectedDifficulty, setSelectedDifficulty] = useState<'Todos' | 'Fácil' | 'Média' | 'Difícil'>('Todos');
+  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>('Todos');
   const [showScroll, setShowScroll] = useState(false);
   const [visibleRecipes, setVisibleRecipes] = useState<Recipe[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
   const loader = useRef<HTMLDivElement | null>(null);
-
-  const difficulties: Array<'Todos' | 'Fácil' | 'Média' | 'Difícil'> = ['Todos', 'Fácil', 'Média', 'Difícil'];
 
   const filteredRecipes = useMemo(() => {
     const filtered = allRecipes.filter(recipe => {
@@ -105,23 +113,31 @@ export default function Home() {
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
                 Bem-vindo ao Fitte, seu novo universo de receitas.
             </h2>
-            <p className="text-muted-foreground mt-4 text-lg">
+            <p className="text-muted-foreground mt-4 text-base md:text-lg">
                 Que alegria ter você aqui! O Fitte é o seu novo cantinho para descobrir que é possível comer doces deliciosos e ainda assim manter uma vida saudável e equilibrada. Navegue pelas categorias, use a busca para encontrar algo específico ou simplesmente explore nossas sugestões diárias. Cada receita foi pensada para ser fácil, nutritiva e, claro, muito saborosa. Bom apetite!
             </p>
         </div>
         
         <main>
-          <div className="mb-8 space-y-6">
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              {difficulties.map(difficulty => (
-                <Button
-                  key={difficulty}
-                  variant={selectedDifficulty === difficulty ? 'default' : 'ghost'}
-                  onClick={() => setSelectedDifficulty(difficulty)}
-                  className="capitalize px-5 py-2 h-auto text-sm font-medium rounded-md"
+          <div className="mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-lg mx-auto">
+              {difficultyOptions.map(({ name, icon: Icon }) => (
+                <button
+                  key={name}
+                  onClick={() => setSelectedDifficulty(name)}
+                  className={cn(
+                    "group flex flex-col items-center justify-center p-3 rounded-lg border-2 transition-all duration-200",
+                    selectedDifficulty === name
+                      ? "bg-primary/10 border-primary text-primary"
+                      : "bg-background border-border text-muted-foreground hover:border-primary/50 hover:text-primary"
+                  )}
                 >
-                  {difficulty}
-                </Button>
+                  <Icon className="h-6 w-6 mb-1.5" strokeWidth={selectedDifficulty === name ? 2.5 : 2} />
+                  <span className={cn(
+                    "text-sm font-semibold",
+                    selectedDifficulty === name ? "text-primary" : "text-foreground"
+                    )}>{name}</span>
+                </button>
               ))}
             </div>
           </div>
