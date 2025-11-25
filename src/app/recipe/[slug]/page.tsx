@@ -144,7 +144,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
                 </Button>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-extrabold text-foreground">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-primary">
               {recipe.title}
             </h1>
             <p className="text-muted-foreground mt-4 text-lg max-w-2xl">

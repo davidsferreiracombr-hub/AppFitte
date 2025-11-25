@@ -122,7 +122,7 @@ export default function Home() {
         <div className="mb-10 text-left">
             <p className="text-muted-foreground text-lg">Olá,</p>
             <h2 className="text-4xl font-extrabold tracking-tight text-foreground">
-              O que vamos cozinhar hoje?
+              O que vamos <span className="text-primary">cozinhar</span> hoje?
             </h2>
         </div>
         

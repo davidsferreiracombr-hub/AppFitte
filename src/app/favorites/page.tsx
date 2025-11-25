@@ -23,7 +23,7 @@ export default function FavoritesPage() {
       <div className="flex-1 p-4 sm:p-6 lg:p-8">
         <div className="text-center mb-12 max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
-                Minhas Receitas Favoritas
+                Minhas Receitas <span className="text-primary">Favoritas</span>
             </h2>
             <p className="text-muted-foreground mt-4 text-lg">
                 Aqui estão as receitas que você mais amou. Bom apetite!
