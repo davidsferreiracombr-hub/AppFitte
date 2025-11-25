@@ -42,32 +42,39 @@ export default function CategoriesPage() {
   useEffect(() => {
     const calculateCategories = () => {
         const categoryCounts: { [key: string]: number } = {};
-        
+        const categorizedRecipes = new Set<number>();
+
         allRecipes.forEach(recipe => {
-            const recipeCategories = recipe.tags.filter(tag => mainCategories.includes(tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' ')));
+            const normalizedTags = recipe.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '));
             
-            if (recipeCategories.length > 0) {
-              recipeCategories.forEach(cat_name => {
-                const normalizedCat = cat_name.charAt(0).toUpperCase() + cat_name.slice(1).replace(/-/g, ' ');
-                categoryCounts[normalizedCat] = (categoryCounts[normalizedCat] || 0) + 1;
-              });
-            } else {
-               mainCategories.forEach(mainCat => {
-                 if(recipe.title.toLowerCase().includes(mainCat.toLowerCase())) {
-                    categoryCounts[mainCat] = (categoryCounts[mainCat] || 0) + 1;
-                 }
-               });
+            let foundCategory = false;
+            for (const cat of mainCategories) {
+                if (normalizedTags.includes(cat)) {
+                    categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+                    categorizedRecipes.add(recipe.id);
+                    foundCategory = true;
+                    break; 
+                }
             }
         });
-        
-        const otherRecipes = allRecipes.filter(recipe => {
-            const recipeMainCategories = recipe.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' ')).filter(tag => mainCategories.includes(tag));
-            const titleHasMainCategory = mainCategories.some(cat => recipe.title.toLowerCase().includes(cat.toLowerCase()));
-            return recipeMainCategories.length === 0 && !titleHasMainCategory;
+
+        allRecipes.forEach(recipe => {
+            if (categorizedRecipes.has(recipe.id)) return;
+
+            let foundCategory = false;
+            for (const cat of mainCategories) {
+                if (recipe.title.toLowerCase().includes(cat.toLowerCase())) {
+                    categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+                    categorizedRecipes.add(recipe.id);
+                    foundCategory = true;
+                    break;
+                }
+            }
         });
 
-        if (otherRecipes.length > 0) {
-            categoryCounts['Outros'] = otherRecipes.length;
+        const otherRecipesCount = allRecipes.length - categorizedRecipes.size;
+        if (otherRecipesCount > 0) {
+            categoryCounts['Outros'] = otherRecipesCount;
         }
 
         const processedCategories = Object.entries(categoryCounts)

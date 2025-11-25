@@ -16,17 +16,41 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
   const categoryName = decodeURIComponent(params.categoryName);
 
   const filteredRecipes = useMemo(() => {
+    const categorizedRecipes = new Set<number>();
+    
+    // First pass: Categorize recipes based on main categories found in tags or title
+    allRecipes.forEach(recipe => {
+      const normalizedTags = recipe.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '));
+      let isCategorized = false;
+      for (const cat of mainCategories) {
+        if (normalizedTags.includes(cat) || recipe.title.toLowerCase().includes(cat.toLowerCase())) {
+          categorizedRecipes.add(recipe.id);
+          isCategorized = true;
+          break;
+        }
+      }
+    });
+
     if (categoryName === 'Outros') {
-      return allRecipes.filter(recipe => {
-        const recipeMainCategories = recipe.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' ')).filter(tag => mainCategories.includes(tag));
-        const titleHasMainCategory = mainCategories.some(cat => recipe.title.toLowerCase().includes(cat.toLowerCase()));
-        return recipeMainCategories.length === 0 && !titleHasMainCategory;
-      });
+      return allRecipes.filter(recipe => !categorizedRecipes.has(recipe.id));
     }
 
     return allRecipes.filter(recipe => {
       const normalizedTags = recipe.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '));
-      return normalizedTags.includes(categoryName) || recipe.title.toLowerCase().includes(categoryName.toLowerCase());
+      
+      // A recipe belongs to a category if the category name is in its tags
+      if (normalizedTags.includes(categoryName)) {
+        return true;
+      }
+      
+      // If not in tags, check if it's in the title, but only if it doesn't belong to another primary category via tags
+      const hasOtherMainCategoryInTags = mainCategories.some(cat => cat !== categoryName && normalizedTags.includes(cat));
+
+      if (!hasOtherMainCategoryInTags && recipe.title.toLowerCase().includes(categoryName.toLowerCase())) {
+          return true;
+      }
+
+      return false;
     });
   }, [allRecipes, categoryName]);
 
@@ -35,7 +59,7 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
       <div className="flex-1 p-4 sm:p-6 lg:p-8">
         <div className="text-center mb-12 max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
-                Receitas de {categoryName}
+                Receitas de <span className="text-primary">{categoryName}</span>
             </h2>
             <p className="text-muted-foreground mt-4 text-lg">
                 {`Encontramos ${filteredRecipes.length} receitas deliciosas na categoria ${categoryName}.`}
