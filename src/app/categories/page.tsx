@@ -31,8 +31,7 @@ const categoryStyleMap: { [key: string]: { icon: Category['icon']; color: string
   'default': { icon: Apple, color: 'bg-gray-100 border-gray-200' },
 };
 
-const mainCategories = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra de Cereal", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca", "Bombom", "Trufa", "Biscoito", "Donut"];
-
+const mainCategories = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra de Cereal", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca", "Bombom", "Trufa", "Biscoito", "Donut", "Doce", "Salgado", "Pão", "Waffle", "Mingau", "Empada", "Quibe"];
 
 export default function CategoriesPage() {
   const allRecipes = useMemo(() => getRecipes(), []);
@@ -42,45 +41,32 @@ export default function CategoriesPage() {
   useEffect(() => {
     const calculateCategories = () => {
         const categoryCounts: { [key: string]: number } = {};
-        let outrosCount = 0;
-
+        
         allRecipes.forEach(recipe => {
-            const normalizedTags = recipe.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '));
-            const mainCategoryTag = normalizedTags.find(tag => mainCategories.includes(tag));
-            const mainCategoryTitle = mainCategories.find(cat => recipe.title.toLowerCase().includes(cat.toLowerCase()));
-
-            if (mainCategoryTag) {
-                if (categoryCounts[mainCategoryTag]) {
-                    categoryCounts[mainCategoryTag]++;
-                } else {
-                    categoryCounts[mainCategoryTag] = 1;
-                }
-            } else if (mainCategoryTitle) {
-                 if (categoryCounts[mainCategoryTitle]) {
-                    categoryCounts[mainCategoryTitle]++;
-                } else {
-                    categoryCounts[mainCategoryTitle] = 1;
-                }
+            const recipeCategories = recipe.tags.filter(tag => mainCategories.includes(tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' ')));
+            
+            if (recipeCategories.length > 0) {
+              recipeCategories.forEach(cat_name => {
+                const normalizedCat = cat_name.charAt(0).toUpperCase() + cat_name.slice(1).replace(/-/g, ' ');
+                categoryCounts[normalizedCat] = (categoryCounts[normalizedCat] || 0) + 1;
+              });
             } else {
-                outrosCount++;
+               mainCategories.forEach(mainCat => {
+                 if(recipe.title.toLowerCase().includes(mainCat.toLowerCase())) {
+                    categoryCounts[mainCat] = (categoryCounts[mainCat] || 0) + 1;
+                 }
+               });
             }
         });
         
-        mainCategories.forEach(type => {
-            if (!categoryCounts[type]) {
-                let count = 0;
-                allRecipes.forEach(r => {
-                    const normalizedTags = r.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '));
-                    if (!mainCategories.some(mc => normalizedTags.includes(mc) || r.title.toLowerCase().includes(mc.toLowerCase())) && r.title.toLowerCase().includes(type.toLowerCase())) {
-                       count++;
-                    }
-                })
-                if (count > 0 && !categoryCounts[type]) categoryCounts[type] = count;
-            }
+        const otherRecipes = allRecipes.filter(recipe => {
+            const recipeMainCategories = recipe.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' ')).filter(tag => mainCategories.includes(tag));
+            const titleHasMainCategory = mainCategories.some(cat => recipe.title.toLowerCase().includes(cat.toLowerCase()));
+            return recipeMainCategories.length === 0 && !titleHasMainCategory;
         });
 
-        if (outrosCount > 0) {
-            categoryCounts['Outros'] = outrosCount;
+        if (otherRecipes.length > 0) {
+            categoryCounts['Outros'] = otherRecipes.length;
         }
 
         const processedCategories = Object.entries(categoryCounts)
