@@ -1,3 +1,4 @@
+
 'use client';
 
 import { getRecipeBySlug } from '@/lib/recipes';

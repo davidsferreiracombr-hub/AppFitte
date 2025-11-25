@@ -26,28 +26,28 @@ const categoryDefinitions: Omit<CategoryInfo, 'count'>[] = [
     description: 'Deliciosos bolos para o café, tortas cremosas e rocamboles para qualquer ocasião.',
     icon: Cake,
     color: 'bg-red-50 border-red-200',
-    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake'],
+    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra'],
   },
   {
     name: 'Doces e Sobremesas',
     description: 'Pudins, mousses, cremes, pavês, docinhos de festa, gelatinas e muito mais para adoçar o dia.',
     icon: IceCream,
     color: 'bg-pink-50 border-pink-200',
-    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro'],
+    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu'],
   },
   {
     name: 'Pães e Salgados',
     description: 'Receitas de pães caseiros, salgadinhos de festa, tortas salgadas, esfihas e lanches práticos.',
     icon: Croissant,
     color: 'bg-yellow-50 border-yellow-200',
-    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo'],
+    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz'],
   },
   {
     name: 'Biscoitos e Cookies',
     description: 'Encontre cookies, biscoitinhos amanteigados, sequilhos e rosquinhas para acompanhar seu café.',
     icon: Cookie,
     color: 'bg-amber-50 border-amber-200',
-    keywords: ['cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'alfajor'],
+    keywords: ['cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'alfajor', 'goiabinha', 'casadinho'],
   },
   {
     name: 'Saudáveis e Fit',
@@ -70,18 +70,22 @@ export default function CategoriesPage() {
       const processedCategories = categoryDefinitions.map(catDef => {
         let count = 0;
         allRecipes.forEach(recipe => {
-          
+          if (categorizedRecipeIds.has(recipe.id)) return;
+
           let match = false;
-          // Prioritize tags
-          if (catDef.keywords.some(keyword => recipe.tags.includes(keyword))) {
-            match = true;
-          } else {
-            // Fallback to title search if no tag matches
+          // Prioritize tags for more accurate categorization
+          if (recipe.tags && Array.isArray(recipe.tags)) {
+            if (catDef.keywords.some(keyword => recipe.tags.includes(keyword))) {
+              match = true;
+            }
+          }
+          
+          // Fallback to title search if no tag matches
+          if (!match) {
             match = catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword));
           }
           
           if (match) {
-            if (categorizedRecipeIds.has(recipe.id)) return;
             count++;
             categorizedRecipeIds.add(recipe.id);
           }

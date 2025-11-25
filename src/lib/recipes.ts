@@ -1,3 +1,4 @@
+
 import recipesData from './recipes.json';
 
 export type Recipe = {

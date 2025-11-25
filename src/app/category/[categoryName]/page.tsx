@@ -10,19 +10,19 @@ import { getRecipes, type Recipe } from '@/lib/recipes';
 const categoryDefinitions = [
   {
     name: 'Bolos e Tortas',
-    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake'],
+    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra'],
   },
   {
     name: 'Doces e Sobremesas',
-    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro'],
+    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu'],
   },
   {
     name: 'Pães e Salgados',
-    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo'],
+    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz'],
   },
   {
     name: 'Biscoitos e Cookies',
-    keywords: ['cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'alfajor'],
+    keywords: ['cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'alfajor', 'goiabinha', 'casadinho'],
   },
   {
     name: 'Saudáveis e Fit',
@@ -41,43 +41,29 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
     const categoryDef = categoryDefinitions.find(c => c.name === categoryName);
     if (!categoryDef) return [];
 
-    const otherCategoriesKeywords = categoryDefinitions
-        .filter(c => c.name !== categoryName)
-        .flatMap(c => c.keywords);
-
-    const categorizedRecipes = new Set<number>();
-    const recipesForCategory: Recipe[] = [];
-
-    allRecipes.forEach(recipe => {
-        const recipeText = (recipe.title + ' ' + recipe.tags.join(' ')).toLowerCase();
-
-        const isInThisCategory = categoryDef.keywords.some(keyword => recipeText.includes(keyword));
-
-        if (isInThisCategory) {
-            // Se pertence a esta categoria, verificamos se ela já não foi "reivindicada" por uma categoria mais específica
-            // Para evitar duplicatas, vamos dar prioridade se a tag for exata
-             const hasExactTag = categoryDef.keywords.some(keyword => recipe.tags.includes(keyword));
-             const hasPriority = hasExactTag || !otherCategoriesKeywords.some(otherKeyword => recipeText.includes(otherKeyword));
-
-            if(!categorizedRecipes.has(recipe.id)) {
-                 recipesForCategory.push(recipe);
-                 categorizedRecipes.add(recipe.id);
-            }
-        }
-    });
-
     const finalFilteredList: Recipe[] = [];
     const addedRecipeIds = new Set<number>();
 
-    // Prioritizing logic
+    // This logic ensures a recipe is only added to the first category it matches,
+    // preventing duplicates across category pages.
     categoryDefinitions.forEach(catDef => {
       allRecipes.forEach(recipe => {
         if(addedRecipeIds.has(recipe.id)) return;
         
-        const recipeText = (recipe.title + ' ' + recipe.tags.join(' ')).toLowerCase();
-        const isInCurrentCat = catDef.keywords.some(keyword => recipeText.includes(keyword));
+        let match = false;
+        // Prioritize tags for more accurate categorization
+        if (recipe.tags && Array.isArray(recipe.tags)) {
+            if (catDef.keywords.some(keyword => recipe.tags.includes(keyword))) {
+              match = true;
+            }
+        }
+          
+        // Fallback to title search if no tag matches
+        if (!match) {
+            match = catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword));
+        }
 
-        if (isInCurrentCat) {
+        if (match) {
           if (catDef.name === categoryName) {
             finalFilteredList.push(recipe);
           }
