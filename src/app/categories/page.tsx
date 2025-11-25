@@ -70,8 +70,7 @@ export default function CategoriesPage() {
       const processedCategories = categoryDefinitions.map(catDef => {
         let count = 0;
         allRecipes.forEach(recipe => {
-          if (categorizedRecipeIds.has(recipe.id)) return;
-
+          
           let match = false;
           // Prioritize tags
           if (catDef.keywords.some(keyword => recipe.tags.includes(keyword))) {
@@ -82,6 +81,7 @@ export default function CategoriesPage() {
           }
           
           if (match) {
+            if (categorizedRecipeIds.has(recipe.id)) return;
             count++;
             categorizedRecipeIds.add(recipe.id);
           }
@@ -126,7 +126,7 @@ export default function CategoriesPage() {
                     <category.icon className="h-10 w-10 text-primary transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} />
                     <h3 className="mt-3 text-xl font-bold text-foreground truncate w-full">{category.name}</h3>
                     <p className="text-sm text-muted-foreground mb-2">{category.count} receitas</p>
-                    <p className="text-sm text-muted-foreground/80 line-clamp-2">{category.description}</p>
+                    <p className="text-base text-muted-foreground/80 line-clamp-2">{category.description}</p>
                   </div>
                 </Link>
               ))}
