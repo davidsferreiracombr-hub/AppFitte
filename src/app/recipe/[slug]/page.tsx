@@ -1,7 +1,5 @@
 
-'use client';
-
-import { getRecipeBySlug } from '@/lib/recipes';
+import { getRecipes, getRecipeBySlug } from '@/lib/recipes';
 import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -11,6 +9,13 @@ import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import { useEffect, useState } from 'react';
 import { AppLayout } from '@/components/app-layout';
+
+export function generateStaticParams() {
+  const recipes = getRecipes();
+  return recipes.map(recipe => ({
+    slug: recipe.slug,
+  }));
+}
 
 type TimerInfo = {
   duration: number;
@@ -73,7 +78,7 @@ const extractActionTime = (instructions: string[]): TimerInfo | null => {
     return null;
   };
 
-export default function RecipePage({ params }: { params: { slug: string } }) {
+function RecipeClientPage({ params }: { params: { slug: string } }) {
   const recipe = getRecipeBySlug(params.slug);
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const { toast } = useToast();
@@ -222,4 +227,11 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
     </div>
     </AppLayout>
   );
+}
+
+export default function RecipePage({ params }: { params: { slug: string } }) {
+  // Since this is a server component, we could fetch data here.
+  // But to avoid the "cannot use both 'use client' and 'generateStaticParams'" error,
+  // we pass the params to a client component that handles all the client-side logic.
+  return <RecipeClientPage params={params} />;
 }
