@@ -37,7 +37,9 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
 
   return (
     <AppLayout>
-        <RecipeClientPage recipe={recipe} />
+        <div className="flex-1 pb-24 lg:pb-8">
+            <RecipeClientPage recipe={recipe} />
+        </div>
     </AppLayout>
   );
 }
