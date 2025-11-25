@@ -14,16 +14,21 @@ export function WelcomeScreen() {
   return (
     <div
       className={cn(
-        'fixed inset-0 z-[100] flex items-center justify-center bg-primary transition-opacity duration-700 ease-in-out',
+        'fixed inset-0 z-[100] flex items-center justify-center bg-background transition-opacity duration-700 ease-in-out',
         {
           'opacity-100': showWelcome && !isFadingOut,
           'opacity-0': isFadingOut,
         }
       )}
     >
-      <div className="flex flex-col items-center gap-4 animate-fade-in-out">
+      <div
+        className={cn(
+          'flex flex-col items-center gap-4',
+          !isFadingOut ? 'animate-fade-in-scale' : 'animate-fade-out'
+        )}
+      >
         <svg
-          className="h-20 w-20 text-primary-foreground animate-pulse-subtle"
+          className="h-20 w-20 text-primary animate-pulse-subtle"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +41,7 @@ export function WelcomeScreen() {
             strokeLinejoin="round"
           />
         </svg>
-        <span className="font-bold text-4xl text-primary-foreground">
+        <span className="font-bold text-4xl text-primary">
           Fitte
         </span>
       </div>
