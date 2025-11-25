@@ -94,9 +94,9 @@
     "title": "Torta de Limão Fit",
     "description": "Versão saudável da clássica torta de limão, com base de castanhas e um recheio cremoso e azedinho.",
     "tags": ["sem glúten", "torta", "fit"],
-    "prepTime": "1h",
+    "prepTime": "30 min + 4h de geladeira",
     "calories": "300 kcal por fatia",
-    "difficulty": "Difícil",
+    "difficulty": "Média",
     "servings": "8 fatias",
     "ingredients": [
       "Base: 1 e 1/2 xícara de amêndoas ou nozes",
@@ -2709,7 +2709,7 @@
   },
   {
     "id": 109,
-    "slug": "sequilho-de-povinho-109",
+    "slug": "sequilho-de-polvilho-109",
     "title": "Sequilho de Polvilho",
     "description": "Biscoitinho leve e crocante que derrete na boca, perfeito para o café da tarde.",
     "tags": ["biscoito", "sem glúten", "lanche", "brasileira"],
@@ -3718,7 +3718,7 @@
   },
   {
     "id": 150,
-    "slug": "torta-de-alema-150",
+    "slug": "torta-alema-150",
     "title": "Torta Alemã",
     "description": "Camadas de biscoito de maisena e um creme amanteigado de gemas, coberta com ganache de chocolate.",
     "tags": ["torta", "sobremesa", "gelado"],
@@ -4035,7 +4035,7 @@
     "calories": "340 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["1kg de macaxeira ralada, 2 xícaras de açúcar, 200ml de leite de coco, 100g de coco ralado, 3 ovos, 2 colheres de manteiga"],
+    "ingredients": ["1kg de macaxeira ralada", "2 xícaras de açúcar", "200ml de leite de coco", "100g de coco ralado", "3 ovos", "2 colheres de manteiga"],
     "instructions": ["Misture todos os ingredientes e asse em forma untada a 180°C por cerca de 1 hora, ou até dourar."]
   },
   {
@@ -4261,7 +4261,7 @@
   },
   {
     "id": 191,
-    "slug": "pao-de-ló-191",
+    "slug": "pao-de-lo-191",
     "title": "Pão de Ló",
     "description": "A base perfeita para bolos recheados. Massa super leve, fofa e aerada.",
     "tags": ["bolo", "base", "clássico"],
@@ -4391,8 +4391,8 @@
   },
   {
     "id": 201,
-    "slug": "bolo-de-côco-cremoso-201",
-    "title": "Bolo de Côco Cremoso",
+    "slug": "bolo-de-coco-cremoso-201",
+    "title": "Bolo de Coco Cremoso",
     "description": "Uma sobremesa gelada, com camadas de coco e leite condensado que se transformam num pudim no forno.",
     "tags": ["bolo", "coco", "sobremesa"],
     "prepTime": "1h",
@@ -4417,7 +4417,7 @@
   },
   {
     "id": 203,
-    "slug": "pão-doce-caseiro-203",
+    "slug": "pao-doce-caseiro-203",
     "title": "Pão Doce Caseiro",
     "description": "Pãezinhos fofinhos com uma farofa doce por cima, perfeitos para o café da tarde.",
     "tags": ["pão", "doce", "lanche"],
@@ -4469,7 +4469,7 @@
   },
   {
     "id": 207,
-    "slug": "mousse-de-cupuaçu-207",
+    "slug": "mousse-de-cupuacu-207",
     "title": "Mousse de Cupuaçu",
     "description": "Mousse cremoso com o sabor exótico e inconfundível do cupuaçu, uma fruta amazônica.",
     "tags": ["mousse", "regional", "frutas"],
@@ -4595,7 +4595,7 @@
     "difficulty": "Fácil",
     "servings": "12 fatias",
     "ingredients": ["3 ovos", "2 xícaras de açúcar", "3 xícaras de farinha de trigo", "1 xícara de leite", "1/2 xícara de óleo", "1 colher de fermento"],
-    "instructions": ["Bata os líquidos com o açúcar. Adicione a farinha e o fermento.", "Asse a 180°C por 35 minutos."]
+    "instructions": ["Bata os líquidos com açúcar. Adicione a farinha e o fermento.", "Asse a 180°C por 35 minutos."]
   },
   {
     "id": 217,
@@ -4625,7 +4625,7 @@
   },
   {
     "id": 219,
-    "slug": "mungunzá-doce-219",
+    "slug": "mungunza-doce-219",
     "title": "Mungunzá Doce",
     "description": "O mesmo que canjica em outras regiões, um creme de milho branco doce e delicioso.",
     "tags": ["doce", "festa junina", "regional"],
@@ -4807,7 +4807,7 @@
   },
   {
     "id": 233,
-    "slug": "torta-de-maçã-americana-233",
+    "slug": "torta-de-maca-americana-233",
     "title": "Torta de Maçã Americana (Apple Pie)",
     "description": "A clássica torta americana, com massa crocante, recheio de maçãs com canela e uma tampa de massa trançada.",
     "tags": ["torta", "maçã", "americana"],
@@ -4855,7 +4855,7 @@
     "difficulty": "Fácil",
     "servings": "1 pote grande",
     "ingredients": ["1 mamão verde grande", "A mesma medida de açúcar", "Cravos da índia"],
-    "instructions": ["Rale o mamão (sem casca e sementes). Lave bem em água corrente para tirar o leite.", "Cozinhe o mamão com o açúcar e os cravos em fogo baixo até ficar macio e a calda engrossar."]
+    "instructions": ["Rale o mamão (sem casca e sementes). Lave bem em água corrente para tirar o leite.", "Cozinhe o mamão com o açúcar e os cravos em fogo baixo até dar o ponto."]
   },
   {
     "id": 237,
@@ -4937,7 +4937,7 @@
   },
   {
     "id": 243,
-    "slug": "bolo-de-maça-com-nozes-243",
+    "slug": "bolo-de-maca-com-nozes-243",
     "title": "Bolo de Maçã com Nozes",
     "description": "Bolo úmido com pedaços de maçã e nozes, e uma crosta de açúcar e canela.",
     "tags": ["bolo", "maçã", "nozes"],
@@ -5062,7 +5062,7 @@
     "calories": "300 kcal",
     "difficulty": "Fácil",
     "servings": "8 fatias",
-    "ingredients": ["Massa: 2 xícaras de leite, 1 xícara de óleo, 3 ovos, 2 xícaras de farinha, queijo ralado, sal, fermento.", "Recheio a gosto: frango, presunto e queijo, legumes."],
+    "ingredients": ["Massa: 2 xícaras de leite, 1 de óleo, 2 de farinha, 2 ovos, sal, fermento.", "Recheio a gosto: frango, presunto e queijo, legumes."],
     "instructions": ["Bata a massa no liquidificador. Despeje metade em uma forma, coloque o recheio e cubra com o resto da massa.", "Asse a 180°C por 35-40 minutos."]
   },
   {
@@ -5080,7 +5080,7 @@
   },
   {
     "id": 254,
-    "slug": "pao-de-ló-de-chocolate-254",
+    "slug": "pao-de-lo-de-chocolate-254",
     "title": "Pão de Ló de Chocolate",
     "description": "A versão de chocolate da massa base, leve e fofa, para bolos recheados.",
     "tags": ["bolo", "chocolate", "base"],
@@ -5101,7 +5101,7 @@
     "calories": "360 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de café (ID 60)", "Cobertura: Ganache de chocolate."],
+    "ingredients": ["Massa de bolo de café (ID 60), com adição de 1/2 xícara de chocolate em pó.", "Cobertura: Ganache de chocolate."],
     "instructions": ["Faça o bolo de café e cubra com uma ganache simples de chocolate meio amargo e creme de leite."]
   },
   {
@@ -5119,7 +5119,7 @@
   },
   {
     "id": 257,
-    "slug": "pudim-de-pão-com-coco-257",
+    "slug": "pudim-de-pao-com-coco-257",
     "title": "Pudim de Pão com Coco",
     "description": "Versão do pudim de pão com o toque do coco ralado.",
     "tags": ["pudim", "pão", "coco"],
@@ -5171,7 +5171,7 @@
   },
   {
     "id": 261,
-    "slug": "fricassê-de-frango-261",
+    "slug": "fricasse-de-frango-261",
     "title": "Fricassê de Frango",
     "description": "Creme de milho com frango desfiado, gratinado com queijo e batata palha.",
     "tags": ["salgado", "frango", "cremoso"],
@@ -5327,7 +5327,7 @@
   },
   {
     "id": 273,
-    "slug": "fatias-húngaras-273",
+    "slug": "fatias-hungaras-273",
     "title": "Fatias Húngaras",
     "description": "Rosca fatiada com um creme de coco, coberta com uma calda de leite.",
     "tags": ["pão", "doce", "rosca"],
@@ -5457,7 +5457,7 @@
   },
   {
     "id": 283,
-    "slug": "pão-de-mel-alemão-283",
+    "slug": "pao-de-mel-alemao-283",
     "title": "Pão de Mel Alemão (Lebkuchen)",
     "description": "Biscoito de mel e especiarias, coberto com glacê de açúcar.",
     "tags": ["biscoito", "mel", "natal"],
@@ -5535,7 +5535,7 @@
   },
   {
     "id": 289,
-    "slug": "pão-de-mandioquinha-289",
+    "slug": "pao-de-mandioquinha-289",
     "title": "Pão de Mandioquinha",
     "description": "Pãezinhos super macios e amarelinhos, com o sabor adocicado da mandioquinha (batata baroa).",
     "tags": ["pão", "mandioquinha", "lanche"],
@@ -5665,7 +5665,7 @@
   },
   {
     "id": 299,
-    "slug": "bobó-de-camarão-299",
+    "slug": "bobo-de-camarao-299",
     "title": "Bobó de Camarão",
     "description": "Prato baiano cremoso, um purê de mandioca com camarões, azeite de dendê e leite de coco.",
     "tags": ["salgado", "camarão", "regional"],
@@ -5730,7 +5730,7 @@
   },
   {
     "id": 304,
-    "slug": "suflê-de-queijo-304",
+    "slug": "sufle-de-queijo-304",
     "title": "Suflê de Queijo",
     "description": "Leve, aerado e com muito sabor de queijo. Um clássico da cozinha francesa.",
     "tags": ["salgado", "queijo", "francês"],
@@ -5743,7 +5743,7 @@
   },
   {
     "id": 305,
-    "slug": "pão-de-batata-305",
+    "slug": "pao-de-batata-305",
     "title": "Pão de Batata",
     "description": "Pãezinhos incrivelmente macios e fofinhos, ótimos para rechear com catupiry.",
     "tags": ["pão", "batata", "lanche"],
@@ -5938,7 +5938,7 @@
   },
   {
     "id": 320,
-    "slug": "arroz-à-grega-320",
+    "slug": "arroz-a-grega-320",
     "title": "Arroz à Grega",
     "description": "Arroz colorido e saboroso com cenoura, pimentão, ervilha e uvas passas.",
     "tags": ["arroz", "acompanhamento", "vegetariano"],
@@ -5951,7 +5951,7 @@
   },
   {
     "id": 321,
-    "slug": "mousse-de-maracujá-com-chocolate-321",
+    "slug": "mousse-de-maracuja-com-chocolate-321",
     "title": "Mousse de Maracujá com Chocolate",
     "description": "Camadas de mousse de maracujá azedinho e ganache de chocolate.",
     "tags": ["mousse", "maracujá", "chocolate"],
@@ -5964,7 +5964,7 @@
   },
   {
     "id": 322,
-    "slug": "bolo-de-fubá-com-coco-322",
+    "slug": "bolo-de-fuba-com-coco-322",
     "title": "Bolo de Fubá com Coco",
     "description": "Bolo de fubá fofinho com a umidade e o sabor do coco ralado.",
     "tags": ["bolo", "fubá", "coco"],
@@ -5973,7 +5973,7 @@
     "difficulty": "Fácil",
     "servings": "12 fatias",
     "ingredients": ["Massa de bolo de fubá (ID 110).", "Adicionar 100g de coco ralado à massa."],
-    "instructions": ["Prepare a massa e incorpore o coco ralado. Asse normalmente."]
+    "instructions": ["Prepare a massa e incorpore o coco ralado. Asse."]
   },
   {
     "id": 323,
@@ -6172,7 +6172,7 @@
   },
   {
     "id": 338,
-    "slug": "bolo-mármore-338",
+    "slug": "bolo-marmore-338",
     "title": "Bolo Mármore",
     "description": "Bolo com massa de baunilha e chocolate mescladas, criando o efeito mármore.",
     "tags": ["bolo", "chocolate", "lanche"],
@@ -6224,7 +6224,7 @@
   },
   {
     "id": 342,
-    "slug": "virado-à-paulista-342",
+    "slug": "virado-a-paulista-342",
     "title": "Virado à Paulista",
     "description": "Prato símbolo de São Paulo, servido tradicionalmente às segundas-feiras. Leva tutu de feijão, bisteca, linguiça, ovo frito, couve e banana à milanesa.",
     "tags": ["salgado", "regional", "completo"],
@@ -6263,7 +6263,7 @@
   },
   {
     "id": 345,
-    "slug": "torta-de-maça-com-farofa-crocante-345",
+    "slug": "torta-de-maca-com-farofa-crocante-345",
     "title": "Torta de Maçã com Farofa Crocante",
     "description": "Torta com base macia, recheio de maçãs e uma cobertura de farofa amanteigada.",
     "tags": ["torta", "maçã", "cuca"],
@@ -6417,7 +6417,6 @@
     "ingredients": ["Frutas variadas picadas (banana, maçã, mamão, laranja, morango).", "Creme: 1 lata de leite condensado, 1 de creme de leite."],
     "instructions": ["Pique as frutas. Misture o leite condensado e o creme de leite.", "Junte o creme às frutas e misture delicadamente. Sirva gelado."]
   },
-
   {
     "id": 357,
     "slug": "bolo-de-cenoura-com-cobertura-crocante-357",
@@ -6524,7 +6523,7 @@
   },
   {
     "id": 365,
-    "slug": "bolo-de-fubá-com-erva-doce-365",
+    "slug": "bolo-de-fuba-com-erva-doce-365",
     "title": "Bolo de Fubá com Erva-Doce",
     "description": "O clássico bolo de fubá com o perfume da erva-doce.",
     "tags": ["bolo", "fubá", "erva-doce"],
@@ -6563,7 +6562,7 @@
   },
   {
     "id": 368,
-    "slug": "pudim-de-pão-amanhecido-368",
+    "slug": "pudim-de-pao-amanhecido-368",
     "title": "Pudim de Pão Amanhecido",
     "description": "A forma mais gostosa de não desperdiçar pão velho.",
     "tags": ["pudim", "pão", "aproveitamento"],
@@ -6693,7 +6692,7 @@
   },
   {
     "id": 378,
-    "slug": "salpicão-de-frango-378",
+    "slug": "salpicao-de-frango-378",
     "title": "Salpicão de Frango",
     "description": "Salada fria e cremosa, perfeita para festas e acompanhamentos.",
     "tags": ["salada", "frango", "festivo"],
@@ -6719,7 +6718,7 @@
   },
   {
     "id": 380,
-    "slug": "pavê-de-bombom-380",
+    "slug": "pave-de-bombom-380",
     "title": "Pavê de Bombom",
     "description": "Camadas de creme e bombons picados. Uma delícia!",
     "tags": ["pave", "bombom", "sobremesa"],
@@ -6732,8 +6731,8 @@
   },
   {
     "id": 381,
-    "slug": "bolo-de-côco-com-abacaxi-e-doce-de-leite-381",
-    "title": "Bolo de Côco com Abacaxi e Doce de Leite",
+    "slug": "bolo-de-coco-com-abacaxi-e-doce-de-leite-381",
+    "title": "Bolo de Coco com Abacaxi e Doce de Leite",
     "description": "Uma combinação tropical e irresistível para um bolo de festa.",
     "tags": ["bolo", "festivo", "tropical"],
     "prepTime": "1h 45min",
@@ -6745,7 +6744,7 @@
   },
   {
     "id": 382,
-    "slug": "mané-pelado-382",
+    "slug": "mane-pelado-382",
     "title": "Mané Pelado",
     "description": "Bolo de mandioca cremoso com queijo, típico da culinária goiana.",
     "tags": ["bolo", "mandioca", "regional"],
@@ -6771,7 +6770,7 @@
   },
   {
     "id": 384,
-    "slug": "bolo-de-milho-verde-com-requeijão-384",
+    "slug": "bolo-de-milho-verde-com-requeijao-384",
     "title": "Bolo de Milho Verde com Requeijão",
     "description": "Bolo cremoso de milho com a surpresa do requeijão no meio.",
     "tags": ["bolo", "milho", "requeijão"],
@@ -7014,7 +7013,7 @@
     "difficulty": "Fácil",
     "servings": "20 unidades",
     "ingredients": ["1 lata de leite condensado", "1 colher de manteiga", "Raspas e suco de 1 limão siciliano"],
-    "instructions": ["Faça o brigadeiro branco. Desligue o fogo e misture o suco e as raspas.", "Enrole e passe em açúcar de confeiteiro."]
+    "instructions": ["Faça o brigadeiro branco. Fora do fogo, misture o suco e as raspas.", "Enrole e passe em açúcar de confeiteiro."]
   },
   {
     "id": 403,
@@ -7209,7 +7208,7 @@
   },
   {
     "id": 417,
-    "slug": "pudim-de-pão-com-passas-417",
+    "slug": "pudim-de-pao-com-passas-417",
     "title": "Pudim de Pão com Passas",
     "description": "Pudim de pão com o toque adocicado das uvas passas.",
     "tags": ["pudim", "pão", "passas"],
@@ -7217,7 +7216,7 @@
     "calories": "290 kcal",
     "difficulty": "Fácil",
     "servings": "8 porções",
-    "ingredients": ["Massa de pudim de pão (ID 89).", "1/2 xícara de uvas passas."],
+    "ingredients": ["Pudim de pão (ID 89).", "1/2 xícara de uvas passas."],
     "instructions": ["Incorpore as passas na massa antes de assar."]
   },
   {
@@ -7248,7 +7247,7 @@
   },
   {
     "id": 420,
-    "slug": "cuca-alemã-420",
+    "slug": "cuca-alema-420",
     "title": "Cuca Alemã",
     "description": "A cuca original, com massa de pão doce e farofa crocante.",
     "tags": ["cuca", "bolo", "alemã"],
@@ -7313,7 +7312,7 @@
   },
   {
     "id": 425,
-    "slug": "muffin-de-maçã-com-canela-425",
+    "slug": "muffin-de-maca-com-canela-425",
     "title": "Muffin de Maçã com Canela",
     "description": "Muffins fofinhos e aromáticos, com pedacinhos de maçã.",
     "tags": ["muffin", "maçã", "canela"],
@@ -7430,7 +7429,7 @@
   },
   {
     "id": 434,
-    "slug": "pudim-de-pão-de-padaria-434",
+    "slug": "pudim-de-pao-de-padaria-434",
     "title": "Pudim de Pão de Padaria",
     "description": "Aquele pudim denso e delicioso, feito com sobras de pão.",
     "tags": ["pudim", "pão", "padaria"],
@@ -7534,7 +7533,7 @@
   },
   {
     "id": 442,
-    "slug": "pudim-de-pão-com-chocolate-442",
+    "slug": "pudim-de-pao-com-chocolate-442",
     "title": "Pudim de Pão com Chocolate",
     "description": "Versão chocolatuda do pudim de pão.",
     "tags": ["pudim", "pão", "chocolate"],
@@ -7542,7 +7541,7 @@
     "calories": "320 kcal",
     "difficulty": "Fácil",
     "servings": "8 porções",
-    "ingredients": ["Massa de pudim de pão (ID 89).", "Adicionar 1/2 xícara de chocolate em pó na massa."],
+    "ingredients": ["Pudim de pão (ID 89).", "Adicionar 1/2 xícara de chocolate em pó na massa."],
     "instructions": ["Bata tudo no liquidificador e asse em banho-maria."]
   },
   {
@@ -7560,7 +7559,7 @@
   },
   {
     "id": 444,
-    "slug": "bolo-de-limão-com-iogurte-444",
+    "slug": "bolo-de-limao-com-iogurte-444",
     "title": "Bolo de Limão com Iogurte",
     "description": "Bolo úmido e fofo, com a acidez do limão e a cremosidade do iogurte.",
     "tags": ["bolo", "limao", "iogurte"],
@@ -7612,7 +7611,7 @@
   },
   {
     "id": 448,
-    "slug": "torta-de-maçã-holandesa-448",
+    "slug": "torta-de-maca-holandesa-448",
     "title": "Torta de Maçã Holandesa (Dutch Apple Pie)",
     "description": "Diferente da americana, tem uma cobertura de farofa crocante (streusel) em vez de massa.",
     "tags": ["torta", "maçã", "holandesa"],
@@ -7651,7 +7650,7 @@
   },
   {
     "id": 451,
-    "slug": "macarrao-com-brócolis-e-bacon-451",
+    "slug": "macarrao-com-brocolis-e-bacon-451",
     "title": "Macarrão com Brócolis e Bacon",
     "description": "Um prato de macarrão rápido, fácil e cheio de sabor.",
     "tags": ["massa", "macarrao", "rápido"],
@@ -7664,7 +7663,7 @@
   },
   {
     "id": 452,
-    "slug": "torta-de-frango-com-requeijão-e-milho-452",
+    "slug": "torta-de-frango-com-requeijao-e-milho-452",
     "title": "Torta de Frango com Requeijão e Milho",
     "description": "Torta de liquidificador com um recheio super cremoso e popular.",
     "tags": ["torta", "frango", "requeijão"],
@@ -7755,7 +7754,7 @@
   },
   {
     "id": 459,
-    "slug": "pudim-de-maracujá-459",
+    "slug": "pudim-de-maracuja-459",
     "title": "Pudim de Maracujá",
     "description": "Pudim cremoso e azedinho, que não vai ao forno.",
     "tags": ["pudim", "maracujá", "sem-forno"],
@@ -7794,7 +7793,7 @@
   },
   {
     "id": 462,
-    "slug": "torta-de-maçã-com-massa-folhada-462",
+    "slug": "torta-de-maca-com-massa-folhada-462",
     "title": "Torta de Maçã com Massa Folhada",
     "description": "Uma torta de maçã rápida e elegante, usando massa folhada pronta.",
     "tags": ["torta", "maçã", "folhado"],
@@ -7807,7 +7806,7 @@
   },
   {
     "id": 463,
-    "slug": "brigadeiro-de-paçoca-fit-463",
+    "slug": "brigadeiro-de-pacoca-fit-463",
     "title": "Brigadeiro de Paçoca Fit",
     "description": "Brigadeiro funcional de amendoim, sem leite condensado.",
     "tags": ["brigadeiro", "paçoca", "fit"],
@@ -7885,7 +7884,7 @@
   },
   {
     "id": 469,
-    "slug": "pudim-de-pão-com-goiabada-469",
+    "slug": "pudim-de-pao-com-goiabada-469",
     "title": "Pudim de Pão com Goiabada",
     "description": "Pudim de pão com pedaços de goiabada na massa.",
     "tags": ["pudim", "pão", "goiabada"],
@@ -7924,7 +7923,7 @@
   },
   {
     "id": 472,
-    "slug": "pão-de-mel-recheado-472",
+    "slug": "pao-de-mel-recheado-472",
     "title": "Pão de Mel Recheado",
     "description": "Pão de mel com recheio de doce de leite, brigadeiro ou prestígio.",
     "tags": ["pão-de-mel", "recheado", "doce"],
@@ -8015,7 +8014,7 @@
   },
   {
     "id": 479,
-    "slug": "pão-de-queijo-recheado-com-carne-seca-479",
+    "slug": "pao-de-queijo-recheado-com-carne-seca-479",
     "title": "Pão de Queijo Recheado com Carne Seca",
     "description": "A combinação mineira e nordestina perfeita.",
     "tags": ["pao-de-queijo", "carne-seca", "regional"],
@@ -8041,7 +8040,7 @@
   },
   {
     "id": 481,
-    "slug": "bolo-de-maça-com-aveia-e-mel-481",
+    "slug": "bolo-de-maca-com-aveia-e-mel-481",
     "title": "Bolo de Maçã com Aveia e Mel",
     "description": "Bolo saudável, úmido e fofinho.",
     "tags": ["bolo", "maça", "aveia", "fit"],
@@ -8093,7 +8092,7 @@
   },
   {
     "id": 485,
-    "slug": "pão-de-queijo-com-linguiça-485",
+    "slug": "pao-de-queijo-com-linguica-485",
     "title": "Pão de Queijo com Linguiça",
     "description": "O salgado mineiro perfeito para o lanche.",
     "tags": ["pao-de-queijo", "linguiça", "regional"],
@@ -8171,7 +8170,7 @@
   },
   {
     "id": 491,
-    "slug": "pudim-de-pão-com-doce-de-leite-491",
+    "slug": "pudim-de-pao-com-doce-de-leite-491",
     "title": "Pudim de Pão com Doce de Leite",
     "description": "Pudim de pão com doce de leite na massa, para um sabor extra.",
     "tags": ["pudim", "pao", "doce-de-leite"],
@@ -8236,7 +8235,7 @@
   },
   {
     "id": 496,
-    "slug": "mousse-de-tanga-com-gengibre-496",
+    "slug": "mousse-de-manga-com-gengibre-496",
     "title": "Mousse de Manga com Gengibre",
     "description": "Mousse tropical com o frescor do gengibre.",
     "tags": ["mousse", "manga", "gengibre"],
@@ -8301,7 +8300,7 @@
   },
   {
     "id": 501,
-    "slug": "torta-de-limão-com-biscoito-de-chocolate-501",
+    "slug": "torta-de-limao-com-biscoito-de-chocolate-501",
     "title": "Torta de Limão com Biscoito de Chocolate",
     "description": "A combinação do azedinho do limão com a base de biscoito de chocolate.",
     "tags": ["torta", "limao", "chocolate"],
