@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning className="dark">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className={cn("min-h-screen font-body antialiased", inter.variable)}>
         <WelcomeScreenProvider>
           <WelcomeScreen />
