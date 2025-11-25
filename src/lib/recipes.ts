@@ -1413,7 +1413,7 @@ instructions: [
       "Bata a polpa do maracujá (com sementes) no liquidificador rapidamente, só para soltar.",
       "Coe para separar o suco das sementes (guarde algumas para decorar).",
       "Bata o suco coado com a biomassa e o adoçante até ficar bem cremoso.",
-      "Distribua em taças e decore com as sementes."
+      "Divida em taças e decore com as sementes."
     ]
   },
   {
@@ -1939,7 +1939,7 @@ instructions: [
     prepTime: "15 min",
     calories: "95 kcal por unidade",
     difficulty: "Fácil",
-real: "12 unidades",
+    servings: "12 unidades",
     ingredients: [
       "1 xícara de pasta de amendoim integral",
       "1/2 xícara de whey protein de chocolate ou baunilha",
@@ -2218,7 +2218,7 @@ instructions: [
   },
   {
     id: 88,
-    slug: "paçoca-de-colher-proteica-88",
+    slug: "pacoca-de-colher-proteica-88",
     title: "Paçoca de Colher Proteica",
     description: "Um creme de amendoim delicioso e proteico, para comer puro ou como cobertura.",
     tags: ["paçoca", "creme", "proteico"],
@@ -2696,7 +2696,7 @@ instructions: [
       "2 colheres de sopa de água (se necessário)"
     ],
     "instructions": [
-      "Bata a polpa de cupuaçu e a banana em um processador ou liquidificador potente.",
+      "Bata a polpa de cupuaçu e la banana em um processador ou liquidificador potente.",
       "Bata até obter um creme homogêneo e liso, como um sorbet.",
       "Adicione a água apenas se for difícil de bater.",
       "Sirva imediatamente."
@@ -3135,7 +3135,7 @@ instructions: [
         "Canela a gosto"
     ],
     instructions: [
-        "Amasse a banana e misture com os ovos, a pasta de amendoim e a canela.",
+        "Amasse la banana e misture com os ovos, a pasta de amendoim e a canela.",
         "Bata bem com um garfo até a massa ficar homogênea.",
         "Faça as panquecas em frigideira antiaderente em fogo baixo.",
         "Sirva com rodelas de banana."
@@ -3314,24 +3314,978 @@ instructions: [
       "Despeje em taças e leve para gelar por 2 horas."
     ]
   },
-{"id":133,"slug":"cookie-de-limao-siciliano-fit-133","title":"Cookie de Limão Siciliano Fit","description":"Cookies macios e aromáticos com o perfume inconfundível do limão siciliano.","tags":["cookie","lanche","sem glúten"],"prepTime":"25 min","calories":"110 kcal","difficulty":"Fácil","servings":"15 cookies","ingredients":["1.5 xícara de farinha de amêndoas","1/2 xícara de xilitol","1 ovo","Suco e raspas de 1 limão siciliano","2 colheres de sopa de óleo de coco"],"instructions":["Pré-aqueça o forno a 180°C.","Misture todos os ingredientes até formar uma massa.","Modele os cookies e asse por 12 a 15 minutos em forma forrada.","Deixe esfriar para firmar."]},
-{"id":134,"slug":"torta-de-maça-com-creme-de-baunilha-fit-134","title":"Torta de Maçã com Creme de Baunilha Fit","description":"Uma torta elegante com base crocante, maçãs cozidas e um creme de baunilha funcional.","tags":["torta","sobremesa","sem glúten"],"prepTime":"1h + geladeira","calories":"280 kcal","difficulty":"Média","servings":"10 fatias","ingredients":["Base: 1.5 xícara de farinha de aveia, 3 colheres de óleo de coco.","Recheio: 3 maçãs em fatias cozidas com canela.","Creme: 1 xícara de castanha de caju demolhada, 1/2 xícara de água, 3 colheres de xilitol, essência de baunilha."],"instructions":["Asse a base por 15 min a 180°C.","Bata os ingredientes do creme no liquidificador até ficar liso.","Monte a torta: base, creme e as maçãs cozidas por cima.","Leve à geladeira por 2 horas."]},
-{"id":135,"slug":"sorvete-de-chocolate-low-carb-135","title":"Sorvete de Chocolate Low Carb","description":"Um sorvete cremosíssimo de chocolate, feito com abacate, cacau e sem açúcar.","tags":["sorvete","low carb","vegano"],"prepTime":"10 min + congelamento","calories":"220 kcal","difficulty":"Fácil","servings":"4 porções","ingredients":["1 abacate maduro congelado","1/2 xícara de cacau em pó 100%","1/2 xícara de leite de coco","Adoçante xilitol ou eritritol a gosto"],"instructions":["Bata todos os ingredientes em um processador potente até virar um creme liso.","Sirva na hora ou congele por 2 horas para maior firmeza."]},
-{"id":136,"slug":"barra-de-proteina-de-chocolate-com-menta-136","title":"Barra de Proteína de Chocolate com Menta","description":"Uma barrinha refrescante e proteica que lembra o sabor de um famoso chocolate.","tags":["barra de cereal","proteico","doce"],"prepTime":"15 min + geladeira","calories":"200 kcal","difficulty":"Fácil","servings":"8 barras","ingredients":["1 xícara de tâmaras","1 xícara de nozes","2 scoops de whey de chocolate","Algumas gotas de extrato de menta"],"instructions":["Processe as tâmaras e as nozes até formar uma pasta.","Misture o whey e o extrato de menta.","Pressione em uma forma e leve à geladeira por 1 hora.","Corte em barras. Se desejar, banhe em chocolate 70% derretido."]},
-{"id":137,"slug":"creme-de-milho-funcional-137","title":"Creme de Milho Funcional","description":"Uma versão do creme de milho tradicional, mais leve, sem creme de leite e que pode ser base para tortas e sopas.","tags":["creme","salgado","vegano"],"prepTime":"20 min","calories":"150 kcal","difficulty":"Fácil","servings":"4 porções","ingredients":["2 latas de milho","1 cebola pequena","500ml de leite vegetal","Sal, noz-moscada e pimenta a gosto"],"instructions":["Refogue a cebola. Bata no liquidificador com o milho e o leite.","Leve a mistura para a panela e cozinhe em fogo baixo, mexendo, até engrossar.","Tempere com sal, pimenta e noz-moscada."]},
-{"id":138,"slug":"bolo-de-banana-invertido-fit-138","title":"Bolo de Banana Invertido Fit (Caramelizado)","description":"Um bolo lindo com bananas caramelizadas no fundo, massa integral e muito sabor.","tags":["bolo","integral","sobremesa"],"prepTime":"55 min","calories":"240 kcal","difficulty":"Média","servings":"10 fatias","ingredients":["Caramelo: 3 colheres de açúcar de coco, bananas em rodelas.","Massa: 2 ovos, 1 xícara de farinha integral, 1/2 xícara de açúcar mascavo, 1/2 xícara de leite, 1/4 xícara de óleo, 1 colher de fermento."],"instructions":["Faça o caramelo no fundo de uma forma redonda e cubra com as bananas.","Bata os ingredientes da massa e despeje sobre as bananas.","Asse a 180°C por 40 minutos. Desenforme morno."]},
-{"id":139,"slug":"muffin-salgado-de-legumes-139","title":"Muffin Salgado de Legumes","description":"Muffins práticos e nutritivos, perfeitos para um lanche rápido ou para levar na marmita.","tags":["muffin","salgado","lanche"],"prepTime":"40 min","calories":"130 kcal","difficulty":"Fácil","servings":"12 muffins","ingredients":["2 ovos","1 xícara de leite","1/4 xícara de óleo","1.5 xícara de farinha de aveia","1 xícara de legumes picados (cenoura, abobrinha, brócolis)","1/2 xícara de queijo ralado","Sal e temperos a gosto","1 colher de sopa de fermento"],"instructions":["Misture os líquidos e os ovos. Adicione os secos.","Incorpore os legumes e o queijo.","Distribua em forminhas e asse a 180°C por 25 minutos."]},
-{"id":140,"slug":"torta-mousse-de-maracuja-low-carb-140","title":"Torta Mousse de Maracujá Low Carb","description":"Uma torta gelada com base de coco e um mousse de maracujá aerado e sem açúcar.","tags":["torta","mousse","low carb"],"prepTime":"20 min + geladeira","calories":"290 kcal","difficulty":"Fácil","servings":"8 fatias","ingredients":["Base: 2 xícaras de coco ralado sem açúcar, 3 colheres de óleo de coco.","Mousse: 1 lata de creme de leite, 1 xícara de polpa de maracujá, 1/2 xícara de xilitol, 1 gelatina incolor."],"instructions":["Misture os ingredientes da base e forre uma forma.","Bata os ingredientes do mousse no liquidificador (com a gelatina preparada).","Despeje sobre a base e leve para gelar por 4 horas."]},
-{"id":141,"slug":"panqueca-verde-com-frango-141","title":"Panqueca Verde com Frango","description":"Panquecas nutritivas com massa de couve ou espinafre, recheadas com frango cremoso.","tags":["panqueca","salgado","proteico"],"prepTime":"30 min","calories":"350 kcal","difficulty":"Fácil","servings":"2 porções","ingredients":["Massa: 1 ovo, 1 folha de couve, 4 colheres de tapioca, 1/4 xícara de água.","Recheio: 200g de frango desfiado refogado com requeijão light."],"instructions":["Bata os ingredientes da massa no liquidificador.","Faça os discos de panqueca em frigideira antiaderente.","Recheie com o frango cremoso e enrole."]},
-{"id":142,"slug":"doce-de-abobora-com-gengibre-142","title":"Doce de Abóbora com Gengibre","description":"Uma versão do clássico doce de abóbora com um toque picante e funcional do gengibre.","tags":["doce","vegano","festa junina"],"prepTime":"45 min","calories":"140 kcal","difficulty":"Fácil","servings":"8 porções","ingredients":["500g de abóbora em cubos","1/2 xícara de açúcar de coco","1 colher de sopa de gengibre fresco ralado","Cravos a gosto"],"instructions":["Cozinhe a abóbora com o açúcar, gengibre e cravos em fogo baixo.","Quando estiver macia, amasse com um garfo.","Cozinhe mais um pouco até dar ponto de doce."]},
-{"id":143,"slug":"bolo-de-ameixa-com-nozes-143","title":"Bolo de Ameixa com Nozes","description":"Um bolo denso e úmido, com o doce da ameixa e a crocância das nozes.","tags":["bolo","integral","lanche"],"prepTime":"1h","calories":"260 kcal","difficulty":"Fácil","servings":"12 fatias","ingredients":["1 xícara de ameixas secas picadas","1 xícara de nozes picadas","3 ovos","1 xícara de açúcar mascavo","1/2 xícara de óleo","2 xícaras de farinha integral","1 xícara de leite","1 colher de sopa de fermento"],"instructions":["Bata ovos, açúcar e óleo. Adicione leite e farinha.","Incorpore as ameixas, nozes e o fermento.","Asse em forma untada a 180°C por 45 minutos."]},
-{"id":144,"slug":"trufa-de-damasco-com-coco-144","title":"Trufa de Damasco com Coco","description":"Docinhos elegantes com o azedinho do damasco e a doçura do coco.","tags":["trufa","vegano","rápido"],"prepTime":"10 min + geladeira","calories":"75 kcal","difficulty":"Fácil","servings":"15 trufas","ingredients":["1 xícara de damascos secos","1 xícara de coco ralado sem açúcar","3 colheres de sopa de óleo de coco"],"instructions":["Processe os damascos e o coco até formar uma massa.","Adicione o óleo de coco para dar liga.","Faça bolinhas, passe no coco ralado e leve para gelar."]},
-{"id":145,"slug":"pao-de-mel-fit-145","title":"Pão de Mel Fit","description":"O clássico pão de mel em uma versão com farinhas integrais, mel e especiarias, coberto com chocolate amargo.","tags":["doce","integral","festivo"],"prepTime":"50 min","calories":"180 kcal","difficulty":"Média","servings":"15 unidades","ingredients":["Massa: 2 ovos, 1/2 xícara de mel, 1/2 xícara de açúcar mascavo, 1 xícara de leite, 1/2 xícara de óleo, 2 xícaras de farinha integral, 1 colher de chá de canela, 1 colher de chá de cravo em pó, 1 colher de sopa de fermento.","Cobertura: 200g de chocolate 70%."],"instructions":["Bata os líquidos com os açúcares. Adicione os secos.","Asse em forma retangular a 180°C por 30 min.","Deixe esfriar, corte em quadrados e banhe no chocolate derretido."]},
-{"id":146,"slug":"gelado-de-banana-e-morango-146","title":"Gelado de Banana e Morango","description":"A combinação clássica em um 'nice cream' fácil, rápido e super saudável.","tags":["sorvete","vegano","frutas"],"prepTime":"5 min","calories":"160 kcal","difficulty":"Fácil","servings":"2 porções","ingredients":["2 bananas congeladas","1 xícara de morangos congelados","Um pouco de água ou leite vegetal para ajudar a bater"],"instructions":["Bata tudo em um processador potente até virar um creme.","Sirva imediatamente."]},
-{"id":147,"slug":"bolo-de-cenoura-com-brigadeiro-fit-147","title":"Bolo de Cenoura com Brigadeiro Fit","description":"O melhor dos dois mundos: bolo de cenoura funcional coberto com um cremoso brigadeiro de biomassa.","tags":["bolo","sobremesa","funcional"],"prepTime":"1h10","calories":"290 kcal","difficulty":"Média","servings":"12 fatias","ingredients":["Bolo: Use a receita 'Bolo de Cenoura Funcional' (ID 6).","Cobertura: Use a receita 'Brigadeiro de Biomassa' (ID 12)."],"instructions":["Prepare o bolo de cenoura e deixe esfriar.","Prepare o brigadeiro de biomassa, deixando-o um pouco mais mole que o ponto de enrolar.","Cubra o bolo com o brigadeiro."]},
-{"id":148,"slug":"biscoito-salgado-de-ervas-finas-148","title":"Biscoito Salgado de Ervas Finas","description":"Biscoitinhos crocantes e aromáticos, feitos com farinha de grão de bico e um mix de ervas.","tags":["biscoito","salgado","vegano","sem glúten"],"prepTime":"30 min","calories":"40 kcal","difficulty":"Fácil","servings":"Aprox. 30","ingredients":["1 xícara de farinha de grão de bico","1/2 xícara de polvilho doce","1/4 xícara de azeite","1/4 xícara de água","1 colher de sopa de mix de ervas finas secas","Sal a gosto"],"instructions":["Misture todos os ingredientes até formar uma massa.","Abra com um rolo e corte os biscoitos.","Asse a 180°C por 15-20 minutos, até dourarem."]},
-{"id":149,"slug":"torta-de-maçã-holandesa-fit-149","title":"Torta de Maçã Holandesa Fit (Apple Crumble Pie)","description":"Uma torta com recheio cremoso de maçãs e uma cobertura crocante de farofa de aveia.","tags":["torta","sobremesa","integral"],"prepTime":"1h15","calories":"270 kcal","difficulty":"Média","servings":"10 fatias","ingredients":["Base: 1.5 xícara de farinha integral, 4 colheres de óleo de coco, 2 colheres de água.","Recheio: 4 maçãs em fatias, suco de 1 limão, canela.","Farofa: 1 xícara de aveia, 1/2 xícara de açúcar mascavo, 1/4 xícara de óleo de coco."],"instructions":["Asse a base por 15 minutos.","Recheie com as maçãs.","Cubra com a farofa (misture os ingredientes da farofa com as mãos).","Volte ao forno por mais 35 minutos."]},
-{"id":150,"slug":"muffin-de-banana-com-chocolate-70-150","title":"Muffin de Banana com Chocolate 70%","description":"Muffins úmidos com o doce da banana e o amargo do chocolate, uma combinação perfeita.","tags":["muffin","lanche","integral"],"prepTime":"35 min","calories":"180 kcal","difficulty":"Fácil","servings":"12 muffins","ingredients":["2 bananas amassadas","2 ovos","1/2 xícara de açúcar mascavo","1/4 xícara de óleo","1.5 xícara de farinha integral","1/2 xícara de chocolate 70% picado","1 colher de sopa de fermento"],"instructions":["Misture os líquidos e o açúcar. Adicione a farinha e o fermento.","Incorpore a banana e o chocolate.","Asse em forminhas a 180°C por 25 minutos."]}
+  {
+    "id": 133,
+    "slug": "cookie-de-limao-siciliano-fit-133",
+    "title": "Cookie de Limão Siciliano Fit",
+    "description": "Cookies macios e aromáticos com o perfume inconfundível do limão siciliano.",
+    "tags": ["cookie", "lanche", "sem glúten"],
+    "prepTime": "25 min",
+    "calories": "110 kcal",
+    "difficulty": "Fácil",
+    "servings": "15 cookies",
+    "ingredients": [
+      "1.5 xícara de farinha de amêndoas",
+      "1/2 xícara de xilitol",
+      "1 ovo",
+      "Suco e raspas de 1 limão siciliano",
+      "2 colheres de sopa de óleo de coco"
+    ],
+    "instructions": [
+      "Pré-aqueça o forno a 180°C.",
+      "Misture todos os ingredientes até formar uma massa.",
+      "Modele os cookies e asse por 12 a 15 minutos em forma forrada.",
+      "Deixe esfriar para firmar."
+    ]
+  },
+  {
+    "id": 134,
+    "slug": "torta-de-maça-com-creme-de-baunilha-fit-134",
+    "title": "Torta de Maçã com Creme de Baunilha Fit",
+    "description": "Uma torta elegante com base crocante, maçãs cozidas e um creme de baunilha funcional.",
+    "tags": ["torta", "sobremesa", "sem glúten"],
+    "prepTime": "1h + geladeira",
+    "calories": "280 kcal",
+    "difficulty": "Média",
+    "servings": "10 fatias",
+    "ingredients": [
+      "Base: 1.5 xícara de farinha de aveia, 3 colheres de óleo de coco.",
+      "Recheio: 3 maçãs em fatias cozidas com canela.",
+      "Creme: 1 xícara de castanha de caju demolhada, 1/2 xícara de água, 3 colheres de xilitol, essência de baunilha."
+    ],
+    "instructions": [
+      "Asse a base por 15 min a 180°C.",
+      "Bata os ingredientes do creme no liquidificador até ficar liso.",
+      "Monte a torta: base, creme e as maçãs cozidas por cima.",
+      "Leve à geladeira por 2 horas."
+    ]
+  },
+  {
+    "id": 135,
+    "slug": "sorvete-de-chocolate-low-carb-135",
+    "title": "Sorvete de Chocolate Low Carb",
+    "description": "Um sorvete cremosíssimo de chocolate, feito com abacate, cacau e sem açúcar.",
+    "tags": ["sorvete", "low carb", "vegano"],
+    "prepTime": "10 min + congelamento",
+    "calories": "220 kcal",
+    "difficulty": "Fácil",
+    "servings": "4 porções",
+    "ingredients": [
+      "1 abacate maduro congelado",
+      "1/2 xícara de cacau em pó 100%",
+      "1/2 xícara de leite de coco",
+      "Adoçante xilitol ou eritritol a gosto"
+    ],
+    "instructions": [
+      "Bata todos os ingredientes em um processador potente até virar um creme liso.",
+      "Sirva na hora ou congele por 2 horas para maior firmeza."
+    ]
+  },
+  {
+    "id": 136,
+    "slug": "barra-de-proteina-de-chocolate-com-menta-136",
+    "title": "Barra de Proteína de Chocolate com Menta",
+    "description": "Uma barrinha refrescante e proteica que lembra o sabor de um famoso chocolate.",
+    "tags": ["barra de cereal", "proteico", "doce"],
+    "prepTime": "15 min + geladeira",
+    "calories": "200 kcal",
+    "difficulty": "Fácil",
+    "servings": "8 barras",
+    "ingredients": [
+      "1 xícara de tâmaras",
+      "1 xícara de nozes",
+      "2 scoops de whey de chocolate",
+      "Algumas gotas de extrato de menta"
+    ],
+    "instructions": [
+      "Processe as tâmaras e as nozes até formar uma pasta.",
+      "Misture o whey e o extrato de menta.",
+      "Pressione em uma forma e leve à geladeira por 1 hora.",
+      "Corte em barras. Se desejar, banhe em chocolate 70% derretido."
+    ]
+  },
+  {
+    "id": 137,
+    "slug": "creme-de-milho-funcional-137",
+    "title": "Creme de Milho Funcional",
+    "description": "Uma versão do creme de milho tradicional, mais leve, sem creme de leite e que pode ser base para tortas e sopas.",
+    "tags": ["creme", "salgado", "vegano"],
+    "prepTime": "20 min",
+    "calories": "150 kcal",
+    "difficulty": "Fácil",
+    "servings": "4 porções",
+    "ingredients": [
+      "2 latas de milho",
+      "1 cebola pequena",
+      "500ml de leite vegetal",
+      "Sal, noz-moscada e pimenta a gosto"
+    ],
+    "instructions": [
+      "Refogue a cebola. Bata no liquidificador com o milho e o leite.",
+      "Leve a mistura para a panela e cozinhe em fogo baixo, mexendo, até engrossar.",
+      "Tempere com sal, pimenta e noz-moscada."
+    ]
+  },
+  {
+    "id": 138,
+    "slug": "bolo-de-banana-invertido-fit-138",
+    "title": "Bolo de Banana Invertido Fit (Caramelizado)",
+    "description": "Um bolo lindo com bananas caramelizadas no fundo, massa integral e muito sabor.",
+    "tags": ["bolo", "integral", "sobremesa"],
+    "prepTime": "55 min",
+    "calories": "240 kcal",
+    "difficulty": "Média",
+    "servings": "10 fatias",
+    "ingredients": [
+      "Caramelo: 3 colheres de açúcar de coco, bananas em rodelas.",
+      "Massa: 2 ovos, 1 xícara de farinha integral, 1/2 xícara de açúcar mascavo, 1/2 xícara de leite, 1/4 xícara de óleo, 1 colher de fermento."
+    ],
+    "instructions": [
+      "Faça o caramelo no fundo de uma forma redonda e cubra com as bananas.",
+      "Bata os ingredientes da massa e despeje sobre as bananas.",
+      "Asse a 180°C por 40 minutos. Desenforme morno."
+    ]
+  },
+  {
+    "id": 139,
+    "slug": "muffin-salgado-de-legumes-139",
+    "title": "Muffin Salgado de Legumes",
+    "description": "Muffins práticos e nutritivos, perfeitos para um lanche rápido ou para levar na marmita.",
+    "tags": ["muffin", "salgado", "lanche"],
+    "prepTime": "40 min",
+    "calories": "130 kcal",
+    "difficulty": "Fácil",
+    "servings": "12 muffins",
+    "ingredients": [
+      "2 ovos",
+      "1 xícara de leite",
+      "1/4 xícara de óleo",
+      "1.5 xícara de farinha de aveia",
+      "1 xícara de legumes picados (cenoura, abobrinha, brócolis)",
+      "1/2 xícara de queijo ralado",
+      "Sal e temperos a gosto",
+      "1 colher de sopa de fermento"
+    ],
+    "instructions": [
+      "Misture os líquidos e os ovos. Adicione os secos.",
+      "Incorpore os legumes e o queijo.",
+      "Distribua em forminhas e asse a 180°C por 25 minutos."
+    ]
+  },
+  {
+    "id": 140,
+    "slug": "torta-mousse-de-maracuja-low-carb-140",
+    "title": "Torta Mousse de Maracujá Low Carb",
+    "description": "Uma torta gelada com base de coco e um mousse de maracujá aerado e sem açúcar.",
+    "tags": ["torta", "mousse", "low carb"],
+    "prepTime": "20 min + geladeira",
+    "calories": "290 kcal",
+    "difficulty": "Fácil",
+    "servings": "8 fatias",
+    "ingredients": [
+      "Base: 2 xícaras de coco ralado sem açúcar, 3 colheres de óleo de coco.",
+      "Mousse: 1 lata de creme de leite, 1 xícara de polpa de maracujá, 1/2 xícara de xilitol, 1 gelatina incolor."
+    ],
+    "instructions": [
+      "Misture os ingredientes da base e forre uma forma.",
+      "Bata os ingredientes do mousse no liquidificador (com a gelatina preparada).",
+      "Despeje sobre a base e leve para gelar por 4 horas."
+    ]
+  },
+  {
+    "id": 141,
+    "slug": "panqueca-verde-com-frango-141",
+    "title": "Panqueca Verde com Frango",
+    "description": "Panquecas nutritivas com massa de couve ou espinafre, recheadas com frango cremoso.",
+    "tags": ["panqueca", "salgado", "proteico"],
+    "prepTime": "30 min",
+    "calories": "350 kcal",
+    "difficulty": "Fácil",
+    "servings": "2 porções",
+    "ingredients": [
+      "Massa: 1 ovo, 1 folha de couve, 4 colheres de tapioca, 1/4 xícara de água.",
+      "Recheio: 200g de frango desfiado refogado com requeijão light."
+    ],
+    "instructions": [
+      "Bata os ingredientes da massa no liquidificador.",
+      "Faça os discos de panqueca em frigideira antiaderente.",
+      "Recheie com o frango cremoso e enrole."
+    ]
+  },
+  {
+    "id": 142,
+    "slug": "doce-de-abobora-com-gengibre-142",
+    "title": "Doce de Abóbora com Gengibre",
+    "description": "Uma versão do clássico doce de abóbora com um toque picante e funcional do gengibre.",
+    "tags": ["doce", "vegano", "festa junina"],
+    "prepTime": "45 min",
+    "calories": "140 kcal",
+    "difficulty": "Fácil",
+    "servings": "8 porções",
+    "ingredients": [
+      "500g de abóbora em cubos",
+      "1/2 xícara de açúcar de coco",
+      "1 colher de sopa de gengibre fresco ralado",
+      "Cravos a gosto"
+    ],
+    "instructions": [
+      "Cozinhe a abóbora com o açúcar, gengibre e cravos em fogo baixo.",
+      "Quando estiver macia, amasse com um garfo.",
+      "Cozinhe mais um pouco até dar ponto de doce."
+    ]
+  },
+  {
+    "id": 143,
+    "slug": "bolo-de-ameixa-com-nozes-143",
+    "title": "Bolo de Ameixa com Nozes",
+    "description": "Um bolo denso e úmido, com o doce da ameixa e a crocância das nozes.",
+    "tags": ["bolo", "integral", "lanche"],
+    "prepTime": "1h",
+    "calories": "260 kcal",
+    "difficulty": "Fácil",
+    "servings": "12 fatias",
+    "ingredients": [
+      "1 xícara de ameixas secas picadas",
+      "1 xícara de nozes picadas",
+      "3 ovos",
+      "1 xícara de açúcar mascavo",
+      "1/2 xícara de óleo",
+      "2 xícaras de farinha integral",
+      "1 xícara de leite",
+      "1 colher de sopa de fermento"
+    ],
+    "instructions": [
+      "Bata ovos, açúcar e óleo. Adicione leite e farinha.",
+      "Incorpore as ameixas, nozes e o fermento.",
+      "Asse em forma untada a 180°C por 45 minutos."
+    ]
+  },
+  {
+    "id": 144,
+    "slug": "trufa-de-damasco-com-coco-144",
+    "title": "Trufa de Damasco com Coco",
+    "description": "Docinhos elegantes com o azedinho do damasco e a doçura do coco.",
+    "tags": ["trufa", "vegano", "rápido"],
+    "prepTime": "10 min + geladeira",
+    "calories": "75 kcal",
+    "difficulty": "Fácil",
+    "servings": "15 trufas",
+    "ingredients": [
+      "1 xícara de damascos secos",
+      "1 xícara de coco ralado sem açúcar",
+      "3 colheres de sopa de óleo de coco"
+    ],
+    "instructions": [
+      "Processe os damascos e o coco até formar uma massa.",
+      "Adicione o óleo de coco para dar liga.",
+      "Faça bolinhas, passe no coco ralado e leve para gelar."
+    ]
+  },
+  {
+    "id": 145,
+    "slug": "pao-de-mel-fit-145",
+    "title": "Pão de Mel Fit",
+    "description": "O clássico pão de mel em uma versão com farinhas integrais, mel e especiarias, coberto com chocolate amargo.",
+    "tags": ["doce", "integral", "festivo"],
+    "prepTime": "50 min",
+    "calories": "180 kcal",
+    "difficulty": "Média",
+    "servings": "15 unidades",
+    "ingredients": [
+      "Massa: 2 ovos, 1/2 xícara de mel, 1/2 xícara de açúcar mascavo, 1 xícara de leite, 1/2 xícara de óleo, 2 xícaras de farinha integral, 1 colher de chá de canela, 1 colher de chá de cravo em pó, 1 colher de sopa de fermento.",
+      "Cobertura: 200g de chocolate 70%."
+    ],
+    "instructions": [
+      "Bata os líquidos com os açúcares. Adicione os secos.",
+      "Asse em forma retangular a 180°C por 30 min.",
+      "Deixe esfriar, corte em quadrados e banhe no chocolate derretido."
+    ]
+  },
+  {
+    "id": 146,
+    "slug": "gelado-de-banana-e-morango-146",
+    "title": "Gelado de Banana e Morango",
+    "description": "A combinação clássica em um 'nice cream' fácil, rápido e super saudável.",
+    "tags": ["sorvete", "vegano", "frutas"],
+    "prepTime": "5 min",
+    "calories": "160 kcal",
+    "difficulty": "Fácil",
+    "servings": "2 porções",
+    "ingredients": [
+      "2 bananas congeladas",
+      "1 xícara de morangos congelados",
+      "Um pouco de água ou leite vegetal para ajudar a bater"
+    ],
+    "instructions": [
+      "Bata tudo em um processador potente até virar um creme.",
+      "Sirva imediatamente."
+    ]
+  },
+  {
+    "id": 147,
+    "slug": "bolo-de-cenoura-com-brigadeiro-fit-147",
+    "title": "Bolo de Cenoura com Brigadeiro Fit",
+    "description": "O melhor dos dois mundos: bolo de cenoura funcional coberto com um cremoso brigadeiro de biomassa.",
+    "tags": ["bolo", "sobremesa", "funcional"],
+    "prepTime": "1h10",
+    "calories": "290 kcal",
+    "difficulty": "Média",
+    "servings": "12 fatias",
+    "ingredients": [
+      "Bolo: Use a receita 'Bolo de Cenoura Funcional' (ID 6).",
+      "Cobertura: Use a receita 'Brigadeiro de Biomassa' (ID 12)."
+    ],
+    "instructions": [
+      "Prepare o bolo de cenoura e deixe esfriar.",
+      "Prepare o brigadeiro de biomassa, deixando-o um pouco mais mole que o ponto de enrolar.",
+      "Cubra o bolo com o brigadeiro."
+    ]
+  },
+  {
+    "id": 148,
+    "slug": "biscoito-salgado-de-ervas-finas-148",
+    "title": "Biscoito Salgado de Ervas Finas",
+    "description": "Biscoitinhos crocantes e aromáticos, feitos com farinha de grão de bico e um mix de ervas.",
+    "tags": ["biscoito", "salgado", "vegano", "sem glúten"],
+    "prepTime": "30 min",
+    "calories": "40 kcal",
+    "difficulty": "Fácil",
+    "servings": "Aprox. 30",
+    "ingredients": [
+      "1 xícara de farinha de grão de bico",
+      "1/2 xícara de polvilho doce",
+      "1/4 xícara de azeite",
+      "1/4 xícara de água",
+      "1 colher de sopa de mix de ervas finas secas",
+      "Sal a gosto"
+    ],
+    "instructions": [
+      "Misture todos os ingredientes até formar uma massa.",
+      "Abra com um rolo e corte os biscoitos.",
+      "Asse a 180°C por 15-20 minutos, até dourarem."
+    ]
+  },
+  {
+    "id": 149,
+    "slug": "torta-de-maçã-holandesa-fit-149",
+    "title": "Torta de Maçã Holandesa Fit (Apple Crumble Pie)",
+    "description": "Uma torta com recheio cremoso de maçãs e uma cobertura crocante de farofa de aveia.",
+    "tags": ["torta", "sobremesa", "integral"],
+    "prepTime": "1h15",
+    "calories": "270 kcal",
+    "difficulty": "Média",
+    "servings": "10 fatias",
+    "ingredients": [
+      "Base: 1.5 xícara de farinha integral, 4 colheres de óleo de coco, 2 colheres de água.",
+      "Recheio: 4 maçãs em fatias, suco de 1 limão, canela.",
+      "Farofa: 1 xícara de aveia, 1/2 xícara de açúcar mascavo, 1/4 xícara de óleo de coco."
+    ],
+    "instructions": [
+      "Asse a base por 15 minutos.",
+      "Recheie com as maçãs.",
+      "Cubra com a farofa (misture os ingredientes da farofa com as mãos).",
+      "Volte ao forno por mais 35 minutos."
+    ]
+  },
+  {
+    "id": 150,
+    "slug": "muffin-de-banana-com-chocolate-70-150",
+    "title": "Muffin de Banana com Chocolate 70%",
+    "description": "Muffins úmidos com o doce da banana e o amargo do chocolate, uma combinação perfeita.",
+    "tags": ["muffin", "lanche", "integral"],
+    "prepTime": "35 min",
+    "calories": "180 kcal",
+    "difficulty": "Fácil",
+    "servings": "12 muffins",
+    "ingredients": [
+      "2 bananas amassadas",
+      "2 ovos",
+      "1/2 xícara de açúcar mascavo",
+      "1/4 xícara de óleo",
+      "1.5 xícara de farinha integral",
+      "1/2 xícara de chocolate 70% picado",
+      "1 colher de sopa de fermento"
+    ],
+    "instructions": [
+      "Misture os líquidos e o açúcar. Adicione a farinha e o fermento.",
+      "Incorpore a banana e o chocolate.",
+      "Asse em forminhas a 180°C por 25 minutos."
+    ]
+  },
+  {
+    "id": 151,
+    "slug": "bolo-de-prestigio-fit-151",
+    "title": "Bolo de Prestígio Fit",
+    "description": "A união de coco e chocolate em um bolo molhadinho e delicioso, sem culpa.",
+    "tags": ["bolo", "sem glúten", "sobremesa"],
+    "prepTime": "1h 10min",
+    "calories": "290 kcal",
+    "difficulty": "Média",
+    "servings": "12 fatias",
+    "ingredients": [
+      "Bolo: 3 ovos, 1 xícara de farinha de amêndoas, 1/2 xícara de cacau em pó, 1/2 xícara de xilitol, 100ml de leite de coco.",
+      "Recheio: 1 xícara de coco ralado sem açúcar, 1/2 xícara de leite de coco, 2 colheres de xilitol.",
+      "Cobertura: Ganache de chocolate 70%."
+    ],
+    "instructions": [
+      "Bata os ingredientes do bolo e asse a 180°C por 30 minutos. Deixe esfriar.",
+      "Cozinhe os ingredientes do recheio em fogo baixo até engrossar. Deixe esfriar.",
+      "Corte o bolo ao meio, recheie e cubra com a ganache."
+    ]
+  },
+  {
+    "id": 152,
+    "slug": "waffle-de-aveia-com-frutas-152",
+    "title": "Waffle de Aveia com Frutas",
+    "description": "Waffles crocantes por fora e macios por dentro, para um café da manhã de hotel em casa.",
+    "tags": ["waffle", "café da manhã", "integral"],
+    "prepTime": "20 min",
+    "calories": "250 kcal",
+    "difficulty": "Fácil",
+    "servings": "4 waffles",
+    "ingredients": [
+      "1 xícara de farinha de aveia",
+      "1 ovo",
+      "3/4 xícara de leite",
+      "1 colher de sopa de óleo de coco",
+      "1 colher de sopa de açúcar de coco",
+      "1 colher de chá de fermento"
+    ],
+    "instructions": [
+      "Misture todos os ingredientes.",
+      "Despeje em uma máquina de waffle pré-aquecida e cozinhe até dourar.",
+      "Sirva com frutas frescas, mel ou iogurte."
+    ]
+  },
+  {
+    "id": 153,
+    "slug": "mousse-de-tangerina-funcional-153",
+    "title": "Mousse de Tangerina Funcional",
+    "description": "Um mousse leve e cítrico, com o sabor marcante da tangerina e textura de iogurte.",
+    "tags": ["mousse", "sobremesa", "light"],
+    "prepTime": "10 min + geladeira",
+    "calories": "140 kcal",
+    "difficulty": "Fácil",
+    "servings": "4 porções",
+    "ingredients": [
+      "1 xícara de suco de tangerina natural",
+      "1 pote de iogurte natural",
+      "1/2 envelope de gelatina incolor",
+      "Adoçante a gosto"
+    ],
+    "instructions": [
+      "Bata o suco, iogurte e adoçante no liquidificador.",
+      "Hidrate e dissolva a gelatina, e adicione à mistura, batendo mais um pouco.",
+      "Distribua em taças e leve para gelar por 2 horas."
+    ]
+  },
+  {
+    "id": 154,
+    "slug": "crumble-de-maca-com-canela-154",
+    "title": "Crumble de Maçã com Canela",
+    "description": "Maçãs macias e quentinhas com uma farofa crocante por cima. Sobremesa perfeita para dias frios.",
+    "tags": ["sobremesa", "frutas", "integral"],
+    "prepTime": "40 min",
+    "calories": "220 kcal",
+    "difficulty": "Fácil",
+    "servings": "6 porções",
+    "ingredients": [
+      "Recheio: 4 maçãs em cubos, suco de 1/2 limão, canela.",
+      "Farofa (Crumble): 1 xícara de aveia, 1/2 xícara de farinha de amêndoas, 1/2 xícara de açúcar mascavo, 1/4 xícara de óleo de coco."
+    ],
+    "instructions": [
+      "Distribua as maçãs temperadas com limão e canela em um refratário.",
+      "Misture os ingredientes da farofa com as mãos e cubra as maçãs.",
+      "Asse a 180°C por 30 minutos, ou até dourar.",
+      "Sirva morno, puro ou com uma bola de sorvete de creme fit."
+    ]
+  },
+  {
+    "id": 155,
+    "slug": "bombom-de-uva-na-travessa-fit-155",
+    "title": "Bombom de Uva na Travessa Fit",
+    "description": "Uma sobremesa refrescante com creme branco funcional, uvas e cobertura de chocolate.",
+    "tags": ["doce", "sobremesa", "frutas"],
+    "prepTime": "25 min + geladeira",
+    "calories": "260 kcal",
+    "difficulty": "Média",
+    "servings": "8 porções",
+    "ingredients": [
+      "Creme: 1 xícara de inhame cozido e amassado, 1/2 xícara de leite de coco, 3 colheres de xilitol.",
+      "Recheio: 2 xícaras de uvas sem semente (Thompson ou Itália).",
+      "Cobertura: 150g de chocolate 70% derretido."
+    ],
+    "instructions": [
+      "Bata os ingredientes do creme no liquidificador até ficar liso.",
+      "Em uma travessa, coloque o creme, espalhe as uvas por cima.",
+      "Cubra com o chocolate derretido.",
+      "Leve para gelar por 2 horas."
+    ]
+  },
+  {
+    "id": 156,
+    "slug": "bolo-de-fuba-com-laranja-fit-156",
+    "title": "Bolo de Fubá com Laranja Fit",
+    "description": "A combinação clássica do fubá com o azedinho da laranja em um bolo fofo e saudável.",
+    "tags": ["bolo", "festa junina", "lanche"],
+    "prepTime": "50 min",
+    "calories": "190 kcal",
+    "difficulty": "Fácil",
+    "servings": "12 fatias",
+    "ingredients": [
+      "1 xícara de fubá",
+      "1 xícara de farinha de aveia",
+      "1 xícara de açúcar demerara",
+      "3 ovos",
+      "1/2 xícara de óleo de girassol",
+      "1 xícara de suco de laranja",
+      "1 colher de sopa de fermento"
+    ],
+    "instructions": [
+      "Bata os líquidos, ovos e açúcar no liquidificador.",
+      "Em uma tigela, misture as farinhas e o fermento.",
+      "Adicione a mistura líquida aos secos e incorpore.",
+      "Asse em forma untada a 180°C por 40 minutos."
+    ]
+  },
+  {
+    "id": 157,
+    "slug": "barrinha-de-quinoa-com-frutas-secas-157",
+    "title": "Barrinha de Quinoa com Frutas Secas",
+    "description": "Barrinhas energéticas e crocantes, feitas com quinoa em flocos, sementes e frutas.",
+    "tags": ["barra de cereal", "vegano", "sem glúten"],
+    "prepTime": "15 min + geladeira",
+    "calories": "180 kcal",
+    "difficulty": "Fácil",
+    "servings": "10 barrinhas",
+    "ingredients": [
+      "1 xícara de quinoa em flocos",
+      "1/2 xícara de sementes (girassol, abóbora)",
+      "1/2 xícara de frutas secas picadas (damasco, uva passa)",
+      "1/2 xícara de melado de cana ou pasta de tâmaras"
+    ],
+    "instructions": [
+      "Misture todos os ingredientes até formar uma massa pegajosa.",
+      "Pressione em uma forma forrada e leve à geladeira por 2 horas.",
+      "Corte em barrinhas."
+    ]
+  },
+  {
+    "id": 158,
+    "slug": "cheesecake-de-goiabada-fit-158",
+    "title": "Cheesecake de Goiabada Fit (Romeu e Julieta)",
+    "description": "Um cheesecake cremoso com base de castanhas e uma generosa cobertura de goiabada cremosa.",
+    "tags": ["cheesecake", "torta", "sobremesa"],
+    "prepTime": "30 min + 4h de geladeira",
+    "calories": "330 kcal",
+    "difficulty": "Média",
+    "servings": "10 fatias",
+    "ingredients": [
+      "Base: 1.5 xícara de amêndoas, 4 tâmaras.",
+      "Creme: 400g de cream cheese light, 1/2 xícara de xilitol, suco de 1/2 limão.",
+      "Cobertura: 200g de goiabada light derretida com um pouco de água."
+    ],
+    "instructions": [
+      "Processe a base e forre uma forma de fundo removível.",
+      "Bata os ingredientes do creme e despeje sobre a base.",
+      "Leve para gelar por 4 horas.",
+      "Cubra com a goiabada derretida e sirva."
+    ]
+  },
+  {
+    "id": 159,
+    "slug": "muffin-de-limao-com-blueberry-159",
+    "title": "Muffin de Limão com Blueberry (Mirtilo)",
+    "description": "Muffins com a combinação perfeita do azedinho do limão e o doce dos mirtilos.",
+    "tags": ["muffin", "lanche", "frutas"],
+    "prepTime": "35 min",
+    "calories": "160 kcal",
+    "difficulty": "Fácil",
+    "servings": "12 muffins",
+    "ingredients": [
+      "2 xícaras de farinha de aveia",
+      "3/4 xícara de açúcar demerara",
+      "2 ovos",
+      "1/2 xícara de iogurte natural",
+      "1/4 xícara de óleo de coco",
+      "Suco e raspas de 1 limão",
+      "1 xícara de mirtilos (blueberries)",
+      "1 colher de sopa de fermento"
+    ],
+    "instructions": [
+      "Misture os líquidos, ovos e açúcar. Adicione os secos.",
+      "Incorpore os mirtilos (passados na farinha) delicadamente.",
+      "Asse em forminhas a 180°C por 25 minutos."
+    ]
+  },
+  {
+    "id": 160,
+    "slug": "crepioca-de-frango-com-requeijao-160",
+    "title": "Crepioca de Frango com Requeijão",
+    "description": "Uma opção de jantar ou pós-treino rápido, proteico e delicioso.",
+    "tags": ["salgado", "proteico", "rápido"],
+    "prepTime": "15 min",
+    "calories": "320 kcal",
+    "difficulty": "Fácil",
+    "servings": "1 porção",
+    "ingredients": [
+      "Massa: 1 ovo, 2 colheres de sopa de goma de tapioca, sal.",
+      "Recheio: 100g de frango desfiado, 2 colheres de sopa de requeijão light, cheiro-verde."
+    ],
+    "instructions": [
+      "Bata os ingredientes da massa e faça o disco na frigideira.",
+      "Misture os ingredientes do recheio e aqueça.",
+      "Recheie a crepioca e dobre ao meio."
+    ]
+  },
+  {
+    "id": 161,
+    "slug": "sorvete-de-abacaxi-com-agua-de-coco-161",
+    "title": "Sorvete de Abacaxi com Água de Coco",
+    "description": "Um sorbet (picolé) super refrescante e hidratante, perfeito para o verão.",
+    "tags": ["sorvete", "vegano", "rápido"],
+    "prepTime": "5 min + congelamento",
+    "calories": "100 kcal",
+    "difficulty": "Fácil",
+    "servings": "4 porções",
+    "ingredients": [
+      "1 abacaxi maduro congelado em pedaços",
+      "1/2 xícara de água de coco"
+    ],
+    "instructions": [
+      "Bata os ingredientes no processador até obter um creme homogêneo.",
+      "Sirva na hora ou coloque em forminhas de picolé e leve ao freezer."
+    ]
+  },
+  {
+    "id": 162,
+    "slug": "bolo-de-cenoura-com-farinha-de-coco-162",
+    "title": "Bolo de Cenoura com Farinha de Coco",
+    "description": "Uma versão low carb e sem glúten do bolo de cenoura, fofinho e úmido.",
+    "tags": ["bolo", "low carb", "sem glúten"],
+    "prepTime": "50 min",
+    "calories": "200 kcal",
+    "difficulty": "Média",
+    "servings": "10 fatias",
+    "ingredients": [
+      "2 cenouras médias raladas",
+      "4 ovos",
+      "1/2 xícara de óleo de coco",
+      "1/2 xícara de xilitol",
+      "1 xícara de farinha de coco",
+      "1/2 xícara de leite de coco",
+      "1 colher de sopa de fermento"
+    ],
+    "instructions": [
+      "Bata no liquidificador a cenoura, ovos, óleo, xilitol e leite de coco.",
+      "Em uma tigela, misture a farinha de coco e o fermento.",
+      "Adicione os líquidos aos secos e misture bem.",
+      "Asse em forma untada a 180°C por 35-40 minutos."
+    ]
+  },
+  {
+    "id": 163,
+    "slug": "trufa-de-chocolate-branco-fit-163",
+    "title": "Trufa de Chocolate Branco Fit",
+    "description": "Trufas cremosas de chocolate branco funcional, com leite em pó e óleo de coco.",
+    "tags": ["trufa", "doce", "low carb"],
+    "prepTime": "15 min + geladeira",
+    "calories": "95 kcal",
+    "difficulty": "Fácil",
+    "servings": "15 trufas",
+    "ingredients": [
+      "1 xícara de leite em pó desnatado",
+      "1/2 xícara de xilitol em pó",
+      "1/4 xícara de óleo de coco derretido",
+      "1/4 xícara de água quente"
+    ],
+    "instructions": [
+      "Misture o leite em pó e o xilitol.",
+      "Adicione o óleo de coco e a água quente, mexendo vigorosamente até formar uma massa homogênea.",
+      "Leve à geladeira por 30 minutos para firmar.",
+      "Enrole e passe no leite em pó."
+    ]
+  },
+  {
+    "id": 164,
+    "slug": "pudim-de-cafe-proteico-164",
+    "title": "Pudim de Café Proteico",
+    "description": "Um pudim que não vai ao forno, com sabor de café e um boost de proteína.",
+    "tags": ["pudim", "proteico", "rápido"],
+    "prepTime": "10 min + geladeira",
+    "calories": "180 kcal",
+    "difficulty": "Fácil",
+    "servings": "2 porções",
+    "ingredients": [
+      "1 scoop de whey de baunilha ou chocolate",
+      "1 xícara de café forte frio",
+      "1/2 envelope de gelatina incolor",
+      "Adoçante a gosto"
+    ],
+    "instructions": [
+      "Hidrate e dissolva a gelatina em um pouco de água quente.",
+      "Bata todos os ingredientes no liquidificador.",
+      "Distribua em potinhos e leve para gelar por 2 horas."
+    ]
+  },
+  {
+    "id": 165,
+    "slug": "sufle-de-chocolate-low-carb-165",
+    "title": "Suflê de Chocolate Low Carb",
+    "description": "Uma sobremesa leve, aerada e intensamente achocolatada, que cresce no forno.",
+    "tags": ["sobremesa", "low carb", "sem glúten"],
+    "prepTime": "30 min",
+    "calories": "190 kcal",
+    "difficulty": "Difícil",
+    "servings": "2 porções",
+    "ingredients": [
+      "2 ovos (gemas e claras separadas)",
+      "50g de chocolate 85% cacau derretido",
+      "2 colheres de sopa de xilitol",
+      "1 colher de sopa de cacau em pó"
+    ],
+    "instructions": [
+      "Pré-aqueça o forno a 200°C.",
+      "Bata as claras em neve firme.",
+      "Misture as gemas, o chocolate derretido, o xilitol e o cacau.",
+      "Incorpore 1/3 das claras em neve vigorosamente à mistura de chocolate para amolecer.",
+      "Incorpore o restante das claras delicadamente.",
+      "Distribua em ramequins untados e asse por 12-15 minutos.",
+      "Sirva imediatamente."
+    ]
+  },
+  {
+    id: 401,
+    slug: "bolo-de-banana-com-aveia-e-mel-401",
+    title: "Bolo de Banana com Aveia e Mel",
+    description: "Um bolo nutritivo e úmido, perfeito para o café da manhã ou lanche da tarde. Sem açúcar refinado.",
+    tags: ["bolo", "integral", "saudável"],
+    prepTime: "50 min",
+    calories: "210 kcal",
+    difficulty: "Fácil",
+    servings: "10 fatias",
+    ingredients: [
+      "3 bananas-nanicas maduras amassadas",
+      "2 ovos",
+      "1/4 xícara de óleo de coco",
+      "1/4 xícara de mel",
+      "1 xícara de farinha de aveia",
+      "1/2 xícara de aveia em flocos",
+      "1 colher de chá de canela em pó",
+      "1 colher de sopa de fermento em pó"
+    ],
+    instructions: [
+      "Pré-aqueça o forno a 180°C. Unte uma forma de bolo inglês.",
+      "Em uma tigela, misture as bananas amassadas, os ovos, o óleo de coco e o mel.",
+      "Adicione a farinha de aveia, a aveia em flocos e a canela, misturando bem.",
+      "Incorpore o fermento delicadamente.",
+      "Despeje a massa na forma e asse por 35-40 minutos, ou até o palito sair limpo."
+    ]
+  },
+  {
+    id: 402,
+    slug: "panqueca-de-ricota-com-espinafre-402",
+    title: "Panqueca de Ricota com Espinafre",
+    description: "Uma opção leve e proteica para um almoço ou jantar rápido e saudável.",
+    tags: ["panqueca", "salgado", "proteico"],
+    prepTime: "25 min",
+    calories: "280 kcal",
+    difficulty: "Fácil",
+    servings: "2 porções",
+    ingredients: [
+      "Massa: 1 ovo, 2 colheres de sopa de tapioca, 2 colheres de sopa de água, sal.",
+      "Recheio: 150g de ricota fresca amassada, 1 xícara de espinafre cozido e picado, sal, pimenta e noz-moscada."
+    ],
+    instructions: [
+      "Bata os ingredientes da massa com um garfo.",
+      "Aqueça uma frigideira antiaderente e faça os discos de panqueca.",
+      "Misture os ingredientes do recheio.",
+      "Recheie as panquecas e sirva com molho de tomate caseiro."
+    ]
+  },
+  {
+    id: 403,
+    slug: "mousse-de-manga-com-gengibre-403",
+    title: "Mousse de Manga com Gengibre",
+    description: "Uma sobremesa refrescante com o doce da manga e o toque picante do gengibre.",
+    tags: ["mousse", "vegano", "sem glúten"],
+    prepTime: "10 min + geladeira",
+    calories: "160 kcal",
+    difficulty: "Fácil",
+    servings: "4 porções",
+    ingredients: [
+      "1 manga grande madura",
+      "1/2 xícara de leite de coco",
+      "1 colher de chá de gengibre fresco ralado",
+      "1 colher de sopa de suco de limão",
+      "2 colheres de sopa de melado de cana"
+    ],
+    instructions: [
+      "Bata todos os ingredientes no liquidificador até obter um creme liso.",
+      "Distribua em taças e leve à geladeira por pelo menos 1 hora."
+    ]
+  },
+  {
+    id: 404,
+    slug: "cookie-de-cacau-com-amendoas-404",
+    title: "Cookie de Cacau com Amêndoas",
+    description: "Cookies de chocolate intensos, com pedaços de amêndoas para uma crocância extra.",
+    tags: ["cookie", "low-carb", "sem glúten"],
+    prepTime: "25 min",
+    calories: "130 kcal",
+    difficulty: "Fácil",
+    servings: "15 cookies",
+    ingredients: [
+      "1 xícara de farinha de amêndoas",
+      "1/4 xícara de cacau em pó 100%",
+      "1/2 xícara de xilitol",
+      "1 ovo",
+      "2 colheres de sopa de óleo de coco",
+      "1/2 xícara de amêndoas laminadas ou picadas"
+    ],
+    instructions: [
+      "Pré-aqueça o forno a 180°C.",
+      "Misture os ingredientes secos.",
+      "Adicione o ovo e o óleo, formando uma massa.",
+      "Incorpore as amêndoas.",
+      "Modele os cookies e asse por 12-15 minutos."
+    ]
+  },
+  {
+    id: 405,
+    slug: "torta-de-limao-com-merengue-fit-405",
+    title: "Torta de Limão com Merengue Fit",
+    description: "A clássica torta de limão com uma cobertura de merengue suíço, em versão saudável.",
+    tags: ["torta", "sobremesa", "light"],
+    prepTime: "1h 20min",
+    calories: "250 kcal",
+    difficulty: "Difícil",
+    servings: "10 fatias",
+    ingredients: [
+      "Base: 1 pacote de biscoito integral triturado com 3 colheres de óleo de coco.",
+      "Creme: 1 lata de leite condensado fake (leite em pó, água quente, xilitol), suco de 3 limões.",
+      "Merengue: 3 claras, 6 colheres de sopa de xilitol."
+    ],
+    instructions: [
+      "Forre uma forma com a base e asse por 10 min.",
+      "Bata os ingredientes do creme e despeje sobre a base fria.",
+      "Faça o merengue suíço (claras e xilitol em banho-maria, depois bater) e cubra a torta.",
+      "Leve ao forno para dourar o merengue rapidamente ou use um maçarico."
+    ]
+  },
+  {
+    id: 406,
+    slug: "sorvete-de-frutas-vermelhas-e-banana-406",
+    title: "Sorvete de Frutas Vermelhas e Banana",
+    description: "Um 'nice cream' vibrante e antioxidante, naturalmente doce e cremoso.",
+    tags: ["sorvete", "vegano", "rápido"],
+    prepTime: "5 min",
+    calories: "140 kcal",
+    difficulty: "Fácil",
+    servings: "2 porções",
+    ingredients: [
+      "1 banana madura congelada",
+      "1 xícara de mix de frutas vermelhas congeladas",
+      "Um fio de leite vegetal para ajudar a bater"
+    ],
+    instructions: [
+      "Bata tudo em um processador potente até obter a consistência de sorvete.",
+      "Sirva imediatamente."
+    ]
+  },
+  {
+    id: 407,
+    slug: "bolo-de-macaxeira-com-coco-407",
+    title: "Bolo de Macaxeira com Coco (Aipim)",
+    description: "Um bolo cremoso e úmido, típico do nordeste, em uma versão com menos açúcar.",
+    tags: ["bolo", "festa junina", "sem glúten"],
+    prepTime: "1h 10min",
+    calories: "260 kcal",
+    difficulty: "Fácil",
+    servings: "12 fatias",
+    ingredients: [
+      "500g de macaxeira (aipim) crua ralada",
+      "200ml de leite de coco",
+      "3 ovos",
+      "3/4 xícara de açúcar demerara",
+      "2 colheres de sopa de manteiga ghee",
+      "100g de coco ralado sem açúcar"
+    ],
+    instructions: [
+      "Pré-aqueça o forno a 180°C.",
+      "Misture todos os ingredientes em uma tigela.",
+      "Despeje em uma forma untada e asse por cerca de 1 hora, ou até dourar."
+    ]
+  },
+  {
+    id: 408,
+    slug: "muffin-de-aveia-com-gotas-de-chocolate-408",
+    title: "Muffin de Aveia com Gotas de Chocolate",
+    description: "Um lanche prático e delicioso para levar na bolsa, cheio de fibras.",
+    tags: ["muffin", "lanche", "integral"],
+    prepTime: "30 min",
+    calories: "170 kcal",
+    difficulty: "Fácil",
+    servings: "12 muffins",
+    ingredients: [
+      "1.5 xícara de farinha de aveia",
+      "2 ovos",
+      "1/2 xícara de açúcar mascavo",
+      "1/4 xícara de óleo de coco",
+      "1/2 xícara de leite",
+      "1/2 xícara de gotas de chocolate amargo",
+      "1 colher de sopa de fermento"
+    ],
+    instructions: [
+      "Misture os líquidos e o açúcar. Adicione a farinha e o fermento.",
+      "Incorpore as gotas de chocolate.",
+      "Distribua em forminhas de muffin e asse a 180°C por 20-25 minutos."
+    ]
+  },
+  {
+    id: 409,
+    slug: "pao-de-queijo-de-frigideira-409",
+    title: "Pão de Queijo de Frigideira",
+    description: "Mate a vontade de pão de queijo em 5 minutos com esta receita prática.",
+    tags: ["salgado", "rápido", "sem glúten"],
+    prepTime: "5 min",
+    calories: "200 kcal",
+    difficulty: "Fácil",
+    servings: "1 unidade",
+    ingredients: [
+      "1 ovo",
+      "2 colheres de sopa de goma de tapioca",
+      "2 colheres de sopa de queijo parmesão ralado",
+      "1 colher de sopa de requeijão light"
+    ],
+    instructions: [
+      "Misture todos os ingredientes com um garfo.",
+      "Despeje em uma frigideira pequena antiaderente em fogo baixo.",
+      "Doure dos dois lados e sirva quente."
+    ]
+  },
+  {
+    id: 410,
+    slug: "doce-de-abobora-em-calda-fit-410",
+    title: "Doce de Abóbora em Calda Fit",
+    description: "Pedaços macios de abóbora em uma calda de especiarias, sem açúcar refinado.",
+    tags: ["doce", "vegano", "festa junina"],
+    prepTime: "50 min",
+    calories: "120 kcal",
+    difficulty: "Fácil",
+    servings: "8 porções",
+    ingredients: [
+      "1kg de abóbora pescoço em cubos grandes",
+      "1 xícara de açúcar de coco",
+      "2 canelas em pau",
+      "5 cravos-da-índia"
+    ],
+    instructions: [
+      "Em uma panela, coloque a abóbora, o açúcar e as especiarias.",
+      "Cozinhe em fogo baixo, mexendo de vez em quando, até a abóbora ficar macia mas sem desmanchar, e a calda engrossar.",
+      "Sirva frio."
+    ]
+  }
 ];
 
 export function getRecipes(): Recipe[] {
