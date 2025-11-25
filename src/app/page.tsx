@@ -48,7 +48,6 @@ export default function Home() {
     setPage(1);
     setHasMore(filteredRecipes.length > BATCH_SIZE);
     
-    // Simulate a short delay for the initial data processing to show loading state
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 100);
@@ -111,7 +110,7 @@ export default function Home() {
         {showScroll && (
           <Button 
             onClick={scrollTop} 
-            className="fixed bottom-20 right-6 h-12 w-12 rounded-full shadow-lg z-50 bg-primary text-primary-foreground hover:bg-primary/90"
+            className="fixed bottom-24 right-6 h-12 w-12 rounded-full shadow-lg z-50 bg-primary/90 text-primary-foreground hover:bg-primary"
             size="icon"
             aria-label="Voltar ao topo"
           >
@@ -119,30 +118,29 @@ export default function Home() {
           </Button>
         )}
 
-        <div className="mb-8 text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
-              Bem-vindo ao <span className="text-primary">Fitte</span>, seu novo <span className="text-primary">universo de receitas.</span>
+        <div className="mb-10 text-left">
+            <p className="text-muted-foreground text-lg">Olá,</p>
+            <h2 className="text-4xl font-extrabold tracking-tight text-foreground">
+              O que vamos cozinhar hoje?
             </h2>
-            <p className="text-muted-foreground mt-4 text-base md:text-lg">
-                Que alegria ter você aqui! O Fitte é o seu novo cantinho para descobrir que é possível comer doces deliciosos e ainda assim manter uma vida saudável e equilibrada. Navegue pelas categorias, use a busca para encontrar algo específico ou simplesmente explore nossas sugestões diárias. Cada receita foi pensada para ser fácil, nutritiva e, claro, muito saborosa. Bom apetite!
-            </p>
         </div>
         
         <main>
           <div className="mb-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-lg mx-auto">
+            <h3 className="font-bold text-lg mb-4 text-foreground">Filtrar por Dificuldade</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-lg">
               {difficultyOptions.map(({ name, icon: Icon }) => (
                 <button
                   key={name}
                   onClick={() => setSelectedDifficulty(name)}
                   className={cn(
-                    "group flex flex-col items-center justify-center p-3 rounded-lg border-2 transition-all duration-200",
+                    "group flex items-center justify-start p-3 rounded-xl border-2 transition-all duration-200",
                     selectedDifficulty === name
                       ? "bg-primary/10 border-primary text-primary"
-                      : "bg-background border-border text-muted-foreground hover:border-primary/50 hover:text-primary"
+                      : "bg-card border-border text-muted-foreground hover:border-primary/50 hover:text-primary"
                   )}
                 >
-                  <Icon className="h-6 w-6 mb-1.5" strokeWidth={selectedDifficulty === name ? 2.5 : 2} />
+                  <Icon className="h-5 w-5 mr-3" strokeWidth={selectedDifficulty === name ? 2.5 : 2} />
                   <span className={cn(
                     "text-sm font-semibold",
                     selectedDifficulty === name ? "text-primary" : "text-foreground"
@@ -156,11 +154,14 @@ export default function Home() {
             <LoadingSpinner text="Preparando as melhores receitas para você..." />
           ) : (
             <>
-              <div className="text-sm mb-6 text-muted-foreground text-center">
-                {`Mostrando ${visibleRecipes.length} de ${filteredRecipes.length} receitas.`}
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-bold text-lg text-foreground">Receitas para você</h3>
+                <div className="text-sm text-muted-foreground">
+                  {`${allRecipes.length} receitas encontradas`}
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {visibleRecipes.map(recipe => {
                     return (
                       <RecipeCard 
@@ -182,8 +183,8 @@ export default function Home() {
                 <div ref={loader} className="h-10" />
 
                 {hasMore && (
-                  <div className="text-center py-8 text-muted-foreground">
-                    <p>Carregando mais receitas...</p>
+                  <div className="text-center py-8">
+                    <LoadingSpinner text="Carregando mais..."/>
                   </div>
                 )}
                 {!hasMore && visibleRecipes.length > 0 && (
