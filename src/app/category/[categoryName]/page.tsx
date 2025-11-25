@@ -1,38 +1,48 @@
-
-'use client';
-
 import React, { useMemo } from 'react';
 import { AppLayout } from '@/components/app-layout';
-import { RecipeCard } from '@/components/recipe-card';
-import { useFavorites } from '@/hooks/use-favorites';
 import { getRecipes, type Recipe } from '@/lib/recipes';
+import { CategoryView } from './category-view';
 
 const categoryDefinitions = [
   {
     name: 'Bolos e Tortas',
-    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra'],
+    description: 'Deliciosos bolos para o café, tortas cremosas e rocamboles para qualquer ocasião.',
+    iconName: 'Cake',
+    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'pudim'],
   },
   {
     name: 'Doces e Sobremesas',
-    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu'],
+    description: 'Mousses, cremes, pavês, docinhos de festa, gelatinas e muito mais para adoçar o dia.',
+    iconName: 'IceCream',
+    keywords: ['doce', 'sobremesa', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu', 'compota', 'goiabada', 'canjica'],
   },
   {
     name: 'Pães e Salgados',
-    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz'],
+    description: 'Receitas de pães caseiros, salgadinhos de festa, tortas salgadas, esfihas e lanches práticos.',
+    iconName: 'Croissant',
+    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz', 'vatapá', 'acarajé'],
   },
   {
     name: 'Biscoitos e Cookies',
-    keywords: ['cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'alfajor', 'goiabinha', 'casadinho'],
+    description: 'Encontre cookies, biscoitinhos amanteigados, sequilhos e rosquinhas para acompanhar seu café.',
+    iconName: 'Cookie',
+    keywords: ['cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'alfajor', 'goiabinha', 'casadinho', 'bem-casado', 'churros'],
   },
   {
     name: 'Saudáveis e Fit',
+    description: 'Opções leves e nutritivas, incluindo receitas fit, low-carb, integrais e proteicas.',
+    iconName: 'Wheat',
     keywords: ['fit', 'low carb', 'integral', 'proteico', 'vegano', 'sem glúten', 'detox', 'saudavel', 'funcional', 'barra de cereal', 'vitamina', 'mingau', 'crepioca'],
   },
 ];
 
+export function generateStaticParams() {
+  return categoryDefinitions.map(category => ({
+    categoryName: encodeURIComponent(category.name),
+  }));
+}
 
 export default function CategoryPage({ params }: { params: { categoryName: string } }) {
-  const { favorites, addFavorite, removeFavorite } = useFavorites();
   const allRecipes = useMemo(() => getRecipes(), []);
   
   const categoryName = decodeURIComponent(params.categoryName);
@@ -76,41 +86,22 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
 
   }, [allRecipes, categoryName]);
 
+  const categoryDescription = categoryDefinitions.find(c => c.name === categoryName)?.description || `Encontramos ${filteredRecipes.length} receitas deliciosas na categoria ${categoryName}.`;
+
   return (
     <AppLayout>
-      <div className="flex-1 p-4 sm:p-6 lg:p-8">
+      <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
         <div className="text-center mb-12 max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
                 Receitas de <span className="text-primary">{categoryName}</span>
             </h2>
             <p className="text-muted-foreground mt-4 text-lg">
-                {`Encontramos ${filteredRecipes.length} receitas deliciosas na categoria ${categoryName}.`}
+                {categoryDescription}
             </p>
         </div>
 
         <main>
-          {filteredRecipes.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-              {filteredRecipes.map(recipe => (
-                 <RecipeCard 
-                    key={recipe.id} 
-                    recipe={recipe} 
-                    isFavorite={favorites.includes(recipe.slug)}
-                    onToggleFavorite={() => {
-                      if (favorites.includes(recipe.slug)) {
-                        removeFavorite(recipe.slug);
-                      } else {
-                        addFavorite(recipe.slug);
-                      }
-                    }}
-                  />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16 text-muted-foreground">
-              <p>Nenhuma receita encontrada nesta categoria.</p>
-            </div>
-          )}
+          <CategoryView recipes={filteredRecipes} />
         </main>
       </div>
     </AppLayout>
