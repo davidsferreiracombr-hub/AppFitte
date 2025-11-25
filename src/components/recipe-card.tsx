@@ -28,7 +28,7 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className }: 
     >
       <div className="p-5">
         <div className="flex justify-between items-start mb-3">
-            <h3 className="font-bold text-base leading-tight line-clamp-2 text-foreground flex-1 pr-2 group-hover:text-primary transition-colors">
+            <h3 className="font-bold text-lg leading-tight line-clamp-2 text-foreground flex-1 pr-2 group-hover:text-primary transition-colors">
                 {recipe.title}
             </h3>
             <Button
@@ -41,17 +41,17 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className }: 
                 <Heart className={cn('h-5 w-5 transition-all duration-200', isFavorite ? 'fill-primary text-primary' : 'fill-transparent')} />
             </Button>
         </div>
-        <p className="text-xs text-muted-foreground line-clamp-3">
+        <p className="text-sm text-muted-foreground line-clamp-3">
           {recipe.description}
         </p>
-        <div className="flex items-center gap-x-4 text-xs text-muted-foreground mt-4 pt-4 border-t">
+        <div className="flex items-center gap-x-4 text-muted-foreground mt-4 pt-4 border-t">
             <div className="flex items-center gap-1.5">
-                <Clock className="h-3.5 w-3.5" />
-                <span>{recipe.prepTime}</span>
+                <Clock className="h-4 w-4" />
+                <span className="text-sm">{recipe.prepTime}</span>
             </div>
             <div className="flex items-center gap-1.5">
-                <Flame className="h-3.5 w-3.5" />
-                <span>{recipe.calories}</span>
+                <Flame className="h-4 w-4" />
+                <span className="text-sm">{recipe.calories}</span>
             </div>
         </div>
       </div>
