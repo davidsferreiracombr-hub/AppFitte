@@ -124,7 +124,7 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
   return (
     <AppLayout>
     <div className="min-h-screen font-body bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pt-12 pb-24 lg:pb-12">
         
         <div className="bg-card rounded-2xl shadow-sm border overflow-hidden">
           <div className="p-6 md:p-10">
