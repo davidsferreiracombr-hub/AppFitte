@@ -6,7 +6,7 @@ import { getRecipes } from '@/lib/recipes';
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { Cake, Cookie, GlassWater, IceCream, Wheat, Croissant, Soup, Salad, Shell, Apple, SoupIcon } from 'lucide-react';
+import { Cake, Cookie, Croissant, Wheat, IceCream } from 'lucide-react';
 import type { LucideProps } from 'lucide-react';
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { LoadingSpinner } from '@/components/loading-spinner';
@@ -65,21 +65,25 @@ export default function CategoriesPage() {
 
   useEffect(() => {
     const calculateCategories = () => {
-      const categorizedRecipes = new Set<number>();
+      const categorizedRecipeIds = new Set<number>();
       
       const processedCategories = categoryDefinitions.map(catDef => {
         let count = 0;
         allRecipes.forEach(recipe => {
-          if (categorizedRecipes.has(recipe.id)) return;
+          if (categorizedRecipeIds.has(recipe.id)) return;
 
-          const match = catDef.keywords.some(keyword => 
-            recipe.tags.some(tag => tag.toLowerCase().includes(keyword)) || 
-            recipe.title.toLowerCase().includes(keyword)
-          );
-
+          let match = false;
+          // Prioritize tags
+          if (catDef.keywords.some(keyword => recipe.tags.includes(keyword))) {
+            match = true;
+          } else {
+            // Fallback to title search if no tag matches
+            match = catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword));
+          }
+          
           if (match) {
             count++;
-            categorizedRecipes.add(recipe.id);
+            categorizedRecipeIds.add(recipe.id);
           }
         });
         return { ...catDef, count };
@@ -90,6 +94,7 @@ export default function CategoriesPage() {
     };
 
     setIsLoading(true);
+    // Simulate a small delay for better UX, can be removed if not needed
     const timer = setTimeout(calculateCategories, 100);
 
     return () => clearTimeout(timer);
@@ -97,7 +102,7 @@ export default function CategoriesPage() {
 
   return (
     <AppLayout>
-      <div className="flex-1 p-4 sm:p-6 lg:p-8">
+      <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
         <div className="text-center mb-12 max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
             Categorias de <span className="text-primary">Receitas</span>
@@ -119,9 +124,9 @@ export default function CategoriesPage() {
                       category.color
                   )}>
                     <category.icon className="h-10 w-10 text-primary transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} />
-                    <h3 className="mt-3 text-lg font-bold text-foreground truncate w-full">{category.name}</h3>
-                    <p className="text-xs text-muted-foreground mb-2">{category.count} receitas</p>
-                    <p className="text-xs text-muted-foreground/80 line-clamp-2">{category.description}</p>
+                    <h3 className="mt-3 text-xl font-bold text-foreground truncate w-full">{category.name}</h3>
+                    <p className="text-sm text-muted-foreground mb-2">{category.count} receitas</p>
+                    <p className="text-sm text-muted-foreground/80 line-clamp-2">{category.description}</p>
                   </div>
                 </Link>
               ))}

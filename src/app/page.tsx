@@ -156,10 +156,7 @@ export default function Home() {
           ) : (
             <>
               <div className="flex justify-between items-center mb-4">
-                <h3 className="font-bold text-lg text-foreground">Receitas para você</h3>
-                <div className="text-sm text-muted-foreground">
-                  {`${allRecipes.length} receitas encontradas`}
-                </div>
+                <h3 className="font-bold text-lg text-foreground">{`${filteredRecipes.length} receitas encontradas`}</h3>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
