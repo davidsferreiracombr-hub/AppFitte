@@ -3868,5 +3868,538 @@
     "servings": "20 unidades",
     "ingredients": ["1 lata de leite condensado", "1 colher de manteiga", "5 paçocas tipo rolha esfareladas", "Açúcar cristal para enrolar"],
     "instructions": ["Leve os ingredientes ao fogo baixo, mexendo até desgrudar do fundo.", "Deixe esfriar, enrole e passe no açúcar ou em paçoca esfarelada."]
+  },
+  {
+    "id": 161,
+    "slug": "cuscuz-nordestino-161",
+    "title": "Cuscuz Nordestino",
+    "description": "Um prato versátil e tradicional, feito com flocão de milho, perfeito para o café da manhã ou jantar.",
+    "tags": ["cuscuz", "salgado", "regional", "brasileiro"],
+    "prepTime": "20 min",
+    "calories": "150 kcal por porção",
+    "difficulty": "Fácil",
+    "servings": "4 porções",
+    "ingredients": [
+      "2 xícaras de flocão de milho",
+      "1 xícara de água",
+      "1 colher de chá de sal",
+      "Manteiga de garrafa a gosto para servir",
+      "Queijo coalho em cubos (opcional)"
+    ],
+    "instructions": [
+      "Em uma tigela, misture o flocão com o sal.",
+      "Adicione a água aos poucos, mexendo com as mãos para umedecer toda a farinha.",
+      "Deixe hidratar por 10 minutos.",
+      "Coloque água no fundo de uma cuscuzeira e leve ao fogo.",
+      "Adicione a massa de cuscuz na parte superior da cuscuzeira, sem apertar.",
+      "Cozinhe no vapor por cerca de 10-15 minutos após a água ferver.",
+      "Sirva quente com manteiga e, se desejar, queijo coalho."
+    ],
+    "notes": "Pode ser servido também com ovos, carne de sol ou frango desfiado."
+  },
+  {
+    "id": 162,
+    "slug": "croquete-de-carne-162",
+    "title": "Croquete de Carne",
+    "description": "Salgadinho clássico de boteco, cremoso por dentro e crocante por fora.",
+    "tags": ["croquete", "salgado", "frito", "brasileiro"],
+    "prepTime": "1h",
+    "calories": "120 kcal por unidade",
+    "difficulty": "Média",
+    "servings": "20 unidades",
+    "ingredients": [
+      "500g de carne moída refogada e bem temperada",
+      "1 xícara do caldo do cozimento da carne (ou caldo de carne)",
+      "1 xícara de farinha de trigo",
+      "2 colheres de sopa de manteiga",
+      "Cheiro-verde picado",
+      "Para empanar: ovos e farinha de rosca"
+    ],
+    "instructions": [
+      "Em uma panela, aqueça a manteiga e o caldo.",
+      "Adicione a farinha de uma vez e mexa vigorosamente até formar uma massa que solta do fundo.",
+      "Misture a carne moída refogada e o cheiro-verde à massa.",
+      "Deixe a massa esfriar, modele os croquetes.",
+      "Passe nos ovos batidos e na farinha de rosca.",
+      "Frite em óleo quente até dourar."
+    ]
+  },
+  {
+    "id": 163,
+    "slug": "risoto-de-cogumelos-163",
+    "title": "Risoto de Cogumelos",
+    "description": "Um prato italiano cremoso e sofisticado, perfeito para um jantar especial.",
+    "tags": ["risoto", "salgado", "vegetariano", "italiano"],
+    "prepTime": "40 min",
+    "calories": "400 kcal por porção",
+    "difficulty": "Média",
+    "servings": "4 porções",
+    "ingredients": [
+      "2 xícaras de arroz arbóreo",
+      "300g de mix de cogumelos frescos (paris, shitake, portobello)",
+      "1 cebola picada",
+      "2 dentes de alho picados",
+      "1/2 xícara de vinho branco seco",
+      "1.5 litro de caldo de legumes quente",
+      "1/2 xícara de queijo parmesão ralado",
+      "2 colheres de sopa de manteiga"
+    ],
+    "instructions": [
+      "Fatie os cogumelos e salteie em um pouco de manteiga. Reserve.",
+      "Na mesma panela, refogue a cebola e o alho. Adicione o arroz e frite por 2 minutos.",
+      "Despeje o vinho e mexa até evaporar.",
+      "Adicione o caldo de legumes quente, concha por concha, mexendo sempre e esperando o líquido ser absorvido antes de adicionar mais.",
+      "Quando o arroz estiver al dente, adicione os cogumelos.",
+      "Desligue o fogo, adicione a manteiga e o parmesão. Misture bem para dar cremosidade (mantecare).",
+      "Sirva imediatamente."
+    ]
+  },
+  {
+    "id": 164,
+    "slug": "sopa-de-cebola-164",
+    "title": "Sopa de Cebola",
+    "description": "Clássico francês, uma sopa reconfortante com cebolas caramelizadas, coberta com pão e queijo gratinado.",
+    "tags": ["sopa", "caldo", "francês", "inverno"],
+    "prepTime": "1h 15min",
+    "calories": "350 kcal por porção",
+    "difficulty": "Média",
+    "servings": "4 porções",
+    "ingredients": [
+      "4 cebolas grandes em fatias finas",
+      "3 colheres de sopa de manteiga",
+      "1 colher de sopa de farinha de trigo",
+      "1 litro de caldo de carne ou legumes",
+      "1/2 xícara de vinho branco seco",
+      "4 fatias de pão italiano amanhecido",
+      "200g de queijo gruyère ralado"
+    ],
+    "instructions": [
+      "Em uma panela grande, derreta a manteiga e adicione as cebolas. Cozinhe em fogo baixo por 30-40 minutos, mexendo ocasionalmente, até ficarem bem caramelizadas e marrons.",
+      "Polvilhe a farinha e cozinhe por mais 1 minuto.",
+      "Adicione o vinho e deglaceie o fundo da panela. Deixe evaporar.",
+      "Acrescente o caldo quente, tempere com sal e pimenta e deixe cozinhar por 20 minutos.",
+      "Distribua a sopa em tigelas refratárias.",
+      "Cubra cada tigela com uma fatia de pão e uma porção generosa de queijo.",
+      "Leve ao forno para gratinar até o queijo derreter e dourar."
+    ]
+  },
+  {
+    "id": 165,
+    "slug": "nhoque-de-batata-165",
+    "title": "Nhoque de Batata",
+    "description": "Massa italiana clássica, macia e leve, que derrete na boca. Sirva com seu molho preferido.",
+    "tags": ["nhoque", "massa", "italiano", "brasileiro"],
+    "prepTime": "1h 20min",
+    "calories": "300 kcal (sem molho)",
+    "difficulty": "Média",
+    "servings": "4 porções",
+    "ingredients": [
+      "1 kg de batatas asterix",
+      "1 ovo",
+      "Aproximadamente 1 e 1/2 xícara de farinha de trigo",
+      "Sal e noz-moscada a gosto"
+    ],
+    "instructions": [
+      "Cozinhe as batatas com casca até ficarem bem macias. Descasque e passe pelo espremedor ainda quentes.",
+      "Deixe a batata esfriar um pouco e adicione o ovo, o sal e a noz-moscada.",
+      "Acrescente a farinha aos poucos, misturando delicadamente com as mãos, até a massa ficar homogênea e parar de grudar (use o mínimo de farinha possível).",
+      "Faça rolinhos com a massa em uma superfície enfarinhada e corte os nhoques.",
+      "Cozinhe em água fervente com sal. Assim que os nhoques subirem à superfície, estão prontos.",
+      "Retire com uma escumadeira e sirva com o molho de sua preferência."
+    ]
+  },
+  {
+    "id": 166,
+    "slug": "nhoque-de-mandioquinha-166",
+    "title": "Nhoque de Mandioquinha",
+    "description": "Uma variação do nhoque tradicional, com o sabor adocicado e a cor vibrante da mandioquinha (batata-baroa).",
+    "tags": ["nhoque", "massa", "sem glúten", "fit"],
+    "prepTime": "1h",
+    "calories": "250 kcal (sem molho)",
+    "difficulty": "Média",
+    "servings": "4 porções",
+    "ingredients": [
+      "1 kg de mandioquinha",
+      "1 gema",
+      "Aproximadamente 1 xícara de amido de milho",
+      "Sal a gosto"
+    ],
+    "instructions": [
+      "Cozinhe a mandioquinha no vapor até ficar muito macia.",
+      "Amasse com um garfo ou espremedor e deixe esfriar.",
+      "Adicione a gema e o sal.",
+      "Incorpore o amido de milho aos poucos, até a massa ficar moldável.",
+      "Faça rolinhos, corte os nhoques e cozinhe em água fervente até subirem à superfície.",
+      "Sirva com um molho leve, como manteiga e sálvia."
+    ]
+  },
+  {
+    "id": 167,
+    "slug": "sopa-creme-de-abobora-167",
+    "title": "Sopa Creme de Abóbora",
+    "description": "Sopa aveludada e reconfortante, perfeita para aquecer em dias frios.",
+    "tags": ["sopa", "caldo", "vegetariano", "fit"],
+    "prepTime": "45 min",
+    "calories": "200 kcal por porção",
+    "difficulty": "Fácil",
+    "servings": "6 porções",
+    "ingredients": [
+      "1 kg de abóbora japonesa em cubos",
+      "1 cebola picada",
+      "2 dentes de alho picados",
+      "1 pedaço pequeno de gengibre ralado",
+      "Caldo de legumes até cobrir",
+      "Sal e pimenta do reino a gosto",
+      "Salsinha picada para decorar"
+    ],
+    "instructions": [
+      "Em uma panela, refogue a cebola e o alho em um fio de azeite.",
+      "Adicione a abóbora e o gengibre e refogue por mais alguns minutos.",
+      "Cubra com o caldo de legumes e cozinhe até a abóbora ficar bem macia.",
+      "Bata tudo no liquidificador ou com um mixer de mão até obter um creme liso.",
+      "Volte para a panela, ajuste o sal e a pimenta e aqueça.",
+      "Sirva com um fio de azeite e salsinha."
+    ]
+  },
+  {
+    "id": 168,
+    "slug": "caldo-verde-168",
+    "title": "Caldo Verde",
+    "description": "Sopa portuguesa tradicional, com batatas, couve e linguiça. Ideal para festas juninas.",
+    "tags": ["sopa", "caldo", "festa junina", "português", "brasileiro"],
+    "prepTime": "50 min",
+    "calories": "300 kcal por porção",
+    "difficulty": "Fácil",
+    "servings": "6 porções",
+    "ingredients": [
+      "1 kg de batatas descascadas e em rodelas",
+      "200g de linguiça calabresa em rodelas",
+      "1 maço de couve manteiga fatiada bem fina",
+      "1 cebola picada",
+      "2 dentes de alho picados",
+      "Azeite, sal e pimenta do reino a gosto"
+    ],
+    "instructions": [
+      "Em uma panela grande, frite a calabresa em um fio de azeite. Reserve.",
+      "Na mesma panela, refogue a cebola e o alho.",
+      "Adicione as batatas e cubra com água. Cozinhe até ficarem muito macias.",
+      "Bata as batatas com a água do cozimento no liquidificador, formando um creme.",
+      "Volte o creme para a panela, adicione a calabresa frita e ferva.",
+      "Ajuste o sal e a pimenta.",
+      "Desligue o fogo, adicione a couve fatiada e misture. O calor da sopa irá cozinhar a couve.",
+      "Sirva com um fio de azeite."
+    ]
+  },
+  {
+    "id": 169,
+    "slug": "casadinho-de-goiabada-169",
+    "title": "Casadinho de Goiabada",
+    "description": "Dois biscoitinhos amanteigados unidos por uma camada de goiabada cremosa. Um clássico que derrete na boca.",
+    "tags": ["biscoito", "doce", "casadinho", "brasileiro"],
+    "prepTime": "40 min",
+    "calories": "90 kcal por unidade",
+    "difficulty": "Fácil",
+    "servings": "Aprox. 25 casadinhos",
+    "ingredients": [
+      "500g de amido de milho",
+      "1 lata de leite condensado",
+      "200g de manteiga sem sal",
+      "Goiabada cremosa para rechear",
+      "Açúcar de confeiteiro para polvilhar"
+    ],
+    "instructions": [
+      "Em uma tigela, misture a manteiga e o leite condensado.",
+      "Adicione o amido de milho aos poucos, mexendo com as mãos até a massa ficar lisa e não grudar.",
+      "Faça pequenas bolinhas e achate-as levemente.",
+      "Asse em forma untada em forno a 180°C por 15 minutos, sem deixar dourar.",
+      "Deixe esfriar.",
+      "Junte os biscoitos de dois em dois, recheando com goiabada.",
+      "Passe no açúcar de confeiteiro."
+    ]
+  },
+  {
+    "id": 170,
+    "slug": "rosquinha-de-pinga-170",
+    "title": "Rosquinha de Pinga",
+    "description": "Rosquinhas crocantes e sequinhas, com o toque especial da cachaça na massa.",
+    "tags": ["biscoito", "doce", "frito", "brasileiro", "rosquinha"],
+    "prepTime": "40 min",
+    "calories": "80 kcal por rosquinha",
+    "difficulty": "Média",
+    "servings": "Aprox. 30 rosquinhas",
+    "ingredients": [
+      "1 kg de farinha de trigo",
+      "500g de açúcar",
+      "200g de manteiga",
+      "4 ovos",
+      "1 copo de leite",
+      "1/2 copo de cachaça (pinga)",
+      "1 colher de sopa de fermento em pó"
+    ],
+    "instructions": [
+      "Misture todos os ingredientes secos.",
+      "Adicione os ovos, a manteiga, o leite e a cachaça.",
+      "Amasse bem até obter uma massa lisa.",
+      "Modele as rosquinhas.",
+      "Frite em óleo não muito quente até dourar.",
+      "Passe em açúcar e canela."
+    ]
+  },
+  {
+    "id": 171,
+    "slug": "alfajor-caseiro-171",
+    "title": "Alfajor Caseiro",
+    "description": "O doce argentino que conquistou o Brasil: biscoitos macios recheados com doce de leite e banhados no chocolate.",
+    "tags": ["biscoito", "doce", "argentino", "brasileiro", "alfajor"],
+    "prepTime": "1h",
+    "calories": "250 kcal por unidade",
+    "difficulty": "Média",
+    "servings": "15 alfajores",
+    "ingredients": [
+      "Biscoito: 100g de manteiga, 1/2 xícara de açúcar, 1 gema, 1 colher de essência de baunilha, 1 xícara de amido de milho, 3/4 xícara de farinha, 1 colher de chá de fermento.",
+      "Recheio: Doce de leite consistente.",
+      "Cobertura: 200g de chocolate meio amargo derretido."
+    ],
+    "instructions": [
+      "Bata a manteiga com o açúcar, adicione a gema e a baunilha.",
+      "Incorpore os ingredientes secos.",
+      "Abra a massa e corte discos. Asse a 180°C por 10 minutos (não deixe dourar).",
+      "Recheie os biscoitos frios com doce de leite.",
+      "Banhe no chocolate derretido e deixe secar sobre papel manteiga."
+    ]
+  },
+  {
+    "id": 172,
+    "slug": "mingau-de-milho-verde-172",
+    "title": "Mingau de Milho Verde",
+    "description": "Creme de milho doce, também conhecido como canjica nordestina ou curau, dependendo da região.",
+    "tags": ["mingau", "festa junina", "brasileiro", "fit", "sem glúten"],
+    "prepTime": "25 min",
+    "calories": "210 kcal por porção",
+    "difficulty": "Fácil",
+    "servings": "4 porções",
+    "ingredients": [
+      "3 espigas de milho verde ou 2 latas de milho escorrido",
+      "500 ml de leite de coco",
+      "1/2 xícara de açúcar de coco ou demerara",
+      "Canela em pó para polvilhar"
+    ],
+    "instructions": [
+      "Bata o milho com o leite de coco no liquidificador.",
+      "Passe a mistura por uma peneira para remover o bagaço.",
+      "Leve o líquido coado para uma panela com o açúcar.",
+      "Cozinhe em fogo médio, mexendo sempre, até engrossar.",
+      "Sirva em tigelas, quente ou frio, polvilhado com canela."
+    ]
+  },
+  {
+    "id": 173,
+    "slug": "vitamina-de-abacate-173",
+    "title": "Vitamina de Abacate",
+    "description": "Um clássico brasileiro, a vitamina de abacate é cremosa, nutritiva e muito saborosa.",
+    "tags": ["vitamina", "café da manhã", "fit", "vegano"],
+    "prepTime": "5 min",
+    "calories": "300 kcal",
+    "difficulty": "Fácil",
+    "servings": "2 copos",
+    "ingredients": [
+      "1 abacate médio maduro",
+      "500 ml de leite vegetal (amêndoas ou aveia)",
+      "Açúcar de coco ou melado a gosto",
+      "Suco de 1/2 limão (para não escurecer)"
+    ],
+    "instructions": [
+      "Bata todos os ingredientes no liquidificador até obter uma mistura cremosa e homogênea.",
+      "Sirva imediatamente."
+    ]
+  },
+  {
+    "id": 174,
+    "slug": "bolo-de-mandioca-com-coco-174",
+    "title": "Bolo de Mandioca com Coco",
+    "description": "Também chamado de bolo de aipim, é um bolo denso, úmido e delicioso que é naturalmente sem glúten.",
+    "tags": ["bolo", "sem glúten", "festa junina", "brasileiro"],
+    "prepTime": "1h 20min",
+    "calories": "320 kcal por fatia",
+    "difficulty": "Fácil",
+    "servings": "12 fatias",
+    "ingredients": [
+      "1 kg de mandioca (aipim) crua, descascada e ralada",
+      "3 ovos",
+      "200 ml de leite de coco",
+      "2 xícaras de açúcar",
+      "100g de coco ralado",
+      "3 colheres de sopa de manteiga derretida"
+    ],
+    "instructions": [
+      "Pré-aqueça o forno a 180°C.",
+      "Em uma tigela, misture bem a mandioca ralada e o coco.",
+      "Em outra vasilha, bata os ovos com o açúcar e a manteiga.",
+      "Adicione o leite de coco à mistura de ovos.",
+      "Despeje os líquidos sobre a mistura de mandioca e incorpore bem.",
+      "Despeje em uma forma untada e asse por cerca de 1 hora, ou até firmar e dourar.",
+      "Este bolo não leva fermento e fica com uma textura cremosa."
+    ]
+  },
+  {
+    "id": 175,
+    "slug": "risoto-de-abobora-com-carne-seca-175",
+    "title": "Risoto de Abóbora com Carne Seca",
+    "description": "Uma combinação de sabores bem brasileira em um prato italiano clássico.",
+    "tags": ["risoto", "salgado", "regional", "brasileiro"],
+    "prepTime": "50 min",
+    "calories": "450 kcal por porção",
+    "difficulty": "Média",
+    "servings": "4 porções",
+    "ingredients": [
+      "2 xícaras de arroz arbóreo",
+      "500g de abóbora japonesa em cubos",
+      "300g de carne seca dessalgada e desfiada",
+      "1 cebola picada",
+      "1/2 xícara de vinho branco",
+      "1.5 litro de caldo de legumes quente",
+      "Queijo coalho em cubos e cheiro-verde para finalizar"
+    ],
+    "instructions": [
+      "Cozinhe a abóbora até ficar macia e amasse com um garfo.",
+      "Refogue a cebola, adicione o arroz e o vinho. Deixe evaporar.",
+      "Comece a adicionar o caldo quente, concha a concha, mexendo sempre.",
+      "Na metade do cozimento, adicione o purê de abóbora e a carne seca.",
+      "Continue adicionando caldo até o arroz ficar al dente.",
+      "Finalize com os cubos de queijo coalho e cheiro-verde."
+    ]
+  },
+  {
+    "id": 176,
+    "slug": "escondidinho-de-batata-doce-176",
+    "title": "Escondidinho de Batata-Doce",
+    "description": "Uma versão mais saudável do clássico, com purê de batata-doce e recheio de frango ou carne moída.",
+    "tags": ["salgado", "sem glúten", "fit", "brasileiro"],
+    "prepTime": "1h",
+    "calories": "350 kcal por porção",
+    "difficulty": "Fácil",
+    "servings": "6 porções",
+    "ingredients": [
+      "Purê: 1 kg de batata-doce cozida e amassada, 1/2 xícara de leite, sal.",
+      "Recheio: 500g de frango desfiado (ou carne moída) bem temperado.",
+      "Queijo parmesão ralado para gratinar."
+    ],
+    "instructions": [
+      "Prepare o purê misturando a batata-doce amassada com o leite e o sal.",
+      "Em um refratário, faça uma camada com metade do purê.",
+      "Coloque o recheio por cima.",
+      "Cubra com o restante do purê.",
+      "Polvilhe queijo parmesão e leve ao forno pré-aquecido a 200°C por 20 minutos para gratinar."
+    ]
+  },
+  {
+    "id": 177,
+    "slug": "farofa-de-banana-da-terra-177",
+    "title": "Farofa de Banana-da-Terra",
+    "description": "Acompanhamento agridoce perfeito para carnes e feijoada.",
+    "tags": ["acompanhamento", "salgado", "regional", "brasileiro"],
+    "prepTime": "20 min",
+    "calories": "180 kcal por porção",
+    "difficulty": "Fácil",
+    "servings": "6 porções",
+    "ingredients": [
+      "2 bananas-da-terra maduras, em rodelas",
+      "1 cebola picada",
+      "100g de bacon em cubos (opcional)",
+      "2 xícaras de farinha de mandioca",
+      "Manteiga ou azeite",
+      "Cheiro-verde, sal e pimenta"
+    ],
+    "instructions": [
+      "Frite o bacon na própria gordura até dourar. Reserve.",
+      "Na mesma panela, adicione manteiga e frite as rodelas de banana até dourarem. Reserve.",
+      "Refogue a cebola até ficar transparente.",
+      "Adicione a farinha de mandioca e torre por alguns minutos, mexendo sempre.",
+      "Desligue o fogo, misture a banana, o bacon e o cheiro-verde. Tempere com sal e pimenta."
+    ]
+  },
+  {
+    "id": 178,
+    "slug": "vatapa-178",
+    "title": "Vatapá",
+    "description": "Creme baiano denso e saboroso, feito com pão, camarão, leite de coco e azeite de dendê.",
+    "tags": ["regional", "salgado", "baiano", "brasileiro"],
+    "prepTime": "50 min",
+    "calories": "400 kcal por porção",
+    "difficulty": "Média",
+    "servings": "8 porções",
+    "ingredients": [
+      "5 pães franceses amanhecidos",
+      "500g de camarão seco",
+      "200g de castanha de caju",
+      "100g de amendoim torrado",
+      "2 cebolas grandes",
+      "1 gengibre pequeno",
+      "500ml de leite de coco",
+      "1 xícara de azeite de dendê"
+    ],
+    "instructions": [
+      "Deixe o pão de molho em água ou leite. Deixe o camarão seco de molho para dessalgar.",
+      "No liquidificador, bata o pão amolecido, a cebola, o gengibre, a castanha e o amendoim com um pouco de leite de coco até formar uma pasta.",
+      "Em uma panela grande, aqueça o azeite de dendê e refogue a pasta batida.",
+      "Adicione o restante do leite de coco e o camarão seco.",
+      "Cozinhe em fogo baixo, mexendo sempre, até engrossar bem e cozinhar (cerca de 20 min).",
+      "Sirva com arroz e acarajé."
+    ]
+  },
+  {
+    "id": 179,
+    "slug": "moqueca-baiana-179",
+    "title": "Moqueca Baiana",
+    "description": "Ensopado de peixe e/ou camarão com leite de coco, azeite de dendê, pimentões e coentro.",
+    "tags": ["regional", "salgado", "baiano", "brasileiro"],
+    "prepTime": "45 min",
+    "calories": "450 kcal por porção",
+    "difficulty": "Fácil",
+    "servings": "6 porções",
+    "ingredients": [
+      "1 kg de postas de peixe branco (cação, robalo) ou camarões grandes",
+      "2 cebolas em rodelas",
+      "2 tomates em rodelas",
+      "1 pimentão amarelo em rodelas",
+      "1 pimentão vermelho em rodelas",
+      "400ml de leite de coco",
+      "1/2 xícara de azeite de dendê",
+      "Coentro e cebolinha picados a gosto",
+      "Suco de 1 limão, sal e pimenta"
+    ],
+    "instructions": [
+      "Tempere o peixe com limão, sal e pimenta.",
+      "Em uma panela de barro, faça camadas alternadas de cebola, tomate, pimentões e o peixe.",
+      "Regue com metade do leite de coco e do dendê.",
+      "Cozinhe em fogo médio, com a panela tampada, por 20-25 minutos.",
+      "Adicione o restante do leite de coco e do dendê e o coentro.",
+      "Cozinhe por mais 5 minutos. Não mexa muito para não desmanchar o peixe.",
+      "Sirva com arroz branco, pirão e farofa de dendê."
+    ]
+  },
+  {
+    "id": 180,
+    "slug": "acaraje-180",
+    "title": "Acarajé",
+    "description": "Bolinho de feijão-fradinho frito no azeite de dendê, um símbolo da culinária baiana.",
+    "tags": ["salgado", "frito", "regional", "baiano", "brasileiro"],
+    "prepTime": "3h (incluindo demolho)",
+    "calories": "300 kcal por acarajé (sem recheio)",
+    "difficulty": "Difícil",
+    "servings": "15 acarajés",
+    "ingredients": [
+      "500g de feijão-fradinho",
+      "1 cebola grande",
+      "Sal a gosto",
+      "Azeite de dendê para fritar"
+    ],
+    "instructions": [
+      "Deixe o feijão de molho de um dia para o outro. No dia seguinte, esfregue os grãos para soltar a casca e o 'olho' preto. Lave bem para remover tudo.",
+      "Bata o feijão sem casca no processador com a cebola e o sal, até obter uma massa fofa e aerada.",
+      "Aqueça bastante azeite de dendê em uma panela funda.",
+      "Com a ajuda de duas colheres, modele os bolinhos e frite no dendê quente até dourarem.",
+      "Escorra e sirva quente, recheado com vatapá, caruru e salada."
+    ]
   }
 ]
