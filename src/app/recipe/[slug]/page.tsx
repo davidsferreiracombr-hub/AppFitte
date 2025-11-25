@@ -32,19 +32,15 @@ const extractActionTime = (instructions: string[]): TimerInfo | null => {
         context: "Continue mexendo"
       },
        {
-        pattern: /por cerca de (\d+)\s*a\s*(\d+)?\s*(minutos|horas)/i,
+        pattern: /por cerca de (\d+)\s*(?:a|-)\s*(\d+)\s*(minutos|horas)/i,
+        context: "Tempo de ação"
+      },
+       {
+        pattern: /por (\d+)\s*(?:a|-)\s*(\d+)\s*(minutos|horas)/i,
         context: "Tempo de ação"
       },
       {
-        pattern: /por (\d+)-(\d+)\s*(minutos|horas)/i,
-        context: "Tempo de ação"
-      },
-      {
-        pattern: /por (\d+)\s*a\s*(\d+)?\s*(minutos|horas)/i,
-        context: "Tempo de ação"
-      },
-      {
-        pattern: /por (\d+)\s*(minutos|horas)/i,
+        pattern: /por (?:cerca de |aproximadamente )?(\d+)\s*(minutos|horas)/i,
         context: "Tempo de ação"
       },
       {
@@ -57,7 +53,12 @@ const extractActionTime = (instructions: string[]): TimerInfo | null => {
       for (const { pattern, context } of timePatterns) {
         const match = instruction.match(pattern);
         if (match) {
-          const timeValue = match[2] ? parseInt(match[2], 10) : parseInt(match[1], 10);
+          const timeValue1 = match[1] ? parseInt(match[1], 10) : 0;
+          const timeValue2 = match[2] ? parseInt(match[2], 10) : 0;
+          
+          let timeValue = Math.max(timeValue1, timeValue2);
+          if (timeValue === 0) timeValue = timeValue1;
+
           const unit = match[3] || 'minutos';
 
           let durationInMinutes = timeValue;
