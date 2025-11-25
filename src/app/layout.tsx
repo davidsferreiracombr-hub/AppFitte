@@ -15,16 +15,6 @@ const inter = Inter({
   variable: '--font-body',
 });
 
-// A metadata não pode ser exportada de um client component.
-// Ela será tratada em um nível superior se necessário ou pode ser omitida por agora.
-/*
-export const metadata: Metadata = {
-  title: 'Fitte - Receitas Saudáveis',
-  description: 'Mais de 500 receitas de doces fit para você emagrecer sem abrir mão do sabor.',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
-};
-*/
-
 function AppContent({ children }: { children: React.ReactNode }) {
   const { animationEnded } = useWelcomeScreen();
 
@@ -39,31 +29,33 @@ function AppContent({ children }: { children: React.ReactNode }) {
   );
 }
 
-function RootContent({ children }: { children: React.ReactNode }) {
-    return (
-        <html lang="pt-BR" suppressHydrationWarning>
-            <head>
-                <title>Fitte - Receitas Saudáveis</title>
-                <meta name="description" content="Mais de 500 receitas de doces fit para você emagrecer sem abrir mão do sabor." />
-                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-            </head>
-            <body className={cn("min-h-screen font-body antialiased", inter.variable)}>
-                <WelcomeScreenProvider>
-                    <WelcomeScreen />
-                    <AppContent>{children}</AppContent>
-                </WelcomeScreenProvider>
-                <Toaster />
-            </body>
-        </html>
-    )
+// This is the Client Component
+function RootClientLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <WelcomeScreenProvider>
+      <WelcomeScreen />
+      <AppContent>{children}</AppContent>
+    </WelcomeScreenProvider>
+  );
 }
 
+// This remains a Server Component
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <RootContent>{children}</RootContent>
+    <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <title>Fitte - Receitas Saudáveis</title>
+        <meta name="description" content="Mais de 500 receitas de doces fit para você emagrecer sem abrir mão do sabor." />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+      </head>
+      <body className={cn("min-h-screen font-body antialiased", inter.variable)}>
+        <RootClientLayout>{children}</RootClientLayout>
+        <Toaster />
+      </body>
+    </html>
   );
 }

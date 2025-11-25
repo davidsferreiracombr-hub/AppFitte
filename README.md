@@ -1,4 +1,4 @@
-# Firebase Studio
+# Fit Sweet Delights
 
 This is a NextJS starter in Firebase Studio.
 
