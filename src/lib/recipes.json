@@ -4751,7 +4751,7 @@
     "difficulty": "Média",
     "servings": "10 fatias",
     "ingredients": ["Massa podre.", "Recheio: 2 vidros de palmito, 1 cebola, 2 tomates, 1 lata de creme de leite, requeijão."],
-    "instructions": ["Forre uma forma com a massa. Refogue os ingredientes do recheio. Coloque na torta.", "Cubra com requeijão e o restante da massa. Asse a 180°C por 45 minutos."]
+    "instructions": ["Forre uma forma com a massa, recheie e tampe com mais massa.", "Asse a 180°C por 45 minutos."]
   },
   {
     "id": 229,
@@ -5544,7 +5544,7 @@
     "difficulty": "Fácil",
     "servings": "15 pães",
     "ingredients": ["500g de mandioquinha cozida e espremida", "2 ovos", "1/2 xícara de óleo", "1/2 xícara de açúcar", "10g de fermento seco", "1 xícara de leite morno", "Aprox. 600g de farinha"],
-    "instructions": ["Siga o mesmo processo do pão de batata doce (ID 180), substituindo a batata."]
+    "instructions": ["Misture todos os ingredientes (exceto a farinha). Adicione a farinha aos poucos, sovando, até a massa ficar macia.", "Deixe crescer por 1h. Modele os pães, deixe crescer mais 30 min e asse a 180°C."]
   },
   {
     "id": 290,
@@ -5634,7 +5634,7 @@
     "calories": "390 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de amendoim (ID 159).", "Cobertura: Doce de leite e paçoca esfarelada."],
+    "ingredients": ["Bolo de amendoim (ID 159).", "Cobertura: Doce de leite e paçoca esfarelada."],
     "instructions": ["Faça o bolo e cubra com doce de leite e paçoca."]
   },
   {
@@ -5699,8 +5699,21 @@
     "calories": "290 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de laranja (ID 19), substituindo 1 xícara de farinha por 1 xícara de fubá."],
-    "instructions": ["Siga as instruções da receita original com a substituição.", "Asse a 180°C por 40 minutos."]
+    "ingredients": [
+      "1 laranja inteira com casca, sem sementes",
+      "3 ovos",
+      "1 xícara de óleo",
+      "1.5 xícara de açúcar",
+      "1 xícara de fubá",
+      "1 xícara de farinha de trigo",
+      "1 colher de sopa de fermento"
+    ],
+    "instructions": [
+      "Bata a laranja, ovos, óleo e açúcar no liquidificador.",
+      "Em uma tigela, misture o fubá, a farinha e o fermento.",
+      "Junte a mistura líquida aos secos e mexa bem.",
+      "Asse em forma untada a 180°C por 40 minutos."
+    ]
   },
   {
     "id": 302,
@@ -5764,8 +5777,11 @@
     "calories": "290 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de iogurte (ID 267).", "Cobertura: 1/2 xícara de açúcar misturada com 2 colheres de sopa de canela."],
-    "instructions": ["Faça a massa do bolo. Despeje na forma.", "Polvilhe a mistura de açúcar e canela por cima da massa crua. Asse normalmente."]
+    "ingredients": [
+      "3 ovos", "1.5 xícara de açúcar", "2 xícaras de farinha", "1 xícara de leite", "1/2 xícara de manteiga", "1 colher de sopa de canela em pó", "1 colher de sopa de fermento",
+      "Cobertura: 1/2 xícara de açúcar misturada com 2 colheres de sopa de canela."
+    ],
+    "instructions": ["Bata a manteiga com o açúcar e os ovos. Adicione o leite e a farinha com canela. Incorpore o fermento.", "Despeje na forma e polvilhe a cobertura por cima. Asse a 180°C por 40 minutos."]
   },
   {
     "id": 307,
@@ -5842,8 +5858,10 @@
     "calories": "330 kcal",
     "difficulty": "Fácil",
     "servings": "10 fatias",
-    "ingredients": ["Ingredientes do Pudim de Tapioca (ID 217).", "Substitua o coco ralado por 100g de coco queimado."],
-    "instructions": ["Siga os mesmos passos da receita original."]
+    "ingredients": [
+        "1 xícara de tapioca granulada", "500ml de leite quente", "200ml de leite de coco", "1 lata de leite condensado", "3 ovos", "100g de coco queimado"
+    ],
+    "instructions": ["Hidrate a tapioca no leite. Bata com os outros ingredientes. Asse em banho-maria em forma caramelizada."]
   },
   {
     "id": 313,
@@ -5868,8 +5886,10 @@
     "calories": "320 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de laranja (ID 19).", "1 xícara de gotas de chocolate."],
-    "instructions": ["Prepare a massa e incorpore as gotas de chocolate passadas na farinha. Asse."]
+    "ingredients": [
+        "1 laranja com casca, sem sementes", "3 ovos", "1 xícara de óleo", "2 xícaras de açúcar", "2 de farinha", "1 colher de fermento", "1 xícara de gotas de chocolate"
+    ],
+    "instructions": ["Bata a laranja, ovos, óleo e açúcar no liquidificador. Misture com os secos.", "Incorpore as gotas de chocolate. Asse a 180°C por 40 minutos."]
   },
   {
     "id": 315,
@@ -5959,8 +5979,11 @@
     "calories": "350 kcal",
     "difficulty": "Fácil",
     "servings": "8 porções",
-    "ingredients": ["Mousse de maracujá (ID 251).", "Ganache: 200g de chocolate meio amargo, 1 caixa de creme de leite."],
-    "instructions": ["Faça o mousse e coloque em uma travessa. Leve para gelar.", "Faça a ganache e cubra o mousse já firme. Gele novamente."]
+    "ingredients": [
+        "Mousse: 1 lata de leite condensado, 1 lata de creme de leite, 1 lata (medida) de suco de maracujá concentrado.",
+        "Ganache: 200g de chocolate meio amargo, 1 caixa de creme de leite."
+    ],
+    "instructions": ["Bata os ingredientes do mousse no liquidificador. Coloque em uma travessa e gele.", "Faça a ganache e cubra o mousse já firme. Gele novamente."]
   },
   {
     "id": 322,
@@ -5972,8 +5995,8 @@
     "calories": "300 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de fubá (ID 110).", "Adicionar 100g de coco ralado à massa."],
-    "instructions": ["Prepare a massa e incorpore o coco ralado. Asse."]
+    "ingredients": ["3 ovos", "2 xícaras de açúcar", "2 de fubá", "1 de farinha", "1 xícara de leite", "1 de óleo", "100g de coco ralado", "1 colher de fermento"],
+    "instructions": ["Bata tudo no liquidificador. Asse a 180°C por 40 minutos."]
   },
   {
     "id": 323,
@@ -6050,8 +6073,10 @@
     "calories": "330 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de banana (ID 16).", "1 xícara de gotas de chocolate."],
-    "instructions": ["Faça a massa e incorpore as gotas de chocolate. Asse."]
+    "ingredients": [
+        "3 bananas maduras amassadas", "2 ovos", "1 xícara de açúcar", "1/2 xícara de óleo", "2 xícaras de farinha de trigo", "1 colher de fermento", "1 xícara de gotas de chocolate"
+    ],
+    "instructions": ["Bata os ingredientes da massa, incorpore as gotas de chocolate e asse a 180°C por 40 minutos."]
   },
   {
     "id": 329,
@@ -6076,8 +6101,11 @@
     "calories": "300 kcal",
     "difficulty": "Fácil",
     "servings": "8 porções",
-    "ingredients": ["Arroz doce básico (ID 68).", "Calda: 1 xícara de açúcar."],
-    "instructions": ["Faça o arroz doce. Faça uma calda de caramelo a seco com o açúcar.", "Sirva o arroz doce com a calda por cima."]
+    "ingredients": [
+      "1 xícara de arroz", "1 litro de leite", "1 lata de leite condensado", "Canela em pau",
+      "Calda: 1 xícara de açúcar"
+    ],
+    "instructions": ["Cozinhe o arroz com o leite e a canela até amaciar. Adicione o leite condensado e cozinhe mais.", "Faça uma calda de caramelo a seco com o açúcar. Sirva o arroz doce com a calda por cima."]
   },
   {
     "id": 331,
@@ -6323,8 +6351,10 @@
     "calories": "320 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de fubá com laranja (ID 301).", "100g de coco ralado."],
-    "instructions": ["Faça a massa e incorpore o coco. Asse normalmente."]
+    "ingredients": [
+        "1 laranja com casca", "3 ovos", "1 xícara de óleo", "1.5 xícara de açúcar", "1 xícara de fubá", "1 xícara de farinha", "100g de coco ralado", "1 colher de fermento"
+    ],
+    "instructions": ["Bata os líquidos com açúcar no liquidificador. Misture com os secos. Asse a 180°C por 45 minutos."]
   },
   {
     "id": 350,
@@ -6362,8 +6392,10 @@
     "calories": "340 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de banana (ID 16).", "1 xícara de nozes picadas."],
-    "instructions": ["Faça a massa e incorpore as nozes. Asse."]
+    "ingredients": [
+        "3 bananas maduras amassadas", "2 ovos", "1 xícara de açúcar", "1/2 xícara de óleo", "2 xícaras de farinha", "1 colher de fermento", "1 xícara de nozes picadas"
+    ],
+    "instructions": ["Bata a massa do bolo e incorpore as nozes antes de assar."]
   },
   {
     "id": 353,
@@ -6531,8 +6563,10 @@
     "calories": "280 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de fubá (ID 110).", "Adicionar 2 colheres de sopa de erva-doce à massa."],
-    "instructions": ["Faça a massa e incorpore a erva-doce. Asse."]
+    "ingredients": [
+        "2 xícaras de fubá", "1 xícara de farinha de trigo", "2 xícaras de açúcar", "1 xícara de leite", "1 xícara de óleo", "3 ovos", "1 colher de sopa de fermento", "2 colheres de sopa de erva-doce"
+    ],
+    "instructions": ["Bata os líquidos com o açúcar no liquidificador. Misture com os secos.", "Asse a 180°C por 40 minutos."]
   },
   {
     "id": 366,
@@ -6544,8 +6578,11 @@
     "calories": "400 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de café (ID 60), com adição de 1/2 xícara de chocolate em pó.", "1 xícara de nozes picadas."],
-    "instructions": ["Prepare a massa, incorpore as nozes e asse."]
+    "ingredients": [
+        "Massa: 3 ovos, 2 xícaras de açúcar, 2 de farinha, 1 de chocolate em pó, 1 de óleo, 1 de café forte, 1 colher de fermento.",
+        "1 xícara de nozes picadas."
+    ],
+    "instructions": ["Prepare a massa do bolo, incorpore as nozes e asse."]
   },
   {
     "id": 367,
@@ -6583,8 +6620,8 @@
     "calories": "310 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de banana (ID 16).", "Aumentar a canela para 2 colheres de sopa."],
-    "instructions": ["Faça a massa e asse."]
+    "ingredients": ["3 bananas maduras amassadas", "2 ovos", "1.5 xícara de açúcar", "1/2 xícara de óleo", "2 xícaras de farinha", "2 colheres de sopa de canela", "1 colher de fermento"],
+    "instructions": ["Bata a massa e asse a 180°C por 40 minutos."]
   },
   {
     "id": 370,
@@ -6648,8 +6685,10 @@
     "calories": "390 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de chocolate.", "1 xícara de nozes picadas."],
-    "instructions": ["Prepare a massa e incorpore as nozes. Asse."]
+    "ingredients": [
+        "3 ovos", "1.5 xícara de açúcar", "2 xícaras de farinha", "1 xícara de chocolate em pó", "1 xícara de óleo", "1 xícara de água quente", "1 colher de fermento", "1 xícara de nozes picadas"
+    ],
+    "instructions": ["Prepare a massa do bolo e incorpore as nozes. Asse."]
   },
   {
     "id": 375,
@@ -6687,7 +6726,9 @@
     "calories": "340 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de milho de latinha (ID 141).", "Adicionar 100g de coco ralado e 50g de queijo parmesão ralado."],
+    "ingredients": [
+        "1 lata de milho verde", "3 ovos", "1 lata (medida) de açúcar", "1 de fubá", "1 de leite", "1/2 de óleo", "100g de coco ralado", "50g de queijo parmesão", "1 colher de fermento"
+    ],
     "instructions": ["Bata todos os ingredientes da massa no liquidificador. Asse."]
   },
   {
@@ -6713,8 +6754,10 @@
     "calories": "320 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de fubá cremoso (ID 17).", "1 copo de requeijão cremoso."],
-    "instructions": ["Despeje a massa na forma. Coloque colheradas de requeijão sobre a massa. Asse."]
+    "ingredients": [
+        "4 ovos", "4 xícaras de leite", "2 xícaras de açúcar", "1.5 xícara de fubá", "1 copo de requeijão", "2 colheres de manteiga", "1 colher de fermento"
+    ],
+    "instructions": ["Bata a massa no liquidificador. Despeje na forma e adicione colheradas de requeijão. Asse."]
   },
   {
     "id": 380,
@@ -6778,8 +6821,10 @@
     "calories": "330 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de milho de latinha (ID 141).", "1 copo de requeijão."],
-    "instructions": ["Despeje a massa na forma. Coloque colheradas de requeijão. Asse."]
+    "ingredients": [
+        "1 lata de milho verde", "3 ovos", "1 lata (medida) de açúcar", "1 de fubá", "1 de leite", "1/2 de óleo", "1 copo de requeijão", "1 colher de fermento"
+    ],
+    "instructions": ["Bata a massa no liquidificador. Despeje na forma e adicione colheradas de requeijão. Asse."]
   },
   {
     "id": 385,
@@ -6804,8 +6849,8 @@
     "calories": "360 kcal",
     "difficulty": "Fácil",
     "servings": "10 fatias",
-    "ingredients": ["Ingredientes do pudim de tapioca (ID 217), substituindo parte do açúcar por 1/2 lata de doce de leite."],
-    "instructions": ["Siga a receita original, incorporando o doce de leite no liquidificador."]
+    "ingredients": ["1 xícara de tapioca granulada", "500ml de leite quente", "200ml de leite de coco", "1/2 lata de leite condensado", "1/2 lata de doce de leite", "3 ovos"],
+    "instructions": ["Hidrate a tapioca no leite. Bata com os outros ingredientes. Asse em banho-maria em forma caramelizada."]
   },
   {
     "id": 387,
@@ -6895,8 +6940,10 @@
     "calories": "310 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de fubá (ID 110).", "Adicionar 100g de queijo parmesão ralado à massa."],
-    "instructions": ["Faça a massa e incorpore o queijo. Asse."]
+    "ingredients": [
+        "3 ovos", "2 xícaras de açúcar", "2 de fubá", "1 de farinha", "1 xícara de leite", "1 de óleo", "100g de queijo parmesão ralado", "1 colher de fermento"
+    ],
+    "instructions": ["Bata tudo no liquidificador e asse a 180°C por 40 minutos."]
   },
   {
     "id": 394,
@@ -6960,8 +7007,10 @@
     "calories": "370 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de chocolate.", "1 colher de chá de pimenta caiena ou outra de sua preferência na massa."],
-    "instructions": ["Faça a massa e incorpore a pimenta. Asse."]
+    "ingredients": [
+        "3 ovos", "1.5 xícara de açúcar", "2 xícaras de farinha", "1 xícara de chocolate em pó", "1 xícara de óleo", "1 xícara de água quente", "1 colher de fermento", "1 colher de chá de pimenta caiena"
+    ],
+    "instructions": ["Prepare a massa do bolo de chocolate, incorporando a pimenta no final. Asse normalmente."]
   },
   {
     "id": 399,
@@ -6986,8 +7035,10 @@
     "calories": "300 kcal",
     "difficulty": "Fácil",
     "servings": "10 fatias",
-    "ingredients": ["Pudim de milho (ID 245).", "Adicionar 1/2 xícara de coco ralado na massa."],
-    "instructions": ["Bata todos os ingredientes no liquidificador. Asse em banho-maria."]
+    "ingredients": [
+        "1 lata de milho verde", "1 lata de leite condensado", "a mesma medida de leite", "200ml de leite de coco", "3 ovos", "1/2 xícara de coco ralado"
+    ],
+    "instructions": ["Bata tudo no liquidificador e asse em banho-maria em forma caramelizada por 1 hora."]
   },
   {
     "id": 401,
@@ -7177,8 +7228,10 @@
     "calories": "230 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de banana integral (ID 137).", "Adicionar 1 xícara de uvas passas."],
-    "instructions": ["Faça a massa e incorpore as passas. Asse."]
+    "ingredients": [
+        "4 bananas maduras amassadas", "3 ovos", "1/2 xícara de óleo", "1 xícara de farinha integral", "1 xícara de aveia", "1 xícara de uvas passas", "1 colher de fermento"
+    ],
+    "instructions": ["Bata os líquidos com as bananas. Misture com os secos e as passas. Asse."]
   },
   {
     "id": 415,
@@ -7216,8 +7269,10 @@
     "calories": "290 kcal",
     "difficulty": "Fácil",
     "servings": "8 porções",
-    "ingredients": ["Pudim de pão (ID 89).", "1/2 xícara de uvas passas."],
-    "instructions": ["Incorpore as passas na massa antes de assar."]
+    "ingredients": [
+        "3 pães franceses", "500ml de leite", "1 lata de leite condensado", "3 ovos", "1/2 xícara de uvas passas"
+    ],
+    "instructions": ["Deixe o pão de molho no leite. Bata com os outros ingredientes no liquidificador.", "Incorpore as passas e asse em banho-maria em forma caramelizada."]
   },
   {
     "id": 418,
@@ -7229,8 +7284,10 @@
     "calories": "350 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Bolo de fubá com queijo (ID 393).", "1 xícara de goiabada em cubos."],
-    "instructions": ["Faça a massa e incorpore a goiabada. Asse."]
+    "ingredients": [
+        "3 ovos", "2 xícaras de açúcar", "2 de fubá", "1 de farinha", "1 xícara de leite", "1 de óleo", "100g de queijo", "1 xícara de goiabada em cubos", "1 colher de fermento"
+    ],
+    "instructions": ["Faça a massa do bolo de fubá com queijo. Incorpore a goiabada. Asse."]
   },
   {
     "id": 419,
@@ -7255,7 +7312,10 @@
     "calories": "350 kcal",
     "difficulty": "Média",
     "servings": "1 forma grande",
-    "ingredients": ["Massa de pão doce.", "Farofa de cuca."],
+    "ingredients": [
+        "Massa: 500g de farinha, 10g de fermento seco, 1 xícara de açúcar, 2 ovos, 200ml de leite, 100g de manteiga.",
+        "Farofa: 1 xícara de farinha, 1 de açúcar, 100g de manteiga."
+    ],
     "instructions": ["Faça a massa de pão e deixe crescer. Abra em uma forma.", "Cubra com a farofa e deixe crescer mais um pouco. Asse a 180°C por 40 minutos."]
   },
   {
@@ -7281,8 +7341,17 @@
     "calories": "370 kcal",
     "difficulty": "Média",
     "servings": "10 fatias",
-    "ingredients": ["Torta de limão com merengue (ID 182)."],
-    "instructions": ["Siga a receita. Use um maçarico para queimar o topo do merengue até dourar."]
+    "ingredients": [
+      "Base de biscoito amanteigado.",
+      "Creme de limão (gemas, leite condensado, suco de limão).",
+      "Merengue: 3 claras, 6 colheres de sopa de xilitol."
+    ],
+    "instructions": [
+      "Forre uma forma com a base e asse por 10 min.",
+      "Bata os ingredientes do creme e despeje sobre a base fria.",
+      "Faça o merengue suíço (claras e xilitol em banho-maria, depois bater) e cubra a torta.",
+      "Use um maçarico para queimar o topo do merengue até dourar."
+    ]
   },
   {
     "id": 423,
@@ -7307,8 +7376,10 @@
     "calories": "380 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de baunilha (ID 276).", "150g de chocolate branco picado."],
-    "instructions": ["Faça a massa e incorpore o chocolate. Asse."]
+    "ingredients": [
+        "3 ovos", "1.5 xícara de açúcar", "2 xícaras de farinha", "1 xícara de leite", "1/2 xícara de manteiga", "1 colher de fermento", "150g de chocolate branco picado"
+    ],
+    "instructions": ["Faça a massa de bolo branco e incorpore o chocolate picado. Asse."]
   },
   {
     "id": 425,
@@ -7515,8 +7586,10 @@
     "calories": "300 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de fubá (ID 110).", "1 lata de milho verde escorrido."],
-    "instructions": ["Faça a massa e incorpore o milho. Asse."]
+    "ingredients": [
+        "3 ovos", "2 xícaras de açúcar", "2 de fubá", "1 de farinha", "1 xícara de leite", "1 de óleo", "1 lata de milho verde", "1 colher de fermento"
+    ],
+    "instructions": ["Bata tudo no liquidificador. Asse a 180°C por 40 minutos."]
   },
   {
     "id": 441,
@@ -7541,8 +7614,10 @@
     "calories": "320 kcal",
     "difficulty": "Fácil",
     "servings": "8 porções",
-    "ingredients": ["Pudim de pão (ID 89).", "Adicionar 1/2 xícara de chocolate em pó na massa."],
-    "instructions": ["Bata tudo no liquidificador e asse em banho-maria."]
+    "ingredients": [
+        "3 pães franceses", "500ml de leite", "1 lata de leite condensado", "3 ovos", "1/2 xícara de chocolate em pó"
+    ],
+    "instructions": ["Deixe o pão de molho no leite. Bata com os outros ingredientes no liquidificador.", "Asse em banho-maria em forma caramelizada."]
   },
   {
     "id": 443,
@@ -7554,8 +7629,10 @@
     "calories": "180 kcal",
     "difficulty": "Fácil",
     "servings": "18 cookies",
-    "ingredients": ["Massa de cookie básica (manteiga, açúcar, ovo, farinha).", "1 xícara de chocolate branco picado", "1 xícara de macadâmias picadas."],
-    "instructions": ["Faça a massa e incorpore o chocolate e as macadâmias.", "Asse a 180°C por 12-15 minutos."]
+    "ingredients": [
+        "1 xícara de manteiga", "1.5 xícara de açúcar", "2 ovos", "2 xícaras de farinha", "1 colher de chá de fermento", "1 xícara de chocolate branco picado", "1 xícara de macadâmias picadas"
+    ],
+    "instructions": ["Faça a massa do cookie e incorpore o chocolate e as macadâmias.", "Asse a 180°C por 12-15 minutos."]
   },
   {
     "id": 444,
@@ -7567,8 +7644,10 @@
     "calories": "300 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de iogurte (ID 267).", "Adicionar suco e raspas de 2 limões."],
-    "instructions": ["Faça a massa e asse."]
+    "ingredients": [
+        "1 pote de iogurte natural", "3 ovos", "1.5 xícara de açúcar", "1/2 xícara de óleo", "2 xícaras de farinha", "suco e raspas de 2 limões", "1 colher de fermento"
+    ],
+    "instructions": ["Bata os líquidos com açúcar no liquidificador. Misture com os secos. Asse."]
   },
   {
     "id": 445,
@@ -7606,8 +7685,10 @@
     "calories": "220 kcal",
     "difficulty": "Fácil",
     "servings": "10 fatias",
-    "ingredients": ["Massa de bolo de banana com aveia fit (ID 430).", "1/2 xícara de gotas de chocolate 70%."],
-    "instructions": ["Faça a massa e incorpore as gotas de chocolate. Asse."]
+    "ingredients": [
+        "4 bananas maduras", "3 ovos", "1/4 xícara de óleo de coco", "2 xícaras de aveia em flocos", "1/2 xícara de gotas de chocolate 70%", "1 colher de fermento"
+    ],
+    "instructions": ["Bata tudo (menos o fermento e chocolate) no liquidificador. Misture o fermento e o chocolate. Asse."]
   },
   {
     "id": 448,
@@ -7645,8 +7726,10 @@
     "calories": "360 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Bolo de fubá com queijo (ID 393).", "Adicionar cubos de goiabada na massa."],
-    "instructions": ["Prepare a massa e incorpore os cubos de goiabada. Asse."]
+    "ingredients": [
+        "3 ovos", "2 xícaras de açúcar", "2 de fubá", "1 de farinha", "1 xícara de leite", "1 de óleo", "100g de queijo", "1 xícara de goiabada em cubos", "1 colher de fermento"
+    ],
+    "instructions": ["Faça a massa do bolo de fubá com queijo. Incorpore a goiabada. Asse."]
   },
   {
     "id": 451,
@@ -7697,8 +7780,10 @@
     "calories": "260 kcal",
     "difficulty": "Fácil",
     "servings": "10 fatias",
-    "ingredients": ["Bolo de banana fit (ID 137).", "Doce de leite fit (tâmaras batidas com leite de coco)."],
-    "instructions": ["Faça o bolo. Cubra com o doce de leite fit."]
+    "ingredients": [
+        "4 bananas maduras", "3 ovos", "2 xícaras de aveia", "1/4 xícara de óleo de coco", "1 colher de fermento", "Doce de leite fit (tâmaras batidas com leite de coco)."
+    ],
+    "instructions": ["Bata os ingredientes do bolo. Asse.", "Cubra com o doce de leite fit."]
   },
   {
     "id": 455,
@@ -7736,7 +7821,9 @@
     "calories": "110 kcal",
     "difficulty": "Fácil",
     "servings": "25 biscoitos",
-    "ingredients": ["Massa de biscoito amanteigado (ID 107).", "Goiabada em cubos."],
+    "ingredients": [
+        "2 xícaras de amido de milho", "1 xícara de farinha", "1 xícara de açúcar", "200g de manteiga", "1 gema", "Goiabada em cubos"
+    ],
     "instructions": ["Faça a massa. Modele bolinhas, achate e coloque um cubo de goiabada no centro.", "Asse a 180°C por 15 minutos."]
   },
   {
@@ -7775,20 +7862,24 @@
     "calories": "320 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de iogurte.", "3 colheres de chocolate em pó."],
+    "ingredients": [
+        "1 pote de iogurte natural", "3 ovos", "2 potes de açúcar", "3 de farinha", "1 de óleo", "1 colher de fermento", "3 colheres de chocolate em pó"
+    ],
     "instructions": ["Divida a massa em duas. Misture chocolate em uma parte.", "Intercale as massas na forma. Asse."]
   },
   {
     "id": 461,
-    "slug": "bolo-de-fuba-com-laranja-e-calda-461",
-    "title": "Bolo de Fubá com Laranja e Calda",
-    "description": "Bolo de fubá com laranja e uma calda cítrica para deixar mais úmido.",
+    "slug": "bolo-de-fuba-com-calda-de-laranja-461",
+    "title": "Bolo de Fubá com Calda de Laranja",
+    "description": "Bolo fofinho de fubá com uma calda que deixa ele molhadinho.",
     "tags": ["bolo", "fuba", "laranja"],
     "prepTime": "55 min",
-    "calories": "310 kcal",
+    "calories": "320 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Bolo de fubá com laranja (ID 301).", "Calda de laranja (ID 274)."],
+    "ingredients": [
+        "3 ovos", "2 xícaras de açúcar", "2 de fubá", "1 de farinha", "1 xícara de leite", "1 de óleo", "1 colher de fermento", "Calda: 1 xícara de suco de laranja com 1/2 de açúcar"
+    ],
     "instructions": ["Faça o bolo. Fure e regue com a calda quente."]
   },
   {
@@ -7827,8 +7918,10 @@
     "calories": "350 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de banana.", "1 xícara de doce de leite em ponto firme, em cubos."],
-    "instructions": ["Prepare a massa e incorpore os cubos de doce de leite passados na farinha. Asse."]
+    "ingredients": [
+        "3 bananas amassadas", "2 ovos", "1 xícara de açúcar", "1/2 xícara de óleo", "2 xícaras de farinha", "1 colher de fermento", "1 xícara de doce de leite em ponto firme, em cubos"
+    ],
+    "instructions": ["Prepare a massa do bolo e incorpore os cubos de doce de leite passados na farinha. Asse."]
   },
   {
     "id": 465,
@@ -7892,8 +7985,10 @@
     "calories": "310 kcal",
     "difficulty": "Fácil",
     "servings": "8 porções",
-    "ingredients": ["Pudim de pão (ID 89).", "1 xícara de goiabada em cubos."],
-    "instructions": ["Incorpore a goiabada na massa antes de assar."]
+    "ingredients": [
+        "3 pães franceses", "500ml de leite", "1 lata de leite condensado", "3 ovos", "1 xícara de goiabada em cubos"
+    ],
+    "instructions": ["Deixe o pão de molho no leite. Bata com os outros ingredientes. Incorpore a goiabada.", "Asse em banho-maria em forma caramelizada."]
   },
   {
     "id": 470,
@@ -7970,8 +8065,10 @@
     "calories": "310 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Massa de bolo de iogurte.", "1 xícara de frutas vermelhas (frescas ou congeladas)."],
-    "instructions": ["Faça a massa e incorpore as frutas. Asse."]
+    "ingredients": [
+        "1 pote de iogurte natural", "3 ovos", "1.5 xícara de açúcar", "1/2 xícara de óleo", "2 xícaras de farinha", "1 colher de fermento", "1 xícara de frutas vermelhas"
+    ],
+    "instructions": ["Bata os líquidos com açúcar. Misture com os secos.", "Incorpore as frutas. Asse."]
   },
   {
     "id": 476,
@@ -8088,7 +8185,7 @@
     "difficulty": "Média",
     "servings": "15 fatias",
     "ingredients": ["Pão de ló.", "Recheio: Doce de abacaxi e beijinho cremoso.", "Cobertura: Marshmallow ou chantilly."],
-    "instructions": ["Monte o bolo em camadas, umedecendo a massa. Cubra com marshmallow e coco em flocos."]
+    "instructions": ["Monte o bolo em camadas, umedecendo a massa. Cubra com o marshmallow e coco em flocos."]
   },
   {
     "id": 485,
@@ -8165,7 +8262,9 @@
     "calories": "320 kcal",
     "difficulty": "Fácil",
     "servings": "10 fatias",
-    "ingredients": ["Bolo de fubá cremoso (ID 17).", "Adicionar 100g de coco ralado na massa."],
+    "ingredients": [
+        "4 ovos", "4 xícaras de leite", "2 xícaras de açúcar", "1.5 xícara de fubá", "100g de coco ralado", "2 colheres de manteiga", "1 colher de fermento"
+    ],
     "instructions": ["Bata tudo no liquidificador e asse."]
   },
   {
@@ -8173,13 +8272,15 @@
     "slug": "pudim-de-pao-com-doce-de-leite-491",
     "title": "Pudim de Pão com Doce de Leite",
     "description": "Pudim de pão com doce de leite na massa, para um sabor extra.",
-    "tags": ["pudim", "pao", "doce-de-leite"],
+    "tags": ["pudim", "pão", "doce-de-leite"],
     "prepTime": "1h",
     "calories": "330 kcal",
     "difficulty": "Fácil",
     "servings": "8 porções",
-    "ingredients": ["Pudim de pão, substituindo o açúcar por 1 lata de doce de leite."],
-    "instructions": ["Bata os ingredientes no liquidificador e asse em banho-maria."]
+    "ingredients": [
+        "3 pães franceses", "500ml de leite", "1 lata de doce de leite", "3 ovos", "Calda de caramelo"
+    ],
+    "instructions": ["Deixe o pão de molho no leite. Bata com os outros ingredientes no liquidificador.", "Asse em banho-maria em forma caramelizada."]
   },
   {
     "id": 492,
@@ -8191,8 +8292,10 @@
     "calories": "370 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Bolo de banana com gotas de chocolate (ID 328).", "Adicionar 1 xícara de nozes picadas."],
-    "instructions": ["Faça a massa e incorpore o chocolate e as nozes. Asse."]
+    "ingredients": [
+        "3 bananas amassadas", "2 ovos", "1 xícara de açúcar", "1/2 xícara de óleo", "2 xícaras de farinha", "1 colher de fermento", "1 xícara de gotas de chocolate", "1 xícara de nozes picadas"
+    ],
+    "instructions": ["Prepare a massa do bolo e incorpore o chocolate e as nozes. Asse."]
   },
   {
     "id": 493,
@@ -8263,14 +8366,28 @@
     "id": 498,
     "slug": "bolo-de-banana-com-doce-de-leite-e-coco-498",
     "title": "Bolo de Banana com Doce de Leite e Coco",
-    "description": "Um bolo super completo e delicioso.",
+    "description": "Bolo de banana com doce de leite na massa e coco, para uma combinação tropical.",
     "tags": ["bolo", "banana", "doce-de-leite", "coco"],
     "prepTime": "1h",
     "calories": "380 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
-    "ingredients": ["Bolo de banana com doce de leite (ID 87).", "Adicionar 1/2 xícara de coco ralado na massa."],
-    "instructions": ["Faça a massa e asse."]
+    "ingredients": [
+      "3 bananas amassadas",
+      "2 ovos",
+      "1 xícara de açúcar",
+      "1/2 xícara de óleo",
+      "1.5 xícaras de farinha",
+      "1/2 xícara de coco ralado",
+      "150g de doce de leite em cubos",
+      "1 colher de fermento"
+    ],
+    "instructions": [
+      "Bata os ovos com o açúcar e o óleo. Adicione as bananas.",
+      "Misture a farinha, o coco e o fermento.",
+      "Incorpore os cubos de doce de leite passados na farinha.",
+      "Asse em forma untada a 180°C por cerca de 45 minutos."
+    ]
   },
   {
     "id": 499,
