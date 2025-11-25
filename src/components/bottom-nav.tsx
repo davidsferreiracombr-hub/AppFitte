@@ -15,25 +15,27 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 h-20 bg-primary border-t border-primary/50 lg:hidden z-40">
-      <div className="flex justify-around items-center h-full max-w-md mx-auto">
-        {navItems.map(({ href, label, icon: Icon }) => {
-          const isActive = pathname === href;
-          return (
-            <Link key={href} href={href} passHref>
-              <div className={cn(
-                "flex flex-col items-center justify-center gap-1 w-20 transition-all duration-200 ease-in-out",
-                isActive ? "text-primary-foreground" : "text-primary-foreground/60 hover:text-primary-foreground"
-              )}>
-                <Icon className="h-6 w-6" />
-                <span className="text-xs font-bold">
-                  {label}
-                </span>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+    <nav className="fixed bottom-4 inset-x-0 mx-auto w-fit lg:hidden z-40">
+        <div className="flex items-center h-16 max-w-md mx-auto px-6 bg-primary rounded-full shadow-lg border border-primary-foreground/20">
+            <div className="flex justify-around items-center h-full gap-4">
+                {navItems.map(({ href, label, icon: Icon }) => {
+                const isActive = pathname === href;
+                return (
+                    <Link key={href} href={href} passHref>
+                    <div className={cn(
+                        "flex flex-col items-center justify-center gap-1 w-16 transition-all duration-200 ease-in-out",
+                        isActive ? "text-primary-foreground" : "text-primary-foreground/60 hover:text-primary-foreground"
+                    )}>
+                        <Icon className="h-6 w-6" />
+                        <span className="text-xs font-bold">
+                        {label}
+                        </span>
+                    </div>
+                    </Link>
+                );
+                })}
+            </div>
+        </div>
     </nav>
   );
 }
