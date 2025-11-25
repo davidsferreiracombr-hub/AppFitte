@@ -7,7 +7,29 @@ import { RecipeCard } from '@/components/recipe-card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { getRecipes, type Recipe } from '@/lib/recipes';
 
-const mainCategories = ["Bolo", "Torta", "Cookie", "Vitamina", "Barra de Cereal", "Muffin", "Panqueca", "Sorvete", "Pudim", "Gelatina", "Creme", "Paçoca", "Bombom", "Trufa", "Biscoito", "Donut", "Doce", "Salgado", "Pão", "Waffle", "Mingau", "Empada", "Quibe"];
+const categoryDefinitions = [
+  {
+    name: 'Bolos e Tortas',
+    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake'],
+  },
+  {
+    name: 'Doces e Sobremesas',
+    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro'],
+  },
+  {
+    name: 'Pães e Salgados',
+    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo'],
+  },
+  {
+    name: 'Biscoitos e Cookies',
+    keywords: ['cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'alfajor'],
+  },
+  {
+    name: 'Saudáveis e Fit',
+    keywords: ['fit', 'low carb', 'integral', 'proteico', 'vegano', 'sem glúten', 'detox', 'saudavel', 'funcional', 'barra de cereal', 'vitamina', 'mingau', 'crepioca'],
+  },
+];
+
 
 export default function CategoryPage({ params }: { params: { categoryName: string } }) {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
@@ -16,42 +38,56 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
   const categoryName = decodeURIComponent(params.categoryName);
 
   const filteredRecipes = useMemo(() => {
+    const categoryDef = categoryDefinitions.find(c => c.name === categoryName);
+    if (!categoryDef) return [];
+
+    const otherCategoriesKeywords = categoryDefinitions
+        .filter(c => c.name !== categoryName)
+        .flatMap(c => c.keywords);
+
     const categorizedRecipes = new Set<number>();
-    
-    // First pass: Categorize recipes based on main categories found in tags or title
+    const recipesForCategory: Recipe[] = [];
+
     allRecipes.forEach(recipe => {
-      const normalizedTags = recipe.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '));
-      let isCategorized = false;
-      for (const cat of mainCategories) {
-        if (normalizedTags.includes(cat) || recipe.title.toLowerCase().includes(cat.toLowerCase())) {
-          categorizedRecipes.add(recipe.id);
-          isCategorized = true;
-          break;
+        const recipeText = (recipe.title + ' ' + recipe.tags.join(' ')).toLowerCase();
+
+        const isInThisCategory = categoryDef.keywords.some(keyword => recipeText.includes(keyword));
+
+        if (isInThisCategory) {
+            // Se pertence a esta categoria, verificamos se ela já não foi "reivindicada" por uma categoria mais específica
+            // Para evitar duplicatas, vamos dar prioridade se a tag for exata
+             const hasExactTag = categoryDef.keywords.some(keyword => recipe.tags.includes(keyword));
+             const hasPriority = hasExactTag || !otherCategoriesKeywords.some(otherKeyword => recipeText.includes(otherKeyword));
+
+            if(!categorizedRecipes.has(recipe.id)) {
+                 recipesForCategory.push(recipe);
+                 categorizedRecipes.add(recipe.id);
+            }
         }
-      }
     });
 
-    if (categoryName === 'Outros') {
-      return allRecipes.filter(recipe => !categorizedRecipes.has(recipe.id));
-    }
+    const finalFilteredList: Recipe[] = [];
+    const addedRecipeIds = new Set<number>();
 
-    return allRecipes.filter(recipe => {
-      const normalizedTags = recipe.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '));
-      
-      // A recipe belongs to a category if the category name is in its tags
-      if (normalizedTags.includes(categoryName)) {
-        return true;
-      }
-      
-      // If not in tags, check if it's in the title, but only if it doesn't belong to another primary category via tags
-      const hasOtherMainCategoryInTags = mainCategories.some(cat => cat !== categoryName && normalizedTags.includes(cat));
+    // Prioritizing logic
+    categoryDefinitions.forEach(catDef => {
+      allRecipes.forEach(recipe => {
+        if(addedRecipeIds.has(recipe.id)) return;
+        
+        const recipeText = (recipe.title + ' ' + recipe.tags.join(' ')).toLowerCase();
+        const isInCurrentCat = catDef.keywords.some(keyword => recipeText.includes(keyword));
 
-      if (!hasOtherMainCategoryInTags && recipe.title.toLowerCase().includes(categoryName.toLowerCase())) {
-          return true;
-      }
-
-      return false;
+        if (isInCurrentCat) {
+          if (catDef.name === categoryName) {
+            finalFilteredList.push(recipe);
+          }
+          addedRecipeIds.add(recipe.id);
+        }
+      });
     });
+
+    return finalFilteredList;
+
   }, [allRecipes, categoryName]);
 
   return (
