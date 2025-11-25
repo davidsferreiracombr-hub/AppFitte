@@ -107,11 +107,11 @@ export default function Home() {
 
   return (
     <AppLayout>
-      <div className="flex-1 p-4 sm:p-6 lg:p-8 relative pb-24 md:pb-8">
+      <div className="flex-1 p-4 sm:p-6 lg:p-8 relative pb-24 lg:pb-8">
         {showScroll && (
           <Button 
             onClick={scrollTop} 
-            className="fixed bottom-24 right-6 h-12 w-12 rounded-full shadow-lg z-50 bg-primary/90 text-primary-foreground hover:bg-primary"
+            className="fixed bottom-24 lg:bottom-6 right-6 h-12 w-12 rounded-full shadow-lg z-50 bg-primary/90 text-primary-foreground hover:bg-primary"
             size="icon"
             aria-label="Voltar ao topo"
           >
@@ -162,7 +162,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                   {visibleRecipes.map(recipe => {
                     return (
                       <RecipeCard 
