@@ -2751,7 +2751,7 @@ instructions: [
       "1 colher de sopa de gengibre fresco ralado",
       "1 colher de sopa de fermento"
     ],
-    instructions: [
+    "instructions": [
       "Pré-aqueça o forno a 180°C.",
       "Misture os ingredientes líquidos (suco, óleo, ovos) com o açúcar e o gengibre.",
       "Adicione a farinha e o fermento, mexendo até incorporar.",
