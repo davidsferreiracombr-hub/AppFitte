@@ -32,20 +32,16 @@ const extractActionTime = (instructions: string[]): TimerInfo | null => {
         context: "Continue mexendo"
       },
        {
-        pattern: /por cerca de (\d+)\s*(?:a|-)\s*(\d+)\s*(minutos|horas)/i,
-        context: "Tempo de ação"
-      },
-       {
-        pattern: /por (\d+)\s*(?:a|-)\s*(\d+)\s*(minutos|horas)/i,
+        pattern: /por (?:cerca de |aproximadamente |pelo menos )?(\d+)\s*(?:a|-)\s*(\d+)\s*(minutos|horas)/i,
         context: "Tempo de ação"
       },
       {
-        pattern: /por (?:cerca de |aproximadamente )?(\d+)\s*(minutos|horas)/i,
+        pattern: /por (?:cerca de |aproximadamente |pelo menos )?(\d+)\s*(minutos|horas)/i,
         context: "Tempo de ação"
       },
       {
-        pattern: /por pelo menos (\d+)\s*(minutos|horas)/i,
-        context: "Tempo de ação"
+        pattern: /(?:deixe|descansar) por (\d+)\s*(minutos|horas)/i,
+        context: "Tempo de descanso"
       },
     ];
   
@@ -62,11 +58,13 @@ const extractActionTime = (instructions: string[]): TimerInfo | null => {
           const unit = match[3] || 'minutos';
 
           let durationInMinutes = timeValue;
-          if (unit.toLowerCase().includes('hora')) {
+          if (unit.toLowerCase().startsWith('hora')) {
             durationInMinutes = timeValue * 60;
           }
           
-          return { duration: durationInMinutes, context };
+          if (!isNaN(durationInMinutes) && durationInMinutes > 0) {
+            return { duration: durationInMinutes, context };
+          }
         }
       }
     }
