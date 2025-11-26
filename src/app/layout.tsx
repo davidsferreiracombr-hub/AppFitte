@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { cn } from '@/lib/utils';
 import { Inter } from 'next/font/google';
 import { SidebarProvider } from '@/components/app-layout';
-import { WelcomeScreenProvider, useWelcomeScreen } from '@/hooks/use-welcome-screen';
+import { WelcomeScreenProvider, useWelcomeScreen } from '@/hooks/use-welcome-screen.tsx';
 import { WelcomeScreen } from '@/components/welcome-screen';
 import React from 'react';
 
