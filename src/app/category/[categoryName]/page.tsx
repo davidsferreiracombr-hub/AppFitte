@@ -23,7 +23,8 @@ function getCategoryDetails(categorySlug: string) {
 const categoryBanners: { [key: string]: string } = {
   'saudaveis-e-fit': 'https://i.imgur.com/iXZhuMZ.jpg',
   'bolos-e-tortas': 'https://i.imgur.com/IrHe2VD.jpg',
-  'paes-e-salgados': 'https://i.imgur.com/cnteplY.jpg'
+  'paes-e-salgados': 'https://i.imgur.com/cnteplY.jpg',
+  'doces-e-sobremesas': 'https://i.imgur.com/GsBgymO.jpg'
 };
 
 export default function CategoryPage({ params }: { params: { categoryName: string } }) {
