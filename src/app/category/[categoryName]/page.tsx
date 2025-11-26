@@ -49,6 +49,7 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
                     alt={`Categoria ${categoryInfo.name}`}
                     fill
                     className="object-cover"
+                    objectPosition="center"
                     priority
                 />
                 <div className="absolute inset-0 bg-black/40" />
