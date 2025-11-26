@@ -43,35 +43,36 @@ export function useAuth() {
     setIsLoading(true);
     setError(null);
     
+    // Primeiro, verifique se a senha é a senha mestra.
     if (password !== MASTER_PASSWORD) {
         setIsLoading(false);
-        // This is a custom error-like object we can throw to be caught in the UI
+        // Lança um erro específico para ser pego pela UI.
         throw { code: 'auth/invalid-credential', message: 'Senha incorreta.' };
     }
 
     try {
-      // Use local persistence to keep user logged in across browser sessions
+      // Garante a persistência local da sessão.
       await setPersistence(auth, browserLocalPersistence);
       
       try {
-        // Always try to sign in first.
+        // Tenta fazer o login primeiro.
         await signInWithEmailAndPassword(auth, email, MASTER_PASSWORD);
       } catch (error: any) {
-        if (error.code === 'auth/user-not-found') {
-          // If user does not exist, create them with the master password.
+        // Se o usuário não for encontrado, crie um novo.
+        if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
           await createUserWithEmailAndPassword(auth, email, MASTER_PASSWORD);
         } else {
-          // For other errors (like network issues, etc.), re-throw them.
+          // Para qualquer outro erro (problemas de rede, etc.), lance-o novamente.
           throw error;
         }
       }
       
-      // After successful login or creation, manage the session
+      // Após o login ou criação bem-sucedida, gerencie a sessão.
       await manageSession(email);
 
     } catch (error: any) {
       setError(error.message);
-      throw error; // Re-throw to be caught by the form's onSubmit handler
+      throw error; // Relança o erro para ser tratado pelo formulário.
     } finally {
       setIsLoading(false);
     }
@@ -81,7 +82,7 @@ export function useAuth() {
     setIsLoading(true);
     try {
       if (auth.currentUser && firestore) {
-        // Optional: Also clear the session document on explicit logout
+        // Opcional: Limpa o documento de sessão no logout explícito.
         const sessionsRef = collection(firestore, 'user_sessions');
         const q = query(sessionsRef, where("email", "==", auth.currentUser.email));
         const querySnapshot = await getDocs(q);
