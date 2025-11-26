@@ -43,38 +43,36 @@ export function useAuth() {
     setIsLoading(true);
     setError(null);
     
-    // Primeiro, verifique se a senha é a senha mestra.
     if (password !== MASTER_PASSWORD) {
         setIsLoading(false);
-        // Lança um erro específico para ser pego pela UI.
         throw { code: 'auth/invalid-credential', message: 'Senha incorreta.' };
     }
 
     try {
-      // Garante a persistência local da sessão.
       await setPersistence(auth, browserLocalPersistence);
       
       try {
-        // Tenta fazer o login primeiro.
+        // First, try to sign in.
         await signInWithEmailAndPassword(auth, email, MASTER_PASSWORD);
       } catch (error: any) {
-        // Se o usuário não for encontrado, crie um novo.
+        // If the user is not found, create a new one.
         if (error.code === 'auth/user-not-found') {
           await createUserWithEmailAndPassword(auth, email, MASTER_PASSWORD);
         } else {
-          // Para qualquer outro erro (problemas de rede, etc.), lance-o novamente.
+          // For any other login error (e.g., network issues, or even invalid-credential for a *different* reason), re-throw it.
           throw error;
         }
       }
       
-      // Após o login ou criação bem-sucedida, gerencie a sessão.
+      // After successful login or creation, manage the session.
       await manageSession(email);
 
     } catch (error: any) {
-      if(error.code !== 'auth/invalid-credential') {
+      // Set a generic error for the UI, but rethrow the original error for form handling.
+      if(error.code !== 'auth/invalid-credential') { // Avoid duplicating the specific message
         setError(error.message);
       }
-      throw error; // Relança o erro para ser tratado pelo formulário.
+      throw error; 
     } finally {
       setIsLoading(false);
     }
@@ -84,7 +82,6 @@ export function useAuth() {
     setIsLoading(true);
     try {
       if (auth.currentUser && firestore) {
-        // Opcional: Limpa o documento de sessão no logout explícito.
         const sessionsRef = collection(firestore, 'user_sessions');
         const q = query(sessionsRef, where("email", "==", auth.currentUser.email));
         const querySnapshot = await getDocs(q);
