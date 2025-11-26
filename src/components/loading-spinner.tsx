@@ -12,8 +12,10 @@ export function LoadingSpinner({ text, className }: LoadingSpinnerProps) {
   return (
     <div className={cn("flex flex-col items-center justify-center gap-4 py-16 text-center", className)}>
       <div className="relative h-16 w-16">
+        <div className="absolute inset-0 rounded-full border-4 border-primary/20"></div>
+        <div className="absolute inset-0 rounded-full border-t-4 border-primary animate-spin-slow"></div>
         <svg 
-          className="relative h-full w-full text-primary animate-pulse-subtle" 
+          className="relative h-full w-full text-primary p-3" 
           viewBox="0 0 24 24" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +23,7 @@ export function LoadingSpinner({ text, className }: LoadingSpinnerProps) {
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
-      {text && <p className="text-base font-semibold text-muted-foreground">{text}</p>}
+      {text !== null && <p className="text-base font-semibold text-muted-foreground">{text || 'Carregando...'}</p>}
     </div>
   );
 }

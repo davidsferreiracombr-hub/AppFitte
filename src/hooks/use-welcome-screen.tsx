@@ -15,7 +15,7 @@ type WelcomeScreenContextType = {
 const WelcomeScreenContext = createContext<WelcomeScreenContextType>({
   showWelcome: false,
   isFadingOut: false,
-  animationEnded: false, // Default to false to prevent flash
+  animationEnded: false,
 });
 
 export const useWelcomeScreen = () => useContext(WelcomeScreenContext);
@@ -23,18 +23,17 @@ export const useWelcomeScreen = () => useContext(WelcomeScreenContext);
 export function WelcomeScreenProvider({ children }: { children: ReactNode }) {
   const [showWelcome, setShowWelcome] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
-  // Start with animationEnded as false to prevent content flash
   const [animationEnded, setAnimationEnded] = useState(false);
 
   useEffect(() => {
     try {
-      const hasBeenShown = localStorage.getItem(WELCOME_SCREEN_KEY);
+      // Use sessionStorage to show welcome screen on every new session
+      const hasBeenShown = sessionStorage.getItem(WELCOME_SCREEN_KEY);
       
       if (!hasBeenShown) {
-        // If it hasn't been shown, we run the animation.
-        // animationEnded is already false, which is correct.
+        setAnimationEnded(false);
         setShowWelcome(true);
-        localStorage.setItem(WELCOME_SCREEN_KEY, 'true');
+        sessionStorage.setItem(WELCOME_SCREEN_KEY, 'true');
 
         setTimeout(() => {
           setIsFadingOut(true);
@@ -42,17 +41,14 @@ export function WelcomeScreenProvider({ children }: { children: ReactNode }) {
 
         setTimeout(() => {
           setShowWelcome(false);
-          setAnimationEnded(true); // Mark as ended only after animation completes
+          setAnimationEnded(true);
         }, ANIMATION_DURATION);
 
       } else {
-        // If it has been shown, we don't need the animation.
-        // Mark animation as ended immediately so content can show.
         setAnimationEnded(true);
       }
     } catch (error) {
-      console.warn("Could not access localStorage. Welcome screen will not be shown.");
-      // In case of error, just end the "animation" to show content.
+      console.warn("Could not access sessionStorage. Welcome screen will not be shown.");
       setAnimationEnded(true);
     }
   }, []);
