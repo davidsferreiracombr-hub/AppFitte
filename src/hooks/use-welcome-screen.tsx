@@ -15,7 +15,7 @@ type WelcomeScreenContextType = {
 const WelcomeScreenContext = createContext<WelcomeScreenContextType>({
   showWelcome: false,
   isFadingOut: false,
-  animationEnded: true,
+  animationEnded: false, // Default to false to prevent flash
 });
 
 export const useWelcomeScreen = () => useContext(WelcomeScreenContext);
@@ -23,13 +23,16 @@ export const useWelcomeScreen = () => useContext(WelcomeScreenContext);
 export function WelcomeScreenProvider({ children }: { children: ReactNode }) {
   const [showWelcome, setShowWelcome] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
-  const [animationEnded, setAnimationEnded] = useState(true);
+  // Start with animationEnded as false to prevent content flash
+  const [animationEnded, setAnimationEnded] = useState(false);
 
   useEffect(() => {
     try {
       const hasBeenShown = sessionStorage.getItem(WELCOME_SCREEN_KEY);
+      
       if (!hasBeenShown) {
-        setAnimationEnded(false);
+        // If it hasn't been shown, we run the animation.
+        // animationEnded is already false, which is correct.
         setShowWelcome(true);
         sessionStorage.setItem(WELCOME_SCREEN_KEY, 'true');
 
@@ -39,11 +42,17 @@ export function WelcomeScreenProvider({ children }: { children: ReactNode }) {
 
         setTimeout(() => {
           setShowWelcome(false);
-          setAnimationEnded(true);
+          setAnimationEnded(true); // Mark as ended only after animation completes
         }, ANIMATION_DURATION);
+
+      } else {
+        // If it has been shown, we don't need the animation.
+        // Mark animation as ended immediately so content can show.
+        setAnimationEnded(true);
       }
     } catch (error) {
       console.warn("Could not access sessionStorage. Welcome screen will not be shown.");
+      // In case of error, just end the "animation" to show content.
       setAnimationEnded(true);
     }
   }, []);
