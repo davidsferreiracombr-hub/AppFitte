@@ -26,7 +26,7 @@ const categoryDefinitions: Omit<CategoryInfo, 'count'>[] = [
     description: 'Deliciosos bolos para o café, tortas cremosas e rocamboles para qualquer ocasião.',
     icon: Cake,
     color: 'bg-red-50 border-red-200',
-    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra'],
+    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'pudim'],
   },
   {
     name: 'Doces e Sobremesas',
@@ -65,33 +65,39 @@ export default function CategoriesPage() {
 
   useEffect(() => {
     const calculateCategories = () => {
-      const categorizedRecipeIds = new Set<number>();
-      
-      const processedCategories = categoryDefinitions.map(catDef => {
-        let count = 0;
-        allRecipes.forEach(recipe => {
-          if (categorizedRecipeIds.has(recipe.id)) return;
+      const addedRecipeIds = new Set<number>();
+      const categorizedRecipes: { [key: string]: number } = {};
 
-          let match = false;
-          // Prioritize tags for more accurate categorization
-          if (recipe.tags && Array.isArray(recipe.tags)) {
-            if (catDef.keywords.some(keyword => recipe.tags.includes(keyword))) {
-              match = true;
+      for (const catDef of categoryDefinitions) {
+        categorizedRecipes[catDef.name] = 0;
+      }
+
+      for (const recipe of allRecipes) {
+        if (addedRecipeIds.has(recipe.id)) continue;
+      
+        for (const catDef of categoryDefinitions) {
+            let match = false;
+            // Prioritize tags for more accurate categorization
+            if (recipe.tags && recipe.tags.some(tag => catDef.keywords.includes(tag.toLowerCase()))) {
+                match = true;
+            } else if (catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword.toLowerCase()))) {
+                match = true;
             }
-          }
-          
-          // Fallback to title search if no tag matches
-          if (!match) {
-            match = catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword));
-          }
-          
-          if (match) {
-            count++;
-            categorizedRecipeIds.add(recipe.id);
-          }
-        });
-        return { ...catDef, count };
-      }).filter(cat => cat.count > 0);
+
+            if (match) {
+                categorizedRecipes[catDef.name] = (categorizedRecipes[catDef.name] || 0) + 1;
+                addedRecipeIds.add(recipe.id);
+                break; // Assign to first matching category and move to next recipe
+            }
+        }
+      }
+
+      const processedCategories = categoryDefinitions
+        .map(catDef => ({
+          ...catDef,
+          count: categorizedRecipes[catDef.name] || 0,
+        }))
+        .filter(cat => cat.count > 0);
 
       setCategories(processedCategories);
       setIsLoading(false);

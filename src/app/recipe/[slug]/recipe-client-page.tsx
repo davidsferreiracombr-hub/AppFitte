@@ -21,40 +21,41 @@ const extractActionTimes = (instructions: string[]): TimerInfo[] => {
     const timers: TimerInfo[] = [];
     const timePatterns = [
       {
-        pattern: /(?:forno|assar|asse)(?:.*?) por (?:cerca de |pelo menos )?(\d+)(?:(?: a |-| até )(\d+))? (minutos|horas)/i,
+        pattern: /(?:forno|assar|asse)(?:.*?) por (?:cerca de |pelo menos |aproximadamente )?(\d+)(?:(?: a |-| até )(\d+))? (minutos|horas)/i,
         context: "Tempo de forno"
       },
       {
-        pattern: /(?:geladeira|refrigere|gelar)(?:.*?) por (?:cerca de |pelo menos )?(\d+)(?:(?: a |-| até )(\d+))? (minutos|horas)/i,
+        pattern: /(?:geladeira|refrigere|gelar)(?:.*?) por (?:cerca de |pelo menos |aproximadamente )?(\d+)(?:(?: a |-| até )(\d+))? (minutos|horas)/i,
         context: "Tempo de geladeira"
       },
       {
-        pattern: /(?:fogo|cozinhe|mexendo)(?:.*?) por (?:cerca de |pelo menos )?(\d+)(?:(?: a |-| até )(\d+))? (minutos|horas)/i,
-        context: "Continue mexendo"
-      },
-       {
-        pattern: /por (?:cerca de |aproximadamente |pelo menos )?(\d+)\s*(?:a|-)\s*(\d+)\s*(minutos|horas)/i,
-        context: "Tempo de ação"
+        pattern: /(?:fogo|cozinhe|mexendo)(?:.*?) por (?:cerca de |pelo menos |aproximadamente )?(\d+)(?:(?: a |-| até )(\d+))? (minutos|horas)/i,
+        context: "Tempo de fogo"
       },
        {
         pattern: /bata(?:.*?) por (?:cerca de |aproximadamente |pelo menos )?(\d+)\s*(?:a|-)?\s*(\d+)?\s*(minutos|horas)/i,
-        context: "Tempo de Bater"
+        context: "Tempo de batedeira"
+      },
+      {
+        pattern: /(?:deixe|descansar|de molho) por (?:cerca de |pelo menos |aproximadamente )?(\d+)\s*(minutos|horas)/i,
+        context: "Tempo de descanso"
+      },
+      {
+        pattern: /por (?:cerca de |aproximadamente |pelo menos )?(\d+)\s*(?:a|-)\s*(\d+)\s*(minutos|horas)/i,
+        context: "Tempo de ação"
       },
       {
         pattern: /por (?:cerca de |aproximadamente |pelo menos )?(\d+)\s*(minutos|horas)/i,
         context: "Tempo de ação"
       },
-      {
-        pattern: /(?:deixe|descansar) por (\d+)\s*(minutos|horas)/i,
-        context: "Tempo de descanso"
-      },
     ];
   
-    for (const instruction of instructions) {
+    instructions.forEach(instruction => {
       for (const { pattern, context } of timePatterns) {
         const match = instruction.match(pattern);
         if (match) {
           const timeValue1 = match[1] ? parseInt(match[1], 10) : 0;
+          // Capture potential second value for ranges (e.g., 20-30 minutos)
           const timeValue2 = match[2] ? parseInt(match[2], 10) : 0;
           
           let timeValue = Math.max(timeValue1, timeValue2);
@@ -68,13 +69,12 @@ const extractActionTimes = (instructions: string[]): TimerInfo[] => {
           }
           
           if (!isNaN(durationInMinutes) && durationInMinutes > 0) {
-            // Adiciona à lista em vez de retornar
             timers.push({ duration: durationInMinutes, context });
-            break; // Sai do loop interno para não adicionar múltiplos timers para a mesma instrução
+            return; // Move to the next instruction once a time is found
           }
         }
       }
-    }
+    });
   
     return timers;
   };

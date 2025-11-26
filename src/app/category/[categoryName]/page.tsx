@@ -52,7 +52,7 @@ function getFilteredRecipes(encodedCategoryName: string): FilteredData {
     const categoryName = decodeURIComponent(encodedCategoryName);
     const allRecipes = getRecipes();
     const categoryDef = categoryDefinitions.find(c => c.name === categoryName);
-    
+
     if (!categoryDef) {
       return {
         recipes: [],
@@ -61,40 +61,33 @@ function getFilteredRecipes(encodedCategoryName: string): FilteredData {
       };
     }
 
-    const finalFilteredList: Recipe[] = [];
+    const categorizedRecipes: { [key: string]: Recipe[] } = {};
     const addedRecipeIds = new Set<number>();
 
-    // This logic ensures that recipes that fit multiple categories are assigned to the most specific one first.
-    const categoriesInOrder = [
-        categoryDef,
-        ...categoryDefinitions.filter(c => c.name !== categoryName)
-    ];
-
-    categoriesInOrder.forEach(catDef => {
-      allRecipes.forEach(recipe => {
-        if(addedRecipeIds.has(recipe.id)) return;
-        
+    // First pass: assign recipes to their best-fit category
+    for (const recipe of allRecipes) {
+      if (addedRecipeIds.has(recipe.id)) continue;
+      
+      for (const catDef of categoryDefinitions) {
         let match = false;
-        // Prioritize tags
-        if (recipe.tags && Array.isArray(recipe.tags)) {
-            if (catDef.keywords.some(keyword => recipe.tags.includes(keyword.toLowerCase()))) {
-              match = true;
-            }
-        }
-          
-        // Fallback to title
-        if (!match) {
-            match = catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword.toLowerCase()));
+        if (recipe.tags && recipe.tags.some(tag => catDef.keywords.includes(tag.toLowerCase()))) {
+            match = true;
+        } else if (catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword.toLowerCase()))) {
+            match = true;
         }
 
         if (match) {
-          if (catDef.name === categoryName) {
-            finalFilteredList.push(recipe);
-          }
-          addedRecipeIds.add(recipe.id);
+            if (!categorizedRecipes[catDef.name]) {
+                categorizedRecipes[catDef.name] = [];
+            }
+            categorizedRecipes[catDef.name].push(recipe);
+            addedRecipeIds.add(recipe.id);
+            break; // Assign to first matching category and move to next recipe
         }
-      });
-    });
+      }
+    }
+    
+    const finalFilteredList = categorizedRecipes[categoryName] || [];
 
     const description = categoryDef.description || `Encontramos ${finalFilteredList.length} receitas deliciosas na categoria ${categoryName}.`;
 
@@ -104,6 +97,7 @@ function getFilteredRecipes(encodedCategoryName: string): FilteredData {
       description: description
     };
 }
+
 
 export default function CategoryPage({ params }: { params: { categoryName: string } }) {
   const { recipes, name, description } = getFilteredRecipes(params.categoryName);
