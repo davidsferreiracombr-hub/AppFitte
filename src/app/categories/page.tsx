@@ -16,19 +16,23 @@ const categoryImages: { [key: string]: string } = {
   'Doces e Sobremesas': 'https://i.imgur.com/GsBgymO.jpg'
 };
 
+const titleHighlights: { [key: string]: { full: string; highlight: string } } = {
+    'Saudáveis e Fit': { full: 'Saudáveis e Fit', highlight: 'Fit' },
+    'Bolos e Tortas': { full: 'Bolos e Tortas', highlight: 'Bolos' },
+    'Pães e Salgados': { full: 'Pães e Salgados', highlight: 'Pães' },
+    'Doces e Sobremesas': { full: 'Doces e Sobremesas', highlight: 'Doces' },
+};
+
 export default function CategoriesPage() {
   const [categories, setCategories] = useState<CategoryInfo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // A lógica para obter e contar as receitas por categoria
-    const processedCategories = categoryDefinitions.map(catDef => {
-      const recipes = getCategorizedRecipes(catDef.name);
-      return {
-        ...catDef,
-        count: recipes.length,
-      };
-    }).filter(cat => cat.count > 0); // Opcional: só mostrar categorias que têm receitas
+    const allRecipes = getRecipesByAllCategories();
+    const processedCategories = categoryDefinitions.map(catDef => ({
+      ...catDef,
+      count: allRecipes[catDef.name]?.length || 0,
+    })).filter(cat => (cat.count ?? 0) > 0);
 
     setCategories(processedCategories);
     setIsLoading(false);
@@ -62,8 +66,15 @@ export default function CategoriesPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                     <div className="absolute bottom-0 left-0 p-6 text-white">
-                      <h3 className="text-2xl font-bold tracking-tight" style={{ textShadow: '2px 2px 6px rgba(0,0,0,0.8)' }}>
-                        {category.name}
+                       <h3 className="text-2xl font-bold tracking-tight" style={{ textShadow: '2px 2px 6px rgba(0,0,0,0.8)' }}>
+                        {titleHighlights[category.name]
+                          ? (
+                            <>
+                              {titleHighlights[category.name].full.replace(titleHighlights[category.name].highlight, '')}
+                              <span className="text-primary">{titleHighlights[category.name].highlight}</span>
+                            </>
+                          )
+                          : category.name}
                       </h3>
                        <p className="mt-1 text-sm font-medium opacity-90 max-w-xs">{category.description}</p>
                       <p className="mt-2 text-xs font-bold uppercase tracking-wider opacity-80">{category.count} receitas</p>
@@ -78,4 +89,3 @@ export default function CategoriesPage() {
     </AppLayout>
   );
 }
-
