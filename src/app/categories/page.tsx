@@ -26,28 +26,28 @@ const categoryDefinitions: Omit<CategoryInfo, 'count'>[] = [
     description: 'Deliciosos bolos para o café, tortas cremosas e rocamboles para qualquer ocasião.',
     icon: Cake,
     color: 'bg-red-50 border-red-200',
-    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'pudim'],
+    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'pudim', 'empadão'],
   },
   {
     name: 'Doces e Sobremesas',
     description: 'Pudins, mousses, cremes, pavês, docinhos de festa, gelatinas e muito mais para adoçar o dia.',
     icon: IceCream,
     color: 'bg-pink-50 border-pink-200',
-    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu'],
+    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu', 'compota', 'goiabada', 'canjica', 'queijadinha', 'sonho', 'maria-mole', 'olho de sogra', 'clafoutis', 'panna cotta', 'crème brûlée'],
   },
   {
     name: 'Pães e Salgados',
     description: 'Receitas de pães caseiros, salgadinhos de festa, tortas salgadas, esfihas e lanches práticos.',
     icon: Croissant,
     color: 'bg-yellow-50 border-yellow-200',
-    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz'],
+    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz', 'vatapá', 'acarajé', 'pão de queijo', 'empadão'],
   },
   {
     name: 'Biscoitos e Cookies',
     description: 'Encontre cookies, biscoitinhos amanteigados, sequilhos e rosquinhas para acompanhar seu café.',
     icon: Cookie,
     color: 'bg-amber-50 border-amber-200',
-    keywords: ['cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'alfajor', 'goiabinha', 'casadinho'],
+    keywords: ['cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'alfajor', 'goiabinha', 'casadinho', 'bem-casado', 'churros'],
   },
   {
     name: 'Saudáveis e Fit',
@@ -65,39 +65,24 @@ export default function CategoriesPage() {
 
   useEffect(() => {
     const calculateCategories = () => {
-      const addedRecipeIds = new Set<number>();
-      const categoryCounts: { [key: string]: number } = {};
+      const processedCategories = categoryDefinitions.map(catDef => {
+        const count = allRecipes.filter(recipe => {
+          // Prioritize tags for more accurate categorization
+          if (recipe.tags && recipe.tags.some(tag => catDef.keywords.includes(tag.toLowerCase()))) {
+              return true;
+          }
+          // Fallback to title matching
+          if (catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword.toLowerCase()))) {
+              return true;
+          }
+          return false;
+        }).length;
 
-      for (const catDef of categoryDefinitions) {
-        categoryCounts[catDef.name] = 0;
-      }
-
-      for (const recipe of allRecipes) {
-        if (addedRecipeIds.has(recipe.id)) continue;
-      
-        for (const catDef of categoryDefinitions) {
-            let match = false;
-            // Prioritize tags for more accurate categorization
-            if (recipe.tags && recipe.tags.some(tag => catDef.keywords.includes(tag.toLowerCase()))) {
-                match = true;
-            } else if (catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword.toLowerCase()))) {
-                match = true;
-            }
-
-            if (match) {
-                categoryCounts[catDef.name] = (categoryCounts[catDef.name] || 0) + 1;
-                addedRecipeIds.add(recipe.id);
-                break; // Assign to first matching category and move to next recipe
-            }
-        }
-      }
-
-      const processedCategories = categoryDefinitions
-        .map(catDef => ({
+        return {
           ...catDef,
-          count: categoryCounts[catDef.name] || 0,
-        }))
-        .filter(cat => cat.count > 0);
+          count: count,
+        };
+      }).filter(cat => cat.count > 0);
 
       setCategories(processedCategories);
       setIsLoading(false);

@@ -9,19 +9,19 @@ const categoryDefinitions = [
     name: 'Bolos e Tortas',
     description: 'Deliciosos bolos para o café, tortas cremosas e rocamboles para qualquer ocasião.',
     iconName: 'Cake',
-    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'pudim'],
+    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'pudim', 'empadão'],
   },
   {
     name: 'Doces e Sobremesas',
-    description: 'Mousses, cremes, pavês, docinhos de festa, gelatinas e muito mais para adoçar o dia.',
+    description: 'Pudins, mousses, cremes, pavês, docinhos de festa, gelatinas e muito mais para adoçar o dia.',
     iconName: 'IceCream',
-    keywords: ['doce', 'sobremesa', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu', 'compota', 'goiabada', 'canjica'],
+    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu', 'compota', 'goiabada', 'canjica', 'queijadinha', 'sonho', 'maria-mole', 'olho de sogra', 'clafoutis', 'panna cotta', 'crème brûlée'],
   },
   {
     name: 'Pães e Salgados',
     description: 'Receitas de pães caseiros, salgadinhos de festa, tortas salgadas, esfihas e lanches práticos.',
     iconName: 'Croissant',
-    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz', 'vatapá', 'acarajé'],
+    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz', 'vatapá', 'acarajé', 'pão de queijo', 'empadão'],
   },
   {
     name: 'Biscoitos e Cookies',
@@ -63,41 +63,23 @@ function getFilteredRecipes(categorySlug: string): FilteredData {
       };
     }
 
-    const categoryName = categoryDef.name;
-    const categorizedRecipes: Recipe[] = [];
-    const addedRecipeIds = new Set<number>();
-
-    for (const recipe of allRecipes) {
-      if (addedRecipeIds.has(recipe.id)) continue;
-      
-      let assignedCategory = null;
-      for (const catDef of categoryDefinitions) {
-        let match = false;
-        if (recipe.tags && recipe.tags.some(tag => catDef.keywords.includes(tag.toLowerCase()))) {
-            match = true;
-        } else if (catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword.toLowerCase()))) {
-            match = true;
+    const categorizedRecipes = allRecipes.filter(recipe => {
+        // Prioritize tags for more accurate categorization
+        if (recipe.tags && recipe.tags.some(tag => categoryDef.keywords.includes(tag.toLowerCase()))) {
+            return true;
         }
-
-        if (match) {
-            assignedCategory = catDef.name;
-            break; 
+        // Fallback to title matching
+        if (categoryDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword.toLowerCase()))) {
+            return true;
         }
-      }
-
-      if (assignedCategory === categoryName) {
-        categorizedRecipes.push(recipe);
-      }
-      if (assignedCategory) {
-        addedRecipeIds.add(recipe.id);
-      }
-    }
+        return false;
+    });
     
-    const description = categoryDef.description || `Encontramos ${categorizedRecipes.length} receitas deliciosas na categoria ${categoryName}.`;
+    const description = categoryDef.description || `Encontramos ${categorizedRecipes.length} receitas deliciosas na categoria ${categoryDef.name}.`;
 
     return {
       recipes: categorizedRecipes,
-      name: categoryName,
+      name: categoryDef.name,
       description: description
     };
 }
