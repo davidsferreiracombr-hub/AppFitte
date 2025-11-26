@@ -2,11 +2,9 @@
 
 import { useState } from 'react';
 import {
-  getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
-  Auth,
   inMemoryPersistence,
   setPersistence,
 } from 'firebase/auth';
@@ -24,8 +22,7 @@ export function useAuth() {
       await setPersistence(auth, inMemoryPersistence);
       await signInWithEmailAndPassword(auth, email, masterPassword);
     } catch (error: any) {
-      if (error.code === 'auth/user-not-found') {
-        // If user does not exist, create a new one
+      if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
         try {
           await createUserWithEmailAndPassword(auth, email, masterPassword);
         } catch (creationError: any) {

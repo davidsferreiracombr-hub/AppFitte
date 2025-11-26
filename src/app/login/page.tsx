@@ -10,6 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from 'next/navigation';
 import { LoadingSpinner } from '@/components/loading-spinner';
+import { Mail, Lock, LogIn } from 'lucide-react';
 
 const MASTER_PASSWORD = '045622';
 
@@ -41,29 +42,37 @@ export default function LoginPage() {
       await login(data.email, data.password);
       router.push('/');
     } catch (error: any) {
-      form.setError('root', { type: 'manual', message: error.message });
+      const errorMessage = error.code === 'auth/invalid-credential' 
+        ? 'E-mail ou senha incorretos.' 
+        : 'Ocorreu um erro. Tente novamente.';
+      form.setError('root', { type: 'manual', message: errorMessage });
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background p-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-            <svg className="mx-auto h-12 w-12 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            <h1 className="text-3xl font-extrabold tracking-tight text-foreground mt-4">Bem-vindo ao Fitte</h1>
-            <p className="text-muted-foreground mt-2">Acesse com seu e-mail e a senha de acesso.</p>
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-background overflow-hidden p-4">
+      <div className="absolute -top-1/4 -left-1/4 w-96 h-96 bg-gradient-to-br from-primary/20 to-primary/0 rounded-full opacity-50 animate-float"></div>
+      <div className="absolute -bottom-1/4 -right-1/4 w-96 h-96 bg-gradient-to-tl from-primary/20 to-primary/0 rounded-full opacity-50 animate-float [animation-delay:-12s]"></div>
+
+      <div className="w-full max-w-sm z-10">
+        <div className="text-left mb-10">
+            <h1 className="text-5xl font-extrabold tracking-tight text-foreground">Login</h1>
+            <p className="text-muted-foreground mt-2">Bem-vindo(a) de volta! Acesse sua conta.</p>
         </div>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 bg-card p-8 rounded-2xl border shadow-sm">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>E-mail</FormLabel>
+                  <FormLabel className="sr-only">E-mail</FormLabel>
                   <FormControl>
-                    <Input placeholder="seu-email@gmail.com" {...field} />
+                    <div className="relative">
+                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                        <Input placeholder="seu-email@gmail.com" {...field} className="h-14 pl-12 rounded-2xl bg-secondary border-none text-base"/>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -74,9 +83,12 @@ export default function LoginPage() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Senha</FormLabel>
+                  <FormLabel className="sr-only">Senha</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="••••••" {...field} />
+                    <div className="relative">
+                       <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                       <Input type="password" placeholder="Senha" {...field} className="h-14 pl-12 rounded-2xl bg-secondary border-none text-base"/>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -84,11 +96,12 @@ export default function LoginPage() {
             />
             
             {form.formState.errors.root && (
-              <p className="text-sm font-medium text-destructive">{form.formState.errors.root.message}</p>
+              <p className="text-sm font-medium text-destructive text-center">{form.formState.errors.root.message}</p>
             )}
 
-            <Button type="submit" className="w-full h-11 text-base" disabled={isLoading}>
-              {isLoading ? <LoadingSpinner text="Entrando..." className="py-0"/> : 'Entrar'}
+            <Button type="submit" className="w-full h-14 text-lg font-bold rounded-2xl" disabled={isLoading}>
+              {isLoading ? <LoadingSpinner text={null} className="py-0"/> : 'Entrar'}
+              {!isLoading && <LogIn className="ml-2 h-5 w-5" />}
             </Button>
           </form>
         </Form>
