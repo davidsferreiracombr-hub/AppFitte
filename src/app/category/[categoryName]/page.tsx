@@ -51,53 +51,52 @@ type FilteredData = {
 
 function getFilteredRecipes(categorySlug: string): FilteredData {
     const allRecipes = getRecipes();
-    const categoryDef = categoryDefinitions.find(c => createSlug(c.name) === categorySlug);
+    const decodedCategoryName = decodeURIComponent(categorySlug.replace(/-/g, ' '));
+    
+    const categoryDef = categoryDefinitions.find(c => c.name.toLowerCase() === decodedCategoryName.toLowerCase());
 
     if (!categoryDef) {
-      // Decode for display purposes if no category is found
-      const decodedName = decodeURIComponent(categorySlug.replace(/-/g, ' '));
       return {
         recipes: [],
-        name: decodedName,
-        description: `Nenhuma categoria encontrada para "${decodedName}".`
+        name: decodedCategoryName.charAt(0).toUpperCase() + decodedCategoryName.slice(1),
+        description: `Nenhuma categoria encontrada para "${decodedCategoryName}".`
       };
     }
 
     const categoryName = categoryDef.name;
-    const categorizedRecipes: { [key: string]: Recipe[] } = {};
+    const categorizedRecipes: Recipe[] = [];
     const addedRecipeIds = new Set<number>();
 
-    // This logic ensures recipes are assigned to one category only, matching the main categories page
     for (const recipe of allRecipes) {
       if (addedRecipeIds.has(recipe.id)) continue;
       
+      let assignedCategory = null;
       for (const catDef of categoryDefinitions) {
         let match = false;
-        // Prioritize tags for categorization
         if (recipe.tags && recipe.tags.some(tag => catDef.keywords.includes(tag.toLowerCase()))) {
             match = true;
-        // Fallback to title matching
         } else if (catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword.toLowerCase()))) {
             match = true;
         }
 
         if (match) {
-            if (!categorizedRecipes[catDef.name]) {
-                categorizedRecipes[catDef.name] = [];
-            }
-            categorizedRecipes[catDef.name].push(recipe);
-            addedRecipeIds.add(recipe.id);
-            break; // Assign to first matching category and move to next recipe
+            assignedCategory = catDef.name;
+            break; 
         }
+      }
+
+      if (assignedCategory === categoryName) {
+        categorizedRecipes.push(recipe);
+      }
+      if (assignedCategory) {
+        addedRecipeIds.add(recipe.id);
       }
     }
     
-    const finalFilteredList = categorizedRecipes[categoryName] || [];
-
-    const description = categoryDef.description || `Encontramos ${finalFilteredList.length} receitas deliciosas na categoria ${categoryName}.`;
+    const description = categoryDef.description || `Encontramos ${categorizedRecipes.length} receitas deliciosas na categoria ${categoryName}.`;
 
     return {
-      recipes: finalFilteredList,
+      recipes: categorizedRecipes,
       name: categoryName,
       description: description
     };

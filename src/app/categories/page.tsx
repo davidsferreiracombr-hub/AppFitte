@@ -66,10 +66,10 @@ export default function CategoriesPage() {
   useEffect(() => {
     const calculateCategories = () => {
       const addedRecipeIds = new Set<number>();
-      const categorizedRecipes: { [key: string]: number } = {};
+      const categoryCounts: { [key: string]: number } = {};
 
       for (const catDef of categoryDefinitions) {
-        categorizedRecipes[catDef.name] = 0;
+        categoryCounts[catDef.name] = 0;
       }
 
       for (const recipe of allRecipes) {
@@ -85,7 +85,7 @@ export default function CategoriesPage() {
             }
 
             if (match) {
-                categorizedRecipes[catDef.name] = (categorizedRecipes[catDef.name] || 0) + 1;
+                categoryCounts[catDef.name] = (categoryCounts[catDef.name] || 0) + 1;
                 addedRecipeIds.add(recipe.id);
                 break; // Assign to first matching category and move to next recipe
             }
@@ -95,7 +95,7 @@ export default function CategoriesPage() {
       const processedCategories = categoryDefinitions
         .map(catDef => ({
           ...catDef,
-          count: categorizedRecipes[catDef.name] || 0,
+          count: categoryCounts[catDef.name] || 0,
         }))
         .filter(cat => cat.count > 0);
 
