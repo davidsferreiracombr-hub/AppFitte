@@ -54,7 +54,7 @@ export default function CategoriesPage() {
             <LoadingSpinner text="Organizando nosso cardápio..." />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {categories.map((category) => (
+              {categories.map((category, index) => (
                 <Link href={`/category/${createSlug(category.name)}`} key={category.name} passHref>
                   <div className="group relative block rounded-2xl overflow-hidden shadow-lg h-64 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl group-hover:ring-4 group-hover:ring-primary/50 group-hover:ring-offset-4 group-hover:ring-offset-background">
                     <Image
@@ -62,6 +62,8 @@ export default function CategoriesPage() {
                       alt={`Imagem da categoria ${category.name}`}
                       fill
                       className="object-cover object-center transition-transform duration-300 group-hover:scale-110"
+                      priority={index < 2} // Prioriza as duas primeiras imagens (acima da dobra no desktop)
+                      sizes="(max-width: 640px) 100vw, 50vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                     <div className="absolute bottom-0 left-0 p-6 text-white">

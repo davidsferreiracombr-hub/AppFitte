@@ -20,7 +20,7 @@ export default function Home() {
       <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
         <div className="mb-12 text-left">
             <p className="text-muted-foreground text-lg">Olá,</p>
-            <h2 className="text-4xl font-extrabold tracking-tight text-foreground">
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
               O que vamos <span className="text-primary">cozinhar</span> hoje?
             </h2>
         </div>
@@ -28,7 +28,7 @@ export default function Home() {
         <main>
           {/* Nova grade de receitas que substitui os carrosséis */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {allRecipes.map((recipe) => (
+            {allRecipes.map((recipe, index) => (
                 <RecipeCard 
                   key={recipe.id}
                   recipe={recipe} 
@@ -40,6 +40,7 @@ export default function Home() {
                       addFavorite(recipe.slug);
                     }
                   }}
+                  priority={index < 5} // Prioriza o carregamento das 5 primeiras imagens
                 />
             ))}
           </div>

@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -94,7 +95,7 @@ export default function LoginPage() {
             )}
 
             <Button type="submit" className="w-full h-14 text-lg font-bold rounded-2xl" disabled={isLoading}>
-              {isLoading ? <LoadingSpinner text={null} className="py-0"/> : 'Entrar'}
+              {isLoading ? <LoadingSpinner text="Entrando..." className="py-0"/> : 'Entrar'}
               {!isLoading && <LogIn className="ml-2 h-5 w-5" />}
             </Button>
           </form>

@@ -28,6 +28,21 @@ export type CategoryInfo = {
   count?: number;
 };
 
+const categoryImages: { [key: string]: string } = {
+  'Saudáveis e Fit': 'https://i.imgur.com/iXZhuMZ.jpg',
+  'Bolos e Tortas': 'https://i.imgur.com/IrHe2VD.jpg',
+  'Pães e Salgados': 'https://i.imgur.com/cnteplY.jpg',
+  'Doces e Sobremesas': 'https://i.imgur.com/GsBgymO.jpg'
+};
+
+export function getRecipeImage(categoryName?: string): string | null {
+    if (!categoryName || !categoryImages[categoryName]) {
+        // Retorna uma imagem padrão ou nulo se a categoria não existir ou não tiver imagem
+        return 'https://i.imgur.com/iXZhuMZ.jpg';
+    }
+    return categoryImages[categoryName];
+}
+
 // 1. Single Source of Truth for Category Definitions
 export const categoryDefinitions: CategoryInfo[] = [
     {
@@ -152,4 +167,3 @@ export function getRecipesByAllCategories(): { [categoryName: string]: Recipe[] 
     processAndCategorizeRecipes();
     return recipesByCategory!;
 }
-

@@ -17,7 +17,7 @@ export function CategoryView({ recipes }: CategoryViewProps) {
     <>
       {recipes.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-          {recipes.map(recipe => (
+          {recipes.map((recipe, index) => (
             <RecipeCard
               key={recipe.id}
               recipe={recipe}
@@ -29,6 +29,7 @@ export function CategoryView({ recipes }: CategoryViewProps) {
                   addFavorite(recipe.slug);
                 }
               }}
+               priority={index < 5} // Prioriza o carregamento das 5 primeiras receitas da categoria
             />
           ))}
         </div>

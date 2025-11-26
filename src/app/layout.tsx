@@ -70,8 +70,10 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
   }, [user, isUserLoading, router, pathname]);
 
   if (isUserLoading || (!user && pathname !== '/login') || (user && pathname === '/login')) {
-    const message = isUserLoading ? "Carregando..." : "Redirecionando...";
-    return <LoadingSpinner text={message} className="h-screen" />;
+    const message = isUserLoading ? "Verificando sessão..." : "Redirecionando...";
+    return <div className="h-screen w-full flex items-center justify-center bg-background">
+      <LoadingSpinner text={message} />
+    </div>;
   }
 
   // Renderiza o conteúdo do aplicativo ou a página de login

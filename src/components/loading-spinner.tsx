@@ -1,10 +1,11 @@
+
 'use client';
 
 import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface LoadingSpinnerProps {
-  text?: string;
+  text?: string | null;
   className?: string;
 }
 
@@ -13,7 +14,7 @@ export function LoadingSpinner({ text, className }: LoadingSpinnerProps) {
     <div className={cn("flex flex-col items-center justify-center gap-4 py-16 text-center", className)}>
       <div className="relative h-16 w-16">
         <div className="absolute inset-0 rounded-full border-4 border-primary/20"></div>
-        <div className="absolute inset-0 rounded-full border-t-4 border-primary animate-spin-slow"></div>
+        <div className="absolute inset-0 rounded-full border-t-4 border-primary animate-spin"></div>
         <svg 
           className="relative h-full w-full text-primary p-3" 
           viewBox="0 0 24 24" 

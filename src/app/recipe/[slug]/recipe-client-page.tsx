@@ -5,11 +5,14 @@ import { useEffect, useState } from 'react';
 import { type Recipe } from '@/lib/recipes';
 import { useFavorites } from '@/hooks/use-favorites';
 import { useToast } from '@/hooks/use-toast';
+import Image from 'next/image';
 import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Timer } from '@/components/Timer';
 import { cn } from '@/lib/utils';
+import { getRecipeImage } from '@/lib/recipes';
+
 
 type TimerInfo = {
   duration: number;
@@ -106,31 +109,47 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
     }
   };
 
+  const recipeImage = getRecipeImage(recipe.category);
+
+
   return (
     <div className="min-h-screen font-body bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pt-12 pb-24 lg:pb-12">
-        <div className="bg-card rounded-2xl shadow-sm border overflow-hidden">
-          <div className="p-6 md:p-10">
-            <div className="flex justify-between items-start mb-4">
+      <div className="relative h-48 md:h-72 w-full">
+         {recipeImage && (
+            <Image
+                src={recipeImage}
+                alt={recipe.title}
+                fill
+                className="object-cover"
+                priority
+            />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+         <div className="absolute top-4 left-4 z-10">
               <Link href="/" passHref>
-                  <Button variant="outline" className="inline-flex items-center transition-colors font-semibold">
+                  <Button variant="outline" className="inline-flex items-center transition-colors font-semibold bg-background/50 backdrop-blur-sm">
                       <ArrowLeft className="mr-2 h-4 w-4" />
                       Voltar
                   </Button>
               </Link>
-               <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group rounded-full h-10 w-10">
-                    <Heart className={cn(
-                        "h-5 w-5 text-muted-foreground group-hover:text-primary transition-all duration-200 group-active:scale-125", 
-                        isFavorite ? "fill-primary text-primary" : "fill-transparent"
-                    )} />
-                    <span className="sr-only">{isFavorite ? 'Desfavoritar' : 'Favoritar'}</span>
-                </Button>
-            </div>
-
+          </div>
+          <div className="absolute top-4 right-4 z-10">
+              <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group rounded-full h-10 w-10 bg-background/50 backdrop-blur-sm">
+                  <Heart className={cn(
+                      "h-5 w-5 text-muted-foreground group-hover:text-primary transition-all duration-200 group-active:scale-125", 
+                      isFavorite ? "fill-primary text-primary" : "fill-transparent"
+                  )} />
+                  <span className="sr-only">{isFavorite ? 'Desfavoritar' : 'Favoritar'}</span>
+              </Button>
+          </div>
+      </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pb-24 lg:pb-12 -mt-16 relative z-[5]">
+        <div className="bg-card rounded-2xl shadow-lg border overflow-hidden p-6 md:p-10">
+          <div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-primary">
               {recipe.title}
             </h1>
-            <p className="text-muted-foreground mt-4 text-lg max-w-2xl">
+            <p className="text-muted-foreground mt-4 text-lg max-w-3xl">
               {recipe.description}
             </p>
 
@@ -157,38 +176,36 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-                <div className="lg:col-span-3">
-                    <div className="space-y-10">
-                        <div>
-                            <h2 className="text-2xl font-bold mb-4 flex items-center gap-3 text-foreground"><Utensils className="h-6 w-6 text-primary" /> Ingredientes</h2>
-                            <ul className="list-disc list-inside space-y-3 text-muted-foreground bg-muted/30 p-6 rounded-lg border">
-                                {recipe.ingredients.map((item, index) => (
-                                    <li key={index} className="leading-relaxed">{item}</li>
-                                ))}
-                            </ul>
-                        </div>
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-8">
+                <div className="lg:col-span-3 space-y-10">
+                    <div>
+                        <h2 className="text-2xl font-bold mb-4 flex items-center gap-3 text-foreground"><Utensils className="h-6 w-6 text-primary" /> Ingredientes</h2>
+                        <ul className="list-disc list-inside space-y-3 text-muted-foreground bg-muted/30 p-6 rounded-lg border">
+                            {recipe.ingredients.map((item, index) => (
+                                <li key={index} className="leading-relaxed">{item}</li>
+                            ))}
+                        </ul>
+                    </div>
 
-                        <div>
-                            <h2 className="text-2xl font-bold mb-4 flex items-center gap-3 text-foreground"><ChefHat className="h-6 w-6 text-primary" /> Modo de Preparo</h2>
-                             <ol className="list-decimal list-inside space-y-4 text-muted-foreground bg-muted/30 p-6 rounded-lg border">
-                                {recipe.instructions.map((item, index) => (
-                                    <li key={index} className="leading-relaxed pl-2">{item}</li>
-                                ))}
-                            </ol>
-                        </div>
+                    <div>
+                        <h2 className="text-2xl font-bold mb-4 flex items-center gap-3 text-foreground"><ChefHat className="h-6 w-6 text-primary" /> Modo de Preparo</h2>
+                         <ol className="list-decimal list-inside space-y-4 text-muted-foreground bg-muted/30 p-6 rounded-lg border">
+                            {recipe.instructions.map((item, index) => (
+                                <li key={index} className="leading-relaxed pl-2">{item}</li>
+                            ))}
+                        </ol>
                     </div>
                 </div>
 
-                <div className="lg:col-span-2">
+                <aside className="lg:col-span-2">
                     {timerInfos.length > 0 && (
-                      <div className="sticky top-28 pt-8 space-y-8">
+                      <div className="sticky top-28 space-y-8">
                           {timerInfos.map((info, index) => (
                               <Timer key={index} durationInMinutes={info.duration} context={info.context} />
                           ))}
                       </div>
                     )}
-                </div>
+                </aside>
             </div>
             
             {recipe.notes && (
