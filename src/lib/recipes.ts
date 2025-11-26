@@ -32,25 +32,25 @@ export type CategoryInfo = {
 export const categoryDefinitions: CategoryInfo[] = [
     {
       name: 'Saudáveis e Fit',
-      description: 'Opções leves, nutritivas, fit, low-carb, integrais e proteicas para uma vida equilibrada.',
+      description: 'Receitas leves para um estilo de vida equilibrado e cheio de sabor.',
       icon: Wheat,
       color: 'bg-lime-50 border-lime-200',
     },
     {
       name: 'Bolos e Tortas',
-      description: 'Deliciosos bolos para o café, tortas cremosas e cheesecakes para todas as ocasiões.',
+      description: 'Delícias para o café da tarde, celebrações ou aquele doce especial.',
       icon: Cake,
       color: 'bg-red-50 border-red-200',
     },
     {
       name: 'Pães e Salgados',
-      description: 'Receitas de pães, salgadinhos de festa, tortas salgadas e petiscos para lanches ou refeições.',
+      description: 'Opções perfeitas para lanches, festas ou uma refeição rápida.',
       icon: Croissant,
       color: 'bg-yellow-50 border-yellow-200',
     },
     {
       name: 'Doces e Sobremesas',
-      description: 'Pudins, mousses, cookies, docinhos de festa e sorvetes para adoçar qualquer momento.',
+      description: 'Para adoçar a vida com pudins, mousses, cookies e muito mais.',
       icon: Cookie,
       color: 'bg-pink-50 border-pink-200',
     },
@@ -109,7 +109,7 @@ function processAndCategorizeRecipes(): void {
         let assignedCategory: string | null = null;
 
         // Strict priority order for categorization
-        if (categoryKeywords['Saudáveis e Fit'].some(keyword => lowerCaseTags.includes(keyword))) {
+        if (categoryKeywords['Saudáveis e Fit'].some(keyword => lowerCaseTags.includes(keyword) || recipe.title.toLowerCase().includes('fit'))) {
             assignedCategory = 'Saudáveis e Fit';
         } else if (categoryKeywords['Bolos e Tortas'].some(keyword => lowerCaseTags.includes(keyword))) {
             assignedCategory = 'Bolos e Tortas';
@@ -152,3 +152,4 @@ export function getRecipesByAllCategories(): { [categoryName: string]: Recipe[] 
     processAndCategorizeRecipes();
     return recipesByCategory!;
 }
+
