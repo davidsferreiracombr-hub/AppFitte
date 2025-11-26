@@ -11,6 +11,8 @@ import {
 import { useFirebase } from '@/firebase';
 import { collection, query, where, getDocs, writeBatch, doc, serverTimestamp, addDoc } from 'firebase/firestore';
 
+const MASTER_PASSWORD = '045622';
+
 export function useAuth() {
   const { auth, firestore } = useFirebase();
   const [isLoading, setIsLoading] = useState(false);
@@ -37,21 +39,29 @@ export function useAuth() {
     });
   };
 
-  const login = async (email: string, masterPassword: string) => {
+  const login = async (email: string, password: string) => {
     setIsLoading(true);
     setError(null);
+    
+    if (password !== MASTER_PASSWORD) {
+        setIsLoading(false);
+        // This is a custom error-like object we can throw to be caught in the UI
+        throw { code: 'auth/invalid-credential', message: 'Senha incorreta.' };
+    }
+
     try {
       // Use local persistence to keep user logged in across browser sessions
       await setPersistence(auth, browserLocalPersistence);
       
       try {
-        await signInWithEmailAndPassword(auth, email, masterPassword);
+        // Always try to sign in first.
+        await signInWithEmailAndPassword(auth, email, MASTER_PASSWORD);
       } catch (error: any) {
         if (error.code === 'auth/user-not-found') {
-          // If user does not exist, create them
-          await createUserWithEmailAndPassword(auth, email, masterPassword);
+          // If user does not exist, create them with the master password.
+          await createUserWithEmailAndPassword(auth, email, MASTER_PASSWORD);
         } else {
-          // For other errors (like wrong password), re-throw
+          // For other errors (like network issues, etc.), re-throw them.
           throw error;
         }
       }
@@ -61,7 +71,7 @@ export function useAuth() {
 
     } catch (error: any) {
       setError(error.message);
-      throw error;
+      throw error; // Re-throw to be caught by the form's onSubmit handler
     } finally {
       setIsLoading(false);
     }

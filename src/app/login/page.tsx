@@ -12,15 +12,12 @@ import { useRouter } from 'next/navigation';
 import { LoadingSpinner } from '@/components/loading-spinner';
 import { Mail, Lock, LogIn } from 'lucide-react';
 
-const MASTER_PASSWORD = '045622';
-
 const loginSchema = z.object({
   email: z.string()
     .email('E-mail inválido.')
     .refine(email => email.endsWith('@gmail.com') || email.endsWith('@gmail.com.br'), 'Use um e-mail @gmail.com ou @gmail.com.br.'),
   password: z.string()
-    .min(1, 'A senha é obrigatória.')
-    .refine(password => password === MASTER_PASSWORD, 'Senha incorreta.'),
+    .min(1, 'A senha é obrigatória.'),
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
