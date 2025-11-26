@@ -9,7 +9,7 @@ import {
   browserLocalPersistence,
 } from 'firebase/auth';
 import { useFirebase } from '@/firebase';
-import { collection, query, where, getDocs, writeBatch, doc, serverTimestamp, addDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, writeBatch, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const MASTER_PASSWORD = '045622';
 
@@ -52,14 +52,15 @@ export function useAuth() {
       await setPersistence(auth, browserLocalPersistence);
       
       try {
-        // First, try to sign in.
-        await signInWithEmailAndPassword(auth, email, MASTER_PASSWORD);
+        // Try to create a user first. This handles new users seamlessly.
+        await createUserWithEmailAndPassword(auth, email, MASTER_PASSWORD);
       } catch (error: any) {
-        // If the user is not found, create a new one.
-        if (error.code === 'auth/user-not-found') {
-          await createUserWithEmailAndPassword(auth, email, MASTER_PASSWORD);
+        // If the error is 'email-already-in-use', it means the user exists.
+        // So, we proceed to sign them in.
+        if (error.code === 'auth/email-already-in-use') {
+          await signInWithEmailAndPassword(auth, email, MASTER_PASSWORD);
         } else {
-          // For any other login error (e.g., network issues, or even invalid-credential for a *different* reason), re-throw it.
+          // For any other error during creation (e.g., invalid-email), we throw it.
           throw error;
         }
       }
@@ -69,7 +70,7 @@ export function useAuth() {
 
     } catch (error: any) {
       // Set a generic error for the UI, but rethrow the original error for form handling.
-      if(error.code !== 'auth/invalid-credential') { // Avoid duplicating the specific message
+      if(error.code !== 'auth/invalid-credential') {
         setError(error.message);
       }
       throw error; 
