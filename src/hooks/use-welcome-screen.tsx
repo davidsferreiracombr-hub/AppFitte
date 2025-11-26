@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
@@ -15,47 +16,46 @@ type WelcomeScreenContextType = {
 const WelcomeScreenContext = createContext<WelcomeScreenContextType>({
   showWelcome: false,
   isFadingOut: false,
-  animationEnded: true, // Default to true so it doesn't block rendering
+  animationEnded: true,
 });
 
 export const useWelcomeScreen = () => useContext(WelcomeScreenContext);
 
 export function WelcomeScreenProvider({ children }: { children: ReactNode }) {
-  const [showWelcome, setShowWelcome] = useState(false);
-  const [isFadingOut, setIsFadingOut] = useState(false);
-  const [animationEnded, setAnimationEnded] = useState(true);
+  const [state, setState] = useState<WelcomeScreenContextType>({
+    showWelcome: false,
+    isFadingOut: false,
+    animationEnded: true,
+  });
 
   useEffect(() => {
     try {
       const hasBeenShown = sessionStorage.getItem(WELCOME_SCREEN_KEY);
       
       if (!hasBeenShown) {
-        setAnimationEnded(false); // Only block rendering if we need to show the animation
-        setShowWelcome(true);
+        setState({ showWelcome: true, isFadingOut: false, animationEnded: false });
         sessionStorage.setItem(WELCOME_SCREEN_KEY, 'true');
 
         setTimeout(() => {
-          setIsFadingOut(true);
+          setState(s => ({ ...s, isFadingOut: true }));
         }, FADE_OUT_START);
 
         setTimeout(() => {
-          setShowWelcome(false);
-          setAnimationEnded(true);
+          setState(s => ({ ...s, showWelcome: false, animationEnded: true }));
         }, ANIMATION_DURATION);
 
       } else {
-        setAnimationEnded(true); // If already shown, don't block
+        // If it has been shown, the animation is considered ended immediately.
+        setState({ showWelcome: false, isFadingOut: false, animationEnded: true });
       }
     } catch (error) {
       console.warn("Could not access sessionStorage. Welcome screen will not be shown.");
-      setAnimationEnded(true); // Ensure app is not blocked if sessionStorage fails
+      setState({ showWelcome: false, isFadingOut: false, animationEnded: true });
     }
   }, []);
   
-  const value = { showWelcome, isFadingOut, animationEnded };
-
   return (
-    <WelcomeScreenContext.Provider value={value}>
+    <WelcomeScreenContext.Provider value={state}>
       {children}
     </WelcomeScreenContext.Provider>
   );

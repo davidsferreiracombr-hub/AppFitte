@@ -9,7 +9,7 @@ import { SidebarProvider } from '@/components/app-layout';
 import { WelcomeScreenProvider, useWelcomeScreen } from '@/hooks/use-welcome-screen';
 import { WelcomeScreen } from '@/components/welcome-screen';
 import React, { useEffect } from 'react';
-import { FirebaseClientProvider, useFirebase, useUser } from '@/firebase';
+import { FirebaseClientProvider, useFirebase } from '@/firebase';
 import { usePathname, useRouter } from 'next/navigation';
 import { LoadingSpinner } from '@/components/loading-spinner';
 import { collection, query, where, onSnapshot, getDocs } from 'firebase/firestore';
@@ -41,11 +41,14 @@ function SessionWatcher() {
     });
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
+      const isSessionActive = snapshot.docs.some(doc => doc.id === currentSessionId);
       // If there are no docs for this email, or if the current session doc was deleted
       // it means a new session has started elsewhere.
-      if (snapshot.empty || (currentSessionId && !snapshot.docs.some(doc => doc.id === currentSessionId))) {
+       if (snapshot.docs.length > 0 && currentSessionId && !isSessionActive) {
          signOut(auth);
-      }
+       } else if (snapshot.empty && currentSessionId) {
+         signOut(auth);
+       }
     });
 
     return () => unsubscribe();
@@ -56,7 +59,7 @@ function SessionWatcher() {
 
 
 function AuthGuard({ children }: { children: React.ReactNode }) {
-  const { user, isUserLoading } = useUser();
+  const { user, isUserLoading } = useFirebase();
   const router = useRouter();
   const pathname = usePathname();
   const { animationEnded } = useWelcomeScreen();
@@ -73,22 +76,18 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
     }
   }, [user, isUserLoading, router, pathname, animationEnded]);
 
-  // Initial loading state while checking for user and welcome animation
-  if (!animationEnded || isUserLoading) {
+  if (isUserLoading || !animationEnded) {
     return <LoadingSpinner text="Carregando..." className="h-screen" />;
   }
   
-  // If we are not logged in and not on the login page, show loading while redirecting
   if (!user && pathname !== '/login') {
     return <LoadingSpinner text="Verificando acesso..." className="h-screen" />;
   }
   
-  // If we are logged in and on the login page, show loading while redirecting
   if (user && pathname === '/login') {
      return <LoadingSpinner text="Redirecionando..." className="h-screen" />;
   }
 
-  // Render children only when auth state is resolved and we are on the correct page
   return <>{children}</>;
 }
 
@@ -97,14 +96,14 @@ function AppContent({ children }: { children: React.ReactNode }) {
   const { animationEnded } = useWelcomeScreen();
   const pathname = usePathname();
 
-  // Wait for the welcome animation to finish before rendering the main content
-  if (!animationEnded) {
-    return null;
-  }
-  
   // Do not wrap login page with SidebarProvider
   if (pathname === '/login') {
     return <>{children}</>;
+  }
+
+  // Wait for the welcome animation to finish before rendering the main layout
+  if (!animationEnded) {
+    return null;
   }
 
   // Wrap authenticated pages with the sidebar and session watcher
@@ -117,14 +116,15 @@ function AppContent({ children }: { children: React.ReactNode }) {
 }
 
 function RootClientLayout({ children }: { children: React.ReactNode }) {
+  const { animationEnded } = useWelcomeScreen();
   return (
     <FirebaseClientProvider>
-      <WelcomeScreenProvider>
         <WelcomeScreen />
-        <AuthGuard>
-          <AppContent>{children}</AppContent>
-        </AuthGuard>
-      </WelcomeScreenProvider>
+        {animationEnded && (
+          <AuthGuard>
+            <AppContent>{children}</AppContent>
+          </AuthGuard>
+        )}
     </FirebaseClientProvider>
   );
 }
@@ -142,7 +142,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       </head>
       <body className={cn("min-h-screen font-body antialiased", inter.variable)}>
-        <RootClientLayout>{children}</RootClientLayout>
+        <WelcomeScreenProvider>
+            <RootClientLayout>{children}</RootClientLayout>
+        </WelcomeScreenProvider>
         <Toaster />
       </body>
     </html>
