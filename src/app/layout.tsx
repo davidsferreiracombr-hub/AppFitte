@@ -7,15 +7,50 @@ import { Inter } from 'next/font/google';
 import { SidebarProvider } from '@/components/app-layout';
 import { WelcomeScreenProvider, useWelcomeScreen } from '@/hooks/use-welcome-screen';
 import { WelcomeScreen } from '@/components/welcome-screen';
-import React, { useEffect } from 'react';
-import { FirebaseClientProvider, useUser } from '@/firebase';
+import React, { useEffect, useMemo } from 'react';
+import { FirebaseClientProvider, useFirebase, useUser } from '@/firebase';
 import { usePathname, useRouter } from 'next/navigation';
 import { LoadingSpinner } from '@/components/loading-spinner';
+import { collection, query, where, onSnapshot, getDocs } from 'firebase/firestore';
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-body',
 });
+
+function SessionWatcher() {
+  const { user, firestore, auth } = useFirebase();
+
+  useEffect(() => {
+    if (!user || !firestore) return;
+
+    const sessionsRef = collection(firestore, 'user_sessions');
+    const q = query(sessionsRef, where("email", "==", user.email));
+
+    // Get initial docs to know our current session ID
+    let currentSessionId: string | null = null;
+    getDocs(q).then(snapshot => {
+      if (!snapshot.empty) {
+        // Assuming there is only one session doc per user as per our login logic
+        currentSessionId = snapshot.docs[0].id;
+      }
+    });
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      // If there are no docs, or if our current session doc was deleted, logout.
+      if (snapshot.empty || (currentSessionId && !snapshot.docs.some(doc => doc.id === currentSessionId))) {
+         if (auth) {
+            signOut(auth);
+         }
+      }
+    });
+
+    return () => unsubscribe();
+  }, [user, firestore, auth]);
+
+  return null; // This component does not render anything
+}
+
 
 function AuthGuard({ children }: { children: React.ReactNode }) {
   const { user, isUserLoading } = useUser();
@@ -68,6 +103,7 @@ function AppContent({ children }: { children: React.ReactNode }) {
 
   return (
     <SidebarProvider>
+      <SessionWatcher />
       {children}
     </SidebarProvider>
   );

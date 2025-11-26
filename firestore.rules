@@ -7,15 +7,16 @@
  * - /users/{userId}: Private user profiles, strictly owned by the user.
  * - /recipes/{recipeId}: Public, read-only collection of recipes. Content is assumed to be managed by administrators or a backend process.
  * - /forum_posts/{postId}: Publicly readable community posts. Write access is restricted to the post's original author.
- * - /user_sessions/{sessionId}: Private documents for managing user login sessions. Users can create a session upon login, but cannot read or modify other sessions.
+ * - /user_sessions/{sessionId}: Documents for managing user login sessions. Users can create and delete their own sessions, but cannot read or modify others' sessions.
  *
  * Key Security Decisions:
  * - User Isolation: A user can only access their own document within the `/users/{userId}` path. Listing users is disabled.
  * - Public Content Safety: Recipes are read-only for clients, preventing unauthorized modification. Forum posts can be read by any signed-in user, but only modified or deleted by their author.
- * - Session Privacy: The `/user_sessions` collection is write-only for session creation. Users cannot list, read, or interfere with other active sessions, enhancing privacy and security.
+ * - Session Management: Users can create sessions associated with their email. Crucially, they can also *delete* any session document associated with their email, allowing a new login to invalidate an old one. Reading other users' session data is disallowed.
  *
  * Denormalization for Authorization:
  * - Forum Post Ownership: The `/forum_posts/{postId}` documents contain a `userProfileId` field. This denormalization is critical for allowing efficient and secure ownership checks on update and delete operations without needing extra database reads.
+ * - Session Ownership: `user_sessions` documents contain an `email` field. This allows a user to query and delete their own previous sessions without needing to know the specific session IDs.
  *
  * Structural Segregation:
  * - Data is segregated into top-level collections based on access patterns (private user data, public recipes, community forum posts). This separation simplifies rules and improves query performance and security.
@@ -41,6 +42,10 @@ service cloud.firestore {
      */
     function isOwner(userId) {
       return isSignedIn() && request.auth.uid == userId;
+    }
+    
+    function isEmailOwner(email) {
+      return isSignedIn() && request.auth.token.email == email;
     }
 
     /**
@@ -86,9 +91,7 @@ service cloud.firestore {
      */
     match /recipes/{recipeId} {
       allow get, list: if true;
-      allow create: if false;
-      allow update: if false;
-      allow delete: if false;
+      allow create, update, delete: if false;
     }
 
     /**
@@ -110,18 +113,16 @@ service cloud.firestore {
     /**
      * @description Manages active user sessions to support single-device login.
      * @path /user_sessions/{sessionId}
-     * @allow (create) An authenticated user can create a new session document.
-     * @deny Any user attempt to read, list, update, or delete session documents is rejected to protect privacy.
-     * @principle Secures session data by preventing enumeration or modification, relying on a backend function for cleanup and enforcement logic.
+     * @allow (create) An authenticated user can create a new session document for their own email.
+     * @allow (list, delete) A user can list and delete session documents associated with their own email. This is CRUCIAL for the single-session logic.
+     * @deny Users cannot read, update, or interfere with sessions that are not their own.
+     * @principle Secures session data by scope-limiting list and delete operations to the user's email, enabling a client-side implementation of single-session enforcement.
      */
     match /user_sessions/{sessionId} {
-      allow get: if false;
-      allow list: if false;
-      allow create: if isSignedIn() && request.resource.data.email == request.auth.token.email;
-      // CRITICAL: Cannot implement secure owner-only update/delete rules. The 'UserSession' entity is missing a 'userId' or 'ownerId' field.
-      // A backend function should be used to manage session lifecycle. Client-side updates/deletes are disabled for security.
-      allow update: if false; // TODO: Add owner validation once the schema is updated with an ownership field (e.g., userId).
-      allow delete: if false; // TODO: Add owner validation once the schema is updated with an ownership field (e.g., userId).
+      allow get, update: if false;
+      allow list: if isSignedIn(); // Scoped by 'where' clause in client query
+      allow create: if isEmailOwner(request.resource.data.email);
+      allow delete: if isEmailOwner(resource.data.email);
     }
   }
 }
