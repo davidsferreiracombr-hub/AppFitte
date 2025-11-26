@@ -100,6 +100,9 @@ export default function LoginPage() {
             </Button>
           </form>
         </Form>
+        <p className="text-xs text-muted-foreground text-center mt-6">
+            Todos os direitos reservados por @Davidifly. É estritamente proibida a clonagem ou o compartilhamento de conta.
+        </p>
       </div>
     </div>
   );
