@@ -5,24 +5,30 @@ import { AppLayout } from '@/components/app-layout';
 import { getCategorizedRecipes, createSlug, categoryDefinitions } from '@/lib/recipes';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
+import Image from 'next/image';
 import { LoadingSpinner } from '@/components/loading-spinner';
 import type { CategoryInfo } from '@/lib/recipes';
 
+const categoryImages: { [key: string]: string } = {
+  'Saudáveis e Fit': 'https://i.imgur.com/iXZhuMZ.jpg',
+  'Bolos e Tortas': 'https://i.imgur.com/IrHe2VD.jpg',
+  'Pães e Salgados': 'https://i.imgur.com/cnteplY.jpg',
+  'Doces e Sobremesas': 'https://i.imgur.com/GsBgymO.jpg'
+};
 
 export default function CategoriesPage() {
   const [categories, setCategories] = useState<CategoryInfo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // This logic now correctly uses the centralized function
+    // A lógica para obter e contar as receitas por categoria
     const processedCategories = categoryDefinitions.map(catDef => {
       const recipes = getCategorizedRecipes(catDef.name);
       return {
         ...catDef,
         count: recipes.length,
       };
-    }).filter(cat => cat.count > 0); // Only show categories with recipes
+    }).filter(cat => cat.count > 0); // Opcional: só mostrar categorias que têm receitas
 
     setCategories(processedCategories);
     setIsLoading(false);
@@ -44,17 +50,23 @@ export default function CategoriesPage() {
           {isLoading ? (
             <LoadingSpinner text="Organizando nosso cardápio..." />
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {categories.map((category) => (
-                <Link href={`/category/${createSlug(category.name)}`} key={category.name}>
-                  <div className={cn(
-                      "group flex flex-col items-center justify-center p-6 rounded-2xl border-2 text-center h-52 transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 hover:border-primary/50",
-                      category.color
-                  )}>
-                    <category.icon className="h-10 w-10 text-primary transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} />
-                    <h3 className="mt-3 text-xl font-bold text-foreground truncate w-full">{category.name}</h3>
-                    <p className="text-sm text-muted-foreground mb-2">{category.count} receitas</p>
-                    <p className="text-base text-muted-foreground/80 line-clamp-2">{category.description}</p>
+                <Link href={`/category/${createSlug(category.name)}`} key={category.name} passHref>
+                  <div className="group relative block rounded-2xl overflow-hidden shadow-lg h-52 transition-all duration-300 ease-in-out hover:scale-105">
+                    <Image
+                      src={categoryImages[category.name]}
+                      alt={`Imagem da categoria ${category.name}`}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                    <div className="absolute bottom-0 left-0 p-6 text-white">
+                      <h3 className="text-2xl font-bold tracking-tight" style={{ textShadow: '2px 2px 6px rgba(0,0,0,0.8)' }}>
+                        {category.name}
+                      </h3>
+                      <p className="text-sm font-medium opacity-90">{category.count} receitas</p>
+                    </div>
                   </div>
                 </Link>
               ))}
