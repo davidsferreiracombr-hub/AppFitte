@@ -1,6 +1,6 @@
 
 import recipesData from './recipes.json';
-import { Cake, Cookie, Croissant, Wheat } from 'lucide-react';
+import { Cake, Cookie, Croissant, Wheat, IceCream } from 'lucide-react';
 import type { LucideProps } from 'lucide-react';
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 
@@ -17,7 +17,7 @@ export type Recipe = {
   instructions: string[];
   servings: string;
   notes?: string;
-  category?: string; // Add category to recipe type
+  category?: string;
 };
 
 export type CategoryInfo = {
@@ -25,9 +25,35 @@ export type CategoryInfo = {
   description: string;
   icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
   color: string;
-  keywords: string[];
   count?: number;
 };
+
+export const categoryDefinitions: CategoryInfo[] = [
+    {
+      name: 'Saudáveis e Fit',
+      description: 'Opções leves, nutritivas, fit, low-carb, integrais e proteicas para uma vida equilibrada.',
+      icon: Wheat,
+      color: 'bg-lime-50 border-lime-200',
+    },
+    {
+      name: 'Bolos e Tortas',
+      description: 'Deliciosos bolos para o café, tortas cremosas e cheesecakes para todas as ocasiões.',
+      icon: Cake,
+      color: 'bg-red-50 border-red-200',
+    },
+    {
+      name: 'Doces e Sobremesas',
+      description: 'Pudins, mousses, cookies, docinhos de festa e sorvetes para adoçar qualquer momento.',
+      icon: Cookie,
+      color: 'bg-pink-50 border-pink-200',
+    },
+    {
+      name: 'Pães e Salgados',
+      description: 'Receitas de pães, salgadinhos de festa, tortas salgadas e petiscos para lanches ou refeições.',
+      icon: Croissant,
+      color: 'bg-yellow-50 border-yellow-200',
+    },
+  ];
 
 // Helper function to create a URL-friendly slug
 export function createSlug(title: string): string {
@@ -46,45 +72,14 @@ export function createSlug(title: string): string {
         .replace(/-+/g, '-');
 }
 
-export const categoryDefinitions: CategoryInfo[] = [
-  {
-    name: 'Saudáveis e Fit',
-    description: 'Opções leves e nutritivas, incluindo receitas fit, low-carb, integrais e proteicas.',
-    icon: Wheat,
-    color: 'bg-lime-50 border-lime-200',
-    keywords: ['fit', 'low carb', 'integral', 'proteico', 'vegano', 'sem glúten', 'detox', 'saudavel', 'funcional', 'barra de cereal', 'vitamina', 'mingau', 'crepioca', 'salada', 'smoothie'],
-  },
-  {
-    name: 'Bolos e Tortas',
-    description: 'Deliciosos bolos para o café, tortas cremosas e rocamboles para qualquer ocasião.',
-    icon: Cake,
-    color: 'bg-red-50 border-red-200',
-    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'empadão', 'banoffee', 'clafoutis', 'panna cotta', 'crème brûlée'],
-  },
-  {
-    name: 'Doces e Sobremesas',
-    description: 'Pudins, mousses, cremes, pavês, docinhos de festa, gelatinas e muito mais para adoçar o dia.',
-    icon: Cookie,
-    color: 'bg-pink-50 border-pink-200',
-    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu', 'compota', 'goiabada', 'canjica', 'queijadinha', 'sonho', 'maria-mole', 'olho de sogra', 'beijinho', 'danoninho', 'churros', 'alfajor', 'goiabinha', 'casadinho', 'bem-casado', 'cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'carolina'],
-  },
-  {
-    name: 'Pães e Salgados',
-    description: 'Receitas de pães caseiros, salgadinhos de festa, tortas salgadas, esfihas e lanches práticos.',
-    icon: Croissant,
-    color: 'bg-yellow-50 border-yellow-200',
-    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz', 'vatapá', 'acarajé', 'pão de queijo', 'farofa'],
-  },
-];
+let allRecipes: Recipe[] | null = null;
 
-let categorizedRecipes: Recipe[] | null = null;
-
-function categorizeAllRecipes(): Recipe[] {
-    if (categorizedRecipes) {
-      return categorizedRecipes;
+function processRecipes(): Recipe[] {
+    if (allRecipes) {
+        return allRecipes;
     }
 
-    const allRecipes = (recipesData as Omit<Recipe, 'category'>[]).map((recipe, index) => {
+    const recipesWithSlugs = (recipesData as Recipe[]).map((recipe, index) => {
         const uniqueId = recipe.id || (index + 1);
         const recipeTitleSlug = createSlug(recipe.title);
         return {
@@ -93,27 +88,45 @@ function categorizeAllRecipes(): Recipe[] {
         };
     });
 
-    const uncategorizedCategory = 'Outros';
+    const categoryKeywords = {
+        'Saudáveis e Fit': ['fit', 'low carb', 'integral', 'proteico', 'vegano', 'sem glúten', 'detox', 'saudavel', 'funcional', 'light'],
+        'Bolos e Tortas': ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'empadão', 'banoffee'],
+        'Doces e Sobremesas': ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'compota', 'goiabada', 'canjica', 'queijadinha', 'sonho', 'maria-mole', 'olho de sogra', 'beijinho', 'danoninho', 'churros', 'alfajor', 'goiabinha', 'casadinho', 'bem-casado', 'cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'carolina', 'clafoutis', 'panna cotta', 'crème brûlée'],
+        'Pães e Salgados': ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz', 'vatapá', 'acarajé', 'pão de queijo', 'farofa', 'crepioca'],
+    };
 
-    categorizedRecipes = allRecipes.map(recipe => {
-        const lowerCaseTitle = recipe.title.toLowerCase();
-        const lowerCaseTags = recipe.tags?.map(tag => tag.toLowerCase()) || [];
-        const content = `${lowerCaseTitle} ${lowerCaseTags.join(' ')}`;
+    allRecipes = recipesWithSlugs.map(recipe => {
+        const lowerCaseTags = recipe.tags.map(t => t.toLowerCase());
 
-        for (const category of categoryDefinitions) {
-            if (category.keywords.some(keyword => content.includes(keyword.toLowerCase()))) {
-                return { ...recipe, category: category.name };
-            }
+        // Priority 1: Saudáveis e Fit
+        if (categoryKeywords['Saudáveis e Fit'].some(keyword => lowerCaseTags.includes(keyword))) {
+            return { ...recipe, category: 'Saudáveis e Fit' };
         }
-        // If no category is found, it will be left without a category property.
+
+        // Priority 2: Bolos e Tortas
+        if (categoryKeywords['Bolos e Tortas'].some(keyword => lowerCaseTags.includes(keyword))) {
+            return { ...recipe, category: 'Bolos e Tortas' };
+        }
+
+        // Priority 3: Pães e Salgados
+        if (categoryKeywords['Pães e Salgados'].some(keyword => lowerCaseTags.includes(keyword))) {
+            return { ...recipe, category: 'Pães e Salgados' };
+        }
+        
+        // Priority 4: Doces e Sobremesas (if it contains any sweet-related tag and hasn't been categorized)
+        if (categoryKeywords['Doces e Sobremesas'].some(keyword => lowerCaseTags.includes(keyword))) {
+            return { ...recipe, category: 'Doces e Sobremesas' };
+        }
+
+        // Fallback: If no category is found, it will be left without a category property.
         return recipe;
     });
-    
-    return categorizedRecipes;
+
+    return allRecipes;
 }
 
 export function getRecipes(): Recipe[] {
-  return categorizeAllRecipes();
+  return processRecipes();
 }
 
 export function getRecipeBySlug(slug: string): Recipe | undefined {
