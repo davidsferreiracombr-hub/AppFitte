@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 import { Home, Heart, Search, Menu, LayoutGrid, LogOut } from 'lucide-react';
 import { BottomNav } from './bottom-nav';
 import { useAuth } from '@/hooks/use-auth';
+import { FloatingBackButton } from './floating-back-button';
 
 type SidebarContextType = {
   isMobileSheetOpen: boolean;
@@ -174,6 +175,7 @@ function MobileSheet() {
 }
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
 
   return (
     <div className="flex min-h-screen w-full bg-background">
@@ -184,6 +186,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           {children}
         </main>
         <MobileSheet />
+        {pathname !== '/' && <FloatingBackButton />}
         <BottomNav />
       </div>
     </div>

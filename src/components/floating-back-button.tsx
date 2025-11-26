@@ -1,0 +1,23 @@
+
+'use client';
+
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
+
+export function FloatingBackButton() {
+  const router = useRouter();
+
+  return (
+    <Button
+      onClick={() => router.back()}
+      variant="default"
+      size="icon"
+      className="fixed bottom-24 right-4 z-50 h-14 w-14 rounded-full shadow-lg lg:bottom-8 lg:right-8"
+      aria-label="Voltar para a página anterior"
+    >
+      <ArrowLeft className="h-6 w-6" />
+    </Button>
+  );
+}

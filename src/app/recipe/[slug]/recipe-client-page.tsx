@@ -5,9 +5,8 @@ import { useEffect, useState } from 'react';
 import { type Recipe } from '@/lib/recipes';
 import { useFavorites } from '@/hooks/use-favorites';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon, Heart } from 'lucide-react';
+import { ChefHat, Clock, Flame, Info, BookText, Award, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import { Timer } from '@/components/Timer';
 import { cn } from '@/lib/utils';
 
@@ -109,18 +108,6 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
 
   return (
     <div className="min-h-screen font-body bg-background">
-      
-        <Link href="/" passHref>
-            <Button
-                variant="ghost"
-                size="icon"
-                className="fixed top-4 left-4 z-50 h-12 w-12 rounded-full bg-background/80 backdrop-blur-sm shadow-md hover:bg-background lg:top-8 lg:left-8"
-                aria-label="Voltar para a página inicial"
-            >
-                <ArrowLeft className="h-6 w-6" />
-            </Button>
-        </Link>
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pt-8 pb-24 lg:pb-12">
 
         <div className="bg-card rounded-2xl shadow-lg border overflow-hidden p-6 md:p-10 mt-12 lg:mt-0">
