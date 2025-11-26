@@ -57,15 +57,13 @@ function SessionWatcher() {
   return null; // This component does not render anything
 }
 
-
 function AuthGuard({ children }: { children: React.ReactNode }) {
   const { user, isUserLoading } = useFirebase();
   const router = useRouter();
   const pathname = usePathname();
-  const { animationEnded } = useWelcomeScreen();
 
   useEffect(() => {
-    if (!animationEnded || isUserLoading) return;
+    if (isUserLoading) return; // Aguarda a verificação inicial terminar
 
     const isLoginPage = pathname === '/login';
 
@@ -74,39 +72,37 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
     } else if (user && isLoginPage) {
       router.push('/');
     }
-  }, [user, isUserLoading, router, pathname, animationEnded]);
+  }, [user, isUserLoading, router, pathname]);
 
-  if (isUserLoading || !animationEnded) {
+  // Enquanto verifica o usuário, mostra um loading para evitar piscar a tela
+  if (isUserLoading) {
     return <LoadingSpinner text="Carregando..." className="h-screen" />;
   }
-  
+
+  // Se não tem usuário e não está na página de login, espera o redirecionamento
   if (!user && pathname !== '/login') {
     return <LoadingSpinner text="Verificando acesso..." className="h-screen" />;
   }
-  
+
+  // Se tem usuário e está na página de login, espera o redirecionamento
   if (user && pathname === '/login') {
      return <LoadingSpinner text="Redirecionando..." className="h-screen" />;
   }
-
+  
+  // Renderiza o conteúdo (ou a tela de login)
   return <>{children}</>;
 }
 
 
 function AppContent({ children }: { children: React.ReactNode }) {
-  const { animationEnded } = useWelcomeScreen();
   const pathname = usePathname();
 
-  // Do not wrap login page with SidebarProvider
+  // Não envolve a tela de login com a Sidebar
   if (pathname === '/login') {
     return <>{children}</>;
   }
 
-  // Wait for the welcome animation to finish before rendering the main layout
-  if (!animationEnded) {
-    return null;
-  }
-
-  // Wrap authenticated pages with the sidebar and session watcher
+  // Envolve as páginas autenticadas com a Sidebar e o SessionWatcher
   return (
     <SidebarProvider>
       <SessionWatcher />
@@ -120,10 +116,14 @@ function RootClientLayout({ children }: { children: React.ReactNode }) {
   return (
     <FirebaseClientProvider>
         <WelcomeScreen />
-        {animationEnded && (
+        {animationEnded ? (
           <AuthGuard>
             <AppContent>{children}</AppContent>
           </AuthGuard>
+        ) : (
+          // Mostra um spinner enquanto a animação da WelcomeScreen acontece
+          // Isso previne o AuthGuard de rodar prematuramente
+          <LoadingSpinner text={null} className="h-screen" />
         )}
     </FirebaseClientProvider>
   );
