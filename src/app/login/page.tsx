@@ -92,9 +92,6 @@ export default function LoginPage() {
             </Button>
           </form>
         </Form>
-         <p className="px-8 text-center text-sm text-muted-foreground mt-6">
-            Não se preocupe, a senha de acesso é a mesma para todos.
-        </p>
       </div>
     </div>
   );

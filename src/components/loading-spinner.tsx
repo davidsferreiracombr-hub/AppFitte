@@ -13,15 +13,7 @@ export function LoadingSpinner({ text, className }: LoadingSpinnerProps) {
     <div className={cn("flex flex-col items-center justify-center gap-4 py-16 text-center", className)}>
       <div className="relative h-16 w-16">
         <svg 
-          className="absolute inset-0 h-full w-full animate-spin text-primary/20" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeDasharray="10 80"></circle>
-        </svg>
-        <svg 
-          className="relative h-full w-full text-primary" 
+          className="relative h-full w-full text-primary animate-pulse-subtle" 
           viewBox="0 0 24 24" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"
