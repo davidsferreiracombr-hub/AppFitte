@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { AppLayout } from '@/components/app-layout';
 import { getRecipes, type Recipe } from '@/lib/recipes';
 import { CategoryView } from './category-view';
@@ -42,35 +42,49 @@ export function generateStaticParams() {
   }));
 }
 
-export default function CategoryPage({ params }: { params: { categoryName: string } }) {
-  const allRecipes = useMemo(() => getRecipes(), []);
-  
-  const categoryName = decodeURIComponent(params.categoryName);
+type FilteredData = {
+  recipes: Recipe[];
+  name: string;
+  description: string;
+};
 
-  const filteredRecipes = useMemo(() => {
+function getFilteredRecipes(encodedCategoryName: string): FilteredData {
+    const categoryName = decodeURIComponent(encodedCategoryName);
+    const allRecipes = getRecipes();
     const categoryDef = categoryDefinitions.find(c => c.name === categoryName);
-    if (!categoryDef) return [];
+    
+    if (!categoryDef) {
+      return {
+        recipes: [],
+        name: categoryName,
+        description: `Nenhuma categoria encontrada para "${categoryName}".`
+      };
+    }
 
     const finalFilteredList: Recipe[] = [];
     const addedRecipeIds = new Set<number>();
 
-    // This logic ensures a recipe is only added to the first category it matches,
-    // preventing duplicates across category pages.
-    categoryDefinitions.forEach(catDef => {
+    // This logic ensures that recipes that fit multiple categories are assigned to the most specific one first.
+    const categoriesInOrder = [
+        categoryDef,
+        ...categoryDefinitions.filter(c => c.name !== categoryName)
+    ];
+
+    categoriesInOrder.forEach(catDef => {
       allRecipes.forEach(recipe => {
         if(addedRecipeIds.has(recipe.id)) return;
         
         let match = false;
-        // Prioritize tags for more accurate categorization
+        // Prioritize tags
         if (recipe.tags && Array.isArray(recipe.tags)) {
-            if (catDef.keywords.some(keyword => recipe.tags.includes(keyword))) {
+            if (catDef.keywords.some(keyword => recipe.tags.includes(keyword.toLowerCase()))) {
               match = true;
             }
         }
           
-        // Fallback to title search if no tag matches
+        // Fallback to title
         if (!match) {
-            match = catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword));
+            match = catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword.toLowerCase()));
         }
 
         if (match) {
@@ -82,26 +96,32 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
       });
     });
 
-    return finalFilteredList;
+    const description = categoryDef.description || `Encontramos ${finalFilteredList.length} receitas deliciosas na categoria ${categoryName}.`;
 
-  }, [allRecipes, categoryName]);
+    return {
+      recipes: finalFilteredList,
+      name: categoryName,
+      description: description
+    };
+}
 
-  const categoryDescription = categoryDefinitions.find(c => c.name === categoryName)?.description || `Encontramos ${filteredRecipes.length} receitas deliciosas na categoria ${categoryName}.`;
+export default function CategoryPage({ params }: { params: { categoryName: string } }) {
+  const { recipes, name, description } = getFilteredRecipes(params.categoryName);
 
   return (
     <AppLayout>
       <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
         <div className="text-center mb-12 max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
-                Receitas de <span className="text-primary">{categoryName}</span>
+                Receitas de <span className="text-primary">{name}</span>
             </h2>
             <p className="text-muted-foreground mt-4 text-lg">
-                {categoryDescription}
+                {description}
             </p>
         </div>
 
         <main>
-          <CategoryView recipes={filteredRecipes} />
+          <CategoryView recipes={recipes} />
         </main>
       </div>
     </AppLayout>
