@@ -4,6 +4,7 @@ import { AppLayout } from '@/components/app-layout';
 import { type Recipe, createSlug, getCategorizedRecipes, categoryDefinitions } from '@/lib/recipes';
 import { CategoryView } from './category-view';
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 
 export function generateStaticParams() {
   return categoryDefinitions.map(category => ({
@@ -27,20 +28,42 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
     return notFound();
   }
   
-  // This now uses the reliable, centralized function
   const recipes = getCategorizedRecipes(categoryInfo.name);
+  const isFitCategory = params.categoryName === 'saudaveis-e-fit';
 
   return (
     <AppLayout>
       <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
-        <div className="text-center mb-12 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
-                Receitas de <span className="text-primary">{categoryInfo.name}</span>
-            </h2>
-            <p className="text-muted-foreground mt-4 text-lg">
-                {categoryInfo.description}
-            </p>
-        </div>
+        
+        {isFitCategory ? (
+            <div className="relative rounded-2xl overflow-hidden mb-12 h-64 flex items-center justify-center p-6 text-center shadow-lg">
+                <Image
+                    src="https://i.imgur.com/iXZhuMZ.jpg"
+                    alt="Categoria Saudáveis e Fit"
+                    fill
+                    className="object-cover"
+                    priority
+                />
+                <div className="absolute inset-0 bg-black/50" />
+                <div className="relative text-white">
+                    <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
+                        {categoryInfo.name}
+                    </h2>
+                    <p className="mt-4 text-lg max-w-2xl mx-auto">
+                        {categoryInfo.description}
+                    </p>
+                </div>
+            </div>
+        ) : (
+            <div className="text-center mb-12 max-w-2xl mx-auto">
+                <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
+                    Receitas de <span className="text-primary">{categoryInfo.name}</span>
+                </h2>
+                <p className="text-muted-foreground mt-4 text-lg">
+                    {categoryInfo.description}
+                </p>
+            </div>
+        )}
 
         <main>
           <CategoryView recipes={recipes} />
