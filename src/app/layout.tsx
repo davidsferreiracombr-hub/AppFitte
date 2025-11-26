@@ -63,7 +63,7 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (isUserLoading) return; // Aguarda a verificação inicial terminar
+    if (isUserLoading) return; // Wait for initial auth check
 
     const isLoginPage = pathname === '/login';
 
@@ -74,22 +74,13 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
     }
   }, [user, isUserLoading, router, pathname]);
 
-  // Enquanto verifica o usuário, mostra um loading para evitar piscar a tela
-  if (isUserLoading) {
-    return <LoadingSpinner text="Carregando..." className="h-screen" />;
+  // While checking the user or redirecting, show a loading spinner
+  if (isUserLoading || (!user && pathname !== '/login') || (user && pathname === '/login')) {
+    const message = isUserLoading ? "Carregando..." : "Redirecionando...";
+    return <LoadingSpinner text={message} className="h-screen" />;
   }
 
-  // Se não tem usuário e não está na página de login, espera o redirecionamento
-  if (!user && pathname !== '/login') {
-    return <LoadingSpinner text="Verificando acesso..." className="h-screen" />;
-  }
-
-  // Se tem usuário e está na página de login, espera o redirecionamento
-  if (user && pathname === '/login') {
-     return <LoadingSpinner text="Redirecionando..." className="h-screen" />;
-  }
-  
-  // Renderiza o conteúdo (ou a tela de login)
+  // If the user is on the login page or authenticated, render the children
   return <>{children}</>;
 }
 
@@ -97,12 +88,10 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
 function AppContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  // Não envolve a tela de login com a Sidebar
   if (pathname === '/login') {
     return <>{children}</>;
   }
 
-  // Envolve as páginas autenticadas com a Sidebar e o SessionWatcher
   return (
     <SidebarProvider>
       <SessionWatcher />
@@ -113,19 +102,15 @@ function AppContent({ children }: { children: React.ReactNode }) {
 
 function RootClientLayout({ children }: { children: React.ReactNode }) {
   const { animationEnded } = useWelcomeScreen();
+  
+  if (!animationEnded) {
+    return <WelcomeScreen />;
+  }
+
   return (
-    <FirebaseClientProvider>
-        <WelcomeScreen />
-        {animationEnded ? (
-          <AuthGuard>
-            <AppContent>{children}</AppContent>
-          </AuthGuard>
-        ) : (
-          // Mostra um spinner enquanto a animação da WelcomeScreen acontece
-          // Isso previne o AuthGuard de rodar prematuramente
-          <LoadingSpinner text={null} className="h-screen" />
-        )}
-    </FirebaseClientProvider>
+    <AuthGuard>
+      <AppContent>{children}</AppContent>
+    </AuthGuard>
   );
 }
 
@@ -143,7 +128,9 @@ export default function RootLayout({
       </head>
       <body className={cn("min-h-screen font-body antialiased", inter.variable)}>
         <WelcomeScreenProvider>
+          <FirebaseClientProvider>
             <RootClientLayout>{children}</RootClientLayout>
+          </FirebaseClientProvider>
         </WelcomeScreenProvider>
         <Toaster />
       </body>
