@@ -41,7 +41,7 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
       <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
         
         {bannerImage ? (
-            <div className="relative rounded-2xl overflow-hidden mb-12 h-64 flex items-center p-8 text-left shadow-lg">
+            <div className="relative rounded-2xl overflow-hidden mb-12 h-48 md:h-64 flex items-center p-6 md:p-10 text-left shadow-lg">
                 <Image
                     src={bannerImage}
                     alt={`Categoria ${categoryInfo.name}`}
