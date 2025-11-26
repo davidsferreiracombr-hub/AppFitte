@@ -1,0 +1,127 @@
+/**
+ * Core Philosophy: This ruleset establishes a clear security model for a recipe and community application.
+ * It prioritizes user privacy by default, ensures users can only manage their own data, and provides
+ * safe, public read-access for shared content like recipes and forum posts.
+ *
+ * Data Structure:
+ * - /users/{userId}: Private user profiles, strictly owned by the user.
+ * - /recipes/{recipeId}: Public, read-only collection of recipes. Content is assumed to be managed by administrators or a backend process.
+ * - /forum_posts/{postId}: Publicly readable community posts. Write access is restricted to the post's original author.
+ * - /user_sessions/{sessionId}: Private documents for managing user login sessions. Users can create a session upon login, but cannot read or modify other sessions.
+ *
+ * Key Security Decisions:
+ * - User Isolation: A user can only access their own document within the `/users/{userId}` path. Listing users is disabled.
+ * - Public Content Safety: Recipes are read-only for clients, preventing unauthorized modification. Forum posts can be read by any signed-in user, but only modified or deleted by their author.
+ * - Session Privacy: The `/user_sessions` collection is write-only for session creation. Users cannot list, read, or interfere with other active sessions, enhancing privacy and security.
+ *
+ * Denormalization for Authorization:
+ * - Forum Post Ownership: The `/forum_posts/{postId}` documents contain a `userProfileId` field. This denormalization is critical for allowing efficient and secure ownership checks on update and delete operations without needing extra database reads.
+ *
+ * Structural Segregation:
+ * - Data is segregated into top-level collections based on access patterns (private user data, public recipes, community forum posts). This separation simplifies rules and improves query performance and security.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    //-------------------------------------------------------------------------
+    // Helper Functions
+    //-------------------------------------------------------------------------
+
+    /**
+     * Checks if the user is authenticated.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * Checks if the currently authenticated user's UID matches the provided userId.
+     * This is the foundation of the user-ownership model.
+     */
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * Checks if the document being accessed already exists.
+     * CRITICAL for all update and delete operations to prevent writes to non-existent paths.
+     */
+    function isExistingDoc() {
+      return resource != null;
+    }
+
+    /**
+     * Verifies that a field, once created, cannot be changed.
+     * Used to protect critical, immutable properties like owner IDs.
+     */
+    function isImmutable(fieldName) {
+      return request.resource.data[fieldName] == resource.data[fieldName];
+    }
+
+    //-------------------------------------------------------------------------
+    // Collection Rules
+    //-------------------------------------------------------------------------
+
+    /**
+     * @description Stores private user profile information.
+     * @path /users/{userId}
+     * @allow A user (uid: "user123") can read, create, update, or delete their own profile at `/users/user123`.
+     * @deny A different user (uid: "user456") is blocked from reading or writing to `/users/user123`.
+     * @principle Restricts access to a user's own data tree, enforcing strict privacy and ownership.
+     */
+    match /users/{userId} {
+      allow get, list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isOwner(userId) && isExistingDoc() && isImmutable('id');
+      allow delete: if isOwner(userId) && isExistingDoc();
+    }
+
+    /**
+     * @description Stores recipe data that is considered public.
+     * @path /recipes/{recipeId}
+     * @allow Any user, authenticated or not, can read any recipe document.
+     * @deny Any client-side attempt to create, update, or delete a recipe is rejected.
+     * @principle Provides public read access for global content while protecting it from client modification. Assumes content is managed via a trusted backend/admin SDK.
+     */
+    match /recipes/{recipeId} {
+      allow get, list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Stores community forum posts.
+     * @path /forum_posts/{postId}
+     * @allow (create) An authenticated user can create a post, setting `userProfileId` to their own UID.
+     * @allow (read) Any authenticated user can read any forum post.
+     * @allow (update/delete) The original author of a post can update or delete it.
+     * @deny An authenticated user cannot update or delete a post written by another user.
+     * @principle Enforces document ownership for writes on a publicly readable collection.
+     */
+    match /forum_posts/{postId} {
+      allow get, list: if isSignedIn();
+      allow create: if isSignedIn() && request.resource.data.userProfileId == request.auth.uid;
+      allow update: if isOwner(resource.data.userProfileId) && isExistingDoc() && isImmutable('userProfileId');
+      allow delete: if isOwner(resource.data.userProfileId) && isExistingDoc();
+    }
+
+    /**
+     * @description Manages active user sessions to support single-device login.
+     * @path /user_sessions/{sessionId}
+     * @allow (create) An authenticated user can create a new session document.
+     * @deny Any user attempt to read, list, update, or delete session documents is rejected to protect privacy.
+     * @principle Secures session data by preventing enumeration or modification, relying on a backend function for cleanup and enforcement logic.
+     */
+    match /user_sessions/{sessionId} {
+      allow get: if false;
+      allow list: if false;
+      allow create: if isSignedIn() && request.resource.data.email == request.auth.token.email;
+      // CRITICAL: Cannot implement secure owner-only update/delete rules. The 'UserSession' entity is missing a 'userId' or 'ownerId' field.
+      // A backend function should be used to manage session lifecycle. Client-side updates/deletes are disabled for security.
+      allow update: if false; // TODO: Add owner validation once the schema is updated with an ownership field (e.g., userId).
+      allow delete: if false; // TODO: Add owner validation once the schema is updated with an ownership field (e.g., userId).
+    }
+  }
+}

@@ -1,8 +1,7 @@
-
 'use client';
 
 import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
-import { type Recipe, getRecipes } from '@/lib/recipes';
+import { getRecipes, type Recipe } from '@/lib/recipes';
 import { Button } from '@/components/ui/button';
 import { ArrowUp, SignalHigh, SignalLow, SignalMedium, ListFilter } from 'lucide-react';
 import { RecipeCard } from '@/components/recipe-card';
