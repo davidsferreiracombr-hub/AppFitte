@@ -2,7 +2,7 @@
 'use client';
 
 import { AppLayout } from '@/components/app-layout';
-import { getCategorizedRecipes, createSlug } from '@/lib/recipes';
+import { getCategorizedRecipes, createSlug, categoryDefinitions } from '@/lib/recipes';
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -10,47 +10,8 @@ import { Cake, Cookie, Croissant, Wheat, IceCream } from 'lucide-react';
 import type { LucideProps } from 'lucide-react';
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { LoadingSpinner } from '@/components/loading-spinner';
+import type { CategoryInfo } from '@/lib/recipes';
 
-type CategoryInfo = {
-  name: string;
-  description: string;
-  icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
-  color: string;
-  count: number;
-};
-
-const categoryDefinitions: Omit<CategoryInfo, 'count'>[] = [
-  {
-    name: 'Bolos e Tortas',
-    description: 'Deliciosos bolos para o café, tortas cremosas e rocamboles para qualquer ocasião.',
-    icon: Cake,
-    color: 'bg-red-50 border-red-200',
-  },
-  {
-    name: 'Doces e Sobremesas',
-    description: 'Pudins, mousses, cremes, pavês, docinhos de festa, gelatinas e muito mais para adoçar o dia.',
-    icon: IceCream,
-    color: 'bg-pink-50 border-pink-200',
-  },
-  {
-    name: 'Pães e Salgados',
-    description: 'Receitas de pães caseiros, salgadinhos de festa, tortas salgadas, esfihas e lanches práticos.',
-    icon: Croissant,
-    color: 'bg-yellow-50 border-yellow-200',
-  },
-  {
-    name: 'Biscoitos e Cookies',
-    description: 'Encontre cookies, biscoitinhos amanteigados, sequilhos e rosquinhas para acompanhar seu café.',
-    icon: Cookie,
-    color: 'bg-amber-50 border-amber-200',
-  },
-  {
-    name: 'Saudáveis e Fit',
-    description: 'Opções leves e nutritivas, incluindo receitas fit, low-carb, integrais e proteicas.',
-    icon: Wheat,
-    color: 'bg-lime-50 border-lime-200',
-  },
-];
 
 export default function CategoriesPage() {
   const [categories, setCategories] = useState<CategoryInfo[]>([]);
@@ -71,6 +32,7 @@ export default function CategoriesPage() {
     };
 
     setIsLoading(true);
+    // Simulating a small delay to ensure UI updates smoothly
     const timer = setTimeout(calculateCategories, 100);
 
     return () => clearTimeout(timer);
@@ -92,7 +54,7 @@ export default function CategoriesPage() {
           {isLoading ? (
             <LoadingSpinner text="Organizando nosso cardápio..." />
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 max-w-3xl mx-auto">
               {categories.map((category) => (
                 <Link href={`/category/${createSlug(category.name)}`} key={category.name}>
                   <div className={cn(

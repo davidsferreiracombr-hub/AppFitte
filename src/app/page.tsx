@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { getRecipes, getCategorizedRecipes, type Recipe, createSlug } from '@/lib/recipes';
+import { getCategorizedRecipes, type Recipe, createSlug, categoryDefinitions } from '@/lib/recipes';
 import { RecipeCard } from '@/components/recipe-card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { AppLayout } from '@/components/app-layout';
@@ -10,29 +10,6 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ArrowRight } from 'lucide-react';
-
-const categoryDefinitions = [
-  {
-    name: 'Bolos e Tortas',
-    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'pudim', 'empadão', 'banoffee'],
-  },
-  {
-    name: 'Doces e Sobremesas',
-    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu', 'compota', 'goiabada', 'canjica', 'queijadinha', 'sonho', 'maria-mole', 'olho de sogra', 'clafoutis', 'panna cotta', 'crème brûlée', 'beijinho', 'danoninho'],
-  },
-  {
-    name: 'Pães e Salgados',
-    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz', 'vatapá', 'acarajé', 'pão de queijo', 'empadão', 'crepioca'],
-  },
-  {
-    name: 'Biscoitos e Cookies',
-    keywords: ['cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'alfajor', 'goiabinha', 'casadinho', 'bem-casado', 'churros'],
-  },
-  {
-    name: 'Saudáveis e Fit',
-    keywords: ['fit', 'low carb', 'integral', 'proteico', 'vegano', 'sem glúten', 'detox', 'saudavel', 'funcional', 'barra de cereal', 'vitamina', 'mingau', 'crepioca'],
-  },
-];
 
 type CategorizedRecipes = {
   [categoryName: string]: Recipe[];

@@ -1,31 +1,8 @@
 
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
-import { type Recipe, createSlug, getCategorizedRecipes } from '@/lib/recipes';
+import { type Recipe, createSlug, getCategorizedRecipes, categoryDefinitions } from '@/lib/recipes';
 import { CategoryView } from './category-view';
-
-const categoryDefinitions = [
-    {
-      name: 'Bolos e Tortas',
-      description: 'Deliciosos bolos para o café, tortas cremosas e rocamboles para qualquer ocasião.',
-    },
-    {
-      name: 'Doces e Sobremesas',
-      description: 'Pudins, mousses, cremes, pavês, docinhos de festa, gelatinas e muito mais para adoçar o dia.',
-    },
-    {
-      name: 'Pães e Salgados',
-      description: 'Receitas de pães caseiros, salgadinhos de festa, tortas salgadas, esfihas e lanches práticos.',
-    },
-    {
-      name: 'Biscoitos e Cookies',
-      description: 'Encontre cookies, biscoitinhos amanteigados, sequilhos e rosquinhas para acompanhar seu café.',
-    },
-    {
-      name: 'Saudáveis e Fit',
-      description: 'Opções leves e nutritivas, incluindo receitas fit, low-carb, integrais e proteicas.',
-    },
-];
 
 export function generateStaticParams() {
   return categoryDefinitions.map(category => ({
