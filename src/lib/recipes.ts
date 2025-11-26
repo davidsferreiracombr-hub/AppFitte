@@ -17,6 +17,7 @@ export type Recipe = {
   instructions: string[];
   servings: string;
   notes?: string;
+  category?: string; // Add category to recipe type
 };
 
 export type CategoryInfo = {
@@ -45,80 +46,81 @@ export function createSlug(title: string): string {
         .replace(/-+/g, '-');
 }
 
-let processedRecipes: Recipe[] | null = null;
+export const categoryDefinitions: CategoryInfo[] = [
+  {
+    name: 'Saudáveis e Fit',
+    description: 'Opções leves e nutritivas, incluindo receitas fit, low-carb, integrais e proteicas.',
+    icon: Wheat,
+    color: 'bg-lime-50 border-lime-200',
+    keywords: ['fit', 'low carb', 'integral', 'proteico', 'vegano', 'sem glúten', 'detox', 'saudavel', 'funcional', 'barra de cereal', 'vitamina', 'mingau', 'crepioca', 'salada', 'smoothie'],
+  },
+  {
+    name: 'Bolos e Tortas',
+    description: 'Deliciosos bolos para o café, tortas cremosas e rocamboles para qualquer ocasião.',
+    icon: Cake,
+    color: 'bg-red-50 border-red-200',
+    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'empadão', 'banoffee', 'clafoutis', 'panna cotta', 'crème brûlée'],
+  },
+  {
+    name: 'Doces e Sobremesas',
+    description: 'Pudins, mousses, cremes, pavês, docinhos de festa, gelatinas e muito mais para adoçar o dia.',
+    icon: Cookie,
+    color: 'bg-pink-50 border-pink-200',
+    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu', 'compota', 'goiabada', 'canjica', 'queijadinha', 'sonho', 'maria-mole', 'olho de sogra', 'beijinho', 'danoninho', 'churros', 'alfajor', 'goiabinha', 'casadinho', 'bem-casado', 'cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha', 'carolina'],
+  },
+  {
+    name: 'Pães e Salgados',
+    description: 'Receitas de pães caseiros, salgadinhos de festa, tortas salgadas, esfihas e lanches práticos.',
+    icon: Croissant,
+    color: 'bg-yellow-50 border-yellow-200',
+    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz', 'vatapá', 'acarajé', 'pão de queijo', 'farofa'],
+  },
+];
+
+let categorizedRecipes: Recipe[] | null = null;
+
+function categorizeAllRecipes(): Recipe[] {
+    if (categorizedRecipes) {
+      return categorizedRecipes;
+    }
+
+    const allRecipes = (recipesData as Omit<Recipe, 'category'>[]).map((recipe, index) => {
+        const uniqueId = recipe.id || (index + 1);
+        const recipeTitleSlug = createSlug(recipe.title);
+        return {
+            ...recipe,
+            slug: `${recipeTitleSlug}-${uniqueId}`
+        };
+    });
+
+    const uncategorizedCategory = 'Outros';
+
+    categorizedRecipes = allRecipes.map(recipe => {
+        const lowerCaseTitle = recipe.title.toLowerCase();
+        const lowerCaseTags = recipe.tags?.map(tag => tag.toLowerCase()) || [];
+        const content = `${lowerCaseTitle} ${lowerCaseTags.join(' ')}`;
+
+        for (const category of categoryDefinitions) {
+            if (category.keywords.some(keyword => content.includes(keyword.toLowerCase()))) {
+                return { ...recipe, category: category.name };
+            }
+        }
+        // If no category is found, it will be left without a category property.
+        return recipe;
+    });
+    
+    return categorizedRecipes;
+}
 
 export function getRecipes(): Recipe[] {
-  if (processedRecipes) {
-    return processedRecipes;
-  }
-
-  const allRecipes: Recipe[] = recipesData as Recipe[];
-
-  processedRecipes = allRecipes.map((recipe, index) => {
-      const uniqueId = recipe.id || (index + 1);
-      const recipeTitleSlug = createSlug(recipe.title);
-      return {
-          ...recipe,
-          slug: `${recipeTitleSlug}-${uniqueId}`
-      };
-  });
-  
-  return processedRecipes;
+  return categorizeAllRecipes();
 }
 
 export function getRecipeBySlug(slug: string): Recipe | undefined {
   return getRecipes().find((recipe) => recipe.slug === slug);
 }
 
-export const categoryDefinitions: CategoryInfo[] = [
-    {
-      name: 'Bolos e Tortas',
-      description: 'Deliciosos bolos para o café, tortas cremosas e rocamboles para qualquer ocasião.',
-      icon: Cake,
-      color: 'bg-red-50 border-red-200',
-      keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'pudim', 'empadão', 'banoffee', 'quindim', 'clafoutis'],
-    },
-    {
-      name: 'Doces e Sobremesas',
-      description: 'Pudins, mousses, cremes, pavês, docinhos de festa, gelatinas e muito mais para adoçar o dia.',
-      icon: Cookie,
-      color: 'bg-pink-50 border-pink-200',
-      keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu', 'compota', 'goiabada', 'canjica', 'queijadinha', 'sonho', 'maria-mole', 'olho de sogra', 'clafoutis', 'panna cotta', 'crème brûlée', 'beijinho', 'danoninho', 'churros', 'alfajor', 'goiabinha', 'casadinho', 'bem-casado', 'cookie', 'biscoito', 'sequilho', 'donut', 'rosquinha'],
-    },
-    {
-      name: 'Pães e Salgados',
-      description: 'Receitas de pães caseiros, salgadinhos de festa, tortas salgadas, esfihas e lanches práticos.',
-      icon: Croissant,
-      color: 'bg-yellow-50 border-yellow-200',
-      keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz', 'vatapá', 'acarajé', 'pão de queijo', 'empadão', 'crepioca'],
-    },
-    {
-      name: 'Saudáveis e Fit',
-      description: 'Opções leves e nutritivas, incluindo receitas fit, low-carb, integrais e proteicas.',
-      icon: Wheat,
-      color: 'bg-lime-50 border-lime-200',
-      keywords: ['fit', 'low carb', 'integral', 'proteico', 'vegano', 'sem glúten', 'detox', 'saudavel', 'funcional', 'barra de cereal', 'vitamina', 'mingau', 'crepioca'],
-    },
-];
-
 export function getCategorizedRecipes(categoryName: string): Recipe[] {
     const allRecipes = getRecipes();
-    const categoryDef = categoryDefinitions.find(c => c.name === categoryName);
-
-    if (!categoryDef) {
-        return [];
-    }
-
-    return allRecipes.filter(recipe => {
-        const lowerCaseTitle = recipe.title.toLowerCase();
-        const lowerCaseTags = recipe.tags?.map(tag => tag.toLowerCase()) || [];
-        const lowerCaseDescription = recipe.description.toLowerCase();
-
-        return categoryDef.keywords.some(keyword => {
-            const lowerCaseKeyword = keyword.toLowerCase();
-            return lowerCaseTitle.includes(lowerCaseKeyword) || 
-                   lowerCaseTags.includes(lowerCaseKeyword) ||
-                   lowerCaseDescription.includes(lowerCaseKeyword);
-        });
-    });
+    return allRecipes.filter(recipe => recipe.category === categoryName);
 }
