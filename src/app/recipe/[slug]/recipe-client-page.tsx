@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { type Recipe } from '@/lib/recipes';
 import { useFavorites } from '@/hooks/use-favorites';
 import { useToast } from '@/hooks/use-toast';
-import { ChefHat, Clock, Flame, Info, BookText, Award, Heart } from 'lucide-react';
+import { ChefHat, Clock, Flame, Info, BookText, Award, Heart, Utensils } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Timer } from '@/components/Timer';
 import { cn } from '@/lib/utils';
@@ -198,3 +198,5 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
     </div>
   );
 }
+
+    
