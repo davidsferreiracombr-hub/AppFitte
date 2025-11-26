@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { Metadata } from 'next';
@@ -29,7 +30,7 @@ function AppContent({ children }: { children: React.ReactNode }) {
   );
 }
 
-// This is the Client Component
+// Este é o componente que de fato usa os hooks de cliente.
 function RootClientLayout({ children }: { children: React.ReactNode }) {
   return (
     <WelcomeScreenProvider>
@@ -39,7 +40,8 @@ function RootClientLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
-// This remains a Server Component
+// O RootLayout principal volta a ser um componente de servidor por padrão (sem 'use client' aqui)
+// e renderiza o RootClientLayout que gerencia a lógica de cliente.
 export default function RootLayout({
   children,
 }: Readonly<{
