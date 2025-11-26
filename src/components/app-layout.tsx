@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { Home, Heart, Search, Menu, LayoutGrid } from 'lucide-react';
+import { Home, Heart, Search, Menu, LayoutGrid, LogOut } from 'lucide-react';
 import { BottomNav } from './bottom-nav';
-import { WelcomeScreen } from './welcome-screen';
+import { useAuth } from '@/hooks/use-auth';
 
 type SidebarContextType = {
   isMobileSheetOpen: boolean;
@@ -52,20 +52,33 @@ const navItems = [
 
 function SidebarNav() {
     const pathname = usePathname();
+    const { logout } = useAuth();
   
     return (
-      <nav className="flex flex-col gap-2 px-4">
-        {navItems.map(({ href, label, icon: Icon }) => (
-          <Link key={href} href={href} passHref>
-            <Button
-              variant={pathname === href ? 'secondary' : 'ghost'}
+      <nav className="flex flex-col gap-2 px-4 h-full">
+        <div className="flex-1">
+            {navItems.map(({ href, label, icon: Icon }) => (
+            <Link key={href} href={href} passHref>
+                <Button
+                variant={pathname === href ? 'secondary' : 'ghost'}
+                className='w-full justify-start gap-3 text-base h-12'
+                >
+                <Icon className="h-5 w-5" />
+                <span>{label}</span>
+                </Button>
+            </Link>
+            ))}
+        </div>
+        <div className="mt-auto">
+             <Button
+              variant='ghost'
               className='w-full justify-start gap-3 text-base h-12'
+              onClick={logout}
             >
-              <Icon className="h-5 w-5" />
-              <span>{label}</span>
+              <LogOut className="h-5 w-5" />
+              <span>Sair</span>
             </Button>
-          </Link>
-        ))}
+        </div>
       </nav>
     );
   }
@@ -79,7 +92,7 @@ function Sidebar() {
           <span className="font-bold text-xl text-foreground">Fitte</span>
         </Link>
       </div>
-      <div className="flex-1 py-6 space-y-6">
+      <div className="flex-1 py-6 space-y-6 flex flex-col">
         <div className="px-4">
             <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -109,6 +122,7 @@ function MobileHeader() {
 
 function MobileSheet() {
     const { isMobileSheetOpen, setMobileSheetOpen } = useSidebar();
+    const { logout } = useAuth();
     const pathname = usePathname();
 
     return (
@@ -143,6 +157,16 @@ function MobileSheet() {
                         ))}
                     </nav>
                 </div>
+                 <div className="px-4 py-6">
+                    <Button
+                        variant='ghost'
+                        className='w-full justify-start gap-3 text-base h-12'
+                        onClick={() => { logout(); setMobileSheetOpen(false); }}
+                        >
+                        <LogOut className="h-5 w-5" />
+                        <span>Sair</span>
+                    </Button>
+                </div>
             </div>
         </SheetContent>
         </Sheet>
@@ -153,7 +177,6 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen w-full bg-background">
-      <WelcomeScreen />
       <Sidebar />
       <div className="flex flex-col flex-1">
         <MobileHeader />

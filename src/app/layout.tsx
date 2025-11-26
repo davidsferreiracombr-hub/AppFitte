@@ -1,28 +1,71 @@
-
 'use client';
 
-import type { Metadata } from 'next';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
 import { Inter } from 'next/font/google';
 import { SidebarProvider } from '@/components/app-layout';
-import { WelcomeScreenProvider, useWelcomeScreen } from '@/hooks/use-welcome-screen.tsx';
+import { WelcomeScreenProvider, useWelcomeScreen } from '@/hooks/use-welcome-screen';
 import { WelcomeScreen } from '@/components/welcome-screen';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { FirebaseClientProvider, useUser } from '@/firebase';
+import { usePathname, useRouter } from 'next/navigation';
+import { LoadingSpinner } from '@/components/loading-spinner';
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-body',
 });
 
+function AuthGuard({ children }: { children: React.ReactNode }) {
+  const { user, isUserLoading } = useUser();
+  const router = useRouter();
+  const pathname = usePathname();
+  const { animationEnded } = useWelcomeScreen();
+
+  useEffect(() => {
+    if (!animationEnded || isUserLoading) return;
+
+    const isLoginPage = pathname === '/login';
+
+    if (!user && !isLoginPage) {
+      router.push('/login');
+    } else if (user && isLoginPage) {
+      router.push('/');
+    }
+  }, [user, isUserLoading, router, pathname, animationEnded]);
+
+  if (!animationEnded || isUserLoading) {
+    return <LoadingSpinner text="Carregando..." className="h-screen" />;
+  }
+
+  if (!user && pathname !== '/login') {
+    // Still loading or redirecting
+    return <LoadingSpinner text="Verificando acesso..." className="h-screen" />;
+  }
+  
+  if (user && pathname === '/login') {
+     return <LoadingSpinner text="Redirecionando..." className="h-screen" />;
+  }
+
+
+  return <>{children}</>;
+}
+
+
 function AppContent({ children }: { children: React.ReactNode }) {
   const { animationEnded } = useWelcomeScreen();
+  const pathname = usePathname();
 
   if (!animationEnded) {
     return null;
   }
   
+  // Do not wrap login page with SidebarProvider
+  if (pathname === '/login') {
+    return <>{children}</>;
+  }
+
   return (
     <SidebarProvider>
       {children}
@@ -30,18 +73,19 @@ function AppContent({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Este é o componente que de fato usa os hooks de cliente.
 function RootClientLayout({ children }: { children: React.ReactNode }) {
   return (
-    <WelcomeScreenProvider>
-      <WelcomeScreen />
-      <AppContent>{children}</AppContent>
-    </WelcomeScreenProvider>
+    <FirebaseClientProvider>
+      <WelcomeScreenProvider>
+        <WelcomeScreen />
+        <AuthGuard>
+          <AppContent>{children}</AppContent>
+        </AuthGuard>
+      </WelcomeScreenProvider>
+    </FirebaseClientProvider>
   );
 }
 
-// O RootLayout principal volta a ser um componente de servidor por padrão (sem 'use client' aqui)
-// e renderiza o RootClientLayout que gerencia a lógica de cliente.
 export default function RootLayout({
   children,
 }: Readonly<{
