@@ -3,9 +3,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Heart, Clock, Flame } from 'lucide-react';
-import { type Recipe, getRecipeImage } from '@/lib/recipes';
+import { type Recipe } from '@/lib/recipes';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
 
@@ -23,28 +22,12 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, pr
     onToggleFavorite();
   };
 
-  const recipeImage = getRecipeImage(recipe.category);
-
   return (
     <Link 
         href={`/recipe/${recipe.slug}`} 
-        className={cn("block group flex flex-col rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 bg-card border", className)} 
+        className={cn("block group flex flex-col rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 bg-card border h-full", className)} 
     >
-      <div className="relative w-full h-32">
-        {recipeImage ? (
-             <Image
-                src={recipeImage}
-                alt={recipe.title}
-                fill
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
-                priority={priority}
-            />
-        ) : (
-            <div className="w-full h-full bg-muted"></div>
-        )}
-      </div>
-      <div className="p-4 flex flex-col flex-1">
+      <div className="p-5 flex flex-col flex-1">
         <div className="flex justify-between items-start mb-2">
             <h3 className="font-bold text-base leading-tight line-clamp-2 text-foreground flex-1 pr-2 group-hover:text-primary transition-colors">
                 {recipe.title}

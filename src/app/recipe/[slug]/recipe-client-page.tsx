@@ -5,13 +5,11 @@ import { useEffect, useState } from 'react';
 import { type Recipe } from '@/lib/recipes';
 import { useFavorites } from '@/hooks/use-favorites';
 import { useToast } from '@/hooks/use-toast';
-import Image from 'next/image';
 import { ArrowLeft, ChefHat, Clock, Flame, Utensils, Info, BookText, Award, TimerIcon, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Timer } from '@/components/Timer';
 import { cn } from '@/lib/utils';
-import { getRecipeImage } from '@/lib/recipes';
 
 
 type TimerInfo = {
@@ -109,46 +107,32 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
     }
   };
 
-  const recipeImage = getRecipeImage(recipe.category);
-
-
   return (
     <div className="min-h-screen font-body bg-background">
-      <div className="relative h-48 md:h-72 w-full">
-         {recipeImage && (
-            <Image
-                src={recipeImage}
-                alt={recipe.title}
-                fill
-                className="object-cover"
-                priority
-            />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-         <div className="absolute top-4 left-4 z-10">
-              <Link href="/" passHref>
-                  <Button variant="outline" className="inline-flex items-center transition-colors font-semibold bg-background/50 backdrop-blur-sm">
-                      <ArrowLeft className="mr-2 h-4 w-4" />
-                      Voltar
-                  </Button>
-              </Link>
-          </div>
-          <div className="absolute top-4 right-4 z-10">
-              <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group rounded-full h-10 w-10 bg-background/50 backdrop-blur-sm">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pt-8 pb-24 lg:pb-12">
+        <div className="relative mb-6">
+            <Link href="/" passHref>
+                <Button variant="outline" className="inline-flex items-center transition-colors font-semibold">
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Voltar
+                </Button>
+            </Link>
+        </div>
+
+        <div className="bg-card rounded-2xl shadow-lg border overflow-hidden p-6 md:p-10">
+          <div>
+            <div className="flex justify-between items-start">
+              <h1 className="text-4xl md:text-5xl font-extrabold text-primary flex-1 pr-4">
+                {recipe.title}
+              </h1>
+              <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group rounded-full h-12 w-12 flex-shrink-0">
                   <Heart className={cn(
-                      "h-5 w-5 text-muted-foreground group-hover:text-primary transition-all duration-200 group-active:scale-125", 
+                      "h-6 w-6 text-muted-foreground group-hover:text-primary transition-all duration-200 group-active:scale-125", 
                       isFavorite ? "fill-primary text-primary" : "fill-transparent"
                   )} />
                   <span className="sr-only">{isFavorite ? 'Desfavoritar' : 'Favoritar'}</span>
               </Button>
-          </div>
-      </div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pb-24 lg:pb-12 -mt-16 relative z-[5]">
-        <div className="bg-card rounded-2xl shadow-lg border overflow-hidden p-6 md:p-10">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-primary">
-              {recipe.title}
-            </h1>
+            </div>
             <p className="text-muted-foreground mt-4 text-lg max-w-3xl">
               {recipe.description}
             </p>
