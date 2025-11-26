@@ -28,10 +28,9 @@ export default function CategoriesPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const allRecipes = getRecipesByAllCategories();
     const processedCategories = categoryDefinitions.map(catDef => ({
       ...catDef,
-      count: allRecipes[catDef.name]?.length || 0,
+      count: getCategorizedRecipes(catDef.name).length,
     })).filter(cat => (cat.count ?? 0) > 0);
 
     setCategories(processedCategories);
