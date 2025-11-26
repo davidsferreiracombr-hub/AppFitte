@@ -15,7 +15,7 @@ type WelcomeScreenContextType = {
 const WelcomeScreenContext = createContext<WelcomeScreenContextType>({
   showWelcome: false,
   isFadingOut: false,
-  animationEnded: false,
+  animationEnded: true, // Default to true so it doesn't block rendering
 });
 
 export const useWelcomeScreen = () => useContext(WelcomeScreenContext);
@@ -23,15 +23,14 @@ export const useWelcomeScreen = () => useContext(WelcomeScreenContext);
 export function WelcomeScreenProvider({ children }: { children: ReactNode }) {
   const [showWelcome, setShowWelcome] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
-  const [animationEnded, setAnimationEnded] = useState(false);
+  const [animationEnded, setAnimationEnded] = useState(true);
 
   useEffect(() => {
     try {
-      // Use sessionStorage to show welcome screen on every new session
       const hasBeenShown = sessionStorage.getItem(WELCOME_SCREEN_KEY);
       
       if (!hasBeenShown) {
-        setAnimationEnded(false);
+        setAnimationEnded(false); // Only block rendering if we need to show the animation
         setShowWelcome(true);
         sessionStorage.setItem(WELCOME_SCREEN_KEY, 'true');
 
@@ -45,11 +44,11 @@ export function WelcomeScreenProvider({ children }: { children: ReactNode }) {
         }, ANIMATION_DURATION);
 
       } else {
-        setAnimationEnded(true);
+        setAnimationEnded(true); // If already shown, don't block
       }
     } catch (error) {
       console.warn("Could not access sessionStorage. Welcome screen will not be shown.");
-      setAnimationEnded(true);
+      setAnimationEnded(true); // Ensure app is not blocked if sessionStorage fails
     }
   }, []);
   

@@ -59,7 +59,7 @@ export function useAuth() {
         await signInWithEmailAndPassword(auth, email, MASTER_PASSWORD);
       } catch (error: any) {
         // Se o usuário não for encontrado, crie um novo.
-        if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+        if (error.code === 'auth/user-not-found') {
           await createUserWithEmailAndPassword(auth, email, MASTER_PASSWORD);
         } else {
           // Para qualquer outro erro (problemas de rede, etc.), lance-o novamente.
@@ -71,7 +71,9 @@ export function useAuth() {
       await manageSession(email);
 
     } catch (error: any) {
-      setError(error.message);
+      if(error.code !== 'auth/invalid-credential') {
+        setError(error.message);
+      }
       throw error; // Relança o erro para ser tratado pelo formulário.
     } finally {
       setIsLoading(false);
