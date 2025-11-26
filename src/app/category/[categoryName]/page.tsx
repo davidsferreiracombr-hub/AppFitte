@@ -20,6 +20,11 @@ function getCategoryDetails(categorySlug: string) {
     return categoryDef;
 }
 
+const categoryBanners: { [key: string]: string } = {
+  'saudaveis-e-fit': 'https://i.imgur.com/iXZhuMZ.jpg',
+  'bolos-e-tortas': 'https://i.imgur.com/IrHe2VD.jpg'
+};
+
 export default function CategoryPage({ params }: { params: { categoryName: string } }) {
   const categoryInfo = getCategoryDetails(params.categoryName);
 
@@ -29,17 +34,17 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
   }
   
   const recipes = getCategorizedRecipes(categoryInfo.name);
-  const isFitCategory = params.categoryName === 'saudaveis-e-fit';
+  const bannerImage = categoryBanners[params.categoryName];
 
   return (
     <AppLayout>
       <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
         
-        {isFitCategory ? (
+        {bannerImage ? (
             <div className="relative rounded-2xl overflow-hidden mb-12 h-64 flex items-center p-8 text-left shadow-lg">
                 <Image
-                    src="https://i.imgur.com/iXZhuMZ.jpg"
-                    alt="Categoria Saudáveis e Fit"
+                    src={bannerImage}
+                    alt={`Categoria ${categoryInfo.name}`}
                     fill
                     className="object-cover"
                     priority
