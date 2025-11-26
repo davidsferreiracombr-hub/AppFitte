@@ -36,7 +36,7 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
       <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
         
         {isFitCategory ? (
-            <div className="relative rounded-2xl overflow-hidden mb-12 h-64 flex items-center justify-center p-6 text-center shadow-lg">
+            <div className="relative rounded-2xl overflow-hidden mb-12 h-64 flex items-center p-8 text-left shadow-lg">
                 <Image
                     src="https://i.imgur.com/iXZhuMZ.jpg"
                     alt="Categoria Saudáveis e Fit"
@@ -44,12 +44,12 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
                     className="object-cover"
                     priority
                 />
-                <div className="absolute inset-0 bg-black/50" />
-                <div className="relative text-white">
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="relative text-white" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>
                     <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
                         {categoryInfo.name}
                     </h2>
-                    <p className="mt-4 text-lg max-w-2xl mx-auto">
+                    <p className="mt-4 text-lg max-w-2xl">
                         {categoryInfo.description}
                     </p>
                 </div>
