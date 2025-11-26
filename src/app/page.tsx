@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { getRecipes, type Recipe, createSlug } from '@/lib/recipes';
+import { getRecipes, getCategorizedRecipes, type Recipe, createSlug } from '@/lib/recipes';
 import { RecipeCard } from '@/components/recipe-card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { AppLayout } from '@/components/app-layout';
@@ -14,15 +14,15 @@ import { ArrowRight } from 'lucide-react';
 const categoryDefinitions = [
   {
     name: 'Bolos e Tortas',
-    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'pudim', 'empadão'],
+    keywords: ['bolo', 'torta', 'cuca', 'rocambole', 'cheesecake', 'floresta negra', 'pudim', 'empadão', 'banoffee'],
   },
   {
     name: 'Doces e Sobremesas',
-    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu', 'compota', 'goiabada', 'canjica', 'queijadinha', 'sonho', 'maria-mole', 'olho de sogra', 'clafoutis', 'panna cotta', 'crème brûlée'],
+    keywords: ['doce', 'sobremesa', 'pudim', 'mousse', 'creme', 'pave', 'sorvete', 'gelatina', 'manjar', 'bombom', 'trufa', 'paçoca', 'brigadeiro', 'quindim', 'cocada', 'ambrosia', 'suspiro', 'sagu', 'compota', 'goiabada', 'canjica', 'queijadinha', 'sonho', 'maria-mole', 'olho de sogra', 'clafoutis', 'panna cotta', 'crème brûlée', 'beijinho', 'danoninho'],
   },
   {
     name: 'Pães e Salgados',
-    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz', 'vatapá', 'acarajé', 'pão de queijo', 'empadão'],
+    keywords: ['pão', 'salgado', 'empada', 'quibe', 'waffle', 'panqueca', 'esfiha', 'coxinha', 'petisco', 'pastel', 'croquete', 'nhoque', 'risoto', 'sopa', 'caldo', 'dadinho de tapioca', 'cuscuz', 'vatapá', 'acarajé', 'pão de queijo', 'empadão', 'crepioca'],
   },
   {
     name: 'Biscoitos e Cookies',
@@ -39,30 +39,18 @@ type CategorizedRecipes = {
 };
 
 export default function Home() {
-  const allRecipes = useMemo(() => getRecipes(), []);
   const { favorites, addFavorite, removeFavorite } = useFavorites();
 
   const recipesByCat = useMemo(() => {
     const categorized: CategorizedRecipes = {};
-
     categoryDefinitions.forEach(catDef => {
-      const categoryRecipes = allRecipes.filter(recipe => {
-        if (recipe.tags && recipe.tags.some(tag => catDef.keywords.includes(tag.toLowerCase()))) {
-            return true;
-        }
-        if (catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword.toLowerCase()))) {
-            return true;
-        }
-        return false;
-      });
-      
+      const categoryRecipes = getCategorizedRecipes(catDef.name);
       if (categoryRecipes.length > 0) {
         categorized[catDef.name] = categoryRecipes;
       }
     });
-
     return categorized;
-  }, [allRecipes]);
+  }, []);
 
   return (
     <AppLayout>
