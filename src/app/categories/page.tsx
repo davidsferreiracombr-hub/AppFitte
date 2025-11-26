@@ -16,11 +16,11 @@ const categoryImages: { [key: string]: string } = {
   'Doces e Sobremesas': 'https://i.imgur.com/GsBgymO.jpg'
 };
 
-const titleHighlights: { [key: string]: { full: string; highlight: string } } = {
-    'Saudáveis e Fit': { full: 'Saudáveis e Fit', highlight: 'Fit' },
-    'Bolos e Tortas': { full: 'Bolos e Tortas', highlight: 'Bolos' },
-    'Pães e Salgados': { full: 'Pães e Salgados', highlight: 'Pães' },
-    'Doces e Sobremesas': { full: 'Doces e Sobremesas', highlight: 'Doces' },
+const titleHighlights: { [key: string]: { before: string; highlight: string; after: string } } = {
+    'Saudáveis e Fit': { before: 'Saudáveis e ', highlight: 'Fit', after: '' },
+    'Bolos e Tortas': { before: '', highlight: 'Bolos', after: ' e Tortas' },
+    'Pães e Salgados': { before: '', highlight: 'Pães', after: ' e Salgados' },
+    'Doces e Sobremesas': { before: '', highlight: 'Doces', after: ' e Sobremesas' },
 };
 
 export default function CategoriesPage() {
@@ -69,8 +69,9 @@ export default function CategoriesPage() {
                         {titleHighlights[category.name]
                           ? (
                             <>
-                              {titleHighlights[category.name].full.replace(titleHighlights[category.name].highlight, '')}
+                              {titleHighlights[category.name].before}
                               <span className="text-primary">{titleHighlights[category.name].highlight}</span>
+                              {titleHighlights[category.name].after}
                             </>
                           )
                           : category.name}
