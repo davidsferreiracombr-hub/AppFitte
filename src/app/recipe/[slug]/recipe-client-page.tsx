@@ -16,8 +16,9 @@ type TimerInfo = {
   context: string;
 };
 
-// Função para extrair tempo de cozimento/geladeira das instruções
-const extractActionTime = (instructions: string[]): TimerInfo | null => {
+// Função para extrair TODOS os tempos de cozimento/geladeira das instruções
+const extractActionTimes = (instructions: string[]): TimerInfo[] => {
+    const timers: TimerInfo[] = [];
     const timePatterns = [
       {
         pattern: /(?:forno|assar|asse)(?:.*?) por (?:cerca de |pelo menos )?(\d+)(?:(?: a |-| até )(\d+))? (minutos|horas)/i,
@@ -34,6 +35,10 @@ const extractActionTime = (instructions: string[]): TimerInfo | null => {
        {
         pattern: /por (?:cerca de |aproximadamente |pelo menos )?(\d+)\s*(?:a|-)\s*(\d+)\s*(minutos|horas)/i,
         context: "Tempo de ação"
+      },
+       {
+        pattern: /bata(?:.*?) por (?:cerca de |aproximadamente |pelo menos )?(\d+)\s*(?:a|-)?\s*(\d+)?\s*(minutos|horas)/i,
+        context: "Tempo de Bater"
       },
       {
         pattern: /por (?:cerca de |aproximadamente |pelo menos )?(\d+)\s*(minutos|horas)/i,
@@ -63,24 +68,26 @@ const extractActionTime = (instructions: string[]): TimerInfo | null => {
           }
           
           if (!isNaN(durationInMinutes) && durationInMinutes > 0) {
-            return { duration: durationInMinutes, context };
+            // Adiciona à lista em vez de retornar
+            timers.push({ duration: durationInMinutes, context });
+            break; // Sai do loop interno para não adicionar múltiplos timers para a mesma instrução
           }
         }
       }
     }
   
-    return null;
+    return timers;
   };
 
 export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const { toast } = useToast();
   const isFavorite = favorites.includes(recipe.slug);
-  const [timerInfo, setTimerInfo] = useState<TimerInfo | null>(null);
+  const [timerInfos, setTimerInfos] = useState<TimerInfo[]>([]);
 
   useEffect(() => {
-    const info = extractActionTime(recipe.instructions);
-    setTimerInfo(info);
+    const infos = extractActionTimes(recipe.instructions);
+    setTimerInfos(infos);
   }, [recipe]);
 
   const handleFavoriteClick = () => {
@@ -174,9 +181,11 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
                 </div>
 
                 <div className="lg:col-span-2">
-                    {timerInfo && (
-                      <div className="sticky top-28 pt-8">
-                          <Timer durationInMinutes={timerInfo.duration} context={timerInfo.context} />
+                    {timerInfos.length > 0 && (
+                      <div className="sticky top-28 pt-8 space-y-8">
+                          {timerInfos.map((info, index) => (
+                              <Timer key={index} durationInMinutes={info.duration} context={info.context} />
+                          ))}
                       </div>
                     )}
                 </div>
