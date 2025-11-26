@@ -90,29 +90,21 @@ const categoryDefinitions = [
     },
   ];
 
-export function getCategorizedRecipes(categoryName: string) {
+export function getCategorizedRecipes(categoryName: string): Recipe[] {
     const allRecipes = getRecipes();
     const categoryDef = categoryDefinitions.find(c => c.name === categoryName);
-  
+
     if (!categoryDef) {
-      return [];
+        return [];
     }
-  
+
     return allRecipes.filter(recipe => {
-      const lowerCaseTitle = recipe.title.toLowerCase();
-      const lowerCaseTags = recipe.tags?.map(tag => tag.toLowerCase()) || [];
-      const keywords = categoryDef.keywords;
-  
-      // Prioritize tags for more accurate categorization
-      if (lowerCaseTags.some(tag => keywords.includes(tag))) {
-        return true;
-      }
-  
-      // Fallback to title matching
-      if (keywords.some(keyword => lowerCaseTitle.includes(keyword))) {
-        return true;
-      }
-  
-      return false;
+        const lowerCaseTitle = recipe.title.toLowerCase();
+        const lowerCaseTags = recipe.tags?.map(tag => tag.toLowerCase()) || [];
+
+        // Check if any keyword matches the title or tags
+        return categoryDef.keywords.some(keyword => 
+            lowerCaseTitle.includes(keyword) || lowerCaseTags.includes(keyword)
+        );
     });
 }
