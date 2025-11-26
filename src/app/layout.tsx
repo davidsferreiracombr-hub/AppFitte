@@ -8,7 +8,7 @@ import { Inter } from 'next/font/google';
 import { SidebarProvider } from '@/components/app-layout';
 import { WelcomeScreenProvider, useWelcomeScreen } from '@/hooks/use-welcome-screen';
 import { WelcomeScreen } from '@/components/welcome-screen';
-import React, { useEffect } from 'react';
+import React, from 'react';
 import { FirebaseClientProvider, useFirebase } from '@/firebase';
 import { usePathname, useRouter } from 'next/navigation';
 import { LoadingSpinner } from '@/components/loading-spinner';
@@ -23,18 +23,15 @@ const inter = Inter({
 function SessionWatcher() {
   const { user, firestore, auth } = useFirebase();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!user || !firestore || !auth) return;
 
     const sessionsRef = collection(firestore, 'user_sessions');
     const q = query(sessionsRef, where("email", "==", user.email));
 
-    // Get initial docs to know our current session ID
     let currentSessionId: string | null = null;
     getDocs(q).then(snapshot => {
-      // There should only be one doc, but handle multiple just in case
       if (!snapshot.empty) {
-        // The most recent doc should be the current session
         const latestDoc = snapshot.docs.sort((a, b) => b.data().lastLogin - a.data().lastLogin)[0];
         currentSessionId = latestDoc.id;
       }
@@ -42,9 +39,7 @@ function SessionWatcher() {
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const isSessionActive = snapshot.docs.some(doc => doc.id === currentSessionId);
-      // If there are no docs for this email, or if the current session doc was deleted
-      // it means a new session has started elsewhere.
-       if (snapshot.docs.length > 0 && currentSessionId && !isSessionActive) {
+      if (snapshot.docs.length > 0 && currentSessionId && !isSessionActive) {
          signOut(auth);
        } else if (snapshot.empty && currentSessionId) {
          signOut(auth);
@@ -54,7 +49,7 @@ function SessionWatcher() {
     return () => unsubscribe();
   }, [user, firestore, auth]);
 
-  return null; // This component does not render anything
+  return null;
 }
 
 function AuthGuard({ children }: { children: React.ReactNode }) {
@@ -62,8 +57,8 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  useEffect(() => {
-    if (isUserLoading) return; // Wait for initial auth check
+  React.useEffect(() => {
+    if (isUserLoading) return;
 
     const isLoginPage = pathname === '/login';
 
@@ -74,24 +69,17 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
     }
   }, [user, isUserLoading, router, pathname]);
 
-  // While checking the user or redirecting, show a loading spinner
   if (isUserLoading || (!user && pathname !== '/login') || (user && pathname === '/login')) {
     const message = isUserLoading ? "Carregando..." : "Redirecionando...";
     return <LoadingSpinner text={message} className="h-screen" />;
   }
 
-  // If the user is on the login page or authenticated, render the children
-  return <>{children}</>;
-}
-
-
-function AppContent({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-
+  // Renderiza o conteúdo do aplicativo ou a página de login
   if (pathname === '/login') {
     return <>{children}</>;
   }
 
+  // Se estiver autenticado e não estiver na página de login, mostra o layout do app
   return (
     <SidebarProvider>
       <SessionWatcher />
@@ -102,16 +90,14 @@ function AppContent({ children }: { children: React.ReactNode }) {
 
 function RootClientLayout({ children }: { children: React.ReactNode }) {
   const { animationEnded } = useWelcomeScreen();
-  
+
+  // 1. Sempre mostra a WelcomeScreen primeiro se a animação não tiver terminado.
   if (!animationEnded) {
     return <WelcomeScreen />;
   }
 
-  return (
-    <AuthGuard>
-      <AppContent>{children}</AppContent>
-    </AuthGuard>
-  );
+  // 2. Somente depois que a animação termina, o AuthGuard assume.
+  return <AuthGuard>{children}</AuthGuard>;
 }
 
 export default function RootLayout({
