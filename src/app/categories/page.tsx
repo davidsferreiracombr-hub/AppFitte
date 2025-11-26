@@ -2,7 +2,7 @@
 'use client';
 
 import { AppLayout } from '@/components/app-layout';
-import { getRecipes } from '@/lib/recipes';
+import { getRecipes, createSlug } from '@/lib/recipes';
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -128,7 +128,7 @@ export default function CategoriesPage() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {categories.map((category) => (
-                <Link href={`/category/${encodeURIComponent(category.name)}`} key={category.name}>
+                <Link href={`/category/${createSlug(category.name)}`} key={category.name}>
                   <div className={cn(
                       "group flex flex-col items-center justify-center p-6 rounded-2xl border-2 text-center h-52 transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 hover:border-primary/50",
                       category.color

@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
-import { getRecipes, type Recipe } from '@/lib/recipes';
+import { getRecipes, type Recipe, createSlug } from '@/lib/recipes';
 import { CategoryView } from './category-view';
 
 const categoryDefinitions = [
@@ -38,7 +39,7 @@ const categoryDefinitions = [
 
 export function generateStaticParams() {
   return categoryDefinitions.map(category => ({
-    categoryName: encodeURIComponent(category.name),
+    categoryName: createSlug(category.name),
   }));
 }
 
@@ -48,30 +49,34 @@ type FilteredData = {
   description: string;
 };
 
-function getFilteredRecipes(encodedCategoryName: string): FilteredData {
-    const categoryName = decodeURIComponent(encodedCategoryName);
+function getFilteredRecipes(categorySlug: string): FilteredData {
     const allRecipes = getRecipes();
-    const categoryDef = categoryDefinitions.find(c => c.name === categoryName);
+    const categoryDef = categoryDefinitions.find(c => createSlug(c.name) === categorySlug);
 
     if (!categoryDef) {
+      // Decode for display purposes if no category is found
+      const decodedName = decodeURIComponent(categorySlug.replace(/-/g, ' '));
       return {
         recipes: [],
-        name: categoryName,
-        description: `Nenhuma categoria encontrada para "${categoryName}".`
+        name: decodedName,
+        description: `Nenhuma categoria encontrada para "${decodedName}".`
       };
     }
 
+    const categoryName = categoryDef.name;
     const categorizedRecipes: { [key: string]: Recipe[] } = {};
     const addedRecipeIds = new Set<number>();
 
-    // First pass: assign recipes to their best-fit category
+    // This logic ensures recipes are assigned to one category only, matching the main categories page
     for (const recipe of allRecipes) {
       if (addedRecipeIds.has(recipe.id)) continue;
       
       for (const catDef of categoryDefinitions) {
         let match = false;
+        // Prioritize tags for categorization
         if (recipe.tags && recipe.tags.some(tag => catDef.keywords.includes(tag.toLowerCase()))) {
             match = true;
+        // Fallback to title matching
         } else if (catDef.keywords.some(keyword => recipe.title.toLowerCase().includes(keyword.toLowerCase()))) {
             match = true;
         }

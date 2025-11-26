@@ -17,7 +17,7 @@ export type Recipe = {
 };
 
 // Helper function to create a URL-friendly slug
-function createSlug(title: string, id: number): string {
+export function createSlug(title: string): string {
     const accents: { [key: string]: string } = {
         'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
         'à': 'a', 'è': 'e', 'ì': 'i', 'ò': 'o', 'ù': 'u',
@@ -25,13 +25,13 @@ function createSlug(title: string, id: number): string {
         'ç': 'c'
     };
     
+    // The id part is removed as it's not universally needed and complicates category slugs
     return title
         .toLowerCase()
-        .replace(/[áéíóúàèìòùãõâêîôûç]/g, char => accents[char])
+        .replace(/[áéíóúàèìòùãõâêîôûç]/g, char => accents[char] || char)
         .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
         .replace(/\s+/g, '-') // Replace spaces with hyphens
-        .replace(/-+/g, '-') // Replace multiple hyphens with a single one
-        + `-${id}`;
+        .replace(/-+/g, '-'); // Replace multiple hyphens with a single one
 }
 
 
@@ -44,11 +44,14 @@ export function getRecipes(): Recipe[] {
 
   const allRecipes: Recipe[] = recipesData as Recipe[];
 
+  // Note: Slugs are now generated using the title and a unique ID for recipes.
+  // The createSlug function itself is generic.
   processedRecipes = allRecipes.map((recipe, index) => {
       const uniqueId = recipe.id || (index + 1);
+      const recipeTitleSlug = createSlug(recipe.title);
       return {
           ...recipe,
-          slug: createSlug(recipe.title, uniqueId)
+          slug: `${recipeTitleSlug}-${uniqueId}`
       };
   });
   
