@@ -28,13 +28,13 @@ export function WelcomeScreenProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     try {
-      const hasBeenShown = sessionStorage.getItem(WELCOME_SCREEN_KEY);
+      const hasBeenShown = localStorage.getItem(WELCOME_SCREEN_KEY);
       
       if (!hasBeenShown) {
         // If it hasn't been shown, we run the animation.
         // animationEnded is already false, which is correct.
         setShowWelcome(true);
-        sessionStorage.setItem(WELCOME_SCREEN_KEY, 'true');
+        localStorage.setItem(WELCOME_SCREEN_KEY, 'true');
 
         setTimeout(() => {
           setIsFadingOut(true);
@@ -51,7 +51,7 @@ export function WelcomeScreenProvider({ children }: { children: ReactNode }) {
         setAnimationEnded(true);
       }
     } catch (error) {
-      console.warn("Could not access sessionStorage. Welcome screen will not be shown.");
+      console.warn("Could not access localStorage. Welcome screen will not be shown.");
       // In case of error, just end the "animation" to show content.
       setAnimationEnded(true);
     }
