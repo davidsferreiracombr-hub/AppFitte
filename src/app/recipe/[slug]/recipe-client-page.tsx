@@ -109,17 +109,21 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
 
   return (
     <div className="min-h-screen font-body bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pt-8 pb-24 lg:pb-12">
-        <div className="relative mb-6">
-            <Link href="/" passHref>
-                <Button variant="outline" className="inline-flex items-center transition-colors font-semibold">
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    Voltar
-                </Button>
-            </Link>
-        </div>
+      
+        <Link href="/" passHref>
+            <Button
+                variant="ghost"
+                size="icon"
+                className="fixed top-4 left-4 z-50 h-12 w-12 rounded-full bg-background/80 backdrop-blur-sm shadow-md hover:bg-background lg:top-8 lg:left-8"
+                aria-label="Voltar para a página inicial"
+            >
+                <ArrowLeft className="h-6 w-6" />
+            </Button>
+        </Link>
 
-        <div className="bg-card rounded-2xl shadow-lg border overflow-hidden p-6 md:p-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pt-8 pb-24 lg:pb-12">
+
+        <div className="bg-card rounded-2xl shadow-lg border overflow-hidden p-6 md:p-10 mt-12 lg:mt-0">
           <div>
             <div className="flex justify-between items-start">
               <h1 className="text-4xl md:text-5xl font-extrabold text-primary flex-1 pr-4">
