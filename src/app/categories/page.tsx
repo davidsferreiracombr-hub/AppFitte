@@ -3,12 +3,9 @@
 
 import { AppLayout } from '@/components/app-layout';
 import { getCategorizedRecipes, createSlug, categoryDefinitions } from '@/lib/recipes';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { Cake, Cookie, Croissant, Wheat, IceCream } from 'lucide-react';
-import type { LucideProps } from 'lucide-react';
-import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { LoadingSpinner } from '@/components/loading-spinner';
 import type { CategoryInfo } from '@/lib/recipes';
 
@@ -18,24 +15,17 @@ export default function CategoriesPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const calculateCategories = () => {
-      const processedCategories = categoryDefinitions.map(catDef => {
-        const recipes = getCategorizedRecipes(catDef.name);
-        return {
-          ...catDef,
-          count: recipes.length,
-        };
-      }).filter(cat => cat.count > 0);
+    // This logic now correctly uses the centralized function
+    const processedCategories = categoryDefinitions.map(catDef => {
+      const recipes = getCategorizedRecipes(catDef.name);
+      return {
+        ...catDef,
+        count: recipes.length,
+      };
+    }).filter(cat => cat.count > 0); // Only show categories with recipes
 
-      setCategories(processedCategories);
-      setIsLoading(false);
-    };
-
-    setIsLoading(true);
-    // Simulating a small delay to ensure UI updates smoothly
-    const timer = setTimeout(calculateCategories, 100);
-
-    return () => clearTimeout(timer);
+    setCategories(processedCategories);
+    setIsLoading(false);
   }, []);
 
   return (
