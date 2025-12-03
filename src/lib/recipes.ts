@@ -18,6 +18,7 @@ export type Recipe = {
   servings: string;
   notes?: string;
   category?: string;
+  imageUrl?: string;
 };
 
 export type CategoryInfo = {

@@ -7,6 +7,7 @@ import { Heart, Clock, Flame } from 'lucide-react';
 import { type Recipe } from '@/lib/recipes';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
+import Image from 'next/image';
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -27,6 +28,18 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, pr
         href={`/recipe/${recipe.slug}`} 
         className={cn("block group flex flex-col rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 bg-card border h-full", className)} 
     >
+      {recipe.imageUrl && (
+        <div className="relative aspect-video">
+          <Image
+            src={recipe.imageUrl}
+            alt={`Imagem da receita ${recipe.title}`}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            priority={priority}
+          />
+        </div>
+      )}
       <div className="p-5 flex flex-col flex-1">
         <div className="flex justify-between items-start mb-2">
             <h3 className="font-bold text-base leading-tight line-clamp-2 text-foreground flex-1 pr-2 group-hover:text-primary transition-colors">
