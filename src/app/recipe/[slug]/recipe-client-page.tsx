@@ -2,6 +2,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { type Recipe } from '@/lib/recipes';
 import { useFavorites } from '@/hooks/use-favorites';
 import { useToast } from '@/hooks/use-toast';
@@ -108,9 +109,21 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
 
   return (
     <div className="min-h-screen font-body bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pt-8 pb-24 lg:pb-12">
+      {recipe.imageUrl && (
+        <div className="relative h-64 md:h-80 w-full">
+          <Image
+            src={recipe.imageUrl}
+            alt={`Imagem da receita ${recipe.title}`}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+        </div>
+      )}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pb-24 lg:pb-12">
 
-        <div className="bg-card rounded-2xl shadow-lg border overflow-hidden p-6 md:p-10 mt-12 lg:mt-0">
+        <div className={cn("bg-card rounded-2xl shadow-lg border overflow-hidden p-6 md:p-10", !recipe.imageUrl && 'mt-12 lg:mt-0')}>
           <div>
             <div className="flex justify-between items-start">
               <h1 className="text-4xl md:text-5xl font-extrabold text-primary flex-1 pr-4">

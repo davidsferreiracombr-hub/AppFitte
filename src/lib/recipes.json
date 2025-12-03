@@ -73,6 +73,7 @@
     "calories": "90 kcal por cookie",
     "difficulty": "Fácil",
     "servings": "8 cookies",
+    "imageUrl": "https://i.imgur.com/4CuWEa2.jpg",
     "ingredients": [
       "2 bananas nanicas bem maduras, amassadas",
       "1 xícara de aveia em flocos (finos ou grossos)",
@@ -4244,35 +4245,7 @@
   },
   {
     "id": 175,
-    "slug": "risoto-de-abobora-com-carne-seca-175",
-    "title": "Risoto de Abóbora com Carne Seca",
-    "description": "Uma combinação de sabores bem brasileira em um prato italiano clássico.",
-    "tags": ["risoto", "salgado", "regional", "brasileiro"],
-    "prepTime": "50 min",
-    "calories": "450 kcal por porção",
-    "difficulty": "Média",
-    "servings": "4 porções",
-    "ingredients": [
-      "2 xícaras de arroz arbóreo",
-      "500g de abóbora japonesa em cubos",
-      "300g de carne seca dessalgada e desfiada",
-      "1 cebola picada",
-      "1/2 xícara de vinho branco",
-      "1.5 litro de caldo de legumes quente",
-      "Queijo coalho em cubos e cheiro-verde para finalizar"
-    ],
-    "instructions": [
-      "Cozinhe a abóbora até ficar macia e amasse com um garfo.",
-      "Refogue a cebola, adicione o arroz e o vinho. Deixe evaporar.",
-      "Comece a adicionar o caldo quente, concha a concha, mexendo sempre.",
-      "Na metade do cozimento, adicione o purê de abóbora e a carne seca.",
-      "Continue adicionando caldo até o arroz ficar al dente.",
-      "Finalize com os cubos de queijo coalho e cheiro-verde."
-    ]
-  },
-  {
-    "id": 176,
-    "slug": "escondidinho-de-batata-doce-176",
+    "slug": "escondidinho-de-batata-doce-175",
     "title": "Escondidinho de Batata-Doce",
     "description": "Uma versão mais saudável do clássico, com purê de batata-doce e recheio de frango ou carne moída.",
     "tags": ["salgado", "sem glúten", "fit", "brasileiro"],
@@ -4294,8 +4267,8 @@
     ]
   },
   {
-    "id": 177,
-    "slug": "farofa-de-banana-da-terra-177",
+    "id": 176,
+    "slug": "farofa-de-banana-da-terra-176",
     "title": "Farofa de Banana-da-Terra",
     "description": "Acompanhamento agridoce perfeito para carnes e feijoada.",
     "tags": ["acompanhamento", "salgado", "regional", "brasileiro"],
@@ -4320,8 +4293,8 @@
     ]
   },
   {
-    "id": 178,
-    "slug": "vatapa-178",
+    "id": 177,
+    "slug": "vatapa-177",
     "title": "Vatapá",
     "description": "Creme baiano denso e saboroso, feito com pão, camarão, leite de coco e azeite de dendê.",
     "tags": ["regional", "salgado", "baiano", "brasileiro"],
@@ -4349,8 +4322,8 @@
     ]
   },
   {
-    "id": 179,
-    "slug": "moqueca-baiana-179",
+    "id": 178,
+    "slug": "moqueca-baiana-178",
     "title": "Moqueca Baiana",
     "description": "Ensopado de peixe e/ou camarão com leite de coco, azeite de dendê, pimentões e coentro.",
     "tags": ["regional", "salgado", "baiano", "brasileiro"],
@@ -4380,8 +4353,8 @@
     ]
   },
   {
-    "id": 180,
-    "slug": "acaraje-180",
+    "id": 179,
+    "slug": "acaraje-179",
     "title": "Acarajé",
     "description": "Bolinho de feijão-fradinho frito no azeite de dendê, um símbolo da culinária baiana.",
     "tags": ["salgado", "frito", "regional", "baiano", "brasileiro"],
@@ -4401,6 +4374,34 @@
       "Aqueça bastante azeite de dendê em uma panela funda.",
       "Com a ajuda de duas colheres, modele os bolinhos e frite no dendê quente até dourarem.",
       "Escorra e sirva quente, recheado com vatapá, caruru e salada."
+    ]
+  },
+  {
+    "id": 180,
+    "slug": "risoto-de-abobora-com-carne-seca-180",
+    "title": "Risoto de Abóbora com Carne Seca",
+    "description": "Uma combinação de sabores bem brasileira em um prato italiano clássico.",
+    "tags": ["risoto", "salgado", "regional", "brasileiro"],
+    "prepTime": "50 min",
+    "calories": "450 kcal por porção",
+    "difficulty": "Média",
+    "servings": "4 porções",
+    "ingredients": [
+      "2 xícaras de arroz arbóreo",
+      "500g de abóbora japonesa em cubos",
+      "300g de carne seca dessalgada e desfiada",
+      "1 cebola picada",
+      "1/2 xícara de vinho branco",
+      "1.5 litro de caldo de legumes quente",
+      "Queijo coalho em cubos e cheiro-verde para finalizar"
+    ],
+    "instructions": [
+      "Cozinhe a abóbora até ficar macia e amasse com um garfo.",
+      "Refogue a cebola, adicione o arroz e o vinho. Deixe evaporar.",
+      "Comece a adicionar o caldo quente, concha a concha, mexendo sempre.",
+      "Na metade do cozimento, adicione o purê de abóbora e a carne seca.",
+      "Continue adicionando caldo até o arroz ficar al dente.",
+      "Finalize com os cubos de queijo coalho e cheiro-verde."
     ]
   }
 ]
