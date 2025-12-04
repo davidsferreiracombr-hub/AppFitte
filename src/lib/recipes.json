@@ -1446,6 +1446,7 @@
     "calories": "90 kcal",
     "difficulty": "Fácil",
     "servings": "15 biscoitos",
+    "imageUrl": "https://i.imgur.com/UJXNiyW.jpg",
     "ingredients": [
       "1 xícara de farinha de amêndoas",
       "3 colheres de sopa de manteiga ghee",
@@ -1470,6 +1471,7 @@
     "calories": "150 kcal",
     "difficulty": "Média",
     "servings": "10 bombons",
+    "imageUrl": "https://i.imgur.com/zsSykWc.jpg",
     "ingredients": [
       "Base: 1/2 xícara de amendoim triturado, 2 colheres de sopa de aveia.",
       "Caramelo: 1/2 xícara de tâmaras hidratadas, 1 colher de sopa de pasta de amendoim.",
@@ -1492,6 +1494,7 @@
     "calories": "260 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/Xb92bWA.jpg",
     "ingredients": [
       "3 ovos",
       "1 pote de iogurte natural (170g)",
@@ -1519,6 +1522,7 @@
     "calories": "200 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/oOTYgNz.jpg",
     "ingredients": [
       "1 beterraba média cozida e picada",
       "1.5 xícara de farinha de aveia",
@@ -1547,6 +1551,7 @@
     "calories": "80 kcal",
     "difficulty": "Fácil",
     "servings": "15 trufas",
+    "imageUrl": "https://i.imgur.com/t1AwyN0.jpg",
     "ingredients": [
       "1 xícara de farinha de amêndoas",
       "Raspas de 1 laranja",
@@ -1571,6 +1576,7 @@
     "calories": "240 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/P8JCKq8.jpg",
     "ingredients": [
       "3 ovos",
       "1.5 xícara de açúcar",
@@ -1597,6 +1603,7 @@
     "calories": "180 kcal por porção",
     "difficulty": "Média",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/k9locf0.jpg",
     "ingredients": [
       "2 xícaras de cerejas frescas sem caroço",
       "3 ovos",
@@ -1624,6 +1631,7 @@
     "calories": "120 kcal por porção",
     "difficulty": "Fácil",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/icvVjs2.jpg",
     "ingredients": [
       "1 abacaxi maduro, picado e congelado",
       "1/2 xícara de folhas de hortelã frescas",
@@ -1699,6 +1707,7 @@
     "calories": "160 kcal por porção",
     "difficulty": "Média",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/qYnK9LV.jpg",
     "ingredients": [
       "2 potes de iogurte grego natural",
       "200ml de leite de coco",
@@ -1725,6 +1734,7 @@
     "calories": "180 kcal por barra",
     "difficulty": "Fácil",
     "servings": "8 barras",
+    "imageUrl": "https://i.imgur.com/MIaR3Gc.jpg",
     "ingredients": [
       "Recheio: 2 xícaras de coco ralado sem açúcar, 1/2 xícara de leite de coco, 3 colheres de sopa de melado.",
       "Cobertura: 150g de chocolate 70% derretido."
@@ -1769,6 +1779,7 @@
     "calories": "220 kcal por porção",
     "difficulty": "Fácil",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/fu9t5oz.jpg",
     "ingredients": [
       "1 xícara de arroz integral",
       "4 xícaras de leite de amêndoas (ou outro leite vegetal)",
@@ -1793,6 +1804,7 @@
     "calories": "180 kcal",
     "difficulty": "Fácil",
     "servings": "1 porção",
+    "imageUrl": "https://i.imgur.com/hOAlMZn.jpg",
     "ingredients": [
       "1 ovo",
       "2 colheres de sopa de requeijão ou cream cheese",
@@ -1816,6 +1828,7 @@
     "calories": "400 kcal",
     "difficulty": "Média",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/G3JbMU8.jpg",
     "ingredients": [
       "Base: 1 pacote de biscoito de maisena triturado, 100g de manteiga.",
       "Creme: 500g de cream cheese, 1 lata de leite condensado, suco de 1 limão.",
@@ -1839,6 +1852,7 @@
     "calories": "350 kcal",
     "difficulty": "Fácil",
     "servings": "1 porção",
+    "imageUrl": "https://i.imgur.com/wz2ahFh.jpg",
     "ingredients": [
       "4 colheres de sopa de aveia em flocos",
       "1 copo de leite ou água (200ml)",
@@ -1864,6 +1878,7 @@
     "calories": "220 kcal",
     "difficulty": "Fácil",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/VZmnvma.jpg",
     "ingredients": [
       "Base: 1 xícara de castanha de caju triturada grosseiramente.",
       "Creme: 1 abacate pequeno, suco de 2 limões, 3 colheres de sopa de melado.",
@@ -1886,6 +1901,7 @@
     "calories": "40 kcal por dadinho",
     "difficulty": "Média",
     "servings": "Aprox. 30 dadinhos",
+    "imageUrl": "https://i.imgur.com/Gttagru.jpg",
     "ingredients": [
       "250g de tapioca granulada",
       "250g de queijo coalho ralado",
@@ -1912,6 +1928,7 @@
     "calories": "90 kcal por porção",
     "difficulty": "Fácil",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/ajbNntX.jpg",
     "ingredients": [
       "4 maçãs grandes, sem casca e em cubos",
       "1/2 xícara de água",
@@ -1959,6 +1976,7 @@
     "calories": "110 kcal por unidade",
     "difficulty": "Fácil",
     "servings": "20 unidades",
+    "imageUrl": "https://i.imgur.com/JTs2mA5.jpg",
     "ingredients": [
       "1 lata de leite condensado",
       "1 xícara de amendoim torrado e moído",
@@ -1984,6 +2002,7 @@
     "calories": "190 kcal",
     "difficulty": "Fácil",
     "servings": "1 porção grande",
+    "imageUrl": "https://i.imgur.com/UbSciJM.jpg",
     "ingredients": [
       "1 xícara de frutas vermelhas congeladas (morangos, amoras, mirtilos)",
       "1/4 de beterraba pequena, crua e picada",
@@ -2005,6 +2024,7 @@
     "calories": "250 kcal",
     "difficulty": "Fácil",
     "servings": "1 porção",
+    "imageUrl": "https://i.imgur.com/5vur5ap.jpg",
     "ingredients": [
       "1 ovo",
       "2 colheres de sopa de goma de tapioca",
@@ -2030,6 +2050,7 @@
     "calories": "200 kcal",
     "difficulty": "Fácil",
     "servings": "2 porções",
+    "imageUrl": "https://i.imgur.com/eGq510f.jpg",
     "ingredients": [
       "2 claras de ovo",
       "1 scoop de whey protein de chocolate",
@@ -2053,6 +2074,7 @@
     "calories": "230 kcal",
     "difficulty": "Fácil",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/3dZLkLp.jpg",
     "ingredients": [
       "2 xícaras de morangos congelados",
       "1 xícara de castanha de caju crua (deixada de molho por 4h)",
@@ -2076,6 +2098,7 @@
     "calories": "250 kcal por unidade",
     "difficulty": "Média",
     "servings": "8 quindins",
+    "imageUrl": "https://i.imgur.com/zmcPR3A.jpg",
     "ingredients": [
       "10 gemas peneiradas",
       "1 xícara de açúcar",
