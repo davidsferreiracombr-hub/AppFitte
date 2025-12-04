@@ -340,6 +340,7 @@
     "calories": "320 kcal por fatia",
     "difficulty": "Difícil",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/V7aCfnN.jpg",
     "ingredients": [
       "Base: 1 e 1/2 xícara de farinha de amêndoas, 3 colheres de sopa de manteiga ghee derretida",
       "Recheio: 2 xícaras de cream cheese light ou biomassa, suco de 1 limão, 1/2 xícara de xilitol",
@@ -365,6 +366,7 @@
     "calories": "250 kcal por porção",
     "difficulty": "Fácil",
     "servings": "1 porção (2 panquecas)",
+    "imageUrl": "https://i.imgur.com/Bu3P1qY.jpg",
     "ingredients": [
       "1 ovo",
       "2 colheres de sopa de farelo de aveia",
@@ -392,6 +394,7 @@
     "calories": "350 kcal",
     "difficulty": "Média",
     "servings": "8 porções",
+    "imageUrl": "https://i.imgur.com/zZPGMFB.jpg",
     "ingredients": [
       "1 litro de leite integral",
       "1 vidro de leite de coco (200ml)",
@@ -419,6 +422,7 @@
     "calories": "190 kcal por fatia",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/5AzgMNO.jpg",
     "ingredients": [
       "4 bananas nanicas bem maduras",
       "3 ovos",
@@ -449,6 +453,7 @@
     "calories": "280 kcal por fatia",
     "difficulty": "Fácil",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/fqGMvDE.jpg",
     "ingredients": [
       "4 ovos",
       "4 xícaras de leite integral",
@@ -478,6 +483,7 @@
     "calories": "250 kcal por fatia",
     "difficulty": "Média",
     "servings": "8 fatias",
+    "imageUrl": "https://i.imgur.com/SGTkogN.jpg",
     "ingredients": [
       "4 ovos",
       "1 xícara de farinha de amêndoas",
@@ -507,6 +513,7 @@
     "calories": "250 kcal por fatia",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/lb7KLjZ.jpg",
     "ingredients": [
       "1 laranja pera com casca, cortada em 4 partes, sem sementes e sem a parte branca do meio",
       "3 ovos",
@@ -535,6 +542,7 @@
     "calories": "200 kcal por fatia",
     "difficulty": "Fácil",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/C2Cli5H.jpg",
     "ingredients": [
       "3 maçãs pequenas, sem casca e picadas",
       "3 ovos",
@@ -565,6 +573,7 @@
     "calories": "350 kcal por fatia",
     "difficulty": "Média",
     "servings": "8 fatias",
+    "imageUrl": "https://i.imgur.com/TvhjdsU.jpg",
     "ingredients": [
       "Base: 1.5 xícara de farinha de amêndoas, 3 colheres de sopa de óleo de coco, 2 colheres de sopa de melado.",
       "Doce de leite: 1 xícara de tâmaras sem caroço (hidratadas), 1/2 xícara de leite de coco.",
@@ -590,6 +599,7 @@
     "calories": "150 kcal por porção",
     "difficulty": "Fácil",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/zblFC3r.jpg",
     "ingredients": [
       "2 mangas grandes e maduras, picadas e congeladas",
       "1 pote (170g) de iogurte grego natural (ou iogurte de coco para vegano)"
@@ -613,6 +623,7 @@
     "calories": "140 kcal por muffin",
     "difficulty": "Fácil",
     "servings": "6 muffins",
+    "imageUrl": "https://i.imgur.com/rMPXw6z.jpg",
     "ingredients": [
       "1 xícara de farinha de amêndoas",
       "1/4 xícara de adoçante xilitol",
@@ -642,6 +653,7 @@
     "calories": "250 kcal por porção",
     "difficulty": "Média",
     "servings": "8 porções",
+    "imageUrl": "https://i.imgur.com/PWfzXti.jpg",
     "ingredients": [
       "1 abacaxi pérola picado",
       "1/2 xícara de açúcar",
@@ -4229,7 +4241,7 @@
     "slug": "bolo-de-mandioca-com-coco-174",
     "title": "Bolo de Mandioca com Coco",
     "description": "Também chamado de bolo de aipim, é um bolo denso, úmido e delicioso que é naturalmente sem glúten.",
-    "tags": ["bolo", "sem glúten", "festa junina", "brasileiro"],
+    "tags": ["bolo", "sem glúten", "festa junina", "brasileira"],
     "prepTime": "1h 20min",
     "calories": "320 kcal por fatia",
     "difficulty": "Fácil",
