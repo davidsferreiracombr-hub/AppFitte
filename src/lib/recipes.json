@@ -188,6 +188,7 @@
     "calories": "70 kcal por trufa",
     "difficulty": "Fácil",
     "servings": "12 trufas",
+    "imageUrl": "https://i.imgur.com/dDUKHdg.jpg",
     "ingredients": [
       "1 xícara de tâmaras Medjool sem caroço",
       "1/2 xícara de nozes",
@@ -213,6 +214,7 @@
     "calories": "100 kcal por unidade",
     "difficulty": "Média",
     "servings": "10 unidades",
+    "imageUrl": "https://i.imgur.com/LqCuQSE.jpg",
     "ingredients": [
       "1 xícara de macadâmia crua (deixar de molho por 2h)",
       "1/2 xícara de coco ralado sem açúcar",
@@ -239,6 +241,7 @@
     "calories": "150 kcal",
     "difficulty": "Fácil",
     "servings": "1 porção",
+    "imageUrl": "https://i.imgur.com/o4dD5M7.jpg",
     "ingredients": [
       "1/2 mamão papaia congelado em pedaços",
       "2 colheres de sopa de iogurte grego natural ou iogurte de coco",
@@ -261,6 +264,7 @@
     "calories": "280 kcal por porção",
     "difficulty": "Média",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/jjLe6HZ.jpg",
     "ingredients": [
       "Creme: 1 lata de leite condensado, 1 lata de creme de leite, 1 colher de sopa de manteiga.",
       "Recheio: 2 caixas de morangos frescos, limpos e picados",
@@ -285,6 +289,7 @@
     "calories": "120 kcal",
     "difficulty": "Fácil",
     "servings": "2 porções",
+    "imageUrl": "https://i.imgur.com/VXryTDx.jpg",
     "ingredients": [
       "1 xícara de morangos congelados",
       "1/2 xícara de iogurte grego natural ou Kefir",
@@ -308,6 +313,7 @@
     "calories": "80 kcal por unidade",
     "difficulty": "Média",
     "servings": "15 unidades",
+    "imageUrl": "https://i.imgur.com/cyrgQTz.jpg",
     "ingredients": [
       "1 xícara de biomassa de banana verde",
       "3 colheres de sopa de cacau em pó",
