@@ -2129,6 +2129,7 @@
     "calories": "300 kcal por fatia",
     "difficulty": "Fácil",
     "servings": "8 fatias",
+    "imageUrl": "https://i.imgur.com/lHc81zJ.jpg",
     "ingredients": [
       "Massa: 2 xícaras de leite, 1 xícara de óleo, 3 ovos, 2 xícaras de farinha de trigo, sal, queijo ralado, 1 colher de sopa de fermento.",
       "Recheio: 2 latas de sardinha em óleo (escorrida), 1 tomate picado, 1/2 cebola picada, azeitonas, cheiro-verde, milho e ervilha."
@@ -2151,6 +2152,7 @@
     "calories": "175 kcal",
     "difficulty": "Fácil",
     "servings": "10 muffins",
+    "imageUrl": "https://i.imgur.com/mRx6RP5.jpg",
     "ingredients": [
       "1 xícara de abobrinha ralada fina",
       "1.5 xícara de farinha de aveia",
@@ -2179,6 +2181,7 @@
     "calories": "110 kcal",
     "difficulty": "Média",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/Q8cXaBG.jpg",
     "ingredients": [
       "1 caixa de gelatina diet de morango (ou outro sabor)",
       "Creme: 1 pote de iogurte natural, 1/2 envelope de gelatina incolor, 2 colheres de xilitol."
@@ -2200,6 +2203,7 @@
     "calories": "100 kcal por colher",
     "difficulty": "Média",
     "servings": "Aprox. 1 xícara",
+    "imageUrl": "https://i.imgur.com/KpitfPy.jpg",
     "ingredients": [
       "1 xícara de leite de soja em pó",
       "1/2 xícara de açúcar demerara",
@@ -2224,6 +2228,7 @@
     "calories": "400 kcal (porção individual)",
     "difficulty": "Fácil",
     "servings": "1-2 porções",
+    "imageUrl": "https://i.imgur.com/nBBQXQS.jpg",
     "ingredients": [
       "1 ovo",
       "3 colheres de sopa de açúcar de coco",
@@ -2252,6 +2257,7 @@
     "calories": "300 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/I0zu1gx.jpg",
     "ingredients": [
       "3 bananas amassadas",
       "2 ovos",
@@ -2277,6 +2283,7 @@
     "calories": "180 kcal por porção",
     "difficulty": "Fácil",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/oG3ZcUf.jpg",
     "ingredients": [
       "4 colheres de sopa de pasta de amendoim",
       "2 scoops de whey protein de baunilha",
@@ -2299,6 +2306,7 @@
     "calories": "250 kcal",
     "difficulty": "Fácil",
     "servings": "8 porções",
+    "imageUrl": "https://i.imgur.com/dr40PP3.jpg",
     "ingredients": [
       "3 pães franceses amanhecidos, picados",
       "500ml de leite",
@@ -2325,6 +2333,7 @@
     "calories": "160 kcal",
     "difficulty": "Média",
     "servings": "10 donuts",
+    "imageUrl": "https://i.imgur.com/rppwuKk.jpg",
     "ingredients": [
       "1 xícara de purê de batata-doce",
       "1.5 xícara de farinha de aveia",
