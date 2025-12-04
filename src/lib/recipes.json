@@ -1072,6 +1072,7 @@
     "calories": "300 kcal",
     "difficulty": "Fácil",
     "servings": "1 porção",
+    "imageUrl": "https://i.imgur.com/UTrF9bq.jpg",
     "ingredients": [
       "1 ovo",
       "1 scoop de whey protein de baunilha",
@@ -1097,6 +1098,7 @@
     "calories": "280 kcal",
     "difficulty": "Fácil",
     "servings": "1 porção",
+    "imageUrl": "https://i.imgur.com/2bDN41H.jpg",
     "ingredients": [
       "1/2 abacate pequeno",
       "1 scoop de whey protein de baunilha ou chocolate",
@@ -1119,6 +1121,7 @@
     "calories": "80 kcal",
     "difficulty": "Fácil",
     "servings": "15 biscoitos",
+    "imageUrl": "https://i.imgur.com/0oCwFxb.jpg",
     "ingredients": [
       "1 xícara de farinha de aveia",
       "1/2 xícara de aveia em flocos",
@@ -1145,6 +1148,7 @@
     "calories": "120 kcal",
     "difficulty": "Fácil",
     "servings": "10 bombons",
+    "imageUrl": "https://i.imgur.com/Jr1N0Vi.jpg",
     "ingredients": [
       "Recheio: 1 xícara de coco ralado sem açúcar, 3 colheres de sopa de óleo de coco, 2 colheres de sopa de melado.",
       "Cobertura: 150g de chocolate 70% cacau derretido."
@@ -1167,6 +1171,7 @@
     "calories": "300 kcal",
     "difficulty": "Fácil",
     "servings": "1 porção",
+    "imageUrl": "https://i.imgur.com/WBupHu7.jpg",
     "ingredients": [
       "1 ovo",
       "4 colheres de sopa de leite",
@@ -1194,6 +1199,7 @@
     "calories": "90 kcal",
     "difficulty": "Fácil",
     "servings": "12 trufas",
+    "imageUrl": "https://i.imgur.com/sc3Q5VP.jpg",
     "ingredients": [
       "Polpa de 1/2 abacate maduro",
       "100g de chocolate 70% derretido",
@@ -1218,6 +1224,7 @@
     "calories": "280 kcal",
     "difficulty": "Média",
     "servings": "12 porções",
+    "imageUrl": "https://i.imgur.com/JaxxlRE.jpg",
     "ingredients": [
       "Massa: 3 ovos, 2 xícaras de açúcar, 2 xícaras de farinha, 1 xícara de leite, 1/2 xícara de óleo, 1 colher de fermento.",
       "Calda: 1 vidro de leite de coco (200ml), 1/2 xícara de leite, 3 colheres de açúcar.",
@@ -1242,6 +1249,7 @@
     "calories": "350 kcal",
     "difficulty": "Fácil",
     "servings": "1 porção",
+    "imageUrl": "https://i.imgur.com/d5ii8Ng.jpg",
     "ingredients": [
       "1 banana congelada",
       "1 copo (200ml) de leite de amêndoas",
@@ -1264,6 +1272,7 @@
     "calories": "180 kcal",
     "difficulty": "Fácil",
     "servings": "8 porções",
+    "imageUrl": "https://i.imgur.com/PsNRhyS.jpg",
     "ingredients": [
       "500g de abóbora japonesa em cubos",
       "1 xícara de açúcar",
@@ -1288,6 +1297,7 @@
     "calories": "190 kcal",
     "difficulty": "Média",
     "servings": "9 pedaços",
+    "imageUrl": "https://i.imgur.com/00HCt8T.jpg",
     "ingredients": [
       "1 e 1/2 xícara de feijão preto cozido e escorrido",
       "1/2 xícara de cacau em pó",
@@ -1315,6 +1325,7 @@
     "calories": "300 kcal",
     "difficulty": "Média",
     "servings": "8 fatias",
+    "imageUrl": "https://i.imgur.com/hAuZLFb.jpg",
     "ingredients": [
       "Caramelo: 1 xícara de açúcar, 1/2 xícara de água, 2 colheres de manteiga.",
       "Recheio: 4 maçãs fatiadas finamente.",
@@ -1339,6 +1350,7 @@
     "calories": "180 kcal",
     "difficulty": "Fácil",
     "servings": "2 porções",
+    "imageUrl": "https://i.imgur.com/gMYOBsg.jpg",
     "ingredients": [
       "2 bananas nanicas bem maduras, congeladas em rodelas",
       "1 colher de sopa de cacau em pó 100%",
@@ -1361,6 +1373,7 @@
     "calories": "150 kcal",
     "difficulty": "Fácil",
     "servings": "10 muffins",
+    "imageUrl": "https://i.imgur.com/wLkHBmH.jpg",
     "ingredients": [
       "2 bananas maduras amassadas",
       "2 ovos",
@@ -1388,6 +1401,7 @@
     "calories": "280 kcal",
     "difficulty": "Fácil",
     "servings": "2 porções",
+    "imageUrl": "https://i.imgur.com/Vdbuxty.jpg",
     "ingredients": [
       "Massa: 1 ovo, 1/2 xícara de leite, 3 colheres de sopa de farinha de aveia, 1/4 xícara de espinafre cozido.",
       "Recheio: 150g de ricota amassada, salsinha, sal e pimenta."
@@ -1409,6 +1423,7 @@
     "calories": "170 kcal",
     "difficulty": "Fácil",
     "servings": "2 porções",
+    "imageUrl": "https://i.imgur.com/S9WKvDQ.jpg",
     "ingredients": [
       "Polpa de 2 maracujás",
       "1/2 xícara de biomassa de banana verde",
