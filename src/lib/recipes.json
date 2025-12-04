@@ -101,6 +101,7 @@
     "calories": "300 kcal por fatia",
     "difficulty": "Média",
     "servings": "8 fatias",
+    "imageUrl": "https://i.imgur.com/GMgQHBA.jpg",
     "ingredients": [
       "Base: 1 e 1/2 xícara de amêndoas ou nozes",
       "Base: 1/2 xícara de tâmaras sem caroço",
@@ -131,6 +132,7 @@
     "calories": "200 kcal",
     "difficulty": "Fácil",
     "servings": "2 porções",
+    "imageUrl": "https://i.imgur.com/PQC10Oe.jpg",
     "ingredients": [
       "3 colheres de sopa de sementes de chia",
       "1 xícara de leite de coco light",
@@ -156,6 +158,7 @@
     "calories": "220 kcal por fatia",
     "difficulty": "Média",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/EdFCE0V.jpg",
     "ingredients": [
       "2 cenouras médias raladas",
       "3 ovos",
@@ -3019,10 +3022,9 @@
     "instructions": [
       "Ferva a água com a manteiga e o sal. Jogue a farinha de uma vez e mexa vigorosamente até a massa soltar da panela.",
       "Transfira para a batedeira e bata para amornar. Adicione os ovos, um a um, batendo bem.",
-      "Coloque a massa em um saco de confeitar e faça pequenas bolas em uma assadeira.",
-      "Asse a 200°C por 20-25 minutos, até inflar e dourar.",
-      "Faça um furo na base de cada carolina e recheie com doce de leite.",
-      "Mergulhe o topo no chocolate derretido."
+      "Coloque a massa em um saco de confeitar com bico pitanga.",
+      "Frite porções da massa em óleo quente até dourar.",
+      "Passe no açúcar e canela e recheie com doce de leite."
     ]
   },
   {
