@@ -682,6 +682,7 @@
     "calories": "220 kcal por barra",
     "difficulty": "Fácil",
     "servings": "6 barras",
+    "imageUrl": "https://i.imgur.com/8sF3j4e.jpg",
     "ingredients": [
       "1 xícara de aveia em flocos grossos",
       "1/2 xícara de pasta de amendoim",
@@ -710,6 +711,7 @@
     "calories": "150 kcal por porção",
     "difficulty": "Média",
     "servings": "10 porções",
+    "imageUrl": "https://i.imgur.com/grtE4lB.jpg",
     "ingredients": [
       "4 caixas de gelatina de cores/sabores diferentes (morango, limão, uva, abacaxi)",
       "1 lata de leite condensado",
@@ -735,6 +737,7 @@
     "calories": "150 kcal por unidade",
     "difficulty": "Fácil",
     "servings": "8 unidades",
+    "imageUrl": "https://i.imgur.com/mU2Eixh.jpg",
     "ingredients": [
       "1 xícara de amendoim torrado sem pele e sem sal",
       "1/2 xícara de açúcar",
@@ -759,6 +762,7 @@
     "calories": "200 kcal por porção",
     "difficulty": "Fácil",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/AFzv3eg.jpg",
     "ingredients": [
       "2 latas de milho verde escorrido",
       "1 lata de leite condensado",
@@ -785,6 +789,7 @@
     "calories": "220 kcal por donut",
     "difficulty": "Média",
     "servings": "8 donuts",
+    "imageUrl": "https://i.imgur.com/O5HoO7y.jpg",
     "ingredients": [
       "1 e 1/4 xícara de farinha de trigo",
       "1/2 xícara de açúcar",
@@ -814,6 +819,7 @@
     "calories": "350 kcal por fatia",
     "difficulty": "Difícil",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/O68I53i.jpg",
     "ingredients": [
       "Base: 1 pacote de biscoito de maisena triturado, 100g de manteiga derretida.",
       "Creme: 1 lata de leite condensado, 1 lata de creme de leite, 1 envelope de gelatina incolor.",
@@ -839,6 +845,7 @@
     "calories": "250 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/MA9E0JJ.jpg",
     "ingredients": [
       "3 ovos",
       "1.5 xícara de açúcar",
@@ -867,6 +874,7 @@
     "calories": "200 kcal",
     "difficulty": "Fácil",
     "servings": "10 porções",
+    "imageUrl": "https://i.imgur.com/O8VIDwA.jpg",
     "ingredients": [
       "1 lata de leite condensado",
       "100g de coco ralado",
@@ -891,6 +899,7 @@
     "calories": "300 kcal",
     "difficulty": "Média",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/NNh9BV9.jpg",
     "ingredients": [
       "1 lata de leite condensado",
       "1 mesma medida (da lata) de leite integral",
@@ -916,6 +925,7 @@
     "calories": "300 kcal",
     "difficulty": "Fácil",
     "servings": "8 fatias",
+    "imageUrl": "https://i.imgur.com/CLYUzaY.jpg",
     "ingredients": [
       "Massa: 2 xícaras de leite, 1 xícara de óleo, 3 ovos, 2 xícaras de farinha de trigo, sal, 1 colher de sopa de fermento.",
       "Recheio: 500g de frango desfiado e temperado, 1 copo de requeijão cremoso, azeitonas, cheiro-verde."
@@ -961,6 +971,7 @@
     "calories": "170 kcal",
     "difficulty": "Fácil",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/9gJvDcy.jpg",
     "ingredients": [
       "1 lata de milho verde escorrido",
       "3 ovos",
@@ -987,6 +998,7 @@
     "calories": "200 kcal",
     "difficulty": "Fácil",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/LeV8OUq.jpg",
     "ingredients": [
       "1 abacate grande congelado em pedaços",
       "Suco de 2 limões",
@@ -1007,6 +1019,7 @@
     "calories": "160 kcal",
     "difficulty": "Fácil",
     "servings": "8 muffins",
+    "imageUrl": "https://i.imgur.com/KrwhtAC.jpg",
     "ingredients": [
       "1 cenoura média ralada",
       "2 ovos",
@@ -1034,6 +1047,7 @@
     "calories": "320 kcal",
     "difficulty": "Média",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/ZC8wo57.jpg",
     "ingredients": [
       "Base: 1 xícara de castanhas, 1/2 xícara de tâmaras.",
       "Mousse: 1 xícara de polpa de maracujá, 1 xícara de castanha de caju demolhada, 1/2 xícara de agave.",
