@@ -19,21 +19,13 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { LoadingSpinner } from '@/components/loading-spinner';
 import { Bot, Sparkles, Wand2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const suggestionSchema = z.object({
-  dietaryGoals: z.string().min(3, 'Descreva seu objetivo (ex: perder peso).'),
-  allergies: z.string().optional(),
-  preferredFlavors: z
-    .string()
-    .min(3, 'Conte-nos um sabor que você gosta (ex: doce, cítrico).'),
-  pastRecipeInteractions: z
-    .string()
-    .min(10, 'Descreva um pouco sobre o que você costuma comer ou gostar.'),
+  request: z.string().min(10, 'Descreva com um pouco mais de detalhes, por favor.'),
 });
 
 type SuggestionFormValues = z.infer<typeof suggestionSchema>;
@@ -47,10 +39,7 @@ export default function AiSuggestionPage() {
   const form = useForm<SuggestionFormValues>({
     resolver: zodResolver(suggestionSchema),
     defaultValues: {
-      dietaryGoals: '',
-      allergies: '',
-      preferredFlavors: '',
-      pastRecipeInteractions: '',
+      request: '',
     },
   });
 
@@ -76,10 +65,10 @@ export default function AiSuggestionPage() {
           <div className="text-center mb-12">
              <Bot className="mx-auto h-12 w-12 text-primary mb-4" />
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
-              Sugestão do Chef IA
+              Converse com o Chef IA
             </h2>
             <p className="text-muted-foreground mt-4 text-lg">
-              Preencha suas preferências e deixe nossa Inteligência Artificial criar uma recomendação de receita exclusiva para você.
+              Diga o que você está com vontade de comer e nossa Inteligência Artificial criará uma sugestão exclusiva.
             </p>
           </div>
 
@@ -89,59 +78,14 @@ export default function AiSuggestionPage() {
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                   <FormField
                     control={form.control}
-                    name="dietaryGoals"
+                    name="request"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base">Qual seu principal objetivo?</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="Ex: Emagrecer, ganhar massa, comer menos açúcar..."
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="allergies"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base">Possui alguma alergia ou restrição?</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="Ex: Glúten, lactose, amendoim..."
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="preferredFlavors"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base">Quais sabores você mais gosta?</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Ex: Doce, salgado, azedo, amargo, picante..." {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                   <FormField
-                    control={form.control}
-                    name="pastRecipeInteractions"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base">O que você gosta de comer? </FormLabel>
+                        <FormLabel className="text-base">O que você quer comer hoje?</FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder="Ex: Adoro bolos de chocolate, não gosto muito de peixe, como bastante frutas no café da manhã..."
-                            className="resize-none"
+                            placeholder="Ex: Quero algo doce mas que seja azedo... ou um bolo de chocolate fofinho e saudável."
+                            className="resize-none h-32"
                             {...field}
                           />
                         </FormControl>
@@ -151,11 +95,11 @@ export default function AiSuggestionPage() {
                   />
                   <Button type="submit" className="w-full h-12 text-lg" disabled={isLoading}>
                     {isLoading ? (
-                      <LoadingSpinner text="Criando sua receita..." className="py-0"/>
+                      <LoadingSpinner text="Criando sua sugestão..." className="py-0"/>
                     ) : (
                       <>
                         <Wand2 className="mr-2 h-5 w-5" />
-                        Gerar Sugestão
+                        Pedir Sugestão
                       </>
                     )}
                   </Button>

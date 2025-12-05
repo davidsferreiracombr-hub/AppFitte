@@ -3,7 +3,7 @@
 /**
  * @fileOverview This file defines a Genkit flow for recommending recipes based on user preferences.
  *
- * The flow takes dietary goals, allergies, preferred flavors, and past recipe interactions as input
+ * The flow takes a conversational text input from the user
  * and returns a list of recommended recipes.
  *
  * @interface AIRecipeRecommendationInput - The input type for the aiRecipeRecommendation function.
@@ -15,20 +15,9 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const AIRecipeRecommendationInputSchema = z.object({
-  dietaryGoals: z
+  request: z
     .string()
-    .describe('The dietary goals of the user (e.g., weight loss, muscle gain).'),
-  allergies: z
-    .string()
-    .describe('Any allergies the user has (e.g., peanuts, gluten).'),
-  preferredFlavors: z
-    .string()
-    .describe('The user’s preferred flavors (e.g., sweet, savory, spicy).'),
-  pastRecipeInteractions: z
-    .string()
-    .describe(
-      'A summary of the user’s past interactions with recipes (e.g., liked, disliked, frequently made).'      
-    ),
+    .describe('The user’s conversational request for a recipe suggestion (e.g., "I want something sweet and sour", "a healthy dessert for after dinner").'),
 });
 
 export type AIRecipeRecommendationInput = z.infer<
@@ -38,7 +27,7 @@ export type AIRecipeRecommendationInput = z.infer<
 const AIRecipeRecommendationOutputSchema = z.object({
   recommendedRecipes: z
     .string()
-    .describe('A list of recommended recipes based on the user’s preferences.'),
+    .describe('A recipe suggestion based on the user’s conversational request.'),
 });
 
 export type AIRecipeRecommendationOutput = z.infer<
@@ -55,14 +44,11 @@ const aiRecipeRecommendationPrompt = ai.definePrompt({
   name: 'aiRecipeRecommendationPrompt',
   input: {schema: AIRecipeRecommendationInputSchema},
   output: {schema: AIRecipeRecommendationOutputSchema},
-  prompt: `You are an AI recipe recommendation engine. Given the following user preferences, recommend a list of recipes:
+  prompt: `You are an AI Chef specializing in healthy and delicious desserts. A user will describe what they feel like eating. Based on their request, suggest a single, creative, and appealing recipe.
 
-Dietary Goals: {{{dietaryGoals}}}
-Allergies: {{{allergies}}}
-Preferred Flavors: {{{preferredFlavors}}}
-Past Recipe Interactions: {{{pastRecipeInteractions}}}
+User's Request: {{{request}}}
 
-Recommend recipes that are tailored to the user’s individual needs and preferences.`,
+Respond with a suggestion that fits the user's mood and preferences. Be friendly and conversational in your recommendation text. Just return the recipe suggestion text.`,
 });
 
 const aiRecipeRecommendationFlow = ai.defineFlow(
