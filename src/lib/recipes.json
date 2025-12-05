@@ -3136,9 +3136,10 @@
     "instructions": [
       "Ferva a água com a manteiga e o sal. Jogue a farinha de uma vez e mexa vigorosamente até a massa soltar da panela.",
       "Transfira para a batedeira e bata para amornar. Adicione os ovos, um a um, batendo bem.",
-      "Coloque a massa em um saco de confeitar com bico pitanga.",
-      "Frite porções da massa em óleo quente até dourar.",
-      "Passe no açúcar e canela e recheie com doce de leite."
+      "Coloque a massa em um saco de confeitar e modele pequenas bolinhas em uma assadeira.",
+      "Asse em forno pré-aquecido a 200°C por 30 minutos.",
+      "Deixe esfriar, faça um furo e recheie com doce de leite.",
+      "Banhe a parte de cima no chocolate derretido."
     ]
   },
   {
@@ -3251,14 +3252,14 @@
     "servings": "15 churros",
     "imageUrl": "https://i.imgur.com/4LoAJ1j.jpg",
     "ingredients": [
-      "Massa: 1 xícara de água, 2 colheres de sopa de açúcar, 2 colheres de sopa de manteiga, sal, 1 xícara de farinha de trigo, 2 ovos.",
+      "Massa: 1 xícara de água, 2 colheres de sopa de açúcar, 2 colheres de sopa de manteiga, sal, 1 xícara de farinha de trigo, 1 ovo.",
       "Recheio: Doce de leite.",
       "Para fritar e polvilhar: Óleo, açúcar e canela."
     ],
     "instructions": [
       "Ferva a água com açúcar, sal e manteiga. Adicione a farinha de uma vez e mexa até soltar da panela.",
-      "Deixe amornar e adicione os ovos um a um, misturando bem.",
-      "Coloque a massa em um saco de confeitar com bico pitanga.",
+      "Deixe amornar e adicione o ovo, misturando bem.",
+      "Coloque a massa em uma máquina de churros ou saco de confeitar com bico pitanga.",
       "Frite porções da massa em óleo quente até dourar.",
       "Passe no açúcar e canela e recheie com doce de leite."
     ]
@@ -3443,6 +3444,7 @@
     "calories": "320 kcal por fatia",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/esVbOwU.jpg",
     "ingredients": [
       "Calda: 1 xícara de açúcar, 1/2 xícara de água, 4 bananas nanicas fatiadas no comprimento.",
       "Massa: 3 ovos, 2 xícaras de açúcar, 1/2 xícara de óleo, 1 xícara de leite, 2 xícaras de farinha, 1 colher de fermento."
@@ -3465,6 +3467,7 @@
     "calories": "90 kcal por unidade",
     "difficulty": "Fácil",
     "servings": "20 unidades",
+    "imageUrl": "https://i.imgur.com/HKbywxW.jpg",
     "ingredients": [
       "1 lata de leite condensado",
       "100g de coco ralado",
@@ -3490,6 +3493,7 @@
     "calories": "30 kcal por suspiro",
     "difficulty": "Média",
     "servings": "Aprox. 30 suspiros",
+    "imageUrl": "https://i.imgur.com/EOC5teH.jpg",
     "ingredients": [
       "4 claras de ovo",
       "1 xícara de açúcar de confeiteiro",
@@ -3514,6 +3518,7 @@
     "calories": "200 kcal por coxinha",
     "difficulty": "Difícil",
     "servings": "10 coxinhas",
+    "imageUrl": "https://i.imgur.com/OkLjOyL.jpg",
     "ingredients": [
       "Recheio: 500g de jaca verde cozida na pressão e desfiada, refogada com alho, cebola, tomate, cheiro-verde e açafrão.",
       "Massa: 2 xícaras de caldo do cozimento da jaca (ou caldo de legumes), 2 xícaras de farinha de trigo, 2 colheres de óleo, sal.",
@@ -3537,6 +3542,7 @@
     "calories": "180 kcal por fatia",
     "difficulty": "Fácil",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/l5gRyOn.jpg",
     "ingredients": [
       "3 bananas nanicas bem maduras amassadas",
       "3 ovos",
@@ -3564,6 +3570,7 @@
     "calories": "Varia",
     "difficulty": "Fácil",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/sXRL28b.jpg",
     "ingredients": [
       "1 lata de leite condensado",
       "1 caixa de creme de leite",
@@ -3588,6 +3595,7 @@
     "calories": "400 kcal por fatia",
     "difficulty": "Difícil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/tvPpnES.jpg",
     "ingredients": [
       "Calda: 1 xícara de açúcar.",
       "Pudim: 1 lata de leite condensado, a mesma medida de leite, 3 ovos.",
@@ -3611,6 +3619,7 @@
     "calories": "350 kcal por porção",
     "difficulty": "Média",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/0fUc10y.jpg",
     "ingredients": [
       "500 ml de creme de leite fresco",
       "1 fava de baunilha (ou 1 colher de chá de extrato)",
@@ -3638,6 +3647,7 @@
     "calories": "290 kcal por fatia",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/NdBGY8J.jpg",
     "ingredients": [
       "1 lata de milho verde (escorrido)",
       "1 lata (medida) de açúcar",
@@ -3665,6 +3675,7 @@
     "calories": "250 kcal por unidade",
     "difficulty": "Média",
     "servings": "Aprox. 20 unidades",
+    "imageUrl": "https://i.imgur.com/R4KAJl7.jpg",
     "ingredients": [
       "Massa: 2 xícaras de farinha, 1 xícara de açúcar mascavo, 1/2 xícara de mel, 1 xícara de leite, 1/2 xícara de chocolate em pó, 1 colher de chá de canela, 1 colher de chá de cravo em pó, 1 colher de sopa de fermento.",
       "Recheio: Doce de leite.",
@@ -3687,6 +3698,7 @@
     "calories": "50 kcal por bala",
     "difficulty": "Difícil",
     "servings": "Muitas balas",
+    "imageUrl": "https://i.imgur.com/0fqm5PT.jpg",
     "ingredients": [
       "1 kg de açúcar",
       "1 vidro de leite de coco (200ml)",
@@ -3710,6 +3722,7 @@
     "calories": "400 kcal por fatia",
     "difficulty": "Média",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/CfKyPUH.jpg",
     "ingredients": [
       "Massa branca básica de pão de ló.",
       "Recheio: 1 lata de leite condensado, 1 de creme de leite, 1 xícara de leite ninho, 1 colher de manteiga.",
