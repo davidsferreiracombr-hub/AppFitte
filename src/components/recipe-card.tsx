@@ -29,38 +29,38 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, pr
         href={`/recipe/${recipe.slug}`} 
         className={cn("block group bg-card h-full w-full", className)} 
     >
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+      <div className="relative aspect-[4/3.2] rounded-2xl overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-105">
         {recipe.imageUrl && (
           <Image
             src={recipe.imageUrl}
             alt={`Imagem da receita ${recipe.title}`}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-110"
+            className="object-cover"
             sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 33vw"
             priority={priority}
           />
         )}
-        <div className="absolute bottom-3 left-3 flex items-center gap-2">
-            <div className="flex items-center gap-1.5 rounded-full bg-black/50 px-3 py-1 text-white">
-                <Clock className="h-4 w-4" />
-                <span className="text-xs font-semibold">{recipe.prepTime}</span>
+        <div className="absolute bottom-2 left-2 flex items-center gap-2">
+            <div className="flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 text-white">
+                <Clock className="h-3 w-3" />
+                <span className="text-[10px] font-semibold">{recipe.prepTime}</span>
             </div>
-            <div className="flex items-center gap-1.5 rounded-full bg-black/50 px-3 py-1 text-white">
-                <Flame className="h-4 w-4" />
-                <span className="text-xs font-semibold">{recipe.calories}</span>
+            <div className="flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 text-white">
+                <Flame className="h-3 w-3" />
+                <span className="text-[10px] font-semibold">{recipe.calories}</span>
             </div>
         </div>
         <Button
             onClick={handleFavoriteClick}
             variant="ghost"
             size="icon"
-            className="absolute top-2 right-2 h-9 w-9 rounded-full text-white bg-black/40 hover:bg-primary/80 hover:text-white"
+            className="absolute top-2 right-2 h-8 w-8 rounded-full text-white bg-black/40 hover:bg-primary/80 hover:text-white"
             aria-label={isFavorite ? 'Desfavoritar receita' : 'Favoritar receita'}
         >
-            <Heart className={cn('h-5 w-5 transition-all duration-200', isFavorite ? 'fill-white' : 'fill-transparent')} />
+            <Heart className={cn('h-4 w-4 transition-all duration-200', isFavorite ? 'fill-white' : 'fill-transparent')} />
         </Button>
       </div>
-      <div className="pt-4">
+      <div className="pt-3">
         <h3 className={cn(
             "font-bold text-foreground transition-colors", 
             isFeatured ? "text-2xl" : "text-base sm:text-lg"
