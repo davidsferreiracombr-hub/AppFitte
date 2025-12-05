@@ -35,17 +35,17 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, pr
             src={recipe.imageUrl}
             alt={`Imagem da receita ${recipe.title}`}
             fill
-            className="object-cover transition-transform duration-300"
+            className="object-cover transition-transform duration-300 group-hover:scale-110"
             sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 33vw"
             priority={priority}
           />
         )}
         <div className="absolute bottom-3 left-3 flex items-center gap-2">
-            <div className="flex items-center gap-1.5 rounded-full bg-primary/90 px-3 py-1 text-white">
+            <div className="flex items-center gap-1.5 rounded-full bg-black/50 px-3 py-1 text-white">
                 <Clock className="h-4 w-4" />
                 <span className="text-xs font-semibold">{recipe.prepTime}</span>
             </div>
-            <div className="flex items-center gap-1.5 rounded-full bg-green-500/90 px-3 py-1 text-white">
+            <div className="flex items-center gap-1.5 rounded-full bg-black/50 px-3 py-1 text-white">
                 <Flame className="h-4 w-4" />
                 <span className="text-xs font-semibold">{recipe.calories}</span>
             </div>
