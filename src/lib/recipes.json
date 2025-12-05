@@ -4025,6 +4025,7 @@
     "calories": "100 kcal",
     "difficulty": "Fácil",
     "servings": "20 unidades",
+    "imageUrl": "https://i.imgur.com/T5W6G5Y.jpg",
     "ingredients": ["1 lata de leite condensado", "1 colher de manteiga", "5 paçocas tipo rolha esfareladas", "Açúcar cristal para enrolar"],
     "instructions": ["Leve os ingredientes ao fogo baixo, mexendo até desgrudar do fundo.", "Deixe esfriar, enrole e passe no açúcar ou em paçoca esfarelada."]
   },
@@ -4038,6 +4039,7 @@
     "calories": "150 kcal por porção",
     "difficulty": "Fácil",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/zbxvXfK.jpg",
     "ingredients": [
       "2 xícaras de flocão de milho",
       "1 xícara de água",
@@ -4066,6 +4068,7 @@
     "calories": "120 kcal por unidade",
     "difficulty": "Média",
     "servings": "20 unidades",
+    "imageUrl": "https://i.imgur.com/Fdgrv6X.jpg",
     "ingredients": [
       "500g de carne moída refogada e bem temperada",
       "1 xícara do caldo do cozimento da carne (ou caldo de carne)",
@@ -4093,6 +4096,7 @@
     "calories": "400 kcal por porção",
     "difficulty": "Média",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/sDjpNl1.jpg",
     "ingredients": [
       "2 xícaras de arroz arbóreo",
       "300g de mix de cogumelos frescos (paris, shitake, portobello)",
@@ -4123,6 +4127,7 @@
     "calories": "350 kcal por porção",
     "difficulty": "Média",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/s7MZESf.jpg",
     "ingredients": [
       "4 cebolas grandes em fatias finas",
       "3 colheres de sopa de manteiga",
@@ -4152,6 +4157,7 @@
     "calories": "300 kcal (sem molho)",
     "difficulty": "Média",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/h1OTS1L.jpg",
     "ingredients": [
       "1 kg de batatas asterix",
       "1 ovo",
@@ -4177,6 +4183,7 @@
     "calories": "250 kcal (sem molho)",
     "difficulty": "Média",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/DXFDMgN.jpg",
     "ingredients": [
       "1 kg de mandioquinha",
       "1 gema",
@@ -4202,6 +4209,7 @@
     "calories": "200 kcal por porção",
     "difficulty": "Fácil",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/PMhPyzf.jpg",
     "ingredients": [
       "1 kg de abóbora japonesa em cubos",
       "1 cebola picada",
@@ -4230,6 +4238,7 @@
     "calories": "300 kcal por porção",
     "difficulty": "Fácil",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/lzAZlHi.jpg",
     "ingredients": [
       "1 kg de batatas descascadas e em rodelas",
       "200g de linguiça calabresa em rodelas",
@@ -4259,6 +4268,7 @@
     "calories": "90 kcal por unidade",
     "difficulty": "Fácil",
     "servings": "Aprox. 25 casadinhos",
+    "imageUrl": "https://i.imgur.com/38Rt3SF.jpg",
     "ingredients": [
       "500g de amido de milho",
       "1 lata de leite condensado",
@@ -4286,6 +4296,7 @@
     "calories": "80 kcal por rosquinha",
     "difficulty": "Média",
     "servings": "Aprox. 30 rosquinhas",
+    "imageUrl": "https://i.imgur.com/NhDcNh1.jpg",
     "ingredients": [
       "1 kg de farinha de trigo",
       "500g de açúcar",
@@ -4314,6 +4325,7 @@
     "calories": "250 kcal por unidade",
     "difficulty": "Média",
     "servings": "15 alfajores",
+    "imageUrl": "https://i.imgur.com/nahLy3u.jpg",
     "ingredients": [
       "Biscoito: 100g de manteiga, 1/2 xícara de açúcar, 1 gema, 1 colher de essência de baunilha, 1 xícara de amido de milho, 3/4 xícara de farinha, 1 colher de chá de fermento.",
       "Recheio: Doce de leite consistente.",
@@ -4337,6 +4349,7 @@
     "calories": "210 kcal por porção",
     "difficulty": "Fácil",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/9WxqEVl.jpg",
     "ingredients": [
       "3 espigas de milho verde ou 2 latas de milho escorrido",
       "500 ml de leite de coco",
@@ -4361,6 +4374,7 @@
     "calories": "300 kcal",
     "difficulty": "Fácil",
     "servings": "2 copos",
+    "imageUrl": "https://i.imgur.com/WP9hdgn.jpg",
     "ingredients": [
       "1 abacate médio maduro",
       "500 ml de leite vegetal (amêndoas ou aveia)",
@@ -4382,6 +4396,7 @@
     "calories": "320 kcal por fatia",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/YQ3gQhA.jpg",
     "ingredients": [
       "1 kg de mandioca (aipim) crua, descascada e ralada",
       "3 ovos",
@@ -4410,6 +4425,7 @@
     "calories": "350 kcal por porção",
     "difficulty": "Fácil",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/6NpEBJh.jpg",
     "ingredients": [
       "Purê: 1 kg de batata-doce cozida e amassada, 1/2 xícara de leite, sal.",
       "Recheio: 500g de frango desfiado (ou carne moída) bem temperado.",
@@ -4433,6 +4449,7 @@
     "calories": "180 kcal por porção",
     "difficulty": "Fácil",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/V6vI3yp.jpg",
     "ingredients": [
       "2 bananas-da-terra maduras, em rodelas",
       "1 cebola picada",
@@ -4459,6 +4476,7 @@
     "calories": "400 kcal por porção",
     "difficulty": "Média",
     "servings": "8 porções",
+    "imageUrl": "https://i.imgur.com/NL3B4nS.jpg",
     "ingredients": [
       "5 pães franceses amanhecidos",
       "500g de camarão seco",
@@ -4488,6 +4506,7 @@
     "calories": "450 kcal por porção",
     "difficulty": "Fácil",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/pjyM97W.jpg",
     "ingredients": [
       "1 kg de postas de peixe branco (cação, robalo) ou camarões grandes",
       "2 cebolas em rodelas",
@@ -4519,6 +4538,7 @@
     "calories": "300 kcal por acarajé (sem recheio)",
     "difficulty": "Difícil",
     "servings": "15 acarajés",
+    "imageUrl": "https://i.imgur.com/ZJXGdPs.jpg",
     "ingredients": [
       "500g de feijão-fradinho",
       "1 cebola grande",
@@ -4543,6 +4563,7 @@
     "calories": "450 kcal por porção",
     "difficulty": "Média",
     "servings": "4 porções",
+    "imageUrl": "https://i.imgur.com/VVlpNNI.jpg",
     "ingredients": [
       "2 xícaras de arroz arbóreo",
       "500g de abóbora japonesa em cubos",
