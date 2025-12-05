@@ -117,24 +117,22 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-           <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-                <div className="max-w-4xl mx-auto flex justify-between items-end">
-                    <div className="max-w-2xl">
-                        <h1 className="text-4xl md:text-5xl font-extrabold" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>
-                            {recipe.title}
-                        </h1>
-                        <p className="mt-2 text-lg opacity-90" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.6)' }}>
-                            {recipe.description}
-                        </p>
-                    </div>
-                    <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group rounded-full h-12 w-12 flex-shrink-0 bg-white/20 backdrop-blur-sm hover:bg-white/30">
-                        <Heart className={cn(
-                            "h-6 w-6 text-white group-hover:text-red-400 transition-all duration-300 group-active:scale-125", 
-                            isFavorite ? "fill-red-500 text-red-500" : "fill-transparent"
-                        )} />
-                        <span className="sr-only">{isFavorite ? 'Desfavoritar' : 'Favoritar'}</span>
-                    </Button>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/20" />
+           <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group absolute top-4 right-4 rounded-full h-12 w-12 flex-shrink-0 bg-white/20 backdrop-blur-sm hover:bg-white/30 z-10">
+                <Heart className={cn(
+                    "h-6 w-6 text-white group-hover:text-red-400 transition-all duration-300 group-active:scale-125", 
+                    isFavorite ? "fill-red-500 text-red-500" : "fill-transparent"
+                )} />
+                <span className="sr-only">{isFavorite ? 'Desfavoritar' : 'Favoritar'}</span>
+            </Button>
+           <div className="absolute inset-0 p-6 md:p-8 text-white flex items-center justify-center">
+                <div className="max-w-2xl text-center">
+                    <h1 className="text-4xl md:text-5xl font-extrabold" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>
+                        {recipe.title}
+                    </h1>
+                    <p className="mt-2 text-lg opacity-90" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.6)' }}>
+                        {recipe.description}
+                    </p>
                 </div>
            </div>
         </div>
