@@ -1,17 +1,16 @@
-
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Home, LayoutGrid, Heart, Bot, Search } from 'lucide-react';
+import { Home, LayoutGrid, Heart, Star, Search } from 'lucide-react';
 import { NavIcon } from './NavIcon';
 
 const navItems = [
   { href: '/', label: 'Início', icon: Home },
   { href: '/categories', label: 'Categorias', icon: LayoutGrid },
   { href: '/favorites', label: 'Favoritos', icon: Heart },
-  { href: '/ai-suggestion', label: 'Sugestão IA', icon: Bot },
+  { href: '/reviews', label: 'Avaliações', icon: Star },
 ];
 
 export function BottomNav() {

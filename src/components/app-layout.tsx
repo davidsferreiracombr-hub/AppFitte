@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, createContext, useContext, useMemo } from 'react';
@@ -7,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { Home, LayoutGrid, Heart, Bot, Search } from 'lucide-react';
+import { Home, LayoutGrid, Heart, Star, Search } from 'lucide-react';
 import { BottomNav } from './bottom-nav';
 import { FloatingBackButton } from './floating-back-button';
 
@@ -47,7 +46,7 @@ export const navItems = [
     { href: '/', label: 'Início', icon: Home },
     { href: '/categories', label: 'Categorias', icon: LayoutGrid },
     { href: '/favorites', label: 'Favoritos', icon: Heart },
-    { href: '/ai-suggestion', label: 'Sugestão IA', icon: Bot },
+    { href: '/reviews', label: 'Avaliações', icon: Star },
     { href: '/search', label: 'Busca', icon: Search },
 ];
 
