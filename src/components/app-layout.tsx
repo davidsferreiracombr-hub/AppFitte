@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { Home, LayoutGrid, Heart, User, Menu, Bell, Search } from 'lucide-react';
+import { Home, LayoutGrid, Heart, Bot } from 'lucide-react';
 import { BottomNav } from './bottom-nav';
 import { FloatingBackButton } from './floating-back-button';
 
@@ -43,11 +43,11 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
   return <SidebarContext.Provider value={value}>{children}</SidebarContext.Provider>;
 }
 
-const navItems = [
+export const navItems = [
     { href: '/', label: 'Início', icon: Home },
     { href: '/categories', label: 'Categorias', icon: LayoutGrid },
     { href: '/favorites', label: 'Favoritos', icon: Heart },
-    { href: '/profile', label: 'Perfil', icon: User },
+    { href: '/ai-suggestion', label: 'Sugestão IA', icon: Bot },
 ];
 
 function SidebarNav() {
@@ -88,23 +88,11 @@ function Sidebar() {
 }
 
 function MobileHeader() {
-    const { toggleSidebar } = useSidebar();
     return (
         <header className="sticky top-0 z-30 flex h-20 items-center justify-between bg-card/95 backdrop-blur-sm px-4 lg:hidden">
             <Link href="/" className="flex items-center gap-2">
                 <h1 className="text-2xl font-extrabold text-primary">Fitte</h1>
             </Link>
-            <div className="flex items-center gap-1">
-                <Button variant="ghost" size="icon">
-                    <Search className="h-6 w-6 text-foreground" />
-                </Button>
-                <Button variant="ghost" size="icon">
-                    <Bell className="h-6 w-6 text-foreground" />
-                </Button>
-                <Button variant="ghost" size="icon">
-                    <User className="h-6 w-6 text-foreground" />
-                </Button>
-            </div>
         </header>
     )
 }
@@ -146,7 +134,8 @@ function MobileSheet() {
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const showBackButton = pathname !== '/' && pathname !== '/categories' && pathname !== '/favorites' && pathname !== '/profile';
+  const showBackButton = !navItems.some(item => item.href === pathname);
+
 
   return (
     <div className="flex min-h-screen w-full bg-background">

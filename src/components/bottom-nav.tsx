@@ -3,15 +3,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, LayoutGrid, Heart, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-const navItems = [
-  { href: '/', label: 'Início', icon: Home },
-  { href: '/categories', label: 'Categorias', icon: LayoutGrid },
-  { href: '/favorites', label: 'Favoritos', icon: Heart },
-  { href: '/profile', label: 'Perfil', icon: User },
-];
+import { navItems } from './app-layout';
 
 export function BottomNav() {
   const pathname = usePathname();
