@@ -13,7 +13,8 @@ export default function Home() {
   const allRecipes = useMemo(() => getRecipes(), []);
 
   // Separa a primeira receita das demais
-  const [firstRecipe, ...otherRecipes] = allRecipes;
+  const featuredRecipe = allRecipes.find(r => r.id === 124) || allRecipes[0];
+  const otherRecipes = allRecipes.filter(r => r.id !== featuredRecipe.id);
 
   const handleToggleFavorite = (slug: string) => {
     if (favorites.includes(slug)) {
@@ -34,13 +35,13 @@ export default function Home() {
         
         <main className="space-y-10">
           {/* Destaque para a primeira receita */}
-          {firstRecipe && (
+          {featuredRecipe && (
             <div>
                <RecipeCard 
-                key={firstRecipe.id}
-                recipe={firstRecipe} 
-                isFavorite={favorites.includes(firstRecipe.slug)}
-                onToggleFavorite={() => handleToggleFavorite(firstRecipe.slug)}
+                key={featuredRecipe.id}
+                recipe={featuredRecipe} 
+                isFavorite={favorites.includes(featuredRecipe.slug)}
+                onToggleFavorite={() => handleToggleFavorite(featuredRecipe.slug)}
                 priority
                 isFeatured
               />

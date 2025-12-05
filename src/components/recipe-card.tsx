@@ -61,10 +61,16 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, pr
         </Button>
       </div>
       <div className="pt-4">
-        <h3 className={cn("font-bold text-foreground transition-colors", isFeatured ? "text-2xl" : "text-lg")}>
+        <h3 className={cn(
+            "font-bold text-foreground transition-colors", 
+            isFeatured ? "text-2xl" : "text-base sm:text-lg"
+          )}>
             {recipe.title}
         </h3>
-        <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
+        <p className={cn(
+            "text-muted-foreground line-clamp-2 mt-1",
+            isFeatured ? "text-base" : "text-sm"
+          )}>
           {recipe.description}
         </p>
       </div>
