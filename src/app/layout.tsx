@@ -120,7 +120,7 @@ export default function RootLayout({
         <meta name="description" content="Mais de 500 receitas de doces fit para você emagrecer sem abrir mão do sabor." />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       </head>
-      <body className={cn("min-h-screen font-body antialiased", inter.variable)}>
+      <body className={cn("min-h-screen font-body antialiased pb-20 lg:pb-0", inter.variable)}>
         <WelcomeScreenProvider>
           <FirebaseClientProvider>
             <RootClientLayout>{children}</RootClientLayout>
