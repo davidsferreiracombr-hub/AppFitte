@@ -8,6 +8,7 @@ import { getRecipes, type Recipe, createSlug } from '@/lib/recipes';
 import { RecipeCard } from '@/components/recipe-card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { Search } from 'lucide-react';
+import { MoreRecipesNotice } from '@/components/more-recipes-notice';
 
 // Função de busca "fuzzy"
 function fuzzySearch(query: string, recipes: Recipe[]): Recipe[] {
@@ -67,7 +68,7 @@ export default function SearchPage() {
           </div>
         </div>
 
-        <main>
+        <main className="space-y-8">
           {searchTerm && filteredRecipes.length > 0 && (
              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                {filteredRecipes.map((recipe, index) => (
@@ -101,9 +102,10 @@ export default function SearchPage() {
                 </p>
             </div>
           )}
+          
+          <MoreRecipesNotice />
         </main>
       </div>
     </AppLayout>
   );
 }
-

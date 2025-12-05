@@ -6,6 +6,7 @@ import { getRecipes, type Recipe } from '@/lib/recipes';
 import { RecipeCard } from '@/components/recipe-card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { AppLayout } from '@/components/app-layout';
+import { MoreRecipesNotice } from '@/components/more-recipes-notice';
 
 export default function Home() {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
@@ -67,6 +68,7 @@ export default function Home() {
               </div>
             </div>
           )}
+          <MoreRecipesNotice />
         </main>
       </div>
     </AppLayout>

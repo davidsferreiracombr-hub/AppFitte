@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { LoadingSpinner } from '@/components/loading-spinner';
 import type { CategoryInfo } from '@/lib/recipes';
+import { MoreRecipesNotice } from '@/components/more-recipes-notice';
 
 const categoryImages: { [key: string]: string } = {
   'Saudáveis e Fit': 'https://i.imgur.com/iXZhuMZ.jpg',
@@ -49,7 +50,7 @@ export default function CategoriesPage() {
           </p>
         </div>
 
-        <main>
+        <main className="space-y-12">
           {isLoading ? (
             <LoadingSpinner text="Organizando nosso cardápio..." />
           ) : (
@@ -86,6 +87,7 @@ export default function CategoriesPage() {
               ))}
             </div>
           )}
+          <MoreRecipesNotice />
         </main>
       </div>
     </AppLayout>
