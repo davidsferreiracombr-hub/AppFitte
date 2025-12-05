@@ -22,27 +22,27 @@ export function BottomNav() {
   const rightItems = navItems.slice(2);
 
   return (
-    <header className="fixed bottom-0 left-0 z-50 w-full h-20 lg:hidden">
+    <header className="fixed bottom-0 left-0 z-50 w-full h-16 lg:hidden">
         <div className="relative h-full w-full">
              {/* Fundo da barra com recorte */}
-            <div className="absolute bottom-0 h-16 w-full border-t bg-card/95 backdrop-blur-sm">
+            <div className="absolute bottom-0 h-14 w-full border-t bg-card/95 backdrop-blur-sm">
                 <svg
                     height="100%"
                     width="100%"
-                    className="absolute top-[-30px] left-0 right-0"
-                    viewBox="0 0 375 30"
+                    className="absolute top-[-20px] left-0 right-0"
+                    viewBox="0 0 375 20"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                 >
                     <path
-                        d="M0 30L0 29.5C102.083 29.5 124.965 2.5 187.5 2.5C250.035 2.5 272.917 29.5 375 29.5V30H0Z"
+                        d="M0 20L0 19.5C102.083 19.5 130.417 0.5 187.5 0.5C244.583 0.5 272.917 19.5 375 19.5V20H0Z"
                         className="fill-current text-card/95"
                     />
                 </svg>
             </div>
             
             {/* Ícones de Navegação */}
-            <div className="absolute bottom-0 grid h-16 w-full grid-cols-5 items-center">
+            <div className="absolute bottom-0 grid h-14 w-full grid-cols-5 items-center">
                 <div className="col-span-2 flex justify-around">
                     {leftItems.map(item => (
                         <NavIcon key={item.href} {...item} isActive={pathname === item.href} />
@@ -61,13 +61,16 @@ export function BottomNav() {
             </div>
 
              {/* Botão de Pesquisa Flutuante */}
-            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 transform justify-center">
+            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 transform justify-center">
                 <Button 
+                    asChild
                     size="icon" 
-                    className="h-16 w-16 rounded-full bg-primary shadow-lg ring-4 ring-background"
+                    className="h-14 w-14 rounded-full bg-primary shadow-lg ring-4 ring-background"
                     aria-label="Pesquisar Receitas"
                     >
-                    <Search className="h-7 w-7" />
+                    <Link href="/search">
+                      <Search className="h-6 w-6" />
+                    </Link>
                 </Button>
             </div>
         </div>

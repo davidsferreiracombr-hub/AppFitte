@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { Home, LayoutGrid, Heart, Bot } from 'lucide-react';
+import { Home, LayoutGrid, Heart, Bot, Search } from 'lucide-react';
 import { BottomNav } from './bottom-nav';
 import { FloatingBackButton } from './floating-back-button';
 
@@ -48,6 +48,7 @@ export const navItems = [
     { href: '/categories', label: 'Categorias', icon: LayoutGrid },
     { href: '/favorites', label: 'Favoritos', icon: Heart },
     { href: '/ai-suggestion', label: 'Sugestão IA', icon: Bot },
+    { href: '/search', label: 'Busca', icon: Search },
 ];
 
 function SidebarNav() {
@@ -100,6 +101,8 @@ function MobileHeader() {
 function MobileSheet() {
     const { isMobileSheetOpen, setMobileSheetOpen } = useSidebar();
     const pathname = usePathname();
+    const mainNavItems = navItems.filter(item => item.label !== 'Busca');
+
 
     return (
         <Sheet open={isMobileSheetOpen} onOpenChange={setMobileSheetOpen}>
@@ -112,7 +115,7 @@ function MobileSheet() {
                 </div>
                 <div className="flex-1 py-6 space-y-4">
                    <nav className="flex flex-col gap-2 px-4">
-                     {navItems.map(({ href, label, icon: Icon }) => (
+                     {mainNavItems.map(({ href, label, icon: Icon }) => (
                           <Link key={href} href={href} passHref>
                             <Button
                               variant={pathname === href ? 'secondary' : 'ghost'}
@@ -134,7 +137,8 @@ function MobileSheet() {
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const showBackButton = !navItems.some(item => item.href === pathname);
+  const mainNavHrefs = navItems.map(item => item.href);
+  const showBackButton = !mainNavHrefs.includes(pathname);
 
 
   return (
