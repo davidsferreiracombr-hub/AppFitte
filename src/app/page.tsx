@@ -53,7 +53,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold tracking-tight text-foreground mb-6">
                 Receitas do dia
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-8">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-8">
                 {otherRecipes.map((recipe, index) => (
                     <RecipeCard 
                       key={recipe.id}

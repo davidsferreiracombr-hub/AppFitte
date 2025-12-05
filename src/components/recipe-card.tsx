@@ -71,4 +71,3 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, pr
     </Link>
   );
 }
-
