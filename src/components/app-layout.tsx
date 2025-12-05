@@ -89,7 +89,7 @@ function Sidebar() {
 
 function MobileHeader() {
     return (
-        <header className="sticky top-0 z-30 flex h-20 items-center justify-between bg-card/95 backdrop-blur-sm px-4 lg:hidden">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between bg-card/95 backdrop-blur-sm px-4 lg:hidden">
             <Link href="/" className="flex items-center gap-2">
                 <h1 className="text-2xl font-extrabold text-primary">Fitte</h1>
             </Link>
