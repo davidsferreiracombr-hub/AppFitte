@@ -36,7 +36,7 @@ export function BottomNav() {
                 >
                     <path
                         d="M0 20L0 19.5C102.083 19.5 130.417 0.5 187.5 0.5C244.583 0.5 272.917 19.5 375 19.5V20H0Z"
-                        className="fill-current text-card/95"
+                        className="fill-card/95"
                     />
                 </svg>
             </div>
@@ -77,3 +77,4 @@ export function BottomNav() {
     </header>
   );
 }
+
