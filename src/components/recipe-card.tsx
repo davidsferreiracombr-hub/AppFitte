@@ -36,18 +36,18 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, pr
             alt={`Imagem da receita ${recipe.title}`}
             fill
             className="object-cover"
-            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 33vw"
+            sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 20vw"
             priority={priority}
           />
         )}
-        <div className="absolute bottom-2 left-2 flex items-center gap-2">
+        <div className="absolute bottom-2 left-2 flex items-center gap-1.5">
             <div className="flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 text-white">
-                <Clock className="h-3 w-3" />
-                <span className="text-[10px] font-semibold">{recipe.prepTime}</span>
+                <Clock className="h-2.5 w-2.5" />
+                <span className="text-[9px] font-semibold">{recipe.prepTime}</span>
             </div>
             <div className="flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 text-white">
-                <Flame className="h-3 w-3" />
-                <span className="text-[10px] font-semibold">{recipe.calories}</span>
+                <Flame className="h-2.5 w-2.5" />
+                <span className="text-[9px] font-semibold">{recipe.calories}</span>
             </div>
         </div>
         <Button
@@ -63,7 +63,7 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, pr
       <div className="pt-3">
         <h3 className={cn(
             "font-bold text-foreground transition-colors", 
-            isFeatured ? "text-2xl" : "text-base sm:text-lg"
+            isFeatured ? "text-2xl" : "text-base"
           )}>
             {recipe.title}
         </h3>
