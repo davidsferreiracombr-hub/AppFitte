@@ -2361,6 +2361,7 @@
     "calories": "250 kcal",
     "difficulty": "Fácil",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/HszXkZC.jpg",
     "ingredients": [
       "Base: 1 pacote de biscoito de maisena triturado com 100g de manteiga.",
       "Creme: 1 lata de leite condensado, 1 de creme de leite, suco de 1 limão.",
@@ -2384,6 +2385,7 @@
     "calories": "130 kcal",
     "difficulty": "Fácil",
     "servings": "8 alfajores",
+    "imageUrl": "https://i.imgur.com/oLmLrDP.jpg",
     "ingredients": [
       "16 bolachas de arroz (pequenas)",
       "Doce de leite fit (de tâmaras ou de soja) para rechear",
@@ -2407,6 +2409,7 @@
     "calories": "300 kcal",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/wT6Gf8L.jpg",
     "ingredients": [
       "1kg de mandioca crua, descascada e ralada",
       "3 ovos",
@@ -2435,6 +2438,7 @@
     "calories": "200 kcal",
     "difficulty": "Fácil",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/uNDN50L.jpg",
     "ingredients": [
       "300g de goiabada cascão",
       "1 lata de creme de leite com soro",
@@ -2458,6 +2462,7 @@
     "calories": "100 kcal",
     "difficulty": "Fácil",
     "servings": "15 cookies",
+    "imageUrl": "https://i.imgur.com/aTd5vab.jpg",
     "ingredients": [
       "1 xícara de purê de abóbora cozida",
       "1.5 xícara de farinha de aveia",
@@ -2486,6 +2491,7 @@
     "calories": "310 kcal",
     "difficulty": "Difícil",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/RV7Indz.jpg",
     "ingredients": [
       "Bolo de chocolate: Usar a receita do 'Brownie de Feijão Preto' (ID 49) como base, assado em forma redonda.",
       "Recheio: 2 xícaras de cerejas frescas ou congeladas, 2 colheres de xilitol.",
@@ -2509,6 +2515,7 @@
     "calories": "150 kcal",
     "difficulty": "Fácil",
     "servings": "1 porção",
+    "imageUrl": "https://i.imgur.com/TITttcS.jpg",
     "ingredients": [
       "1 xícara de café forte coado e gelado",
       "1 scoop de whey protein de baunilha ou chocolate",
@@ -2531,6 +2538,7 @@
     "calories": "250 kcal",
     "difficulty": "Média",
     "servings": "8 porções",
+    "imageUrl": "https://i.imgur.com/NagCYUD.jpg",
     "ingredients": [
       "1/2 xícara de tapioca granulada",
       "500ml de leite de coco",
@@ -2555,6 +2563,7 @@
     "calories": "90 kcal",
     "difficulty": "Fácil",
     "servings": "20 biscoitos",
+    "imageUrl": "https://i.imgur.com/rTeci3D.jpg",
     "ingredients": [
       "2 xícaras de farinha de trigo",
       "1/2 xícara de açúcar mascavo",
@@ -2582,6 +2591,7 @@
     "calories": "280 kcal",
     "difficulty": "Média",
     "servings": "8 fatias",
+    "imageUrl": "https://i.imgur.com/667PeJs.jpg",
     "ingredients": [
       "Massa: 2 xícaras de farinha de amêndoas, 1 ovo, 3 colheres de azeite, sal.",
       "Recheio: 1 vidro de palmito picado, 1 tomate, 1/2 cebola, azeitonas, 1/2 xícara de creme de leite light."
@@ -2603,6 +2613,7 @@
     "calories": "450 kcal por fatia",
     "difficulty": "Média",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/ayXyqm8.jpg",
     "ingredients": [
       "Massa: 1 xícara de chocolate em pó, 2 xícaras de farinha de trigo, 2 xícaras de açúcar, 4 ovos, 1 xícara de óleo, 1 xícara de água quente, 1 colher de fermento.",
       "Recheio: 1 lata de leite condensado, 100g de coco ralado, 1 colher de manteiga.",
@@ -2626,6 +2637,7 @@
     "calories": "200 kcal por waffle",
     "difficulty": "Fácil",
     "servings": "4 waffles",
+    "imageUrl": "https://i.imgur.com/9cLe17D.jpg",
     "ingredients": [
       "1 xícara de polvilho doce",
       "1 xícara de queijo minas padrão ralado",
@@ -2651,6 +2663,7 @@
     "calories": "280 kcal por porção",
     "difficulty": "Média",
     "servings": "6 porções",
+    "imageUrl": "https://i.imgur.com/OH2Ev7J.jpg",
     "ingredients": [
       "1 litro de leite integral",
       "2 xícaras de açúcar",
@@ -2677,6 +2690,7 @@
     "calories": "200 kcal por empada",
     "difficulty": "Média",
     "servings": "12 empadas",
+    "imageUrl": "https://i.imgur.com/4C4cj3e.jpg",
     "ingredients": [
       "Massa: 2 xícaras de farinha de trigo, 100g de manteiga gelada, 1 gema, 3 colheres de sopa de água gelada, 1 pitada de sal.",
       "Recheio: 1 lata de leite condensado."
@@ -2700,6 +2714,7 @@
     "calories": "320 kcal por fatia",
     "difficulty": "Fácil",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/wpLcJ32.jpg",
     "ingredients": [
       "1 kg de aipim (mandioca) cru e ralado",
       "500 ml de leite de coco",
@@ -2728,6 +2743,7 @@
     "calories": "150 kcal por porção",
     "difficulty": "Fácil",
     "servings": "12 porções",
+    "imageUrl": "https://i.imgur.com/TEZwjq5.jpg",
     "ingredients": [
       "1 envelope de gelatina incolor sem sabor",
       "1 xícara de açúcar",
@@ -2754,6 +2770,7 @@
     "calories": "100 kcal por biscoito",
     "difficulty": "Fácil",
     "servings": "Aprox. 20 biscoitos",
+    "imageUrl": "https://i.imgur.com/1I7snRy.jpg",
     "ingredients": [
       "2 xícaras de amido de milho",
       "1 xícara de farinha de trigo",
@@ -2782,6 +2799,7 @@
     "calories": "180 kcal por unidade",
     "difficulty": "Fácil",
     "servings": "12 unidades",
+    "imageUrl": "https://i.imgur.com/rm1OQbX.jpg",
     "ingredients": [
       "1 lata de leite condensado",
       "100g de coco ralado",
