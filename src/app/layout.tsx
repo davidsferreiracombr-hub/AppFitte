@@ -8,7 +8,7 @@ import { Inter } from 'next/font/google';
 import { SidebarProvider } from '@/components/app-layout';
 import { WelcomeScreenProvider, useWelcomeScreen } from '@/hooks/use-welcome-screen';
 import { WelcomeScreen } from '@/components/welcome-screen';
-import React, from 'react';
+import React from 'react';
 import { FirebaseClientProvider, useFirebase } from '@/firebase';
 import { usePathname, useRouter } from 'next/navigation';
 import { LoadingSpinner } from '@/components/loading-spinner';
@@ -52,36 +52,44 @@ function SessionWatcher() {
   return null;
 }
 
+const PUBLIC_ROUTES = ['/login', '/signup']; // Add any other public routes here
+
 function AuthGuard({ children }: { children: React.ReactNode }) {
   const { user, isUserLoading } = useFirebase();
   const router = useRouter();
   const pathname = usePathname();
 
   React.useEffect(() => {
-    if (isUserLoading) return;
+    if (isUserLoading) return; // Don't do anything while loading
 
-    const isLoginPage = pathname === '/login';
+    const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
 
-    if (!user && !isLoginPage) {
+    if (!user && !isPublicRoute) {
+      // If user is not logged in and not on a public route, redirect to login
       router.push('/login');
-    } else if (user && isLoginPage) {
+    } else if (user && isPublicRoute) {
+      // If user is logged in and tries to access a public route, redirect to home
       router.push('/');
     }
   }, [user, isUserLoading, router, pathname]);
 
-  if (isUserLoading || (!user && pathname !== '/login') || (user && pathname === '/login')) {
+  // While loading, or if redirecting, show a spinner
+  const isPublic = PUBLIC_ROUTES.includes(pathname);
+  if (isUserLoading || (!user && !isPublic) || (user && isPublic)) {
     const message = isUserLoading ? "Verificando sessão..." : "Redirecionando...";
-    return <div className="h-screen w-full flex items-center justify-center bg-background">
-      <LoadingSpinner text={message} />
-    </div>;
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-background">
+        <LoadingSpinner text={message} />
+      </div>
+    );
   }
 
-  // Renderiza o conteúdo do aplicativo ou a página de login
-  if (pathname === '/login') {
+  // If on a public route and not logged in, render the page (e.g., login page)
+  if (!user && isPublic) {
     return <>{children}</>;
   }
 
-  // Se estiver autenticado e não estiver na página de login, mostra o layout do app
+  // If user is logged in and on a protected route, render the app layout
   return (
     <SidebarProvider>
       <SessionWatcher />
@@ -93,12 +101,10 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
 function RootClientLayout({ children }: { children: React.ReactNode }) {
   const { animationEnded } = useWelcomeScreen();
 
-  // 1. Sempre mostra a WelcomeScreen primeiro se a animação não tiver terminado.
   if (!animationEnded) {
     return <WelcomeScreen />;
   }
-
-  // 2. Somente depois que a animação termina, o AuthGuard assume.
+  
   return <AuthGuard>{children}</AuthGuard>;
 }
 

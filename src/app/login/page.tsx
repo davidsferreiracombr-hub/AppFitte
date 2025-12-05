@@ -12,6 +12,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from 'next/navigation';
 import { LoadingSpinner } from '@/components/loading-spinner';
 import { Mail, Lock, LogIn } from 'lucide-react';
+import Link from 'next/link';
 
 const loginSchema = z.object({
   email: z.string().email('E-mail inválido.'),
@@ -46,13 +47,13 @@ export default function LoginPage() {
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen bg-background overflow-hidden p-4">
-      <div className="absolute -top-1/4 -left-1/4 w-96 h-96 bg-gradient-to-br from-primary/20 to-primary/0 rounded-full opacity-50 animate-float"></div>
-      <div className="absolute -bottom-1/4 -right-1/4 w-96 h-96 bg-gradient-to-tl from-primary/20 to-primary/0 rounded-full opacity-50 animate-float [animation-delay:-12s]"></div>
-
+      
       <div className="w-full max-w-sm z-10">
-        <div className="text-left mb-10">
-            <h1 className="text-5xl font-extrabold tracking-tight text-foreground">Login</h1>
-            <p className="text-muted-foreground mt-2">Bem-vindo(a) de volta! Acesse sua conta.</p>
+        <div className="text-center mb-10">
+            <Link href="/" className="inline-block mb-6">
+                <h1 className="text-5xl font-extrabold tracking-tight text-primary">Fitte</h1>
+            </Link>
+            <p className="text-muted-foreground mt-2 text-lg">Bem-vindo(a) de volta! Acesse sua conta.</p>
         </div>
 
         <Form {...form}>
@@ -66,7 +67,7 @@ export default function LoginPage() {
                   <FormControl>
                     <div className="relative">
                         <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input placeholder="seu-email@gmail.com" {...field} className="h-14 pl-12 rounded-2xl bg-secondary border-none text-base"/>
+                        <Input placeholder="seu-email@exemplo.com" {...field} className="h-14 pl-12 rounded-2xl bg-secondary border-none text-base"/>
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -100,8 +101,8 @@ export default function LoginPage() {
             </Button>
           </form>
         </Form>
-        <p className="text-sm text-muted-foreground text-center mt-8 font-medium">
-            Todos os direitos reservados por @Davidifly. É estritamente proibida a clonagem do app ou o compartilhamento de conta.
+        <p className="text-xs text-muted-foreground text-center mt-8 font-medium max-w-xs mx-auto">
+            Ao continuar, você concorda com nossos Termos de Serviço e Política de Privacidade.
         </p>
       </div>
     </div>

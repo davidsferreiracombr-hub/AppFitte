@@ -15,9 +15,10 @@ interface RecipeCardProps {
   onToggleFavorite: () => void;
   className?: string;
   priority?: boolean;
+  isFeatured?: boolean;
 }
 
-export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, priority = false }: RecipeCardProps) {
+export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, priority = false, isFeatured = false }: RecipeCardProps) {
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault(); 
     onToggleFavorite();
@@ -26,48 +27,46 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, pr
   return (
     <Link 
         href={`/recipe/${recipe.slug}`} 
-        className={cn("block group flex flex-col rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 bg-card border h-full", className)} 
+        className={cn("block group bg-card h-full w-full", className)} 
     >
-      {recipe.imageUrl && (
-        <div className="relative aspect-[4/3]">
+      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+        {recipe.imageUrl && (
           <Image
             src={recipe.imageUrl}
             alt={`Imagem da receita ${recipe.title}`}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 33vw"
             priority={priority}
           />
+        )}
+        <div className="absolute bottom-3 left-3 flex items-center gap-2">
+            <div className="flex items-center gap-1.5 rounded-full bg-primary/80 backdrop-blur-sm px-3 py-1 text-white">
+                <Clock className="h-4 w-4" />
+                <span className="text-xs font-semibold">{recipe.prepTime}</span>
+            </div>
+            <div className="flex items-center gap-1.5 rounded-full bg-green-500/80 backdrop-blur-sm px-3 py-1 text-white">
+                <Flame className="h-4 w-4" />
+                <span className="text-xs font-semibold">{recipe.calories}</span>
+            </div>
         </div>
-      )}
-      <div className="p-5 flex flex-col flex-1">
-        <div className="flex justify-between items-start mb-2">
-            <h3 className="font-bold text-lg leading-tight text-foreground flex-1 pr-2 group-hover:text-primary transition-colors">
-                {recipe.title}
-            </h3>
-            <Button
-                onClick={handleFavoriteClick}
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full text-muted-foreground hover:bg-primary/10 -mt-1 -mr-1 shrink-0"
-                aria-label={isFavorite ? 'Desfavoritar receita' : 'Favoritar receita'}
-            >
-                <Heart className={cn('h-5 w-5 transition-all duration-200', isFavorite ? 'fill-primary text-primary' : 'fill-transparent')} />
-            </Button>
-        </div>
-        <p className="text-sm text-muted-foreground line-clamp-3 mb-4 flex-1">
+        <Button
+            onClick={handleFavoriteClick}
+            variant="ghost"
+            size="icon"
+            className="absolute top-2 right-2 h-9 w-9 rounded-full text-white bg-black/30 backdrop-blur-sm hover:bg-primary/80 hover:text-white"
+            aria-label={isFavorite ? 'Desfavoritar receita' : 'Favoritar receita'}
+        >
+            <Heart className={cn('h-5 w-5 transition-all duration-200', isFavorite ? 'fill-white' : 'fill-transparent')} />
+        </Button>
+      </div>
+      <div className="pt-4">
+        <h3 className={cn("font-bold text-foreground group-hover:text-primary transition-colors", isFeatured ? "text-2xl" : "text-lg")}>
+            {recipe.title}
+        </h3>
+        <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
           {recipe.description}
         </p>
-        <div className="flex items-center gap-x-6 text-muted-foreground mt-auto pt-4 border-t">
-            <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium">{recipe.prepTime}</span>
-            </div>
-            <div className="flex items-center gap-2">
-                <Flame className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium">{recipe.calories}</span>
-            </div>
-        </div>
       </div>
     </Link>
   );

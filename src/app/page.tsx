@@ -26,51 +26,41 @@ export default function Home() {
   return (
     <AppLayout>
       <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
-        <div className="mb-8 text-left">
-            <p className="text-muted-foreground text-lg">Olá,</p>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
-              O que vamos <span className="text-primary">cozinhar</span> hoje?
+        <div className="mb-6">
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
+              O que vamos cozinhar hoje?
             </h2>
         </div>
         
-        <main className="space-y-12">
-          {/* Destaque para a primeira receita na versão mobile */}
+        <main className="space-y-10">
+          {/* Destaque para a primeira receita */}
           {firstRecipe && (
-            <div className="lg:hidden">
+            <div>
                <RecipeCard 
                 key={firstRecipe.id}
                 recipe={firstRecipe} 
                 isFavorite={favorites.includes(firstRecipe.slug)}
                 onToggleFavorite={() => handleToggleFavorite(firstRecipe.slug)}
                 priority
+                isFeatured
               />
             </div>
           )}
 
-          {/* Grade para desktop, exibindo todas as receitas */}
-          <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {allRecipes.map((recipe, index) => (
-                <RecipeCard 
-                  key={recipe.id}
-                  recipe={recipe} 
-                  isFavorite={favorites.includes(recipe.slug)}
-                  onToggleFavorite={() => handleToggleFavorite(recipe.slug)}
-                  priority={index < 5}
-                />
-            ))}
-          </div>
-
-          {/* Seção "Mais Receitas" para mobile, exibindo o restante */}
+          {/* Seção "Receitas do dia" / "Mais Receitas" */}
           {otherRecipes.length > 0 && (
-            <div className="lg:hidden">
-              <h3 className="text-2xl font-bold tracking-tight text-foreground mb-6">Mais Receitas</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {otherRecipes.map((recipe) => (
+            <div>
+              <h3 className="text-2xl font-bold tracking-tight text-foreground mb-6">
+                Receitas do dia
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-8">
+                {otherRecipes.map((recipe, index) => (
                     <RecipeCard 
                       key={recipe.id}
                       recipe={recipe} 
                       isFavorite={favorites.includes(recipe.slug)}
                       onToggleFavorite={() => handleToggleFavorite(recipe.slug)}
+                      priority={index < 4} // Prioriza algumas imagens na versão desktop
                     />
                 ))}
               </div>
