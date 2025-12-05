@@ -141,7 +141,7 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
       )}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-8 md:py-12">
 
-        <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8 -mt-24 relative z-10">
+        <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8 -mt-16 relative z-10">
           
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 text-center border-b pb-8">
                 <div className="flex flex-col items-center justify-center">
