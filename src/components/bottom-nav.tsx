@@ -25,7 +25,7 @@ export function BottomNav() {
     <header className="fixed bottom-0 left-0 z-50 w-full h-16 lg:hidden">
         <div className="relative h-full w-full">
              {/* Fundo da barra com recorte */}
-            <div className="absolute bottom-0 h-14 w-full border-t bg-card/95 backdrop-blur-sm">
+            <div className="absolute bottom-0 h-14 w-full border-t bg-card">
                 <svg
                     height="100%"
                     width="100%"
@@ -36,7 +36,7 @@ export function BottomNav() {
                 >
                     <path
                         d="M0 20L0 19.5C102.083 19.5 130.417 0.5 187.5 0.5C244.583 0.5 272.917 19.5 375 19.5V20H0Z"
-                        className="fill-card/95"
+                        className="fill-card"
                     />
                 </svg>
             </div>
@@ -77,4 +77,5 @@ export function BottomNav() {
     </header>
   );
 }
+
 
