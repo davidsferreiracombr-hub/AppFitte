@@ -3226,6 +3226,7 @@
     "calories": "400 kcal por fatia",
     "difficulty": "Média",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/11gdUy9.jpg",
     "ingredients": [
       "Bolo de Chocolate (pode usar a receita do Bolo Floresta Negra ID 75)",
       "Recheio: 1 lata de leite condensado, 1 de creme de leite, 1 caixa de morangos picados.",
@@ -3248,6 +3249,7 @@
     "calories": "250 kcal por churro",
     "difficulty": "Média",
     "servings": "15 churros",
+    "imageUrl": "https://i.imgur.com/4LoAJ1j.jpg",
     "ingredients": [
       "Massa: 1 xícara de água, 2 colheres de sopa de açúcar, 2 colheres de sopa de manteiga, sal, 1 xícara de farinha de trigo, 2 ovos.",
       "Recheio: Doce de leite.",
@@ -3271,6 +3273,7 @@
     "calories": "270 kcal por fatia",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/wHm1JLN.jpg",
     "ingredients": [
       "Massa: 1 xícara de suco de maracujá concentrado, 3 ovos, 1/2 xícara de óleo, 2 xícaras de açúcar, 2 xícaras de farinha de trigo, 1 colher de fermento.",
       "Calda: Polpa de 2 maracujás com sementes, 1/2 xícara de açúcar."
@@ -3293,6 +3296,7 @@
     "calories": "80 kcal por biscoito",
     "difficulty": "Fácil",
     "servings": "Aprox. 30 biscoitos",
+    "imageUrl": "https://i.imgur.com/9N80Dw8.jpg",
     "ingredients": [
       "1 xícara de nata (creme de leite fresco)",
       "1 xícara de açúcar",
@@ -3317,6 +3321,7 @@
     "calories": "300 kcal por porção",
     "difficulty": "Fácil",
     "servings": "10 porções",
+    "imageUrl": "https://i.imgur.com/XoTajD1.jpg",
     "ingredients": [
       "500g de milho para canjica",
       "1 litro de leite",
@@ -3345,6 +3350,7 @@
     "calories": "350 kcal por pastel",
     "difficulty": "Média",
     "servings": "10 pastéis",
+    "imageUrl": "https://i.imgur.com/ZWiEjY2.jpg",
     "ingredients": [
       "Massa de pastel pronta (rolo ou discos)",
       "Recheio: 500g de carne moída refogada com cebola, alho, tomate, azeitonas e cheiro-verde.",
@@ -3369,6 +3375,7 @@
     "calories": "350 kcal por pedaço",
     "difficulty": "Fácil",
     "servings": "15 pedaços",
+    "imageUrl": "https://i.imgur.com/akOfIG3.jpg",
     "ingredients": [
       "Massa: 4 ovos, 2 xícaras de açúcar, 2 xícaras de farinha, 1 xícara de leite fervendo com 2 colheres de manteiga, 1 colher de fermento.",
       "Calda: 1 garrafa de leite de coco (200ml), 1 lata de leite condensado.",
@@ -3392,6 +3399,7 @@
     "calories": "380 kcal por fatia",
     "difficulty": "Fácil",
     "servings": "12 fatias",
+    "imageUrl": "https://i.imgur.com/HSwCXvY.jpg",
     "ingredients": [
       "Massa: 3 ovos, 2 xícaras de açúcar, 1/2 xícara de óleo, 1 xícara de Coca-Cola, 1/2 xícara de chocolate em pó, 2 xícaras de farinha, 1 colher de fermento.",
       "Cobertura: 1/2 xícara de Coca-Cola, 1 xícara de açúcar, 3 colheres de chocolate em pó, 1 colher de manteiga."
@@ -3412,6 +3420,7 @@
     "calories": "350 kcal por fatia",
     "difficulty": "Média",
     "servings": "10 fatias",
+    "imageUrl": "https://i.imgur.com/4ZNOyEn.jpg",
     "ingredients": [
       "Base: 1 pacote de biscoito de maisena triturado, 100g de manteiga.",
       "Creme: 500g de ricota ou cream cheese, 1 lata de leite condensado, 1 lata de creme de leite, 1 envelope de gelatina incolor.",
