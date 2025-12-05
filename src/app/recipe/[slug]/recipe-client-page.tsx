@@ -110,7 +110,7 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
   return (
     <div className="min-h-screen font-body bg-background">
       {recipe.imageUrl && (
-        <div className="relative h-64 md:h-80 w-full">
+        <div className="relative h-64 md:h-96 w-full">
           <Image
             src={recipe.imageUrl}
             alt={`Imagem da receita ${recipe.title}`}
@@ -118,98 +118,103 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+           <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+                <div className="max-w-4xl mx-auto flex justify-between items-end">
+                    <div className="max-w-2xl">
+                        <h1 className="text-4xl md:text-5xl font-extrabold" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>
+                            {recipe.title}
+                        </h1>
+                        <p className="mt-2 text-lg opacity-90" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.6)' }}>
+                            {recipe.description}
+                        </p>
+                    </div>
+                    <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group rounded-full h-12 w-12 flex-shrink-0 bg-white/20 backdrop-blur-sm hover:bg-white/30">
+                        <Heart className={cn(
+                            "h-6 w-6 text-white group-hover:text-red-400 transition-all duration-300 group-active:scale-125", 
+                            isFavorite ? "fill-red-500 text-red-500" : "fill-transparent"
+                        )} />
+                        <span className="sr-only">{isFavorite ? 'Desfavoritar' : 'Favoritar'}</span>
+                    </Button>
+                </div>
+           </div>
         </div>
       )}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pb-24 lg:pb-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-8 md:py-12">
 
-        <div className={cn("bg-card rounded-2xl shadow-lg border overflow-hidden p-6 md:p-10", !recipe.imageUrl && 'mt-12 lg:mt-0')}>
-          <div>
-            <div className="flex justify-between items-start">
-              <h1 className="text-4xl md:text-5xl font-extrabold text-primary flex-1 pr-4">
-                {recipe.title}
-              </h1>
-              <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group rounded-full h-12 w-12 flex-shrink-0">
-                  <Heart className={cn(
-                      "h-6 w-6 text-muted-foreground group-hover:text-primary transition-all duration-200 group-active:scale-125", 
-                      isFavorite ? "fill-primary text-primary" : "fill-transparent"
-                  )} />
-                  <span className="sr-only">{isFavorite ? 'Desfavoritar' : 'Favoritar'}</span>
-              </Button>
-            </div>
-            <p className="text-muted-foreground mt-4 text-lg max-w-3xl">
-              {recipe.description}
-            </p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8 text-center">
-                <div className="bg-muted/50 p-4 rounded-lg flex flex-col items-center justify-center border">
+        <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8 -mt-24 relative z-10">
+          
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 text-center border-b pb-8">
+                <div className="flex flex-col items-center justify-center">
                     <Clock className="h-7 w-7 text-primary mb-2" />
-                    <p className="font-semibold text-sm">Tempo</p>
+                    <p className="font-semibold text-sm text-foreground">Tempo</p>
                     <p className="text-muted-foreground">{recipe.prepTime}</p>
                 </div>
-                 <div className="bg-muted/50 p-4 rounded-lg flex flex-col items-center justify-center border">
+                 <div className="flex flex-col items-center justify-center">
                     <Flame className="h-7 w-7 text-primary mb-2" />
-                    <p className="font-semibold text-sm">Calorias</p>
+                    <p className="font-semibold text-sm text-foreground">Calorias</p>
                     <p className="text-muted-foreground">{recipe.calories}</p>
                 </div>
-                 <div className="bg-muted/50 p-4 rounded-lg flex flex-col items-center justify-center border">
+                 <div className="flex flex-col items-center justify-center">
                     <Award className="h-7 w-7 text-primary mb-2" />
-                    <p className="font-semibold text-sm">Dificuldade</p>
+                    <p className="font-semibold text-sm text-foreground">Dificuldade</p>
                     <p className="text-muted-foreground">{recipe.difficulty}</p>
                 </div>
-                <div className="bg-muted/50 p-4 rounded-lg flex flex-col items-center justify-center border">
+                <div className="flex flex-col items-center justify-center">
                     <BookText className="h-7 w-7 text-primary mb-2" />
-                    <p className="font-semibold text-sm">Rendimento</p>
+                    <p className="font-semibold text-sm text-foreground">Rendimento</p>
                     <p className="text-muted-foreground">{recipe.servings}</p>
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-8">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-10">
                 <div className="lg:col-span-3 space-y-10">
                     <div>
                         <h2 className="text-2xl font-bold mb-4 flex items-center gap-3 text-foreground"><Utensils className="h-6 w-6 text-primary" /> Ingredientes</h2>
-                        <ul className="list-disc list-inside space-y-3 text-muted-foreground bg-muted/30 p-6 rounded-lg border">
+                        <ul className="list-none space-y-3 text-foreground">
                             {recipe.ingredients.map((item, index) => (
-                                <li key={index} className="leading-relaxed">{item}</li>
+                                <li key={index} className="leading-relaxed flex items-start gap-3">
+                                  <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                                  <span>{item}</span>
+                                </li>
                             ))}
                         </ul>
                     </div>
 
                     <div>
                         <h2 className="text-2xl font-bold mb-4 flex items-center gap-3 text-foreground"><ChefHat className="h-6 w-6 text-primary" /> Modo de Preparo</h2>
-                         <ol className="list-decimal list-inside space-y-4 text-muted-foreground bg-muted/30 p-6 rounded-lg border">
+                         <ol className="list-none space-y-6 text-foreground">
                             {recipe.instructions.map((item, index) => (
-                                <li key={index} className="leading-relaxed pl-2">{item}</li>
+                                <li key={index} className="leading-relaxed flex items-start gap-4">
+                                  <div className="flex-shrink-0 h-8 w-8 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center border border-primary/20">
+                                    {index + 1}
+                                  </div>
+                                  <span className="pt-1">{item}</span>
+                                </li>
                             ))}
                         </ol>
                     </div>
                 </div>
 
                 <aside className="lg:col-span-2">
-                    {timerInfos.length > 0 && (
-                      <div className="sticky top-28 space-y-8">
-                          {timerInfos.map((info, index) => (
-                              <Timer key={index} durationInMinutes={info.duration} context={info.context} />
-                          ))}
-                      </div>
-                    )}
+                    <div className="sticky top-28 space-y-8">
+                       {recipe.notes && (
+                            <div>
+                                <h3 className="text-xl font-bold mb-3 flex items-center gap-3 text-foreground"><Info className="h-5 w-5 text-primary" /> Dicas do Chef</h3>
+                                <div className="bg-primary/10 border-l-4 border-primary p-5 rounded-r-lg">
+                                    <p className="text-sm leading-relaxed text-foreground/80">{recipe.notes}</p>
+                                </div>
+                            </div>
+                        )}
+
+                        {timerInfos.map((info, index) => (
+                            <Timer key={index} durationInMinutes={info.duration} context={info.context} />
+                        ))}
+                    </div>
                 </aside>
             </div>
-            
-            {recipe.notes && (
-                 <div className="mt-12">
-                    <h3 className="text-xl font-bold mb-3 flex items-center gap-3 text-foreground"><Info className="h-5 w-5 text-primary" /> Dicas do Chef</h3>
-                    <div className="bg-primary/10 border-l-4 border-primary p-5 rounded-r-lg">
-                        <p className="text-sm leading-relaxed text-foreground/80">{recipe.notes}</p>
-                    </div>
-                </div>
-            )}
-
-          </div>
         </div>
       </div>
     </div>
   );
 }
-
-    
