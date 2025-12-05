@@ -23,12 +23,12 @@ export function WelcomeScreen() {
     >
       <div
         className={cn(
-          'flex flex-col items-center gap-4',
+          'flex flex-row items-center gap-4',
           !isFadingOut ? 'animate-fade-in-scale' : 'animate-fade-out'
         )}
       >
         <svg
-          className="h-20 w-20 text-primary animate-pulse-subtle"
+          className="h-12 w-12 text-primary animate-pulse-subtle"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
