@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { Home, LayoutGrid, Heart, Star, Search, Menu } from 'lucide-react';
 import { BottomNav } from './bottom-nav';
 import { FloatingBackButton } from './floating-back-button';
+import { useAutoHideBars } from '@/hooks/use-auto-hide-bars';
 
 type SidebarContextType = {
   isMobileSheetOpen: boolean;
@@ -87,10 +88,13 @@ function Sidebar() {
   );
 }
 
-function MobileHeader() {
+function MobileHeader({ isVisible }: { isVisible: boolean }) {
     const { toggleSidebar } = useSidebar();
     return (
-      <header className="sticky top-0 z-30 flex h-16 items-center justify-between bg-card/95 backdrop-blur-sm px-4 lg:hidden">
+      <header className={cn(
+        "sticky top-0 z-40 flex h-16 items-center justify-between bg-card px-4 shadow-sm transition-transform duration-300 ease-in-out lg:hidden",
+        !isVisible && "-translate-y-full"
+      )}>
         <Button onClick={toggleSidebar} variant="ghost" size="icon" className="h-10 w-10">
           <Menu className="h-6 w-6" />
           <span className="sr-only">Abrir Menu</span>
@@ -144,19 +148,20 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const mainNavHrefs = navItems.map(item => item.href);
   const showBackButton = !mainNavHrefs.includes(pathname);
+  const { isVisible } = useAutoHideBars();
 
 
   return (
     <div className="flex min-h-screen w-full bg-background">
       <Sidebar />
       <div className="flex flex-col flex-1">
-        <MobileHeader />
+        <MobileHeader isVisible={isVisible} />
         <main className="flex-1">
           {children}
         </main>
         <MobileSheet />
         {showBackButton && <FloatingBackButton />}
-        <BottomNav />
+        <BottomNav isVisible={isVisible} />
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
-
 'use client';
 
 import { usePathname } from 'next/navigation';
 import { Home, LayoutGrid, Heart, Star, Search } from 'lucide-react';
 import { NavIcon } from './NavIcon';
+import { cn } from '@/lib/utils';
 
 const navItems = [
   { href: '/', label: 'Início', icon: Home },
@@ -13,12 +13,19 @@ const navItems = [
   { href: '/reviews', label: 'Avaliações', icon: Star },
 ];
 
-export function BottomNav() {
+interface BottomNavProps {
+  isVisible: boolean;
+}
+
+export function BottomNav({ isVisible }: BottomNavProps) {
   const pathname = usePathname();
 
   return (
-    <header className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-card shadow-[0_-2px_10px_rgba(0,0,0,0.05)] border-t border-primary">
-      <div className="flex h-16 items-center justify-around">
+    <header className={cn(
+      "fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-card shadow-[0_-2px_10px_rgba(0,0,0,0.05)] transition-transform duration-300 ease-in-out",
+      !isVisible && "translate-y-full"
+    )}>
+      <div className="flex h-16 items-center justify-center gap-8">
         {navItems.map(item => (
           <NavIcon 
             key={item.href} 
