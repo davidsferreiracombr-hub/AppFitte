@@ -17,8 +17,8 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-lg lg:hidden">
-      <div className="grid grid-cols-5 items-center justify-around rounded-full bg-[hsl(224,71%,4%)] p-2 shadow-2xl">
+    <header className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-primary shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
+      <div className="grid grid-cols-5 items-center justify-around py-2">
         {navItems.map(item => (
           <NavIcon 
             key={item.href} 

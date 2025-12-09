@@ -20,11 +20,11 @@ export function NavIcon({ href, label, icon: Icon, isActive }: NavIconProps) {
         isActive && "text-white"
       )}>
         <Icon className="h-5 w-5" />
-        <span className="text-[10px] font-bold">
+        <span className="text-xs font-bold">
           {label}
         </span>
         {isActive && (
-          <div className="absolute -bottom-2 h-1 w-6 rounded-full bg-white"></div>
+          <div className="absolute -bottom-2 h-[3px] w-8 rounded-full bg-white"></div>
         )}
       </div>
     </Link>
