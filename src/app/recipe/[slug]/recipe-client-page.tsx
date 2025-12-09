@@ -9,7 +9,6 @@ import { ChefHat, Clock, Flame, Info, BookText, Award, Heart, Utensils } from 'l
 import { Button } from '@/components/ui/button';
 import { Timer } from '@/components/Timer';
 import { cn } from '@/lib/utils';
-import { RecipeAudioPlayer } from '@/components/RecipeAudioPlayer';
 
 
 type TimerInfo = {
@@ -85,13 +84,6 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
   const { toast } = useToast();
   const isFavorite = favorites.includes(recipe.slug);
   const [timerInfos, setTimerInfos] = useState<TimerInfo[]>([]);
-
-  const recipeTextToRead = useMemo(() => {
-    const title = `Receita: ${recipe.title}.`;
-    const ingredients = "Ingredientes: " + recipe.ingredients.join(', ');
-    const instructions = "Modo de preparo: " + recipe.instructions.map((step, index) => `Passo ${index + 1}: ${step}`).join(' ');
-    return `${title} ${ingredients} ${instructions}`;
-  }, [recipe]);
 
   useEffect(() => {
     const infos = extractActionTimes(recipe.instructions);
@@ -172,10 +164,6 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
                 </div>
             </div>
             
-            <div className="mb-10">
-                <RecipeAudioPlayer recipeText={recipeTextToRead} />
-            </div>
-
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-10">
                 <div className="lg:col-span-3 space-y-10">
                     <div>
