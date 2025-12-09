@@ -20,7 +20,7 @@ const TextToSpeechOutputSchema = z.object({
   audio: z
     .string()
     .describe(
-      "The generated audio as a data URI. Expected format: 'data:audio/wav;base64,<encoded_data>'."
+      "The generated audio as a data URI. Expected format: 'data:audio/wav;base64,<encoded_data>'"
     ),
 });
 
@@ -30,17 +30,17 @@ export type TextToSpeechOutput = z.infer<typeof TextToSpeechOutputSchema>;
 
 /**
  * Converts PCM audio data to WAV format and returns it as a Base64 string.
+ * The sample rate is crucial and must match the output of the TTS model.
  */
 async function toWav(
   pcmData: Buffer,
   channels = 1,
-  rate = 24000,
   sampleWidth = 2
 ): Promise<string> {
   return new Promise((resolve, reject) => {
     const writer = new wav.Writer({
       channels,
-      sampleRate: rate,
+      sampleRate: 24000, // Correct sample rate for gemini-2.5-flash-preview-tts
       bitDepth: sampleWidth * 8,
     });
 
