@@ -40,24 +40,26 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, pr
             priority={priority}
           />
         )}
-        <div className="absolute bottom-2 left-2 flex items-center gap-1.5">
-            <div className="flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 text-white">
-                <Clock className="h-2.5 w-2.5" />
-                <span className="text-[9px] font-semibold">{recipe.prepTime}</span>
+         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+        <div className="absolute bottom-2 left-2 flex items-center gap-2 text-white" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
+            <div className="flex items-center gap-1">
+                <Clock className="h-3 w-3" />
+                <span className="text-xs font-semibold">{recipe.prepTime}</span>
             </div>
-            <div className="flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 text-white">
-                <Flame className="h-2.5 w-2.5" />
-                <span className="text-[9px] font-semibold">{recipe.calories}</span>
+            <div className="flex items-center gap-1">
+                <Flame className="h-3 w-3" />
+                <span className="text-xs font-semibold">{recipe.calories}</span>
             </div>
         </div>
         <Button
             onClick={handleFavoriteClick}
             variant="ghost"
             size="icon"
-            className="absolute top-2 right-2 h-8 w-8 rounded-full text-white bg-black/40 hover:bg-primary/80 hover:text-white"
+            className="absolute top-2 right-2 h-8 w-8 rounded-full text-white hover:bg-white/20"
+            style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}
             aria-label={isFavorite ? 'Desfavoritar receita' : 'Favoritar receita'}
         >
-            <Heart className={cn('h-4 w-4 transition-all duration-200', isFavorite ? 'fill-white' : 'fill-transparent')} />
+            <Heart className={cn('h-5 w-5 transition-all duration-200', isFavorite ? 'fill-white' : 'fill-transparent')} />
         </Button>
       </div>
       <div className="pt-3">
