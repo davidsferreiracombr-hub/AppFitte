@@ -5,6 +5,7 @@ import { type Recipe, createSlug, getCategorizedRecipes, categoryDefinitions } f
 import { CategoryView } from './category-view';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import { MoreRecipesNotice } from '@/components/more-recipes-notice';
 
 export function generateStaticParams() {
   return categoryDefinitions.map(category => ({
@@ -73,8 +74,9 @@ export default function CategoryPage({ params }: { params: { categoryName: strin
             </div>
         )}
 
-        <main>
+        <main className="space-y-10">
           <CategoryView recipes={recipes} />
+          <MoreRecipesNotice />
         </main>
       </div>
     </AppLayout>
