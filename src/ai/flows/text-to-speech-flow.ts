@@ -8,10 +8,10 @@
  */
 
 import { ai } from '@/ai/genkit';
+import { googleAI } from '@genkit-ai/google-genai';
 import { z } from 'genkit';
 import wav from 'wav';
 
-// Define Zod schemas for input and output, but do not export them.
 const TextToSpeechInputSchema = z.object({
   text: z.string().describe('The text to be converted to speech.'),
 });
@@ -24,23 +24,19 @@ const TextToSpeechOutputSchema = z.object({
     ),
 });
 
-// Export TypeScript types inferred from the schemas.
 export type TextToSpeechInput = z.infer<typeof TextToSpeechInputSchema>;
 export type TextToSpeechOutput = z.infer<typeof TextToSpeechOutputSchema>;
 
-/**
- * Converts PCM audio data to WAV format and returns it as a Base64 string.
- * The sample rate is crucial and must match the output of the TTS model.
- */
 async function toWav(
   pcmData: Buffer,
   channels = 1,
+  rate = 24000,
   sampleWidth = 2
 ): Promise<string> {
   return new Promise((resolve, reject) => {
     const writer = new wav.Writer({
       channels,
-      sampleRate: 24000, // Correct sample rate for the TTS model
+      sampleRate: rate,
       bitDepth: sampleWidth * 8,
     });
 
@@ -58,7 +54,6 @@ async function toWav(
   });
 }
 
-// Define the Genkit flow for text-to-speech conversion.
 const textToSpeechFlow = ai.defineFlow(
   {
     name: 'textToSpeechFlow',
@@ -67,9 +62,14 @@ const textToSpeechFlow = ai.defineFlow(
   },
   async ({ text }) => {
     const { media } = await ai.generate({
-      model: 'text-to-speech-1', // Correct model name
+      model: googleAI.model('gemini-2.5-flash-preview-tts'),
       config: {
         responseModalities: ['AUDIO'],
+        speechConfig: {
+          voiceConfig: {
+            prebuiltVoiceConfig: { voiceName: 'Algenib' },
+          },
+        },
       },
       prompt: text,
     });
@@ -78,13 +78,11 @@ const textToSpeechFlow = ai.defineFlow(
       throw new Error('No audio media was returned from the AI model.');
     }
 
-    // The audio data is Base64 encoded inside the data URI.
     const audioBuffer = Buffer.from(
       media.url.substring(media.url.indexOf(',') + 1),
       'base64'
     );
 
-    // Convert the raw PCM audio buffer to WAV format.
     const wavBase64 = await toWav(audioBuffer);
 
     return {
@@ -93,7 +91,6 @@ const textToSpeechFlow = ai.defineFlow(
   }
 );
 
-// Export an async wrapper function to be used as the Server Action.
 export async function textToSpeech(
   input: TextToSpeechInput
 ): Promise<TextToSpeechOutput> {
