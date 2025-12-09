@@ -92,7 +92,7 @@ function MobileHeader({ isVisible }: { isVisible: boolean }) {
     const { toggleSidebar } = useSidebar();
     return (
       <header className={cn(
-        "sticky top-0 z-40 flex h-16 items-center justify-between bg-card px-4 shadow-sm transition-transform duration-300 ease-in-out lg:hidden",
+        "sticky top-0 z-40 flex h-16 items-center justify-between bg-card px-4 transition-transform duration-300 ease-in-out lg:hidden",
         !isVisible && "-translate-y-full"
       )}>
         <Button onClick={toggleSidebar} variant="ghost" size="icon" className="h-10 w-10">
