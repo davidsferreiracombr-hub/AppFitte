@@ -40,7 +40,7 @@ async function toWav(
   return new Promise((resolve, reject) => {
     const writer = new wav.Writer({
       channels,
-      sampleRate: 24000, // Correct sample rate for gemini-2.5-flash-preview-tts
+      sampleRate: 24000, // Correct sample rate for the TTS model
       bitDepth: sampleWidth * 8,
     });
 
@@ -67,7 +67,7 @@ const textToSpeechFlow = ai.defineFlow(
   },
   async ({ text }) => {
     const { media } = await ai.generate({
-      model: 'gemini-2.5-flash-preview-tts',
+      model: 'text-to-speech-1', // Corrected model name
       config: {
         responseModalities: ['AUDIO'],
         speechConfig: {
