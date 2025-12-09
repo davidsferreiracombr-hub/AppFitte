@@ -29,7 +29,10 @@ export function RecipeCard({ recipe, isFavorite, onToggleFavorite, className, pr
         href={`/recipe/${recipe.slug}`} 
         className={cn("block group bg-card h-full w-full", className)} 
     >
-      <div className="relative aspect-[4/3.2] rounded-2xl overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-105">
+      <div className={cn(
+        "relative rounded-2xl overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-105",
+        isFeatured ? "md:aspect-[4/3.2] aspect-video" : "aspect-[4/3.2]"
+      )}>
         {recipe.imageUrl && (
           <Image
             src={recipe.imageUrl}
