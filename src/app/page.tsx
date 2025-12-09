@@ -30,7 +30,7 @@ export default function Home() {
       <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
         <div className="mb-6">
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-              O que vamos cozinhar hoje?
+              O que vamos <span className="text-primary">cozinhar</span> hoje?
             </h2>
         </div>
         

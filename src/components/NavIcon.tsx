@@ -16,10 +16,10 @@ export function NavIcon({ href, label, icon: Icon, isActive }: NavIconProps) {
   return (
     <Link href={href} passHref>
       <div className={cn(
-        "relative flex flex-col items-center justify-center gap-1 text-white/70 transition-all duration-300 hover:text-white",
+        "relative flex flex-col items-center justify-center gap-1 text-white/70 transition-all duration-300 hover:text-white group",
         isActive && "text-white"
       )}>
-        <Icon className="h-5 w-5" />
+        <Icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 group-active:scale-125" />
         <span className="text-xs font-bold">
           {label}
         </span>
