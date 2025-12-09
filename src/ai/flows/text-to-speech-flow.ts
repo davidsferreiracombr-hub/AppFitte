@@ -15,13 +15,13 @@ import { z } from 'zod';
 import wav from 'wav';
 
 // Define the schema for the input, which is a simple text string.
-export const TextToSpeechInputSchema = z.object({
+const TextToSpeechInputSchema = z.object({
   text: z.string().describe('The text to be converted to speech.'),
 });
 export type TextToSpeechInput = z.infer<typeof TextToSpeechInputSchema>;
 
 // Define the schema for the output, which will be the audio data URI.
-export const TextToSpeechOutputSchema = z.object({
+const TextToSpeechOutputSchema = z.object({
   audio: z
     .string()
     .describe(
