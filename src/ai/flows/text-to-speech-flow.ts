@@ -67,14 +67,9 @@ const textToSpeechFlow = ai.defineFlow(
   },
   async ({ text }) => {
     const { media } = await ai.generate({
-      model: 'text-to-speech-1', // Corrected model name
+      model: 'text-to-speech-1', // Correct model name
       config: {
         responseModalities: ['AUDIO'],
-        speechConfig: {
-          voiceConfig: {
-            prebuiltVoiceConfig: { voiceName: 'Algenib' }, // Using a compatible voice
-          },
-        },
       },
       prompt: text,
     });
