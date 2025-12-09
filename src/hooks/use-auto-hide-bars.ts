@@ -6,41 +6,34 @@ import { useState, useEffect, useCallback } from 'react';
 export function useAutoHideBars() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
   const controlNavbar = useCallback(() => {
-    // Esconde a barra assim que o scroll começa
-    if (window.scrollY > lastScrollY && window.scrollY > 80) { // descendo
-        setIsVisible(false);
-    } else if (window.scrollY < lastScrollY) { // subindo
-        setIsVisible(false);
-    }
-
-    // Limpa o timeout anterior para reiniciar a contagem
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-
-    // Define um novo timeout para mostrar a barra depois que o scroll parar
-    const newTimeoutId = setTimeout(() => {
+    const currentScrollY = window.scrollY;
+    
+    // Mostra a barra se estiver no topo
+    if (currentScrollY <= 80) {
       setIsVisible(true);
-    }, 200); // 200ms de inatividade para mostrar a barra
-    setTimeoutId(newTimeoutId);
+    } 
+    // Esconde a barra ao rolar para baixo
+    else if (currentScrollY > lastScrollY) {
+      setIsVisible(false);
+    } 
+    // Mostra a barra ao rolar para cima
+    else {
+      setIsVisible(true);
+    }
 
-    setLastScrollY(window.scrollY);
-
-  }, [lastScrollY, timeoutId]);
+    setLastScrollY(currentScrollY);
+  }, [lastScrollY]);
 
   useEffect(() => {
     window.addEventListener('scroll', controlNavbar, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', controlNavbar);
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
     };
-  }, [controlNavbar, timeoutId]);
+  }, [controlNavbar]);
 
   return { isVisible };
 }
+
