@@ -1,55 +1,83 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
-import { textToSpeech } from '@/ai/flows/text-to-speech-flow';
-import { Button } from './ui/button';
-import { Play, Pause, Loader2, Volume2 } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import { cn } from '@/lib/utils';
+import {useState, useRef, useCallback, useEffect} from 'react';
+import {generateSpeech} from '@/ai/actions';
+import {Button} from './ui/button';
+import {Play, Pause, Loader2, Volume2} from 'lucide-react';
+import {useToast} from '@/hooks/use-toast';
 
 interface RecipeAudioPlayerProps {
   textToRead: string;
 }
 
-export function RecipeAudioPlayer({ textToRead }: RecipeAudioPlayerProps) {
+export function RecipeAudioPlayer({textToRead}: RecipeAudioPlayerProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [audioSrc, setAudioSrc] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const { toast } = useToast();
+  const {toast} = useToast();
+
+  useEffect(() => {
+    audioRef.current = new Audio();
+    const audio = audioRef.current;
+
+    const handleAudioEnd = () => setIsPlaying(false);
+    audio.addEventListener('ended', handleAudioEnd);
+
+    return () => {
+      audio.removeEventListener('ended', handleAudioEnd);
+      audio.pause();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (audioSrc && audioRef.current) {
+      audioRef.current.src = audioSrc;
+      audioRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(err => {
+          console.error('Error playing audio:', err);
+          toast({
+            variant: 'destructive',
+            title: 'Erro de Áudio',
+            description: 'Não foi possível reproduzir o áudio.',
+          });
+          setIsPlaying(false);
+        });
+    }
+  }, [audioSrc, toast]);
 
   const handlePlayPause = useCallback(async () => {
-    // If audio is already loaded and just paused, play it
-    if (audioRef.current && !isPlaying && audioRef.current.src) {
-      audioRef.current.play();
-      setIsPlaying(true);
-      return;
-    }
+    const audio = audioRef.current;
+    if (!audio) return;
 
-    // If audio is playing, pause it
-    if (audioRef.current && isPlaying) {
-      audioRef.current.pause();
+    if (isPlaying) {
+      audio.pause();
       setIsPlaying(false);
       return;
     }
 
-    // If no audio is loaded, generate and play it
+    if (audio.src && !isPlaying) {
+      try {
+        await audio.play();
+        setIsPlaying(true);
+      } catch (error) {
+        console.error('Error resuming audio:', error);
+        toast({
+          variant: 'destructive',
+          title: 'Erro de Áudio',
+          description: 'Não foi possível continuar a reprodução.',
+        });
+      }
+      return;
+    }
+
     setIsLoading(true);
     try {
-      const response = await textToSpeech({ text: textToRead });
-      if (response && response.audio) {
-        if (!audioRef.current) {
-          const audio = new Audio(response.audio);
-          audioRef.current = audio;
-          
-          audio.onended = () => {
-            setIsPlaying(false);
-          };
-        } else {
-            audioRef.current.src = response.audio;
-        }
-
-        await audioRef.current.play();
-        setIsPlaying(true);
+      const response = await generateSpeech({text: textToRead});
+      if (response?.audio) {
+        setAudioSrc(response.audio);
       } else {
         throw new Error('A resposta da IA não continha áudio.');
       }
@@ -61,6 +89,8 @@ export function RecipeAudioPlayer({ textToRead }: RecipeAudioPlayerProps) {
         description:
           'Não foi possível gerar a narração da receita. Tente novamente mais tarde.',
       });
+      setAudioSrc(null);
+      setIsPlaying(false);
     } finally {
       setIsLoading(false);
     }
