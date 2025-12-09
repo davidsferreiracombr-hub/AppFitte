@@ -4,7 +4,7 @@
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
-import { Inter } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import { SidebarProvider } from '@/components/app-layout';
 import { WelcomeScreenProvider, useWelcomeScreen } from '@/hooks/use-welcome-screen';
 import { WelcomeScreen } from '@/components/welcome-screen';
@@ -15,9 +15,10 @@ import { LoadingSpinner } from '@/components/loading-spinner';
 import { collection, query, where, onSnapshot, getDocs } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 
-const inter = Inter({
+const poppins = Poppins({
   subsets: ['latin'],
   variable: '--font-body',
+  weight: ['400', '500', '600', '700', '800', '900']
 });
 
 function SessionWatcher() {
@@ -120,7 +121,7 @@ export default function RootLayout({
         <meta name="description" content="Mais de 500 receitas de doces fit para você emagrecer sem abrir mão do sabor." />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       </head>
-      <body className={cn("min-h-screen font-body antialiased pb-20 lg:pb-0", inter.variable)}>
+      <body className={cn("min-h-screen font-body antialiased pb-20 lg:pb-0", poppins.variable)}>
         <WelcomeScreenProvider>
           <FirebaseClientProvider>
             <RootClientLayout>{children}</RootClientLayout>
