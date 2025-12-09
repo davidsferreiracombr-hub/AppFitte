@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { Home, LayoutGrid, Heart, Star, Search } from 'lucide-react';
+import { Home, LayoutGrid, Heart, Star, Search, Menu } from 'lucide-react';
 import { BottomNav } from './bottom-nav';
 import { FloatingBackButton } from './floating-back-button';
 
@@ -88,12 +88,18 @@ function Sidebar() {
 }
 
 function MobileHeader() {
+    const { toggleSidebar } = useSidebar();
     return (
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-center bg-card/95 backdrop-blur-sm px-4 lg:hidden">
-            <Link href="/" className="flex items-center gap-2">
-                <h1 className="text-2xl font-extrabold text-primary">Fitte</h1>
-            </Link>
-        </header>
+      <header className="sticky top-0 z-30 flex h-16 items-center justify-between bg-card/95 backdrop-blur-sm px-4 lg:hidden">
+        <Button onClick={toggleSidebar} variant="ghost" size="icon" className="h-10 w-10">
+          <Menu className="h-6 w-6" />
+          <span className="sr-only">Abrir Menu</span>
+        </Button>
+        <Link href="/" className="flex items-center gap-2">
+            <h1 className="text-2xl font-extrabold text-primary">Fitte</h1>
+        </Link>
+        <div className="w-10" />
+      </header>
     )
 }
 
