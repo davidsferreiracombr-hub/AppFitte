@@ -96,7 +96,7 @@ function MobileHeader() {
           <span className="sr-only">Abrir Menu</span>
         </Button>
         <Link href="/" className="flex items-center gap-2">
-            <h1 className="text-2xl font-extrabold text-primary">Fitte</h1>
+            <h1 className="text-3xl font-extrabold text-primary">Fitte</h1>
         </Link>
         <div className="w-10" />
       </header>
