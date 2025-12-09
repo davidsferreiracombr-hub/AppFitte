@@ -81,7 +81,7 @@ const textToSpeechFlow = ai.defineFlow(
         speechConfig: {
           voiceConfig: {
             prebuiltVoiceConfig: {
-              voiceName: 'Mira', // A calm, female voice
+              voiceName: 'Algenib', // A calm, male voice
             },
           },
         },
