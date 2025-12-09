@@ -3,7 +3,7 @@
 import {useState, useRef, useCallback, useEffect} from 'react';
 import {generateSpeech} from '@/ai/actions';
 import {Button} from './ui/button';
-import {Play, Pause, Loader2, Volume2} from 'lucide-react';
+import {Play, Pause, Loader2} from 'lucide-react';
 import {useToast} from '@/hooks/use-toast';
 
 interface RecipeAudioPlayerProps {
@@ -18,16 +18,19 @@ export function RecipeAudioPlayer({textToRead}: RecipeAudioPlayerProps) {
   const {toast} = useToast();
 
   useEffect(() => {
-    audioRef.current = new Audio();
-    const audio = audioRef.current;
+    // Inicializa o elemento de áudio apenas uma vez
+    if (!audioRef.current) {
+      audioRef.current = new Audio();
+      const audio = audioRef.current;
 
-    const handleAudioEnd = () => setIsPlaying(false);
-    audio.addEventListener('ended', handleAudioEnd);
+      const handleAudioEnd = () => setIsPlaying(false);
+      audio.addEventListener('ended', handleAudioEnd);
 
-    return () => {
-      audio.removeEventListener('ended', handleAudioEnd);
-      audio.pause();
-    };
+      return () => {
+        audio.removeEventListener('ended', handleAudioEnd);
+        audio.pause();
+      };
+    }
   }, []);
 
   useEffect(() => {
@@ -52,13 +55,15 @@ export function RecipeAudioPlayer({textToRead}: RecipeAudioPlayerProps) {
     const audio = audioRef.current;
     if (!audio) return;
 
+    // Se estiver tocando, pausa.
     if (isPlaying) {
       audio.pause();
       setIsPlaying(false);
       return;
     }
 
-    if (audio.src && !isPlaying) {
+    // Se já tiver áudio carregado, apenas toca.
+    if (audio.src && !audio.paused) {
       try {
         await audio.play();
         setIsPlaying(true);
@@ -73,6 +78,7 @@ export function RecipeAudioPlayer({textToRead}: RecipeAudioPlayerProps) {
       return;
     }
 
+    // Se não tem áudio, gera um novo.
     setIsLoading(true);
     try {
       const response = await generateSpeech({text: textToRead});
@@ -87,38 +93,37 @@ export function RecipeAudioPlayer({textToRead}: RecipeAudioPlayerProps) {
         variant: 'destructive',
         title: 'Erro de Áudio',
         description:
-          'Não foi possível gerar a narração da receita. Tente novamente mais tarde.',
+          'Não foi possível gerar a narração. Tente novamente mais tarde.',
       });
       setAudioSrc(null);
       setIsPlaying(false);
     } finally {
       setIsLoading(false);
     }
-  }, [isPlaying, textToRead, toast]);
+  }, [isPlaying, textToRead, toast, audioSrc]);
 
   return (
     <div className="flex items-center gap-4">
       <Button
         onClick={handlePlayPause}
-        variant="outline"
         size="lg"
-        className="w-full justify-center gap-3 transition-all duration-300"
+        className="w-full justify-center gap-3 transition-all duration-300 h-14 text-lg font-bold rounded-2xl"
         disabled={isLoading}
       >
         {isLoading ? (
           <>
-            <Loader2 className="h-5 w-5 animate-spin" />
-            <span>Gerando Áudio...</span>
+            <Loader2 className="h-6 w-6 animate-spin" />
+            <span className="font-semibold">Gerando...</span>
           </>
         ) : isPlaying ? (
           <>
-            <Pause className="h-5 w-5" />
-            <span>Pausar</span>
+            <Pause className="h-6 w-6" />
+            <span className="font-extrabold text-xl">Fitte</span>
           </>
         ) : (
           <>
-            <Volume2 className="h-5 w-5" />
-            <span>Ouvir a Receita</span>
+            <Play className="h-6 w-6" />
+            <span className="font-extrabold text-xl">Fitte</span>
           </>
         )}
       </Button>

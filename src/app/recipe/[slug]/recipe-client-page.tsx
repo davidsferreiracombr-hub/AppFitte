@@ -169,6 +169,10 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
             
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-10">
                 <div className="lg:col-span-3 space-y-10">
+                    <div className="mb-8">
+                        <RecipeAudioPlayer textToRead={recipeInstructionsText} />
+                    </div>
+
                     <div>
                         <h2 className="text-2xl font-bold mb-4 flex items-center gap-3 text-foreground"><Utensils className="h-6 w-6 text-primary" /> Ingredientes</h2>
                         <ul className="list-none space-y-3 text-foreground">
@@ -200,8 +204,6 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
 
                 <aside className="lg:col-span-2">
                     <div className="sticky top-28 space-y-8">
-
-                        <RecipeAudioPlayer textToRead={recipeInstructionsText} />
 
                        {recipe.notes && (
                             <div>
