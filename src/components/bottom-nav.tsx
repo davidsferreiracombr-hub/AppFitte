@@ -17,7 +17,7 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-primary shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
+    <header className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-card shadow-[0_-2px_10px_rgba(0,0,0,0.05)] border-t">
       <div className="flex h-16 items-center justify-around">
         {navItems.map(item => (
           <NavIcon 
