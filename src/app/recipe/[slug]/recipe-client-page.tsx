@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Image from 'next/image';
 import { type Recipe } from '@/lib/recipes';
 import { useFavorites } from '@/hooks/use-favorites';
@@ -9,6 +9,7 @@ import { ChefHat, Clock, Flame, Info, BookText, Award, Heart, Utensils } from 'l
 import { Button } from '@/components/ui/button';
 import { Timer } from '@/components/Timer';
 import { cn } from '@/lib/utils';
+import { RecipeAudioPlayer } from '@/components/RecipeAudioPlayer';
 
 
 type TimerInfo = {
@@ -85,6 +86,13 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
   const isFavorite = favorites.includes(recipe.slug);
   const [timerInfos, setTimerInfos] = useState<TimerInfo[]>([]);
 
+  const recipeTextToRead = useMemo(() => {
+    const title = `Receita: ${recipe.title}.`;
+    const ingredients = "Ingredientes: " + recipe.ingredients.join(', ');
+    const instructions = "Modo de preparo: " + recipe.instructions.map((step, index) => `Passo ${index + 1}: ${step}`).join(' ');
+    return `${title} ${ingredients} ${instructions}`;
+  }, [recipe]);
+
   useEffect(() => {
     const infos = extractActionTimes(recipe.instructions);
     setTimerInfos(infos);
@@ -141,7 +149,7 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
 
         <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8 -mt-16 relative z-10">
           
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 text-center border-b pb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-center border-b pb-8">
                 <div className="flex flex-col items-center justify-center">
                     <Clock className="h-7 w-7 text-primary mb-2" />
                     <p className="font-semibold text-sm text-foreground">Tempo</p>
@@ -162,6 +170,10 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
                     <p className="font-semibold text-sm text-foreground">Rendimento</p>
                     <p className="text-muted-foreground">{recipe.servings}</p>
                 </div>
+            </div>
+            
+            <div className="mb-10">
+                <RecipeAudioPlayer recipeText={recipeTextToRead} />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-10">
