@@ -107,7 +107,11 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
     }
   };
 
-  const recipeInstructionsText = recipe.instructions.join('. ');
+  const textToRead = [
+    `Receita: ${recipe.title}.`,
+    `Ingredientes: ${recipe.ingredients.join(', ')}.`,
+    `Modo de Preparo: ${recipe.instructions.join(' ')}`
+  ].join(' ');
 
   return (
     <div className="min-h-screen font-body bg-background">
@@ -170,7 +174,7 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-10">
                 <div className="lg:col-span-3 space-y-10">
                     <div className="mb-8">
-                        <RecipeAudioPlayer textToRead={recipeInstructionsText} />
+                        <RecipeAudioPlayer textToRead={textToRead} />
                     </div>
 
                     <div>
