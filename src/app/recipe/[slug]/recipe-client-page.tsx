@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { type Recipe } from '@/lib/recipes';
 import { useFavorites } from '@/hooks/use-favorites';
@@ -9,6 +9,7 @@ import { ChefHat, Clock, Flame, Info, BookText, Award, Heart, Utensils } from 'l
 import { Button } from '@/components/ui/button';
 import { Timer } from '@/components/Timer';
 import { cn } from '@/lib/utils';
+import { RecipeAudioPlayer } from '@/components/RecipeAudioPlayer';
 
 
 type TimerInfo = {
@@ -106,6 +107,8 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
     }
   };
 
+  const recipeInstructionsText = recipe.instructions.join('. ');
+
   return (
     <div className="min-h-screen font-body bg-background">
       {recipe.imageUrl && (
@@ -179,7 +182,9 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
                     </div>
 
                     <div>
-                        <h2 className="text-2xl font-bold mb-4 flex items-center gap-3 text-foreground"><ChefHat className="h-6 w-6 text-primary" /> Modo de Preparo</h2>
+                        <div className='flex justify-between items-center mb-4'>
+                          <h2 className="text-2xl font-bold flex items-center gap-3 text-foreground"><ChefHat className="h-6 w-6 text-primary" /> Modo de Preparo</h2>
+                        </div>
                          <ol className="list-none space-y-6 text-foreground">
                             {recipe.instructions.map((item, index) => (
                                 <li key={index} className="leading-relaxed flex items-start gap-4">
@@ -195,6 +200,9 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
 
                 <aside className="lg:col-span-2">
                     <div className="sticky top-28 space-y-8">
+
+                        <RecipeAudioPlayer textToRead={recipeInstructionsText} />
+
                        {recipe.notes && (
                             <div>
                                 <h3 className="text-xl font-bold mb-3 flex items-center gap-3 text-foreground"><Info className="h-5 w-5 text-primary" /> Dicas do Chef</h3>
