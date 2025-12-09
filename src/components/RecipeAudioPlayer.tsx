@@ -62,8 +62,8 @@ export function RecipeAudioPlayer({textToRead}: RecipeAudioPlayerProps) {
       return;
     }
 
-    // Se já tiver áudio carregado, apenas toca.
-    if (audio.src && !audio.paused) {
+    // Se já tiver áudio carregado e estiver pausado, apenas toca.
+    if (audio.src && audio.paused) {
       try {
         await audio.play();
         setIsPlaying(true);
