@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, createContext, useContext, useMemo } from 'react';
@@ -54,32 +55,34 @@ export const navItems = [
 function DesktopHeader() {
   const pathname = usePathname();
   return (
-    <header className="hidden lg:grid grid-cols-3 sticky top-0 z-40 h-20 items-center border-b bg-card/80 backdrop-blur-lg px-8">
-      <nav className="flex items-center gap-6 text-sm font-medium">
-        {navItems.map(({ href, label }) => (
-          <Link
-            key={href}
-            href={href}
-            className={cn(
-              "transition-colors hover:text-primary",
-              pathname === href ? "text-primary font-semibold" : "text-muted-foreground"
-            )}
-          >
-            {label}
-          </Link>
-        ))}
-      </nav>
-      <div className="flex justify-center">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="font-extrabold text-2xl text-primary">Fitte</span>
-        </Link>
-      </div>
-      <div className="flex justify-end">
-        <Button variant="ghost" size="icon">
-          <User className="h-5 w-5" />
-          <span className="sr-only">Perfil</span>
-        </Button>
-      </div>
+    <header className="hidden lg:block absolute top-0 left-0 right-0 z-40 h-20 bg-transparent text-white">
+        <div className="grid grid-cols-3 items-center h-full max-w-7xl mx-auto px-8">
+            <nav className="flex items-center gap-6 text-sm font-medium">
+                {navItems.map(({ href, label }) => (
+                <Link
+                    key={href}
+                    href={href}
+                    className={cn(
+                    "transition-colors hover:text-white/80",
+                    pathname === href ? "text-white font-semibold" : "text-white/70"
+                    )}
+                >
+                    {label}
+                </Link>
+                ))}
+            </nav>
+            <div className="flex justify-center">
+                <Link href="/" className="flex items-center gap-2">
+                <span className="font-extrabold text-2xl">Fitte</span>
+                </Link>
+            </div>
+            <div className="flex justify-end">
+                <Button variant="ghost" size="icon" className="hover:bg-white/10">
+                <User className="h-5 w-5" />
+                <span className="sr-only">Perfil</span>
+                </Button>
+            </div>
+        </div>
     </header>
   );
 }
@@ -144,13 +147,15 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const mainNavHrefs = navItems.map(item => item.href);
   const showBackButton = !mainNavHrefs.includes(pathname);
   const { isVisible } = useAutoHideBars();
+  
+  const isHomePage = pathname === '/';
 
   return (
     <div className="flex min-h-screen w-full bg-background">
       <div className="flex flex-col flex-1">
         <MobileHeader isVisible={isVisible} />
-        <DesktopHeader />
-        <main className="flex-1">
+        {isHomePage ? null : <DesktopHeader /> }
+        <main className={cn("flex-1", isHomePage ? "lg:pt-0" : "lg:pt-20")}>
           {children}
         </main>
         <MobileSheet />

@@ -12,6 +12,10 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Clock, Flame, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
+import { User, Home as HomeIcon, LayoutGrid, Star, Search } from 'lucide-react';
+import { navItems } from '@/components/app-layout';
+
 
 export default function Home() {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
@@ -36,61 +40,66 @@ export default function Home() {
   return (
     <AppLayout>
       <div className="flex-1 pb-24 lg:pb-8">
-        <div className="p-4 sm:p-6 lg:p-8 lg:max-w-7xl lg:mx-auto">
-          <div className="mb-6 lg:mb-8">
+
+        {/* Featured Recipe Hero Section for Desktop */}
+        {featuredRecipe && (
+          <div className="hidden lg:block relative">
+            <Link href={`/recipe/${featuredRecipe.slug}`} className="group block">
+              <div className="relative rounded-none overflow-hidden shadow-lg h-[500px] w-full">
+                {featuredRecipe.imageUrl && (
+                    <Image
+                      src={featuredRecipe.imageUrl}
+                      alt={`Imagem da receita ${featuredRecipe.title}`}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/40" />
+                <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-8">
+                    <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6">
+                        O que vamos <span className="text-primary">cozinhar</span> hoje?
+                    </h2>
+                    <h3 className="text-4xl font-bold tracking-tight mb-2" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>
+                      {featuredRecipe.title}
+                    </h3>
+                    <p className="max-w-xl text-lg line-clamp-2 opacity-90" style={{ textShadow: '1px 1px 6px rgba(0,0,0,0.6)' }}>
+                      {featuredRecipe.description}
+                    </p>
+                    <div className="flex items-center gap-6 text-white mt-4">
+                        <div className="flex items-center gap-2">
+                            <Clock className="h-5 w-5" />
+                            <span className="text-sm font-semibold">{featuredRecipe.prepTime}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Flame className="h-5 w-5" />
+                            <span className="text-sm font-semibold">{featuredRecipe.calories}</span>
+                        </div>
+                    </div>
+                </div>
+                <Button
+                    onClick={(e) => handleToggleFavorite(e, featuredRecipe.slug)}
+                    variant="ghost"
+                    size="icon"
+                    className="absolute top-28 right-8 h-12 w-12 rounded-full text-white bg-white/10 backdrop-blur-sm hover:bg-white/20"
+                    aria-label={isFeaturedFavorite ? 'Desfavoritar receita' : 'Favoritar receita'}
+                >
+                    <Heart className={cn('h-6 w-6 transition-all duration-200 group-hover:text-red-400', isFeaturedFavorite ? 'fill-red-500 text-red-500' : 'fill-white/50 text-white')} />
+                </Button>
+              </div>
+            </Link>
+          </div>
+        )}
+        
+        <div className="p-4 sm:p-6 lg:max-w-7xl lg:mx-auto">
+          {/* Mobile Header Title */}
+          <div className="mb-6 lg:mb-8 lg:hidden">
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
                 O que vamos <span className="text-primary">cozinhar</span> hoje?
               </h2>
           </div>
           
           <main className="space-y-10">
-            {/* Featured Recipe Hero Section for Desktop */}
-            {featuredRecipe && (
-              <div className="hidden lg:block">
-                <Link href={`/recipe/${featuredRecipe.slug}`} className="group block">
-                  <div className="relative rounded-2xl overflow-hidden shadow-lg h-[400px] w-full">
-                    {featuredRecipe.imageUrl && (
-                       <Image
-                          src={featuredRecipe.imageUrl}
-                          alt={`Imagem da receita ${featuredRecipe.title}`}
-                          fill
-                          className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-                          priority
-                        />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
-                    <div className="absolute bottom-0 left-0 p-8 text-white">
-                       <h3 className="text-4xl font-bold tracking-tight mb-2" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>
-                          {featuredRecipe.title}
-                       </h3>
-                       <p className="max-w-xl text-lg line-clamp-2 opacity-90" style={{ textShadow: '1px 1px 6px rgba(0,0,0,0.6)' }}>
-                          {featuredRecipe.description}
-                       </p>
-                        <div className="flex items-center gap-6 text-white mt-4">
-                            <div className="flex items-center gap-2">
-                                <Clock className="h-5 w-5" />
-                                <span className="text-sm font-semibold">{featuredRecipe.prepTime}</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <Flame className="h-5 w-5" />
-                                <span className="text-sm font-semibold">{featuredRecipe.calories}</span>
-                            </div>
-                        </div>
-                    </div>
-                     <Button
-                        onClick={(e) => handleToggleFavorite(e, featuredRecipe.slug)}
-                        variant="ghost"
-                        size="icon"
-                        className="absolute top-6 right-6 h-12 w-12 rounded-full text-white bg-white/10 backdrop-blur-sm hover:bg-white/20"
-                        aria-label={isFeaturedFavorite ? 'Desfavoritar receita' : 'Favoritar receita'}
-                    >
-                        <Heart className={cn('h-6 w-6 transition-all duration-200 group-hover:text-red-400', isFeaturedFavorite ? 'fill-red-500 text-red-500' : 'fill-white/50 text-white')} />
-                    </Button>
-                  </div>
-                </Link>
-              </div>
-            )}
-
             {/* Featured Recipe Card for Mobile */}
             {featuredRecipe && (
               <div className="lg:hidden">
@@ -113,7 +122,7 @@ export default function Home() {
 
             {/* Seção "Receitas do dia" / "Mais Receitas" */}
             {otherRecipes.length > 0 && (
-              <div className="mt-12 lg:mt-16">
+              <div className="lg:mt-8">
                 <h3 className="text-2xl font-bold tracking-tight text-foreground mb-6">
                   Receitas do dia
                 </h3>
@@ -130,7 +139,7 @@ export default function Home() {
                               addFavorite(recipe.slug);
                             }
                         }}
-                        priority={index < 4} // Prioriza algumas imagens na versão desktop
+                        priority={index < 4}
                       />
                   ))}
                 </div>
