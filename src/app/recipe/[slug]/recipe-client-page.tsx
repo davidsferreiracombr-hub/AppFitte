@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -106,9 +107,9 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
   };
 
   return (
-    <div className="min-h-screen font-body bg-background">
+    <div className="font-body bg-background">
       {recipe.imageUrl && (
-        <div className="relative h-96 w-full">
+        <div className="relative h-[400px] w-full">
           <Image
             src={recipe.imageUrl}
             alt={`Imagem da receita ${recipe.title}`}
@@ -117,7 +118,7 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/20" />
-           <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group absolute top-4 right-4 rounded-full h-12 w-12 flex-shrink-0 bg-white/20 backdrop-blur-sm hover:bg-white/30 z-10">
+           <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group absolute top-28 right-4 rounded-full h-12 w-12 flex-shrink-0 bg-white/20 backdrop-blur-sm hover:bg-white/30 z-10">
                 <Heart className={cn(
                     "h-6 w-6 text-white group-hover:text-red-400 transition-all duration-300 group-active:scale-125", 
                     isFavorite ? "fill-red-500 text-red-500" : "fill-transparent"
@@ -125,11 +126,11 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
                 <span className="sr-only">{isFavorite ? 'Desfavoritar' : 'Favoritar'}</span>
             </Button>
            <div className="absolute inset-0 p-6 md:p-8 text-white flex items-center justify-center">
-                <div className="max-w-2xl text-center">
+                <div className="max-w-2xl text-center pt-24">
                     <h1 className="text-4xl md:text-5xl font-extrabold" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>
                         {recipe.title}
                     </h1>
-                    <p className="mt-2 text-lg opacity-90" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.6)' }}>
+                    <p className="mt-2 text-lg opacity-90 line-clamp-2" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.6)' }}>
                         {recipe.description}
                     </p>
                 </div>
@@ -138,7 +139,7 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
       )}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-8 md:py-12">
 
-        <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8 -mt-16 relative z-10">
+        <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8 -mt-24 relative z-10">
           
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-center border-b pb-8">
                 <div className="flex flex-col items-center justify-center">
@@ -223,5 +224,3 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
     </div>
   );
 }
-
-    
