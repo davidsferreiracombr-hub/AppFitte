@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Home, LayoutGrid, Heart, Star, Search, Menu, User } from 'lucide-react';
+import { Home, LayoutGrid, Heart, Star, Search, Menu } from 'lucide-react';
 import { Input } from './ui/input';
 import { FloatingBackButton } from './floating-back-button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from './ui/sheet';
@@ -98,7 +98,6 @@ function Header() {
 
   const headerClasses = cn(
     "absolute top-0 left-0 right-0 z-40 py-4",
-    isTransparentPage ? "bg-transparent" : "sticky bg-background/80 backdrop-blur-sm border-b"
   );
   
   const textClasses = isTransparentPage ? "text-white" : "text-foreground";
@@ -108,7 +107,7 @@ function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center">
             {/* Desktop and Mobile top part */}
-            <div className='flex items-center justify-between lg:justify-center w-full h-16 relative'>
+            <div className='flex items-center justify-between w-full h-16 relative'>
                 {/* Mobile Menu Icon */}
                 <Sheet open={isMobileSheetOpen} onOpenChange={setMobileSheetOpen}>
                     <SheetTrigger asChild>
@@ -123,7 +122,7 @@ function Header() {
                 {/* Logo */}
                 <div className="text-center absolute left-1/2 -translate-x-1/2">
                      <Link href="/" className="flex items-center gap-2">
-                        <span className={cn("font-extrabold text-3xl", textClasses, "lg:text-primary")}>Fitte</span>
+                        <span className="font-extrabold text-3xl text-primary">Fitte</span>
                     </Link>
                 </div>
                 
@@ -133,7 +132,7 @@ function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex flex-col items-center gap-4 w-full">
-              <div className="flex items-center justify-center gap-8 text-sm font-medium">
+              <div className="flex items-center justify-center gap-8 text-sm font-medium w-full max-w-lg">
                   {navItems.filter(item => item.href !== '/search').map(({ href, label }) => (
                   <Link
                       key={href}
@@ -147,22 +146,22 @@ function Header() {
                       {label}
                   </Link>
                   ))}
+                  <form onSubmit={handleSearchSubmit} className="relative w-full max-w-xs ml-auto">
+                      <Input
+                          type="search"
+                          placeholder="Buscar receita..."
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          className={cn(
+                          "h-9 pr-10 rounded-full border-transparent text-sm w-full",
+                          isTransparentPage ? "bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30" : "bg-secondary text-foreground"
+                          )}
+                      />
+                      <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <Search className={cn("h-4 w-4", isTransparentPage ? "text-white/70" : "text-muted-foreground")} />
+                      </button>
+                  </form>
               </div>
-              <form onSubmit={handleSearchSubmit} className="relative w-full max-w-sm mt-2">
-                  <Input
-                      type="search"
-                      placeholder="Buscar receita..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className={cn(
-                      "h-9 pr-10 rounded-full border-transparent text-sm w-full",
-                       isTransparentPage ? "bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30" : "bg-secondary text-foreground"
-                      )}
-                  />
-                  <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2">
-                      <Search className={cn("h-4 w-4", isTransparentPage ? "text-white/70" : "text-muted-foreground")} />
-                  </button>
-              </form>
             </nav>
         </div>
       </div>
@@ -180,7 +179,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       <div className="flex min-h-screen w-full bg-background">
         <div className="flex flex-col flex-1">
           <Header />
-          <main className={cn("flex-1", !(pathname === '/' || pathname.startsWith('/recipe/')) && "pt-32")}>
+          <main className={cn("flex-1", !(pathname === '/' || pathname.startsWith('/recipe/')) && "pt-32 lg:pt-40")}>
             {children}
           </main>
           {!(isHomePage) && <FloatingBackButton />}

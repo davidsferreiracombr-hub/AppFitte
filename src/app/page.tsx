@@ -36,7 +36,7 @@ export default function HomePage() {
 
         {featuredRecipe && (
           <div className="relative">
-            <div className="relative overflow-hidden h-[500px] lg:h-[400px] w-full">
+            <div className="relative overflow-hidden h-[500px] lg:h-[450px] w-full">
               {featuredRecipe.imageUrl && (
                   <Image
                     src={featuredRecipe.imageUrl}
@@ -46,8 +46,8 @@ export default function HomePage() {
                     priority
                   />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-6 lg:pt-16">
                   <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
                       O que vamos <span className="text-primary">cozinhar</span> hoje?
                   </h2>
@@ -67,9 +67,12 @@ export default function HomePage() {
                           <span className="text-sm font-semibold">{featuredRecipe.calories}</span>
                       </div>
                   </div>
+                   <Button asChild className="mt-6 hidden lg:inline-flex">
+                      <Link href={`/recipe/${featuredRecipe.slug}`}>Ver Receita</Link>
+                   </Button>
               </div>
                <div className="absolute bottom-0 left-0 right-0 p-4 bg-black/20 backdrop-blur-sm">
-                  <h3 className="text-sm md:text-xl font-bold tracking-tight text-white text-center">
+                  <h3 className="text-sm md:text-base font-bold tracking-tight text-white text-center max-w-2xl mx-auto">
                       Pronta(o) para se aventurar em um universo de sabores saudáveis e deliciosos?
                   </h3>
               </div>
