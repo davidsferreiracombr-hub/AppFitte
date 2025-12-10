@@ -7,7 +7,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { Home, LayoutGrid, Heart, Star, Search, Menu, User } from 'lucide-react';
+import { Home, LayoutGrid, Heart, Star, Search, Menu } from 'lucide-react';
 import { Input } from './ui/input';
 
 type SidebarContextType = {
@@ -84,43 +84,47 @@ function Header() {
                   </Link>
               </div>
               <div className="w-1/3 flex justify-end">
-                  <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
-                      <User className="h-5 w-5" />
-                      <span className="sr-only">Perfil</span>
+                  <Button asChild variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                      <Link href="/favorites">
+                        <Heart className="h-5 w-5" />
+                        <span className="sr-only">Favoritos</span>
+                      </Link>
                   </Button>
               </div>
           </div>
 
           {/* Bottom Row: Desktop Navigation & Search */}
-          <nav className="hidden lg:flex flex-col items-center gap-4 mt-4 w-full max-w-lg">
-             <div className='flex items-center gap-6 text-sm font-medium'>
-                {navItems.filter(item => item.href !== '/search').map(({ href, label }) => (
-                <Link
-                    key={href}
-                    href={href}
-                    className={cn(
-                      "transition-colors text-white/80 hover:text-white",
-                      pathname === href && "font-semibold text-white"
-                    )}
-                >
-                    {label}
-                </Link>
-                ))}
+          <nav className="hidden lg:flex flex-col items-center gap-4 mt-4 w-full">
+            <div className="flex items-center gap-8 text-sm font-medium w-full max-w-md">
+                <form onSubmit={handleSearchSubmit} className="relative w-full max-w-xs">
+                    <Input
+                        type="search"
+                        placeholder="Buscar receita..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className={cn(
+                        "h-9 pr-10 rounded-full border-transparent text-sm bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30"
+                        )}
+                    />
+                    <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2">
+                        <Search className="h-4 w-4 text-white/70" />
+                    </button>
+                </form>
+                <div className='flex items-center gap-6'>
+                    {navItems.filter(item => item.href !== '/search').map(({ href, label }) => (
+                    <Link
+                        key={href}
+                        href={href}
+                        className={cn(
+                        "transition-colors text-white/80 hover:text-white",
+                        pathname === href && "font-semibold text-white"
+                        )}
+                    >
+                        {label}
+                    </Link>
+                    ))}
+                </div>
             </div>
-            <form onSubmit={handleSearchSubmit} className="relative w-full max-w-sm">
-                <Input
-                    type="search"
-                    placeholder="Buscar receita..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className={cn(
-                      "h-9 pr-10 rounded-full border-transparent text-sm bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30"
-                    )}
-                />
-                <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2">
-                    <Search className="h-4 w-4 text-white/70" />
-                </button>
-            </form>
           </nav>
       </div>
     </header>

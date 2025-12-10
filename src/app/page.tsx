@@ -39,7 +39,7 @@ export default function HomePage() {
         {featuredRecipe && (
           <div className="relative">
             <Link href={`/recipe/${featuredRecipe.slug}`} className="group block">
-              <div className="relative overflow-hidden shadow-lg h-[500px] lg:h-[400px] w-full">
+              <div className="relative overflow-hidden shadow-lg h-[500px] w-full">
                 {featuredRecipe.imageUrl && (
                     <Image
                       src={featuredRecipe.imageUrl}
@@ -50,7 +50,7 @@ export default function HomePage() {
                     />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-6 pt-16 lg:pt-24">
+                <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-6 pt-24">
                     <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
                         O que vamos <span className="text-primary">cozinhar</span> hoje?
                     </h2>
@@ -76,15 +76,6 @@ export default function HomePage() {
                         Pronta(o) para se aventurar em um universo de sabores saudáveis e deliciosos?
                     </h3>
                 </div>
-                <Button
-                    onClick={(e) => handleToggleFavorite(e, featuredRecipe.slug)}
-                    variant="ghost"
-                    size="icon"
-                    className="absolute top-20 lg:top-28 right-4 lg:right-8 h-12 w-12 rounded-full text-white bg-white/10 backdrop-blur-sm hover:bg-white/20"
-                    aria-label={isFeaturedFavorite ? 'Desfavoritar receita' : 'Favoritar receita'}
-                >
-                    <Heart className={cn('h-6 w-6 transition-all duration-200 group-hover:text-red-400', isFeaturedFavorite ? 'fill-red-500 text-red-500' : 'fill-white/50 text-white')} />
-                </Button>
               </div>
             </Link>
           </div>
