@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Home, LayoutGrid, Heart, Star, Search, Menu } from 'lucide-react';
+import { Home, LayoutGrid, Heart, Star, Search, Menu, User } from 'lucide-react';
 import { Input } from './ui/input';
 import { FloatingBackButton } from './floating-back-button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from './ui/sheet';
@@ -97,7 +97,8 @@ function Header() {
   };
 
   const headerClasses = cn(
-    "absolute top-0 left-0 right-0 z-40 py-4",
+    "left-0 right-0 z-40 py-4",
+    isTransparentPage ? "absolute top-0" : "sticky top-0 bg-background/80 backdrop-blur-sm border-b"
   );
   
   const textClasses = isTransparentPage ? "text-white" : "text-foreground";
@@ -146,7 +147,7 @@ function Header() {
                       {label}
                   </Link>
                   ))}
-                  <form onSubmit={handleSearchSubmit} className="relative w-full max-w-xs ml-auto">
+                  <form onSubmit={handleSearchSubmit} className="relative w-full max-w-sm ml-auto">
                       <Input
                           type="search"
                           placeholder="Buscar receita..."
@@ -179,7 +180,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       <div className="flex min-h-screen w-full bg-background">
         <div className="flex flex-col flex-1">
           <Header />
-          <main className={cn("flex-1", !(pathname === '/' || pathname.startsWith('/recipe/')) && "pt-32 lg:pt-40")}>
+          <main className={cn("flex-1", !(pathname === '/' || pathname.startsWith('/recipe/')) && "pt-12")}>
             {children}
           </main>
           {!(isHomePage) && <FloatingBackButton />}
