@@ -5,12 +5,10 @@ import Image from 'next/image';
 import { type Recipe } from '@/lib/recipes';
 import { useFavorites } from '@/hooks/use-favorites';
 import { useToast } from '@/hooks/use-toast';
-import { ChefHat, Clock, Flame, Info, BookText, Award, Heart, Utensils } from 'lucide-react';
+import { ChefHat, Clock, Flame, Info, BookText, Award, Heart, Utensils, Mic } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Timer } from '@/components/Timer';
 import { cn } from '@/lib/utils';
-import { RecipeAudioPlayer } from '@/components/RecipeAudioPlayer';
-
 
 type TimerInfo = {
   duration: number;
@@ -107,12 +105,6 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
     }
   };
 
-  const textToRead = [
-    `Receita: ${recipe.title}.`,
-    `Ingredientes: ${recipe.ingredients.join(', ')}.`,
-    `Modo de Preparo: ${recipe.instructions.join(' ')}`
-  ].join(' ');
-
   return (
     <div className="min-h-screen font-body bg-background">
       {recipe.imageUrl && (
@@ -173,8 +165,10 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
             
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-10">
                 <div className="lg:col-span-3 space-y-10">
-                    <div className="mb-8">
-                        <RecipeAudioPlayer textToRead={textToRead} />
+                    <div className="mb-8 flex flex-col items-center justify-center text-center gap-3 p-6 bg-secondary rounded-2xl">
+                        <Mic className="h-8 w-8 text-primary/70" />
+                        <h3 className="font-bold text-lg text-foreground">Narração em Breve!</h3>
+                        <p className="text-sm text-muted-foreground max-w-sm">Estamos preparando uma experiência de áudio para que você possa cozinhar sem precisar olhar para a tela. Fique de olho!</p>
                     </div>
 
                     <div>
@@ -229,3 +223,5 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
     </div>
   );
 }
+
+    
