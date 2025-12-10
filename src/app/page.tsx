@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useMemo } from 'react';
@@ -51,7 +52,7 @@ export default function Home() {
 
             {/* Seção "Receitas do dia" / "Mais Receitas" */}
             {otherRecipes.length > 0 && (
-              <div>
+              <div className="mt-12 lg:mt-16">
                 <h3 className="text-2xl font-bold tracking-tight text-foreground mb-6">
                   Receitas do dia
                 </h3>
