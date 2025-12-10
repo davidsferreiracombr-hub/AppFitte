@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useMemo } from 'react';
@@ -28,8 +27,8 @@ export default function Home() {
   return (
     <AppLayout>
       <div className="flex-1 pb-24 lg:pb-8">
-        <div className="p-4 sm:p-6 lg:p-8">
-          <div className="mb-6">
+        <div className="p-4 sm:p-6 lg:p-8 lg:max-w-7xl lg:mx-auto">
+          <div className="mb-6 lg:mb-8">
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
                 O que vamos <span className="text-primary">cozinhar</span> hoje?
               </h2>

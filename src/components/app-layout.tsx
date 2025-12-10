@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { Home, LayoutGrid, Heart, Star, Search, Menu } from 'lucide-react';
+import { Home, LayoutGrid, Heart, Star, Search, Menu, User } from 'lucide-react';
 import { BottomNav } from './bottom-nav';
 import { FloatingBackButton } from './floating-back-button';
 import { useAutoHideBars } from '@/hooks/use-auto-hide-bars';
@@ -51,40 +51,34 @@ export const navItems = [
     { href: '/search', label: 'Busca', icon: Search },
 ];
 
-function SidebarNav() {
-    const pathname = usePathname();
-  
-    return (
-      <nav className="flex flex-col gap-2 px-4 h-full">
-        <div className="flex-1">
-            {navItems.map(({ href, label, icon: Icon }) => (
-            <Link key={href} href={href} passHref>
-                <Button
-                variant={pathname === href ? 'secondary' : 'ghost'}
-                className='w-full justify-start gap-3 text-base h-12'
-                >
-                <Icon className="h-5 w-5" />
-                <span>{label}</span>
-                </Button>
-            </Link>
-            ))}
-        </div>
-      </nav>
-    );
-  }
-
-function Sidebar() {
+function DesktopHeader() {
+  const pathname = usePathname();
   return (
-    <aside className="hidden lg:flex flex-col border-r bg-card transition-all duration-300 ease-in-out w-64">
-      <div className="flex items-center justify-start h-24 px-6 border-b">
+    <header className="hidden lg:flex sticky top-0 z-40 h-20 items-center justify-between border-b bg-card px-8">
+      <div className="flex items-center gap-10">
         <Link href="/" className="flex items-center gap-2">
           <span className="font-extrabold text-2xl text-primary">Fitte</span>
         </Link>
+        <nav className="flex items-center gap-6 text-sm font-medium">
+          {navItems.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className={cn(
+                "transition-colors hover:text-primary",
+                pathname === href ? "text-primary font-semibold" : "text-muted-foreground"
+              )}
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
       </div>
-      <div className="flex-1 py-6 space-y-6 flex flex-col">
-        <SidebarNav />
-      </div>
-    </aside>
+      <Button variant="ghost" size="icon">
+        <User className="h-5 w-5" />
+        <span className="sr-only">Perfil</span>
+      </Button>
+    </header>
   );
 }
 
@@ -111,7 +105,6 @@ function MobileSheet() {
     const { isMobileSheetOpen, setMobileSheetOpen } = useSidebar();
     const pathname = usePathname();
     const mainNavItems = navItems.filter(item => item.label !== 'Busca');
-
 
     return (
         <Sheet open={isMobileSheetOpen} onOpenChange={setMobileSheetOpen}>
@@ -150,12 +143,11 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const showBackButton = !mainNavHrefs.includes(pathname);
   const { isVisible } = useAutoHideBars();
 
-
   return (
     <div className="flex min-h-screen w-full bg-background">
-      <Sidebar />
       <div className="flex flex-col flex-1">
         <MobileHeader isVisible={isVisible} />
+        <DesktopHeader />
         <main className="flex-1">
           {children}
         </main>

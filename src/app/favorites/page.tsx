@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useMemo } from 'react';
@@ -20,7 +19,7 @@ export default function FavoritesPage() {
 
   return (
     <AppLayout>
-      <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
+      <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8 lg:max-w-7xl lg:mx-auto">
         <div className="text-center mb-12 max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
                 Minhas Receitas <span className="text-primary">Favoritas</span>

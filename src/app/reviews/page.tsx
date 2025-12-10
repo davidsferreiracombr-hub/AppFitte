@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -8,7 +7,7 @@ import { Star } from 'lucide-react';
 export default function ReviewsPage() {
   return (
     <AppLayout>
-      <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
+      <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8 lg:max-w-7xl lg:mx-auto">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
             <Star className="mx-auto h-12 w-12 text-primary mb-4" />
