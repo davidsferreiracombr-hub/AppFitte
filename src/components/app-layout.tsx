@@ -9,6 +9,7 @@ import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { Home, LayoutGrid, Heart, Star, Search, Menu } from 'lucide-react';
 import { Input } from './ui/input';
+import { FloatingBackButton } from './floating-back-button';
 
 type SidebarContextType = {
   isMobileSheetOpen: boolean;
@@ -55,6 +56,7 @@ function Header() {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const { toggleSidebar } = useSidebar();
+  const isHomePage = pathname === '/';
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -64,27 +66,31 @@ function Header() {
     }
   };
 
+  // Classes base do header
+  const headerBaseClasses = "left-0 right-0 z-40 py-4";
+  // Classes condicionais
+  const headerConditionalClasses = isHomePage 
+    ? "absolute top-0 bg-transparent"
+    : "sticky top-0 bg-background/80 backdrop-blur-sm border-b";
+
   return (
-    <header className={cn(
-      "absolute top-0 left-0 right-0 z-40 py-4 bg-transparent"
-    )}>
-      {/* Universal Header */}
+    <header className={cn(headerBaseClasses, headerConditionalClasses)}>
       <div className="flex flex-col items-center justify-center">
-          {/* Top Row: Menu, Logo, Profile */}
+          {/* Mobile and Universal Header Part */}
           <div className='flex items-center justify-between w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16'>
               <div className="w-1/3 flex justify-start">
-                  <Button onClick={toggleSidebar} variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                  <Button onClick={toggleSidebar} variant="ghost" size="icon" className={cn(isHomePage ? 'text-white hover:bg-white/10' : 'text-foreground')}>
                     <Menu className="h-6 w-6" />
                     <span className="sr-only">Abrir Menu</span>
                   </Button>
               </div>
               <div className="w-1/3 flex justify-center">
                    <Link href="/" className="flex items-center gap-2">
-                      <span className="font-extrabold text-3xl text-primary">Fitte</span>
+                      <span className={cn("font-extrabold text-3xl", isHomePage && "text-white")}>Fitte</span>
                   </Link>
               </div>
               <div className="w-1/3 flex justify-end">
-                  <Button asChild variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                  <Button asChild variant="ghost" size="icon" className={cn(isHomePage ? 'text-white hover:bg-white/10' : 'text-foreground')}>
                       <Link href="/favorites">
                         <Heart className="h-5 w-5" />
                         <span className="sr-only">Favoritos</span>
@@ -93,9 +99,9 @@ function Header() {
               </div>
           </div>
 
-          {/* Bottom Row: Desktop Navigation & Search */}
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex flex-col items-center gap-4 mt-4 w-full">
-            <div className="flex items-center gap-8 text-sm font-medium w-full max-w-md">
+            <div className="flex items-center gap-8 text-sm font-medium w-full max-w-2xl">
                 <form onSubmit={handleSearchSubmit} className="relative w-full max-w-xs">
                     <Input
                         type="search"
@@ -103,11 +109,12 @@ function Header() {
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className={cn(
-                        "h-9 pr-10 rounded-full border-transparent text-sm bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30"
+                        "h-9 pr-10 rounded-full border-transparent text-sm",
+                         isHomePage ? "bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30" : "bg-secondary text-foreground"
                         )}
                     />
                     <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2">
-                        <Search className="h-4 w-4 text-white/70" />
+                        <Search className={cn("h-4 w-4", isHomePage ? "text-white/70" : "text-muted-foreground")} />
                     </button>
                 </form>
                 <div className='flex items-center gap-6'>
@@ -116,8 +123,9 @@ function Header() {
                         key={href}
                         href={href}
                         className={cn(
-                        "transition-colors text-white/80 hover:text-white",
-                        pathname === href && "font-semibold text-white"
+                          "transition-colors",
+                          isHomePage ? "text-white/80 hover:text-white" : "text-muted-foreground hover:text-foreground",
+                          pathname === href && (isHomePage ? "font-semibold text-white" : "font-semibold text-primary")
                         )}
                     >
                         {label}
@@ -167,15 +175,18 @@ function MobileSheet() {
 }
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
   
   return (
     <div className="flex min-h-screen w-full bg-background">
       <div className="flex flex-col flex-1">
         <Header />
-        <main className="flex-1">
+        <main className={cn("flex-1", !isHomePage && "pt-8")}>
           {children}
         </main>
         <MobileSheet />
+        {!isHomePage && <FloatingBackButton />}
       </div>
     </div>
   );
