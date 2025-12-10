@@ -10,10 +10,9 @@ import { MoreRecipesNotice } from '@/components/more-recipes-notice';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Clock, Flame, Heart } from 'lucide-react';
+import { Clock, Flame, Heart, Home as HomeIcon, LayoutGrid, Star, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
-import { User, Home as HomeIcon, LayoutGrid, Star, Search } from 'lucide-react';
 import { navItems } from '@/components/app-layout';
 
 
@@ -45,7 +44,7 @@ export default function Home() {
         {featuredRecipe && (
           <div className="hidden lg:block relative">
             <Link href={`/recipe/${featuredRecipe.slug}`} className="group block">
-              <div className="relative rounded-none overflow-hidden shadow-lg h-[500px] w-full">
+              <div className="relative overflow-hidden shadow-lg h-[500px] w-full">
                 {featuredRecipe.imageUrl && (
                     <Image
                       src={featuredRecipe.imageUrl}
@@ -91,15 +90,21 @@ export default function Home() {
           </div>
         )}
         
-        <div className="p-4 sm:p-6 lg:max-w-7xl lg:mx-auto">
+        <div className="p-4 sm:p-6 lg:p-0">
           {/* Mobile Header Title */}
           <div className="mb-6 lg:mb-8 lg:hidden">
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
                 O que vamos <span className="text-primary">cozinhar</span> hoje?
               </h2>
           </div>
+
+          <div className="hidden lg:block text-center my-12 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold tracking-tight text-foreground">
+              Pronta(o) para se aventurar em um universo de sabores saudáveis e deliciosos?
+            </h3>
+          </div>
           
-          <main className="space-y-10">
+          <main className="space-y-10 lg:max-w-7xl lg:mx-auto lg:px-8">
             {/* Featured Recipe Card for Mobile */}
             {featuredRecipe && (
               <div className="lg:hidden">
@@ -123,7 +128,7 @@ export default function Home() {
             {/* Seção "Receitas do dia" / "Mais Receitas" */}
             {otherRecipes.length > 0 && (
               <div className="lg:mt-8">
-                <h3 className="text-2xl font-bold tracking-tight text-foreground mb-6">
+                <h3 className="text-2xl font-bold tracking-tight text-foreground mb-6 lg:text-center">
                   Receitas do dia
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8 sm:gap-x-6">

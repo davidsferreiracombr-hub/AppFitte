@@ -54,8 +54,13 @@ export const navItems = [
 
 function DesktopHeader() {
   const pathname = usePathname();
+  const isHomePage = pathname === '/';
+
   return (
-    <header className="hidden lg:block absolute top-0 left-0 right-0 z-40 h-20 bg-transparent text-white">
+    <header className={cn(
+        "hidden lg:block absolute top-0 left-0 right-0 z-40 h-20 text-white",
+        isHomePage ? "bg-transparent" : "bg-background/80 backdrop-blur-sm border-b border-white/10 text-foreground"
+    )}>
         <div className="grid grid-cols-3 items-center h-full max-w-7xl mx-auto px-8">
             <nav className="flex items-center gap-6 text-sm font-medium">
                 {navItems.map(({ href, label }) => (
@@ -63,8 +68,8 @@ function DesktopHeader() {
                     key={href}
                     href={href}
                     className={cn(
-                    "transition-colors hover:text-white/80",
-                    pathname === href ? "text-white font-semibold" : "text-white/70"
+                    "transition-colors hover:text-primary",
+                     pathname === href ? "font-semibold text-primary" : (isHomePage ? "text-white/70 hover:text-white" : "text-muted-foreground hover:text-foreground")
                     )}
                 >
                     {label}
@@ -73,11 +78,11 @@ function DesktopHeader() {
             </nav>
             <div className="flex justify-center">
                 <Link href="/" className="flex items-center gap-2">
-                <span className="font-extrabold text-2xl">Fitte</span>
+                <span className={cn("font-extrabold text-2xl", isHomePage ? "text-white" : "text-primary")}>Fitte</span>
                 </Link>
             </div>
             <div className="flex justify-end">
-                <Button variant="ghost" size="icon" className="hover:bg-white/10">
+                <Button variant="ghost" size="icon" className={cn(isHomePage && "hover:bg-white/10")}>
                 <User className="h-5 w-5" />
                 <span className="sr-only">Perfil</span>
                 </Button>
@@ -154,7 +159,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-screen w-full bg-background">
       <div className="flex flex-col flex-1">
         <MobileHeader isVisible={isVisible} />
-        {isHomePage ? null : <DesktopHeader /> }
+        <DesktopHeader />
         <main className={cn("flex-1", isHomePage ? "lg:pt-0" : "lg:pt-20")}>
           {children}
         </main>
