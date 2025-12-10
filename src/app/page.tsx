@@ -57,7 +57,7 @@ export default function HomePage() {
                     <h3 className="text-2xl md:text-4xl font-bold tracking-tight mb-2" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>
                       {featuredRecipe.title}
                     </h3>
-                    <p className="max-w-xl text-md md:text-lg line-clamp-2 opacity-90" style={{ textShadow: '1px 1px 6px rgba(0,0,0,0.6)' }}>
+                    <p className="max-w-xl text-md md:text-lg line-clamp-1 opacity-90" style={{ textShadow: '1px 1px 6px rgba(0,0,0,0.6)' }}>
                       {featuredRecipe.description}
                     </p>
                     <div className="flex items-center gap-6 text-white mt-4">
