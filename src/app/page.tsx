@@ -10,10 +10,8 @@ import { MoreRecipesNotice } from '@/components/more-recipes-notice';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Clock, Flame, Heart, Home as HomeIcon, LayoutGrid, Star, Search } from 'lucide-react';
+import { Clock, Flame, Heart, Home as HomeIcon, LayoutGrid, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { usePathname } from 'next/navigation';
-import { navItems } from '@/components/app-layout';
 
 
 export default function Home() {
@@ -21,7 +19,6 @@ export default function Home() {
 
   const allRecipes = useMemo(() => getRecipes(), []);
 
-  // Separa a primeira receita das demais
   const featuredRecipe = allRecipes.find(r => r.id === 124) || allRecipes[0];
   const otherRecipes = allRecipes.filter(r => r.id !== featuredRecipe.id);
   const isFeaturedFavorite = favorites.includes(featuredRecipe.slug);
@@ -54,7 +51,7 @@ export default function Home() {
                       priority
                     />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-8">
                     <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6">
                         O que vamos <span className="text-primary">cozinhar</span> hoje?
@@ -75,6 +72,11 @@ export default function Home() {
                             <span className="text-sm font-semibold">{featuredRecipe.calories}</span>
                         </div>
                     </div>
+                </div>
+                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-black/20 backdrop-blur-sm">
+                    <h3 className="text-xl font-bold tracking-tight text-white text-center">
+                        Pronta(o) para se aventurar em um universo de sabores saudáveis e deliciosos?
+                    </h3>
                 </div>
                 <Button
                     onClick={(e) => handleToggleFavorite(e, featuredRecipe.slug)}
@@ -97,14 +99,8 @@ export default function Home() {
                 O que vamos <span className="text-primary">cozinhar</span> hoje?
               </h2>
           </div>
-
-          <div className="hidden lg:block text-center my-12 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold tracking-tight text-foreground">
-              Pronta(o) para se aventurar em um universo de sabores saudáveis e deliciosos?
-            </h3>
-          </div>
           
-          <main className="space-y-10 lg:max-w-7xl lg:mx-auto lg:px-8">
+          <main className="space-y-10 lg:max-w-7xl lg:mx-auto lg:px-8 lg:mt-12">
             {/* Featured Recipe Card for Mobile */}
             {featuredRecipe && (
               <div className="lg:hidden">

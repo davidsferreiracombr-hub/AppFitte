@@ -1,9 +1,9 @@
 
 'use client';
 
-import React, { useState, createContext, useContext, useMemo } from 'react';
+import React, { useState, createContext, useContext, useMemo, FormEvent } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
@@ -11,6 +11,7 @@ import { Home, LayoutGrid, Heart, Star, Search, Menu, User } from 'lucide-react'
 import { BottomNav } from './bottom-nav';
 import { FloatingBackButton } from './floating-back-button';
 import { useAutoHideBars } from '@/hooks/use-auto-hide-bars';
+import { Input } from './ui/input';
 
 type SidebarContextType = {
   isMobileSheetOpen: boolean;
@@ -54,39 +55,71 @@ export const navItems = [
 
 function DesktopHeader() {
   const pathname = usePathname();
+  const router = useRouter();
   const isHomePage = pathname === '/';
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearchSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchTerm.trim())}`);
+    }
+  };
 
   return (
     <header className={cn(
-        "hidden lg:block absolute top-0 left-0 right-0 z-40 h-20 text-white",
+        "hidden lg:block absolute top-0 left-0 right-0 z-40 text-white",
         isHomePage ? "bg-transparent" : "bg-background/80 backdrop-blur-sm border-b border-white/10 text-foreground"
     )}>
-        <div className="grid grid-cols-3 items-center h-full max-w-7xl mx-auto px-8">
-            <nav className="flex items-center gap-6 text-sm font-medium">
-                {navItems.map(({ href, label }) => (
-                <Link
-                    key={href}
-                    href={href}
-                    className={cn(
-                    "transition-colors hover:text-primary",
-                     pathname === href ? "font-semibold text-primary" : (isHomePage ? "text-white/70 hover:text-white" : "text-muted-foreground hover:text-foreground")
-                    )}
-                >
-                    {label}
-                </Link>
-                ))}
+        <div className="flex flex-col items-center justify-center py-4">
+            <div className='flex items-center justify-between w-full max-w-7xl mx-auto px-8'>
+                <div className="w-1/3"></div>
+                <div className="w-1/3 flex justify-center">
+                     <Link href="/" className="flex items-center gap-2">
+                        <span className={cn("font-extrabold text-2xl", isHomePage ? "text-white" : "text-primary")}>Fitte</span>
+                    </Link>
+                </div>
+                <div className="w-1/3 flex justify-end">
+                    <Button variant="ghost" size="icon" className={cn(isHomePage && "hover:bg-white/10")}>
+                        <User className="h-5 w-5" />
+                        <span className="sr-only">Perfil</span>
+                    </Button>
+                </div>
+            </div>
+
+            <nav className="flex items-center gap-6 text-sm font-medium mt-4 max-w-lg w-full justify-center">
+              {navItems.filter(item => item.href !== '/search').map(({ href, label }) => (
+              <Link
+                  key={href}
+                  href={href}
+                  className={cn(
+                  "transition-colors hover:text-primary",
+                    pathname === href ? "font-semibold text-primary" : (isHomePage ? "text-white/70 hover:text-white" : "text-muted-foreground hover:text-foreground")
+                  )}
+              >
+                  {label}
+              </Link>
+              ))}
+              {/* Desktop Search Bar */}
+              <form onSubmit={handleSearchSubmit} className="relative w-48">
+                  <Input
+                      type="search"
+                      placeholder="Buscar..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className={cn(
+                        "h-8 pr-8 rounded-full border-transparent text-sm",
+                        isHomePage 
+                          ? "bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30" 
+                          : "bg-secondary text-foreground placeholder:text-muted-foreground"
+                      )}
+                  />
+                  <Search className={cn(
+                    "absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4", 
+                    isHomePage ? "text-white/70" : "text-muted-foreground"
+                  )} />
+              </form>
             </nav>
-            <div className="flex justify-center">
-                <Link href="/" className="flex items-center gap-2">
-                <span className={cn("font-extrabold text-2xl", isHomePage ? "text-white" : "text-primary")}>Fitte</span>
-                </Link>
-            </div>
-            <div className="flex justify-end">
-                <Button variant="ghost" size="icon" className={cn(isHomePage && "hover:bg-white/10")}>
-                <User className="h-5 w-5" />
-                <span className="sr-only">Perfil</span>
-                </Button>
-            </div>
         </div>
     </header>
   );
@@ -160,7 +193,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       <div className="flex flex-col flex-1">
         <MobileHeader isVisible={isVisible} />
         <DesktopHeader />
-        <main className={cn("flex-1", isHomePage ? "lg:pt-0" : "lg:pt-20")}>
+        <main className={cn("flex-1", isHomePage ? "lg:pt-0" : "lg:pt-32")}>
           {children}
         </main>
         <MobileSheet />

@@ -1,6 +1,8 @@
+
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { AppLayout } from '@/components/app-layout';
 import { Input } from '@/components/ui/input';
 import { getRecipes, type Recipe, createSlug } from '@/lib/recipes';
@@ -30,11 +32,17 @@ function fuzzySearch(query: string, recipes: Recipe[]): Recipe[] {
   });
 }
 
-
-export default function SearchPage() {
-  const [searchTerm, setSearchTerm] = useState('');
+function SearchComponent() {
+  const searchParams = useSearchParams();
+  const queryParam = searchParams.get('q');
+  
+  const [searchTerm, setSearchTerm] = useState(queryParam || '');
   const allRecipes = useMemo(() => getRecipes(), []);
   const { favorites, addFavorite, removeFavorite } = useFavorites();
+
+  useEffect(() => {
+    setSearchTerm(queryParam || '');
+  }, [queryParam]);
 
   const filteredRecipes = useMemo(() => {
     return fuzzySearch(searchTerm, allRecipes);
@@ -106,5 +114,13 @@ export default function SearchPage() {
         </main>
       </div>
     </AppLayout>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div>Carregando...</div>}>
+      <SearchComponent />
+    </Suspense>
   );
 }
