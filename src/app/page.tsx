@@ -22,6 +22,14 @@ export default function HomePage() {
   const featuredRecipe = allRecipes.find(r => r.id === 124) || allRecipes[0];
   const otherRecipes = allRecipes.filter(r => r.id !== featuredRecipe.id);
 
+  const handleToggleFavorite = () => {
+    if (favorites.includes(featuredRecipe.slug)) {
+      removeFavorite(featuredRecipe.slug);
+    } else {
+      addFavorite(featuredRecipe.slug);
+    }
+  };
+
   return (
     <AppLayout>
       <div className="flex-1">
@@ -39,7 +47,7 @@ export default function HomePage() {
                   />
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-6 pt-24">
+              <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-6">
                   <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
                       O que vamos <span className="text-primary">cozinhar</span> hoje?
                   </h2>

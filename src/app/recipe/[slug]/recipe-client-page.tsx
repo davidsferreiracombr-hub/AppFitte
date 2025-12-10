@@ -10,6 +10,7 @@ import { ChefHat, Clock, Flame, Info, BookText, Award, Heart, Utensils, Mic } fr
 import { Button } from '@/components/ui/button';
 import { Timer } from '@/components/Timer';
 import { cn } from '@/lib/utils';
+import { RecipeAudioPlayer } from '@/components/RecipeAudioPlayer';
 
 type TimerInfo = {
   duration: number;
@@ -106,6 +107,9 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
     }
   };
 
+  const fullTextForNarration = `${recipe.title}. Ingredientes: ${recipe.ingredients.join(', ')}. Modo de Preparo: ${recipe.instructions.join(' ')}. ${recipe.notes ? `Dicas do Chef: ${recipe.notes}` : ''}`;
+
+
   return (
     <div className="font-body bg-background">
       {recipe.imageUrl && (
@@ -130,7 +134,7 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
                     <h1 className="text-4xl md:text-5xl font-extrabold" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>
                         {recipe.title}
                     </h1>
-                    <p className="mt-2 text-lg opacity-90 line-clamp-2" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.6)' }}>
+                    <p className="mt-2 text-lg opacity-90 line-clamp-2 md:line-clamp-none" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.6)' }}>
                         {recipe.description}
                     </p>
                 </div>
@@ -167,9 +171,9 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-10">
                 <div className="lg:col-span-3 space-y-10">
                     <div className="mb-8 flex flex-col items-center justify-center text-center gap-3 p-6 bg-secondary rounded-2xl">
-                        <Mic className="h-8 w-8 text-primary/70" />
-                        <h3 className="font-bold text-lg text-foreground">Narração em Breve!</h3>
-                        <p className="text-sm text-muted-foreground max-w-sm">Estamos preparando uma experiência de áudio para que você possa cozinhar sem precisar olhar para a tela. Fique de olho!</p>
+                        <RecipeAudioPlayer textToRead={fullTextForNarration} />
+                        <h3 className="font-bold text-lg text-foreground mt-3">Narração da Receita</h3>
+                        <p className="text-sm text-muted-foreground max-w-sm">Ouça o passo a passo completo da receita e cozinhe com as mãos livres. Basta apertar o play!</p>
                     </div>
 
                     <div>
