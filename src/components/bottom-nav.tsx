@@ -21,20 +21,8 @@ interface BottomNavProps {
 export function BottomNav({ isVisible }: BottomNavProps) {
   const pathname = usePathname();
 
-  return (
-    <header className={cn(
-      "fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-card shadow-[0_-2px_10px_rgba(0,0,0,0.05)] transition-transform duration-300 ease-in-out",
-      !isVisible && "translate-y-full"
-    )}>
-      <div className="flex h-16 items-center justify-around">
-        {navItems.map(item => (
-          <NavIcon 
-            key={item.href} 
-            {...item} 
-            isActive={pathname === item.href} 
-          />
-        ))}
-      </div>
-    </header>
-  );
+  // This component is no longer rendered, but we keep the file to avoid breaking imports.
+  // The logic was moved to the MobileSheet in app-layout.tsx.
+  // Returning null makes it render nothing.
+  return null;
 }
