@@ -7,6 +7,11 @@ import { RecipeCard } from '@/components/recipe-card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { AppLayout } from '@/components/app-layout';
 import { MoreRecipesNotice } from '@/components/more-recipes-notice';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { Clock, Flame, Heart } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function Home() {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
@@ -16,8 +21,11 @@ export default function Home() {
   // Separa a primeira receita das demais
   const featuredRecipe = allRecipes.find(r => r.id === 124) || allRecipes[0];
   const otherRecipes = allRecipes.filter(r => r.id !== featuredRecipe.id);
+  const isFeaturedFavorite = favorites.includes(featuredRecipe.slug);
 
-  const handleToggleFavorite = (slug: string) => {
+  const handleToggleFavorite = (e: React.MouseEvent, slug: string) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (favorites.includes(slug)) {
       removeFavorite(slug);
     } else {
@@ -36,14 +44,67 @@ export default function Home() {
           </div>
           
           <main className="space-y-10">
-            {/* Destaque para a primeira receita */}
+            {/* Featured Recipe Hero Section for Desktop */}
             {featuredRecipe && (
-              <div>
+              <div className="hidden lg:block">
+                <Link href={`/recipe/${featuredRecipe.slug}`} className="group block">
+                  <div className="relative rounded-2xl overflow-hidden shadow-lg h-[400px] w-full">
+                    {featuredRecipe.imageUrl && (
+                       <Image
+                          src={featuredRecipe.imageUrl}
+                          alt={`Imagem da receita ${featuredRecipe.title}`}
+                          fill
+                          className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                          priority
+                        />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+                    <div className="absolute bottom-0 left-0 p-8 text-white">
+                       <h3 className="text-4xl font-bold tracking-tight mb-2" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>
+                          {featuredRecipe.title}
+                       </h3>
+                       <p className="max-w-xl text-lg line-clamp-2 opacity-90" style={{ textShadow: '1px 1px 6px rgba(0,0,0,0.6)' }}>
+                          {featuredRecipe.description}
+                       </p>
+                        <div className="flex items-center gap-6 text-white mt-4">
+                            <div className="flex items-center gap-2">
+                                <Clock className="h-5 w-5" />
+                                <span className="text-sm font-semibold">{featuredRecipe.prepTime}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Flame className="h-5 w-5" />
+                                <span className="text-sm font-semibold">{featuredRecipe.calories}</span>
+                            </div>
+                        </div>
+                    </div>
+                     <Button
+                        onClick={(e) => handleToggleFavorite(e, featuredRecipe.slug)}
+                        variant="ghost"
+                        size="icon"
+                        className="absolute top-6 right-6 h-12 w-12 rounded-full text-white bg-white/10 backdrop-blur-sm hover:bg-white/20"
+                        aria-label={isFeaturedFavorite ? 'Desfavoritar receita' : 'Favoritar receita'}
+                    >
+                        <Heart className={cn('h-6 w-6 transition-all duration-200 group-hover:text-red-400', isFeaturedFavorite ? 'fill-red-500 text-red-500' : 'fill-white/50 text-white')} />
+                    </Button>
+                  </div>
+                </Link>
+              </div>
+            )}
+
+            {/* Featured Recipe Card for Mobile */}
+            {featuredRecipe && (
+              <div className="lg:hidden">
                  <RecipeCard 
                   key={featuredRecipe.id}
                   recipe={featuredRecipe} 
-                  isFavorite={favorites.includes(featuredRecipe.slug)}
-                  onToggleFavorite={() => handleToggleFavorite(featuredRecipe.slug)}
+                  isFavorite={isFeaturedFavorite}
+                  onToggleFavorite={() => {
+                    if (favorites.includes(featuredRecipe.slug)) {
+                      removeFavorite(featuredRecipe.slug);
+                    } else {
+                      addFavorite(featuredRecipe.slug);
+                    }
+                  }}
                   priority
                   isFeatured
                 />
@@ -62,7 +123,13 @@ export default function Home() {
                         key={recipe.id}
                         recipe={recipe} 
                         isFavorite={favorites.includes(recipe.slug)}
-                        onToggleFavorite={() => handleToggleFavorite(recipe.slug)}
+                        onToggleFavorite={() => {
+                           if (favorites.includes(recipe.slug)) {
+                              removeFavorite(recipe.slug);
+                            } else {
+                              addFavorite(recipe.slug);
+                            }
+                        }}
                         priority={index < 4} // Prioriza algumas imagens na versão desktop
                       />
                   ))}

@@ -54,30 +54,32 @@ export const navItems = [
 function DesktopHeader() {
   const pathname = usePathname();
   return (
-    <header className="hidden lg:flex sticky top-0 z-40 h-20 items-center justify-between border-b bg-card px-8">
-      <div className="flex items-center gap-10">
+    <header className="hidden lg:grid grid-cols-3 sticky top-0 z-40 h-20 items-center border-b bg-card/80 backdrop-blur-lg px-8">
+      <nav className="flex items-center gap-6 text-sm font-medium">
+        {navItems.map(({ href, label }) => (
+          <Link
+            key={href}
+            href={href}
+            className={cn(
+              "transition-colors hover:text-primary",
+              pathname === href ? "text-primary font-semibold" : "text-muted-foreground"
+            )}
+          >
+            {label}
+          </Link>
+        ))}
+      </nav>
+      <div className="flex justify-center">
         <Link href="/" className="flex items-center gap-2">
           <span className="font-extrabold text-2xl text-primary">Fitte</span>
         </Link>
-        <nav className="flex items-center gap-6 text-sm font-medium">
-          {navItems.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={cn(
-                "transition-colors hover:text-primary",
-                pathname === href ? "text-primary font-semibold" : "text-muted-foreground"
-              )}
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
       </div>
-      <Button variant="ghost" size="icon">
-        <User className="h-5 w-5" />
-        <span className="sr-only">Perfil</span>
-      </Button>
+      <div className="flex justify-end">
+        <Button variant="ghost" size="icon">
+          <User className="h-5 w-5" />
+          <span className="sr-only">Perfil</span>
+        </Button>
+      </div>
     </header>
   );
 }
