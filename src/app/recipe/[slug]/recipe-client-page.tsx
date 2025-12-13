@@ -126,7 +126,7 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/20" />
-           <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group absolute top-28 right-4 rounded-full h-12 w-12 flex-shrink-0 bg-white/20 backdrop-blur-sm hover:bg-white/30 z-10 lg:top-4">
+           <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group absolute top-28 right-4 rounded-full h-12 w-12 flex-shrink-0 bg-white/20 backdrop-blur-sm hover:bg-white/30 z-20 lg:top-4">
                 <Heart className={cn(
                     "h-6 w-6 text-white group-hover:text-red-400 transition-all duration-300 group-active:scale-125", 
                     isFavorite ? "fill-red-500 text-red-500" : "fill-transparent"
