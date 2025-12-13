@@ -6,45 +6,79 @@ import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 
 // --- LÓGICA DE CÁLCULO DE POTENCIAL DE VENDA (RECALIBRADA) ---
 
-// 1. Definição de palavras-chave e seus pesos (valores drasticamente reduzidos e rebalanceados)
+// 1. Definição de palavras-chave e seus pesos
 const ingredientWeight: { [key: string]: number } = {
-    // Custo Muito Alto
-    'camarão': 8, 'macadâmia': 7, 'pistache': 7, 'carne seca': 6, 'queijo gruyère': 5,
-    // Custo Alto
+    // Custo Muito Alto (Influência significativa)
+    'camarão': 8, 'macadâmia': 7, 'pistache': 7, 'carne seca': 6, 'queijo gruyère': 6,
+    // Custo Alto (Influência moderada-alta)
     'amêndoas': 5, 'nozes': 5, 'whey protein': 5, 'castanha de caju': 4, 
-    'chocolate 70%': 4, 'damasco': 4, 'palmito': 3, 'guariroba': 4,
-    // Custo Médio
+    'chocolate 70%': 4, 'damasco': 4, 'palmito': 4, 'guariroba': 4, 'massa folhada': 4,
+    // Custo Médio (Influência moderada)
     'cream cheese': 3, 'queijo coalho': 3, 'ricota': 2, 'parmesão': 3,
     'biomassa de banana verde': 3, 'leite de coco': 2, 'óleo de coco': 2, 
     'tâmaras': 3, 'frutas vermelhas': 4, 'morango': 2, 'bacon': 3,
-    // Custo Baixo
+    // Custo Baixo (Influência leve)
     'doce de leite': 1, 'goiabada': 1, 'leite condensado': 1, 'creme de leite': 1,
-    'aveia': 1, 'banana': 1, 'fubá': 1, 'batata-doce': 1, 'mandioca': 1, 'aipim': 1,
-    'abacate': 1, 'abóbora': 1, 'milho': 1, 'sardinha': 1, 'jaca': 2,
+    'aveia': 0.5, 'banana': 0.5, 'fubá': 0.5, 'batata-doce': 0.5, 'mandioca': 0.5, 'aipim': 0.5,
+    'abacate': 1, 'abóbora': 0.5, 'milho': 0.5, 'sardinha': 1, 'jaca': 2,
 };
 
-
 const complexityWeight = {
-    'Fácil': 2,
-    'Média': 5,
-    'Difícil': 10,
+    'Fácil': 1,
+    'Média': 4,
+    'Difícil': 8,
 };
 
 const categoryWeight = {
-    'Bolos e Tortas': 8,
-    'Doces e Sobremesas': 5,
-    'Pães e Salgados': 6,
-    'Saudáveis e Fit': 3, 
+    'Bolos e Tortas': 6,
+    'Doces e Sobremesas': 3,
+    'Pães e Salgados': 5,
+    'Saudáveis e Fit': 2, 
+};
+
+// NOVO: Peso baseado no tipo de porção
+const unitWeight: { [key: string]: number } = {
+    'fatia': 12,    // Preço base mais alto
+    'pedaço': 12,   // Preço base mais alto
+    'porção': 10,   // Preço base médio-alto
+    'unidade': 2,   // Preço base baixo
+    'cookie': 2,
+    'trufa': 1,
+    'bombom': 1.5,
+    'muffin': 3,
+    'beijinho': 1,
+    'brigadeiro': 1,
+    'pão de mel': 3,
+    'biscoito': 1,
+    'sequilho': 0.5,
+    'pamonha': 5,
+    'sonho': 4,
+    'quindim': 3,
+    'empada': 3,
+    'esfiha': 3,
+    'pastel': 3,
+    'croquete': 2,
 };
 
 /**
  * Calcula o potencial de venda de uma receita (0-100) com base nos ingredientes,
- * dificuldade e categoria, para fornecer uma estimativa de preço mais realista.
+ * dificuldade, categoria e, crucialmente, o TIPO de porção.
  * @param recipe A receita a ser analisada.
  * @returns Um número de 0 a 100 representando o potencial de venda.
  */
 function calculateSalePotential(recipe: Omit<Recipe, 'saleValue' | 'category'>, assignedCategory: string | null): number {
     let score = 0;
+
+    // NOVO: Adicionar score do tipo de unidade
+    const servingUnit = recipe.servings.toLowerCase().split(' ')[1] || 'unidade';
+    let baseScore = 0;
+    for (const unit in unitWeight) {
+        if (servingUnit.includes(unit)) {
+            baseScore = unitWeight[unit];
+            break;
+        }
+    }
+    score += baseScore;
 
     // Calcular score dos ingredientes
     const ingredientsString = recipe.ingredients.join(' ').toLowerCase();
@@ -63,14 +97,13 @@ function calculateSalePotential(recipe: Omit<Recipe, 'saleValue' | 'category'>, 
     }
     
     // Adicionar variação sutil baseada no ID para diferenciar receitas parecidas
-    score += (recipe.id % 5);
+    score += (recipe.id % 3);
 
     // Normalizar o score para uma escala de 0 a 100
-    // Teto aumentado para achatar a curva de preços e evitar valores altos
-    const maxScore = 75; // Teto de pontuação mais realista para normalização
+    const maxScore = 60; // Teto de pontuação ajustado para a nova lógica
     let normalizedScore = Math.floor((score / maxScore) * 100);
 
-    // Garante que o score final esteja entre 5 e 95
+    // Garante que o score final esteja entre um mínimo e um máximo razoáveis
     if (normalizedScore < 5) normalizedScore = 5;
     if (normalizedScore > 95) normalizedScore = 95;
 
