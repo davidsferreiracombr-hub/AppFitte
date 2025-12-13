@@ -23,8 +23,17 @@ export function SalePriceMeter({ value }: SalePriceMeterProps) {
   }
   const color = `hsl(${hue}, 80%, 55%)`;
 
+  const minPrice = 5;
+  const maxPrice = 25;
+  const currentPrice = minPrice + (percentage / 100) * (maxPrice - minPrice);
+
+
   return (
     <div className="w-full flex flex-col items-center">
+      <div className="text-center mb-2">
+        <span className="text-2xl font-bold text-foreground" style={{color: color}}>R$ {currentPrice.toFixed(2).replace('.', ',')}</span>
+        <p className="text-xs text-muted-foreground">Preço de Venda Sugerido (Unidade)</p>
+      </div>
       <div className="relative w-full h-8 rounded-full overflow-hidden bg-gradient-to-r from-blue-500 via-yellow-400 to-red-600 border-2 border-border">
         {/* Indicador */}
         <div 
@@ -36,13 +45,13 @@ export function SalePriceMeter({ value }: SalePriceMeterProps) {
         </div>
       </div>
       <div className="w-full flex justify-between mt-2 text-xs font-semibold text-muted-foreground">
-        <div className="flex items-center gap-1">
-            <ThermometerSnowflake className="h-3 w-3 text-blue-500" />
-            <span>Preço Baixo</span>
+        <div className="flex flex-col items-start gap-1">
+            <span className="font-bold text-blue-500">R$ {minPrice.toFixed(2).replace('.', ',')}</span>
+            <span className='text-xs'>Preço Baixo</span>
         </div>
-        <div className="flex items-center gap-1">
-            <ThermometerSun className="h-3 w-3 text-red-600" />
-            <span>Preço Alto</span>
+        <div className="flex flex-col items-end gap-1">
+            <span className="font-bold text-red-600">R$ {maxPrice.toFixed(2).replace('.', ',')}</span>
+            <span className='text-xs'>Preço Alto</span>
         </div>
       </div>
     </div>
