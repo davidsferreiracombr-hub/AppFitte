@@ -8,15 +8,19 @@ import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 
 // 1. Definição de palavras-chave e seus pesos
 const ingredientWeight: { [key: string]: number } = {
-    // Alto Custo
-    'macadâmia': 15, 'amêndoas': 12, 'nozes': 12, 'pistache': 15, 'whey protein': 10,
-    'castanha de caju': 10, 'chocolate 70%': 8, 'queijo coalho': 7, 'cream cheese': 7,
-    'camarão': 15, 'carne seca': 12, 'damasco': 10,
-    // Médio Custo
-    'biomassa': 6, 'leite de coco': 5, 'óleo de coco': 5, 'tâmaras': 7,
-    'goiabada': 4, 'doce de leite': 4, 'morango': 6, 'frutas vermelhas': 8,
-    // Baixo Custo
-    'aveia': 2, 'banana': 1, 'fubá': 1, 'batata-doce': 2, 'mandioca': 2,
+    // Custo Muito Alto (grande impacto no preço)
+    'camarão': 20, 'macadâmia': 18, 'pistache': 18, 'carne seca': 15,
+    // Custo Alto
+    'amêndoas': 12, 'nozes': 12, 'whey protein': 10, 'castanha de caju': 10, 
+    'chocolate 70%': 9, 'damasco': 9, 'queijo gruyère': 10,
+    // Custo Médio
+    'cream cheese': 7, 'queijo coalho': 7, 'ricota': 6, 'parmesão': 6,
+    'biomassa de banana verde': 6, 'leite de coco': 5, 'óleo de coco': 5, 
+    'tâmaras': 7, 'frutas vermelhas': 8, 'morango': 6, 'palmito': 7, 'guariroba': 8,
+    // Custo Baixo (menor impacto)
+    'doce de leite': 4, 'goiabada': 4, 'leite condensado': 3, 'creme de leite': 3,
+    'aveia': 2, 'banana': 1, 'fubá': 1, 'batata-doce': 2, 'mandioca': 2, 'aipim': 2,
+    'abacate': 3, 'abóbora': 2, 'milho': 1, 'sardinha': 3,
 };
 
 const complexityWeight = {
@@ -28,8 +32,8 @@ const complexityWeight = {
 const categoryWeight = {
     'Bolos e Tortas': 20,
     'Doces e Sobremesas': 15,
-    'Pães e Salgados': 10,
-    'Saudáveis e Fit': 5,
+    'Pães e Salgados': 12,
+    'Saudáveis e Fit': 8, // Menor valor agregado percebido, geralmente
 };
 
 /**
@@ -57,19 +61,18 @@ function calculateSalePotential(recipe: Omit<Recipe, 'saleValue' | 'category'>, 
         score += categoryWeight[assignedCategory as keyof typeof categoryWeight];
     }
     
-    // 5. Adicionar um pouco de variação baseada no título para diferenciar receitas parecidas
-    let titleHash = 0;
-    for (let i = 0; i < recipe.title.length; i++) {
-        titleHash = (titleHash << 5) - titleHash + recipe.title.charCodeAt(i);
-        titleHash |= 0;
-    }
-    score += (Math.abs(titleHash) % 10); // Adiciona um valor de 0 a 9
+    // 5. Adicionar um pouco de variação baseada no ID para diferenciar receitas parecidas
+    // Isso é mais estável que o hash do título.
+    score += (recipe.id % 10); // Adiciona um valor de 0 a 9
 
     // 6. Normalizar o score para uma escala de 0 a 100
-    // O score máximo teórico pode ser alto, então definimos um teto razoável (ex: 80)
-    // para mapear para 100. Isso evita que a maioria das receitas fique no final da escala.
-    const maxScore = 85; 
-    const normalizedScore = Math.min(100, Math.floor((score / maxScore) * 100));
+    // O teto foi ajustado após análise para melhor distribuição dos preços na faixa de R$5 a R$25
+    const maxScore = 95; 
+    let normalizedScore = Math.floor((score / maxScore) * 100);
+
+    // Garante que o score final esteja entre 5 e 98, para evitar preços absurdos nas extremidades
+    if (normalizedScore < 5) normalizedScore = 5;
+    if (normalizedScore > 98) normalizedScore = 98;
 
     return normalizedScore;
 }
@@ -194,16 +197,20 @@ function processAndCategorizeRecipes(): void {
 
     initialRecipes.forEach((recipe, index) => {
         const lowerCaseTags = recipe.tags.map(t => t.toLowerCase());
+        const lowerCaseTitle = recipe.title.toLowerCase();
         let assignedCategory: string | null = null;
 
+        const tagString = lowerCaseTags.join(' ');
+        const searchString = `${lowerCaseTitle} ${tagString}`;
+
         // Strict priority order for categorization
-        if (categoryKeywords['Saudáveis e Fit'].some(keyword => lowerCaseTags.includes(keyword) || recipe.title.toLowerCase().includes('fit'))) {
+        if (categoryKeywords['Saudáveis e Fit'].some(keyword => searchString.includes(keyword))) {
             assignedCategory = 'Saudáveis e Fit';
-        } else if (categoryKeywords['Bolos e Tortas'].some(keyword => lowerCaseTags.includes(keyword))) {
+        } else if (categoryKeywords['Bolos e Tortas'].some(keyword => searchString.includes(keyword))) {
             assignedCategory = 'Bolos e Tortas';
-        } else if (categoryKeywords['Pães e Salgados'].some(keyword => lowerCaseTags.includes(keyword))) {
+        } else if (categoryKeywords['Pães e Salgados'].some(keyword => searchString.includes(keyword))) {
             assignedCategory = 'Pães e Salgados';
-        } else if (categoryKeywords['Doces e Sobremesas'].some(keyword => lowerCaseTags.includes(keyword))) {
+        } else if (categoryKeywords['Doces e Sobremesas'].some(keyword => searchString.includes(keyword))) {
             assignedCategory = 'Doces e Sobremesas';
         }
         
