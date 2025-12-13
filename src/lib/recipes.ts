@@ -6,34 +6,35 @@ import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 
 // --- LÓGICA DE CÁLCULO DE POTENCIAL DE VENDA (RECALIBRADA) ---
 
-// 1. Definição de palavras-chave e seus pesos (valores reduzidos e rebalanceados)
+// 1. Definição de palavras-chave e seus pesos (valores drasticamente reduzidos e rebalanceados)
 const ingredientWeight: { [key: string]: number } = {
     // Custo Muito Alto
-    'camarão': 15, 'macadâmia': 12, 'pistache': 12, 'carne seca': 10, 'queijo gruyère': 8,
+    'camarão': 8, 'macadâmia': 7, 'pistache': 7, 'carne seca': 6, 'queijo gruyère': 5,
     // Custo Alto
-    'amêndoas': 8, 'nozes': 8, 'whey protein': 8, 'castanha de caju': 7, 
-    'chocolate 70%': 6, 'damasco': 6, 'palmito': 5, 'guariroba': 6,
+    'amêndoas': 5, 'nozes': 5, 'whey protein': 5, 'castanha de caju': 4, 
+    'chocolate 70%': 4, 'damasco': 4, 'palmito': 3, 'guariroba': 4,
     // Custo Médio
-    'cream cheese': 5, 'queijo coalho': 5, 'ricota': 4, 'parmesão': 4,
-    'biomassa de banana verde': 5, 'leite de coco': 4, 'óleo de coco': 4, 
-    'tâmaras': 5, 'frutas vermelhas': 6, 'morango': 4, 'bacon': 4,
+    'cream cheese': 3, 'queijo coalho': 3, 'ricota': 2, 'parmesão': 3,
+    'biomassa de banana verde': 3, 'leite de coco': 2, 'óleo de coco': 2, 
+    'tâmaras': 3, 'frutas vermelhas': 4, 'morango': 2, 'bacon': 3,
     // Custo Baixo
-    'doce de leite': 3, 'goiabada': 2, 'leite condensado': 2, 'creme de leite': 2,
+    'doce de leite': 1, 'goiabada': 1, 'leite condensado': 1, 'creme de leite': 1,
     'aveia': 1, 'banana': 1, 'fubá': 1, 'batata-doce': 1, 'mandioca': 1, 'aipim': 1,
-    'abacate': 2, 'abóbora': 1, 'milho': 1, 'sardinha': 2, 'jaca': 3,
+    'abacate': 1, 'abóbora': 1, 'milho': 1, 'sardinha': 1, 'jaca': 2,
 };
 
+
 const complexityWeight = {
-    'Fácil': 3,
-    'Média': 8,
-    'Difícil': 15,
+    'Fácil': 2,
+    'Média': 5,
+    'Difícil': 10,
 };
 
 const categoryWeight = {
-    'Bolos e Tortas': 15,
-    'Doces e Sobremesas': 10,
-    'Pães e Salgados': 8,
-    'Saudáveis e Fit': 5, 
+    'Bolos e Tortas': 8,
+    'Doces e Sobremesas': 5,
+    'Pães e Salgados': 6,
+    'Saudáveis e Fit': 3, 
 };
 
 /**
@@ -62,11 +63,11 @@ function calculateSalePotential(recipe: Omit<Recipe, 'saleValue' | 'category'>, 
     }
     
     // Adicionar variação sutil baseada no ID para diferenciar receitas parecidas
-    score += (recipe.id % 5); // Valor de 0 a 4
+    score += (recipe.id % 5);
 
     // Normalizar o score para uma escala de 0 a 100
     // Teto aumentado para achatar a curva de preços e evitar valores altos
-    const maxScore = 100; 
+    const maxScore = 75; // Teto de pontuação mais realista para normalização
     let normalizedScore = Math.floor((score / maxScore) * 100);
 
     // Garante que o score final esteja entre 5 e 95
