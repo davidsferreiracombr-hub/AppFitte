@@ -12,6 +12,7 @@ import { Timer } from '@/components/Timer';
 import { cn } from '@/lib/utils';
 import { RecipeAudioPlayer } from '@/components/RecipeAudioPlayer';
 import { SalePriceMeter } from '@/components/sale-price-meter';
+import { Separator } from '@/components/ui/separator';
 
 type TimerInfo = {
   duration: number;
@@ -144,9 +145,9 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
       )}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-8 md:py-12">
 
-        <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8 -mt-24 relative z-10">
+        <div className="bg-card rounded-2xl shadow-lg border p-6 md:p-8 -mt-24 relative z-10 space-y-8">
           
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-center border-b pb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div className="flex flex-col items-center justify-center">
                     <Clock className="h-7 w-7 text-primary mb-2" />
                     <p className="font-semibold text-sm text-foreground">Tempo</p>
@@ -168,10 +169,18 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
                     <p className="text-muted-foreground">{recipe.servings}</p>
                 </div>
             </div>
+
+            <Separator />
+
+            <div className="bg-secondary rounded-2xl p-6">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-3 text-foreground justify-center text-center"><Thermometer className="h-6 w-6 text-primary" /> Potencial de Venda</h3>
+                 <p className="text-sm text-muted-foreground mb-4 text-center">Este medidor indica o potencial de lucro da receita baseado no custo de ingredientes e na percepção de valor pelo cliente.</p>
+                <SalePriceMeter value={recipe.saleValue} />
+            </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-10">
                 <div className="lg:col-span-3 space-y-10">
-                    <div className="mb-8 flex flex-col items-center justify-center text-center gap-3 p-6 bg-secondary rounded-2xl">
+                    <div className="flex flex-col items-center justify-center text-center gap-3 p-6 bg-secondary rounded-2xl">
                         <RecipeAudioPlayer textToRead={fullTextForNarration} />
                         <h3 className="font-bold text-lg text-foreground mt-3">Narração da Receita</h3>
                         <p className="text-sm text-muted-foreground max-w-sm">Ouça o passo a passo completo da receita e cozinhe com as mãos livres. Basta apertar o play!</p>
@@ -206,15 +215,8 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
                     </div>
                 </div>
 
-                <aside className="lg:col-span-2">
-                    <div className="sticky top-28 space-y-8">
-
-                        <div className="bg-secondary rounded-2xl p-6">
-                            <h3 className="text-xl font-bold mb-4 flex items-center gap-3 text-foreground"><Thermometer className="h-6 w-6 text-primary" /> Potencial de Venda</h3>
-                             <p className="text-sm text-muted-foreground mb-4">Este medidor indica o potencial de lucro da receita baseado no custo de ingredientes e na percepção de valor pelo cliente.</p>
-                            <SalePriceMeter value={recipe.saleValue} />
-                        </div>
-
+                <div className="lg:col-span-2">
+                    <div className="space-y-8">
                        {recipe.notes && (
                             <div>
                                 <h3 className="text-xl font-bold mb-3 flex items-center gap-3 text-foreground"><Info className="h-5 w-5 text-primary" /> Dicas do Chef</h3>
@@ -228,7 +230,7 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
                             <Timer key={index} durationInMinutes={info.duration} context={info.context} />
                         ))}
                     </div>
-                </aside>
+                </div>
             </div>
         </div>
       </div>
