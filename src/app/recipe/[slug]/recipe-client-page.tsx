@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { type Recipe } from '@/lib/recipes';
 import { useFavorites } from '@/hooks/use-favorites';
 import { useToast } from '@/hooks/use-toast';
-import { ChefHat, Clock, Flame, Info, BookText, Award, Heart, Utensils, Mic, Thermometer } from 'lucide-react';
+import { ChefHat, Clock, Flame, Info, BookText, Award, Heart, Utensils, Thermometer } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Timer } from '@/components/Timer';
 import { cn } from '@/lib/utils';
@@ -87,10 +87,12 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
   const { toast } = useToast();
   const isFavorite = favorites.includes(recipe.slug);
   const [timerInfos, setTimerInfos] = useState<TimerInfo[]>([]);
+  const [currentSaleValue, setCurrentSaleValue] = useState(recipe.saleValue);
 
   useEffect(() => {
     const infos = extractActionTimes(recipe.instructions);
     setTimerInfos(infos);
+    setCurrentSaleValue(recipe.saleValue);
   }, [recipe]);
 
   const handleFavoriteClick = () => {
@@ -175,7 +177,7 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
             <div className="bg-secondary rounded-2xl p-6">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-3 text-foreground justify-center text-center"><Thermometer className="h-6 w-6 text-primary" /> Potencial de Venda</h3>
                  <p className="text-sm text-muted-foreground mb-4 text-center">Este medidor indica o potencial de lucro da receita baseado no custo de ingredientes e na percepção de valor pelo cliente.</p>
-                <SalePriceMeter value={recipe.saleValue} />
+                <SalePriceMeter value={currentSaleValue} onValueChange={setCurrentSaleValue} />
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-10">
