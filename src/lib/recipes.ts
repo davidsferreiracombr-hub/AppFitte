@@ -4,23 +4,78 @@ import { Cake, Cookie, Croissant, Wheat } from 'lucide-react';
 import type { LucideProps } from 'lucide-react';
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 
-// Função simples para gerar um hash a partir de uma string
-const hashCode = (str: string) => {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash |= 0; // Converte para 32bit integer
-  }
-  return hash;
+// --- LÓGICA DE CÁLCULO DE POTENCIAL DE VENDA ---
+
+// 1. Definição de palavras-chave e seus pesos
+const ingredientWeight: { [key: string]: number } = {
+    // Alto Custo
+    'macadâmia': 15, 'amêndoas': 12, 'nozes': 12, 'pistache': 15, 'whey protein': 10,
+    'castanha de caju': 10, 'chocolate 70%': 8, 'queijo coalho': 7, 'cream cheese': 7,
+    'camarão': 15, 'carne seca': 12, 'damasco': 10,
+    // Médio Custo
+    'biomassa': 6, 'leite de coco': 5, 'óleo de coco': 5, 'tâmaras': 7,
+    'goiabada': 4, 'doce de leite': 4, 'morango': 6, 'frutas vermelhas': 8,
+    // Baixo Custo
+    'aveia': 2, 'banana': 1, 'fubá': 1, 'batata-doce': 2, 'mandioca': 2,
 };
 
-// Gera um valor de venda pseudoaleatório e consistente baseado no ID da receita
-const generateSaleValue = (recipeId: number): number => {
-  const seed = hashCode(recipeId.toString());
-  const random = Math.abs(Math.sin(seed));
-  return Math.floor(random * 101); // Gera um valor entre 0 e 100
+const complexityWeight = {
+    'Fácil': 5,
+    'Média': 15,
+    'Difícil': 25,
 };
+
+const categoryWeight = {
+    'Bolos e Tortas': 20,
+    'Doces e Sobremesas': 15,
+    'Pães e Salgados': 10,
+    'Saudáveis e Fit': 5,
+};
+
+/**
+ * Calcula o potencial de venda de uma receita (0-100) com base nos ingredientes,
+ * dificuldade e categoria, para fornecer uma estimativa de preço mais realista.
+ * @param recipe A receita a ser analisada.
+ * @returns Um número de 0 a 100 representando o potencial de venda.
+ */
+function calculateSalePotential(recipe: Omit<Recipe, 'saleValue' | 'category'>, assignedCategory: string | null): number {
+    let score = 0;
+
+    // 2. Calcular score dos ingredientes
+    const ingredientsString = recipe.ingredients.join(' ').toLowerCase();
+    for (const ingredient in ingredientWeight) {
+        if (ingredientsString.includes(ingredient)) {
+            score += ingredientWeight[ingredient];
+        }
+    }
+
+    // 3. Adicionar score da complexidade
+    score += complexityWeight[recipe.difficulty] || 0;
+
+    // 4. Adicionar score da categoria
+    if (assignedCategory && categoryWeight[assignedCategory as keyof typeof categoryWeight]) {
+        score += categoryWeight[assignedCategory as keyof typeof categoryWeight];
+    }
+    
+    // 5. Adicionar um pouco de variação baseada no título para diferenciar receitas parecidas
+    let titleHash = 0;
+    for (let i = 0; i < recipe.title.length; i++) {
+        titleHash = (titleHash << 5) - titleHash + recipe.title.charCodeAt(i);
+        titleHash |= 0;
+    }
+    score += (Math.abs(titleHash) % 10); // Adiciona um valor de 0 a 9
+
+    // 6. Normalizar o score para uma escala de 0 a 100
+    // O score máximo teórico pode ser alto, então definimos um teto razoável (ex: 80)
+    // para mapear para 100. Isso evita que a maioria das receitas fique no final da escala.
+    const maxScore = 85; 
+    const normalizedScore = Math.min(100, Math.floor((score / maxScore) * 100));
+
+    return normalizedScore;
+}
+
+
+// --- FIM DA LÓGICA DE CÁLCULO ---
 
 
 export type Recipe = {
@@ -127,11 +182,7 @@ function processAndCategorizeRecipes(): void {
         return; // Avoid reprocessing if already done
     }
 
-    const initialRecipes = (recipesData as Omit<Recipe, 'saleValue'>[]).map((recipe, index) => ({
-        ...recipe,
-        slug: `${createSlug(recipe.title)}-${recipe.id || index + 1}`,
-        saleValue: generateSaleValue(recipe.id)
-    }));
+    const initialRecipes = (recipesData as Omit<Recipe, 'saleValue'>[]);
 
     const categorizedRecipes: Recipe[] = [];
     const tempRecipesByCategory: { [categoryName: string]: Recipe[] } = {
@@ -141,7 +192,7 @@ function processAndCategorizeRecipes(): void {
         'Doces e Sobremesas': [],
     };
 
-    initialRecipes.forEach(recipe => {
+    initialRecipes.forEach((recipe, index) => {
         const lowerCaseTags = recipe.tags.map(t => t.toLowerCase());
         let assignedCategory: string | null = null;
 
@@ -155,14 +206,18 @@ function processAndCategorizeRecipes(): void {
         } else if (categoryKeywords['Doces e Sobremesas'].some(keyword => lowerCaseTags.includes(keyword))) {
             assignedCategory = 'Doces e Sobremesas';
         }
+        
+        const finalRecipe: Recipe = {
+            ...recipe,
+            slug: `${createSlug(recipe.title)}-${recipe.id || index + 1}`,
+            saleValue: calculateSalePotential(recipe, assignedCategory),
+            category: assignedCategory || undefined
+        };
+        
+        categorizedRecipes.push(finalRecipe);
 
         if (assignedCategory) {
-            const categorizedRecipe = { ...recipe, category: assignedCategory };
-            categorizedRecipes.push(categorizedRecipe);
-            tempRecipesByCategory[assignedCategory].push(categorizedRecipe);
-        } else {
-             // Fallback for uncategorized recipes, though the keywords should cover all.
-            categorizedRecipes.push(recipe);
+            tempRecipesByCategory[assignedCategory].push(finalRecipe);
         }
     });
 
