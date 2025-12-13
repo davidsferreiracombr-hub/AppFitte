@@ -4,36 +4,36 @@ import { Cake, Cookie, Croissant, Wheat } from 'lucide-react';
 import type { LucideProps } from 'lucide-react';
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 
-// --- LÓGICA DE CÁLCULO DE POTENCIAL DE VENDA ---
+// --- LÓGICA DE CÁLCULO DE POTENCIAL DE VENDA (RECALIBRADA) ---
 
-// 1. Definição de palavras-chave e seus pesos
+// 1. Definição de palavras-chave e seus pesos (valores reduzidos e rebalanceados)
 const ingredientWeight: { [key: string]: number } = {
-    // Custo Muito Alto (grande impacto no preço)
-    'camarão': 20, 'macadâmia': 18, 'pistache': 18, 'carne seca': 15,
+    // Custo Muito Alto
+    'camarão': 15, 'macadâmia': 12, 'pistache': 12, 'carne seca': 10, 'queijo gruyère': 8,
     // Custo Alto
-    'amêndoas': 12, 'nozes': 12, 'whey protein': 10, 'castanha de caju': 10, 
-    'chocolate 70%': 9, 'damasco': 9, 'queijo gruyère': 10,
+    'amêndoas': 8, 'nozes': 8, 'whey protein': 8, 'castanha de caju': 7, 
+    'chocolate 70%': 6, 'damasco': 6, 'palmito': 5, 'guariroba': 6,
     // Custo Médio
-    'cream cheese': 7, 'queijo coalho': 7, 'ricota': 6, 'parmesão': 6,
-    'biomassa de banana verde': 6, 'leite de coco': 5, 'óleo de coco': 5, 
-    'tâmaras': 7, 'frutas vermelhas': 8, 'morango': 6, 'palmito': 7, 'guariroba': 8,
-    // Custo Baixo (menor impacto)
-    'doce de leite': 4, 'goiabada': 4, 'leite condensado': 3, 'creme de leite': 3,
-    'aveia': 2, 'banana': 1, 'fubá': 1, 'batata-doce': 2, 'mandioca': 2, 'aipim': 2,
-    'abacate': 3, 'abóbora': 2, 'milho': 1, 'sardinha': 3,
+    'cream cheese': 5, 'queijo coalho': 5, 'ricota': 4, 'parmesão': 4,
+    'biomassa de banana verde': 5, 'leite de coco': 4, 'óleo de coco': 4, 
+    'tâmaras': 5, 'frutas vermelhas': 6, 'morango': 4, 'bacon': 4,
+    // Custo Baixo
+    'doce de leite': 3, 'goiabada': 2, 'leite condensado': 2, 'creme de leite': 2,
+    'aveia': 1, 'banana': 1, 'fubá': 1, 'batata-doce': 1, 'mandioca': 1, 'aipim': 1,
+    'abacate': 2, 'abóbora': 1, 'milho': 1, 'sardinha': 2, 'jaca': 3,
 };
 
 const complexityWeight = {
-    'Fácil': 5,
-    'Média': 15,
-    'Difícil': 25,
+    'Fácil': 3,
+    'Média': 8,
+    'Difícil': 15,
 };
 
 const categoryWeight = {
-    'Bolos e Tortas': 20,
-    'Doces e Sobremesas': 15,
-    'Pães e Salgados': 12,
-    'Saudáveis e Fit': 8, // Menor valor agregado percebido, geralmente
+    'Bolos e Tortas': 15,
+    'Doces e Sobremesas': 10,
+    'Pães e Salgados': 8,
+    'Saudáveis e Fit': 5, 
 };
 
 /**
@@ -45,7 +45,7 @@ const categoryWeight = {
 function calculateSalePotential(recipe: Omit<Recipe, 'saleValue' | 'category'>, assignedCategory: string | null): number {
     let score = 0;
 
-    // 2. Calcular score dos ingredientes
+    // Calcular score dos ingredientes
     const ingredientsString = recipe.ingredients.join(' ').toLowerCase();
     for (const ingredient in ingredientWeight) {
         if (ingredientsString.includes(ingredient)) {
@@ -53,26 +53,25 @@ function calculateSalePotential(recipe: Omit<Recipe, 'saleValue' | 'category'>, 
         }
     }
 
-    // 3. Adicionar score da complexidade
+    // Adicionar score da complexidade
     score += complexityWeight[recipe.difficulty] || 0;
 
-    // 4. Adicionar score da categoria
+    // Adicionar score da categoria
     if (assignedCategory && categoryWeight[assignedCategory as keyof typeof categoryWeight]) {
         score += categoryWeight[assignedCategory as keyof typeof categoryWeight];
     }
     
-    // 5. Adicionar um pouco de variação baseada no ID para diferenciar receitas parecidas
-    // Isso é mais estável que o hash do título.
-    score += (recipe.id % 10); // Adiciona um valor de 0 a 9
+    // Adicionar variação sutil baseada no ID para diferenciar receitas parecidas
+    score += (recipe.id % 5); // Valor de 0 a 4
 
-    // 6. Normalizar o score para uma escala de 0 a 100
-    // O teto foi ajustado após análise para melhor distribuição dos preços na faixa de R$5 a R$25
-    const maxScore = 95; 
+    // Normalizar o score para uma escala de 0 a 100
+    // Teto aumentado para achatar a curva de preços e evitar valores altos
+    const maxScore = 100; 
     let normalizedScore = Math.floor((score / maxScore) * 100);
 
-    // Garante que o score final esteja entre 5 e 98, para evitar preços absurdos nas extremidades
+    // Garante que o score final esteja entre 5 e 95
     if (normalizedScore < 5) normalizedScore = 5;
-    if (normalizedScore > 98) normalizedScore = 98;
+    if (normalizedScore > 95) normalizedScore = 95;
 
     return normalizedScore;
 }
