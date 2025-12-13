@@ -22,7 +22,7 @@ export function SalePriceMeter({ value, onValueChange }: SalePriceMeterProps) {
   const color = `hsl(${hue}, 80%, 55%)`;
 
   const minPrice = 1;
-  const maxPrice = 15;
+  const maxPrice = 25;
   const currentPrice = minPrice + (percentage / 100) * (maxPrice - minPrice);
 
   const handleInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
