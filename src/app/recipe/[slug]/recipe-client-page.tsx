@@ -6,11 +6,12 @@ import Image from 'next/image';
 import { type Recipe } from '@/lib/recipes';
 import { useFavorites } from '@/hooks/use-favorites';
 import { useToast } from '@/hooks/use-toast';
-import { ChefHat, Clock, Flame, Info, BookText, Award, Heart, Utensils, Mic } from 'lucide-react';
+import { ChefHat, Clock, Flame, Info, BookText, Award, Heart, Utensils, Mic, Thermometer } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Timer } from '@/components/Timer';
 import { cn } from '@/lib/utils';
 import { RecipeAudioPlayer } from '@/components/RecipeAudioPlayer';
+import { SalePriceMeter } from '@/components/sale-price-meter';
 
 type TimerInfo = {
   duration: number;
@@ -122,7 +123,7 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/20" />
-           <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group absolute top-28 right-4 rounded-full h-12 w-12 flex-shrink-0 bg-white/20 backdrop-blur-sm hover:bg-white/30 z-10">
+           <Button onClick={handleFavoriteClick} variant="ghost" size="icon" className="group absolute top-28 right-4 rounded-full h-12 w-12 flex-shrink-0 bg-white/20 backdrop-blur-sm hover:bg-white/30 z-10 lg:top-4">
                 <Heart className={cn(
                     "h-6 w-6 text-white group-hover:text-red-400 transition-all duration-300 group-active:scale-125", 
                     isFavorite ? "fill-red-500 text-red-500" : "fill-transparent"
@@ -207,6 +208,12 @@ export function RecipeClientPage({ recipe }: { recipe: Recipe }) {
 
                 <aside className="lg:col-span-2">
                     <div className="sticky top-28 space-y-8">
+
+                        <div className="bg-secondary rounded-2xl p-6">
+                            <h3 className="text-xl font-bold mb-4 flex items-center gap-3 text-foreground"><Thermometer className="h-6 w-6 text-primary" /> Potencial de Venda</h3>
+                             <p className="text-sm text-muted-foreground mb-4">Este medidor indica o potencial de lucro da receita baseado no custo de ingredientes e na percepção de valor pelo cliente.</p>
+                            <SalePriceMeter value={recipe.saleValue} />
+                        </div>
 
                        {recipe.notes && (
                             <div>

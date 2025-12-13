@@ -4,6 +4,25 @@ import { Cake, Cookie, Croissant, Wheat } from 'lucide-react';
 import type { LucideProps } from 'lucide-react';
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 
+// Função simples para gerar um hash a partir de uma string
+const hashCode = (str: string) => {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash |= 0; // Converte para 32bit integer
+  }
+  return hash;
+};
+
+// Gera um valor de venda pseudoaleatório e consistente baseado no ID da receita
+const generateSaleValue = (recipeId: number): number => {
+  const seed = hashCode(recipeId.toString());
+  const random = Math.abs(Math.sin(seed));
+  return Math.floor(random * 101); // Gera um valor entre 0 e 100
+};
+
+
 export type Recipe = {
   id: number;
   slug: string;
@@ -19,6 +38,7 @@ export type Recipe = {
   notes?: string;
   category?: string;
   imageUrl?: string;
+  saleValue: number; // Novo campo para o valor de venda
 };
 
 export type CategoryInfo = {
@@ -107,9 +127,10 @@ function processAndCategorizeRecipes(): void {
         return; // Avoid reprocessing if already done
     }
 
-    const initialRecipes = (recipesData as Recipe[]).map((recipe, index) => ({
+    const initialRecipes = (recipesData as Omit<Recipe, 'saleValue'>[]).map((recipe, index) => ({
         ...recipe,
-        slug: `${createSlug(recipe.title)}-${recipe.id || index + 1}`
+        slug: `${createSlug(recipe.title)}-${recipe.id || index + 1}`,
+        saleValue: generateSaleValue(recipe.id)
     }));
 
     const categorizedRecipes: Recipe[] = [];
@@ -164,7 +185,7 @@ export function getCategorizedRecipes(categoryName: string): Recipe[] {
     return recipesByCategory![categoryName] || [];
 }
 
-export function getRecipesByAllCategories(): { [categoryName: string]: Recipe[] } {
+export function getRecipesByAllCategories(): { [categoryName:string]: Recipe[] } {
     processAndCategorizeRecipes();
     return recipesByCategory!;
 }
