@@ -67,7 +67,7 @@ export default function PowerOfEconomyPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="max-w-4xl mx-auto">
             
-            <header className="text-center mb-16">
+            <header className="text-center mb-16 pt-16">
               <p className="text-primary font-semibold tracking-wider mb-2">FASE 01: CURSO PRÁTICO</p>
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">Como Economizar nos Ingredientes</h1>
               <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">

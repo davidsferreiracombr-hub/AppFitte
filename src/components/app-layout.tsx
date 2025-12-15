@@ -90,14 +90,20 @@ function Header() {
   const [searchTerm, setSearchTerm] = useState('');
   const { isMobileSheetOpen, setMobileSheetOpen } = useSidebar();
   
-  const isTransparentPage = pathname === '/' || pathname.startsWith('/recipe/') || pathname === '/courses';
+  const isRecipePage = pathname.startsWith('/recipe/');
+  const isCoursesPage = pathname.startsWith('/courses');
+  const isHomePage = pathname === '/';
+
+  const isTransparentHeader = isHomePage || isRecipePage;
+  const isDarkHeader = isCoursesPage;
 
   const headerClasses = cn(
     "left-0 right-0 z-40 py-4",
-    isTransparentPage ? "absolute top-0" : "sticky top-0 bg-background/80 backdrop-blur-sm border-b"
+    isTransparentHeader ? "absolute top-0" : "sticky top-0",
+    isDarkHeader ? "bg-black" : "bg-background/80 backdrop-blur-sm border-b"
   );
   
-  const textClasses = isTransparentPage ? "text-white" : "text-foreground";
+  const textClasses = isTransparentHeader || isDarkHeader ? "text-white" : "text-foreground";
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -127,7 +133,7 @@ function Header() {
                 {/* Logo */}
                 <div className="text-center absolute left-1/2 -translate-x-1/2">
                      <Link href="/" className="flex items-center gap-2">
-                        <span className={cn("font-extrabold text-3xl", isTransparentPage && pathname !== '/courses' ? "text-white" : "text-primary")}>Fitte</span>
+                        <span className={cn("font-extrabold text-3xl", isDarkHeader ? "text-primary" : textClasses)}>Fitte</span>
                     </Link>
                 </div>
                 
@@ -156,8 +162,9 @@ function Header() {
                               href={href}
                               className={cn(
                                 "transition-colors",
-                                isTransparentPage ? "text-white/80 hover:text-white" : "text-muted-foreground hover:text-foreground",
-                                pathname === href && (isTransparentPage ? "font-semibold text-white" : "font-semibold text-primary")
+                                isTransparentHeader ? "text-white/80 hover:text-white" : "text-muted-foreground hover:text-foreground",
+                                isDarkHeader ? "text-white/80 hover:text-white" : "text-muted-foreground hover:text-foreground",
+                                pathname === href && (isTransparentHeader || isDarkHeader ? "font-semibold text-white" : "font-semibold text-primary")
                               )}
                           >
                               {label}
@@ -172,11 +179,11 @@ function Header() {
                           onChange={(e) => setSearchTerm(e.target.value)}
                           className={cn(
                           "h-9 pr-10 rounded-full border-transparent text-sm w-full",
-                          isTransparentPage ? "bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30" : "bg-secondary text-foreground"
+                          isTransparentHeader || isDarkHeader ? "bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30" : "bg-secondary text-foreground"
                           )}
                       />
                       <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2">
-                          <Search className={cn("h-4 w-4", isTransparentPage ? "text-white/70" : "text-muted-foreground")} />
+                          <Search className={cn("h-4 w-4", isTransparentHeader || isDarkHeader ? "text-white/70" : "text-muted-foreground")} />
                       </button>
                   </form>
               </div>
@@ -192,14 +199,14 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
   
-  const pagesWithTransparentHeader = ['/', '/courses'];
-  const isTransparentPage = pagesWithTransparentHeader.includes(pathname) || pathname.startsWith('/recipe/');
+  const isTransparentHeader = pathname === '/' || pathname.startsWith('/recipe/');
+  const isCoursesPage = pathname.startsWith('/courses');
 
   return (
     <div className="flex min-h-screen w-full bg-background">
         <div className="flex flex-col flex-1">
           <Header />
-          <main className={cn("flex-1", !isTransparentPage && "pt-24")}>
+          <main className={cn("flex-1", !(isTransparentHeader || isCoursesPage) && "pt-24")}>
             {children}
           </main>
           {!(isHomePage) && <FloatingBackButton />}
