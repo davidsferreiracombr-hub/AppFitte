@@ -6,6 +6,7 @@ import { AppLayout } from '@/components/app-layout';
 import { GraduationCap } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 const memberModules = [
   {
@@ -70,13 +71,16 @@ const memberModules = [
 export default function MembersPage() {
   return (
     <AppLayout>
-      <div className="flex-1 p-4 sm:p-6 lg:p-8">
+      <div className="flex-1 p-4 sm:p-6 lg:p-8 bg-black">
         <div className="container mx-auto">
           <div className="text-center mb-12 max-w-3xl mx-auto">
+             <Link href="/" className="inline-block mb-4">
+                <h1 className="text-5xl font-extrabold tracking-tight text-primary">Fitte</h1>
+             </Link>
              <div className="inline-block bg-primary/10 text-primary text-sm font-bold px-4 py-1 rounded-full mb-4">
                 ✨ CONTEÚDO EXCLUSIVO ✨
             </div>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground">
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
               Área de Membros
             </h2>
             <p className="text-muted-foreground mt-4 text-lg md:text-xl">
@@ -88,7 +92,7 @@ export default function MembersPage() {
             {memberModules.map((item) => (
               <div 
                 key={item.title} 
-                className="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg border border-border/10 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl hover:border-primary/30"
+                className="group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg border border-border/10 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl hover:border-primary/30"
               >
                 <Image
                   src={item.imageUrl}
