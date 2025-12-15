@@ -40,7 +40,7 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
 export const navItems = [
     { href: '/', label: 'Início', icon: Home },
     { href: '/categories', label: 'Categorias', icon: LayoutGrid },
-    { href: '/courses', label: 'Cursos', icon: GraduationCap },
+    { href: '/courses', label: 'Membros', icon: GraduationCap },
     { href: '/favorites', label: 'Favoritos', icon: Heart },
     { href: '/reviews', label: 'Avaliações', icon: Star },
     { href: '/search', label: 'Busca', icon: Search },
@@ -62,7 +62,7 @@ function MobileSheet() {
                 </Link>
                 <nav className="flex flex-col gap-4">
                     {navItems.map(({ href, label, icon: Icon }) => {
-                       const isCourses = label === 'Cursos';
+                       const isCourses = label === 'Membros';
                        const linkClasses = cn(
                             "flex items-center gap-3 rounded-lg px-3 py-3 text-lg font-semibold transition-all",
                             pathname === href && !isCourses ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-secondary",
@@ -139,7 +139,7 @@ function Header() {
             <nav className="hidden lg:flex flex-col items-center gap-4 w-full">
               <div className="flex items-center justify-center gap-8 text-sm font-medium w-full max-w-lg">
                   {navItems.filter(item => item.href !== '/search').map(({ href, label, icon: Icon }) => {
-                      const isCourses = label === 'Cursos';
+                      const isCourses = label === 'Membros';
                       if (isCourses) {
                           return (
                               <Button asChild key={href} size="sm" className="rounded-full animate-pulse">

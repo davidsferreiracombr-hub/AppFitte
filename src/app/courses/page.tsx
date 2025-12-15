@@ -3,97 +3,113 @@
 
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
-import { GraduationCap, Cake, Wheat, Cookie, Camera, Package, BarChart } from 'lucide-react';
+import { GraduationCap } from 'lucide-react';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
-const courseModules = [
+const memberModules = [
   {
-    title: "Curso de Economia do Fitte",
-    imageUrl: "https://i.imgur.com/mIojegW.jpg",
-    description: "Aprenda a precificar, gerenciar custos e transformar sua paixão em um negócio de sucesso."
+    subtitle: 'MÓDULO 01',
+    title: 'Introdução à Imersão',
+    imageUrl: 'https://picsum.photos/seed/m1/400/500',
+    aiHint: 'man thinking',
+    moduleNumber: '01',
   },
   {
-    title: "Bolos e Tortas Saudáveis",
-    icon: Cake,
-    description: "Aprenda a fazer bolos e tortas estruturados em versões saudáveis e com muito sabor."
+    subtitle: 'MÓDULO 02',
+    title: 'Pilares da Atração',
+    imageUrl: 'https://picsum.photos/seed/m2/400/500',
+    aiHint: 'couple talking',
+    moduleNumber: '02',
   },
   {
-    title: "Doces e Sobremesas Veganas",
-    icon: Cookie,
-    description: "Descubra como substituir ingredientes de origem animal sem perder a textura e o sabor."
+    subtitle: 'MÓDULO 03',
+    title: 'Magnetismo Pessoal',
+    imageUrl: 'https://picsum.photos/seed/m3/400/500',
+    aiHint: 'man suit',
+    moduleNumber: '03',
   },
   {
-    title: "Precificação e Vendas",
-    icon: BarChart,
-    description: "Transforme sua paixão em um negócio lucrativo com estratégias de precificação e venda."
-  },
-   {
-    title: "Fotografia e Marketing de Alimentos",
-    icon: Camera,
-    description: "Crie fotos incríveis dos seus pratos e aprenda a divulgá-los nas redes sociais."
+    subtitle: 'MÓDULO 04',
+    title: 'Desapego Emocional',
+    imageUrl: 'https://picsum.photos/seed/m4/400/500',
+    aiHint: 'man shadow',
+    moduleNumber: '04',
   },
   {
-    title: "Embalagens e Apresentação",
-    icon: Package,
-    description: "Encante seus clientes com embalagens que valorizam seu produto e sua marca."
+    subtitle: 'MÓDULO 05',
+    title: 'Poder e Elegância',
+    imageUrl: 'https://picsum.photos/seed/m5/400/500',
+    aiHint: 'man wine',
+    moduleNumber: '05',
+  },
+  {
+    subtitle: 'MÓDULO 06',
+    title: 'Solitude e Confiança',
+    imageUrl: 'https://picsum.photos/seed/m6/400/500',
+    aiHint: 'man walking alone',
+    moduleNumber: '06',
+  },
+  {
+    subtitle: 'MÓDULO 07',
+    title: 'Estilo Pessoal',
+    imageUrl: 'https://picsum.photos/seed/m7/400/500',
+    aiHint: 'man fixing clothes',
+    moduleNumber: '07',
+  },
+  {
+    subtitle: 'MÓDULO 08',
+    title: 'Conversas',
+    imageUrl: 'https://picsum.photos/seed/m8/400/500',
+    aiHint: 'couple sunset',
+    moduleNumber: '08',
   },
 ];
 
-export default function CoursesPage() {
+
+export default function MembersPage() {
   return (
     <AppLayout>
-      <div className="flex-1 bg-black text-white">
-        <div className="mx-auto px-4 py-16 sm:px-6 lg:px-8 text-center">
-          
-          <div className="mb-12 max-w-3xl mx-auto">
+      <div className="flex-1 p-4 sm:p-6 lg:p-8">
+        <div className="container mx-auto">
+          <div className="text-center mb-12 max-w-3xl mx-auto">
              <div className="inline-block bg-primary/10 text-primary text-sm font-bold px-4 py-1 rounded-full mb-4">
-                ✨ FORMAÇÃO COMPLETA ✨
+                ✨ CONTEÚDO EXCLUSIVO ✨
             </div>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-              Escola Fitte
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground">
+              Área de Membros
             </h2>
-            <p className="text-slate-300 mt-4 text-lg md:text-xl">
-              Tudo que você precisa para transformar suas receitas em um negócio lucrativo.
+            <p className="text-muted-foreground mt-4 text-lg md:text-xl">
+              Sua jornada de desenvolvimento começa aqui. Acesse os módulos e transforme-se.
             </p>
           </div>
 
-          <div className="relative p-8 bg-gray-900/50 rounded-3xl border-2 border-primary/50 shadow-[0_0_30px_theme(colors.primary/0.3)] max-w-7xl mx-auto">
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {courseModules.map((item, index) => {
-                  return (
-                    <div key={item.title} className="group relative p-6 bg-gray-900 rounded-2xl border border-white/10 transition-all duration-300 hover:border-primary/80 hover:bg-primary/5 hover:-translate-y-2 flex flex-col h-80">
-                        <div className="relative flex items-center justify-center h-32 mb-4 flex-shrink-0">
-                           <div className="absolute inset-0 bg-primary/10 blur-2xl group-hover:bg-primary/20 transition-all duration-300"></div>
-                           {item.imageUrl ? (
-                             <Image
-                                src={item.imageUrl}
-                                alt={item.title}
-                                fill
-                                className="object-contain"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                priority
-                              />
-                           ) : (
-                             item.icon && <item.icon className="h-12 w-12 text-primary relative" />
-                           )}
-                        </div>
-                        <div className="flex flex-col flex-grow text-left">
-                          <h3 className="mt-4 text-lg font-bold text-white uppercase tracking-wider">{item.title}</h3>
-                          <p className="mt-2 text-sm text-slate-400 flex-grow">{item.description}</p>
-                        </div>
-                    </div>
-                  );
-                })}
-             </div>
-             
-             <div className="mt-12 text-center py-8 px-6 bg-black/30 backdrop-blur-sm rounded-xl border-2 border-dashed border-primary/30 max-w-lg mx-auto">
-                <GraduationCap className="mx-auto h-12 w-12 text-slate-400" />
-                <h3 className="mt-4 text-2xl font-bold text-white">Lançamento em Breve</h3>
-                <p className="mt-2 text-base text-slate-400">
-                    Estamos finalizando os últimos detalhes da nossa formação completa. Fique de olho para não perder a abertura das vagas!
-                </p>
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+            {memberModules.map((item) => (
+              <div 
+                key={item.title} 
+                className="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg border border-border/10 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl hover:border-primary/30"
+              >
+                <Image
+                  src={item.imageUrl}
+                  alt={item.title}
+                  data-ai-hint={item.aiHint}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white">
+                  <p className="text-xs font-bold uppercase tracking-wider text-primary">{item.subtitle}</p>
+                  <h3 className="text-xl lg:text-2xl font-bold tracking-tight mt-1" style={{ textShadow: '2px 2px 6px rgba(0,0,0,0.8)' }}>
+                    {item.title}
+                  </h3>
+                  <p className="text-sm font-semibold text-white/50 mt-2">{`MÓDULO ${item.moduleNumber}`}</p>
+                </div>
+              </div>
+            ))}
           </div>
+
         </div>
       </div>
     </AppLayout>
