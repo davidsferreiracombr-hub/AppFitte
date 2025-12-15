@@ -130,23 +130,23 @@ export default function OlhoNoOlhoPage() {
 
               <section className="bg-secondary/10 p-8 md:p-12 rounded-3xl border border-border/10">
                 <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3"><Search className="h-8 w-8" />Técnica 1: Conheça seu cliente</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10 text-center">
-                    <div>
-                        <h3 className="font-semibold text-lg text-white mb-2">Rapport Inicial</h3>
-                        <p className="text-muted-foreground text-sm">Cumprimente com cordialidade, apresente-se e crie um ambiente acolhedor.</p>
-                    </div>
-                    <div>
-                        <h3 className="font-semibold text-lg text-white mb-2">Perguntas Estratégicas</h3>
-                        <p className="text-muted-foreground text-sm">"É para uma celebração especial? Você tem alguma restrição alimentar?"</p>
-                    </div>
-                    <div>
-                        <h3 className="font-semibold text-lg text-white mb-2">Técnica SPIN</h3>
-                        <p className="text-muted-foreground text-sm">Situação, Problema, Implicação e Necessidade para descobrir desejos profundos.</p>
-                    </div>
-                    <div>
-                        <h3 className="font-semibold text-lg text-white mb-2">Recomendação Personalizada</h3>
-                        <p className="text-muted-foreground text-sm">Sugira produtos que atendam perfeitamente às necessidades identificadas.</p>
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-10 text-center">
+                    <Card className="p-4 bg-black/20 border-border/20">
+                        <CardTitle className="text-lg font-semibold text-white mb-2">Rapport Inicial</CardTitle>
+                        <CardContent className="p-0 text-sm text-muted-foreground">Cumprimente com cordialidade, apresente-se e crie um ambiente acolhedor.</CardContent>
+                    </Card>
+                    <Card className="p-4 bg-black/20 border-border/20">
+                        <CardTitle className="text-lg font-semibold text-white mb-2">Perguntas Estratégicas</CardTitle>
+                        <CardContent className="p-0 text-sm text-muted-foreground">"É para uma celebração especial? Você tem alguma restrição alimentar?"</CardContent>
+                    </Card>
+                    <Card className="p-4 bg-black/20 border-border/20">
+                        <CardTitle className="text-lg font-semibold text-white mb-2">Técnica SPIN</CardTitle>
+                        <CardContent className="p-0 text-sm text-muted-foreground">Situação, Problema, Implicação e Necessidade para descobrir desejos profundos.</CardContent>
+                    </Card>
+                    <Card className="p-4 bg-black/20 border-border/20">
+                        <CardTitle className="text-lg font-semibold text-white mb-2">Recomendação Personalizada</CardTitle>
+                        <CardContent className="p-0 text-sm text-muted-foreground">Sugira produtos que atendam perfeitamente às necessidades identificadas.</CardContent>
+                    </Card>
                 </div>
                 <div className="bg-primary/10 border-l-4 border-primary p-5 rounded-r-lg text-center">
                     <p className="font-semibold text-primary-foreground/90">
@@ -357,5 +357,3 @@ export default function OlhoNoOlhoPage() {
     </AppLayout>
   );
 }
-
-    
