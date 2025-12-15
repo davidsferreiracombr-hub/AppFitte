@@ -23,7 +23,7 @@ const memberModules = [
     imageUrl: 'https://i.imgur.com/KzouNnj.jpg',
     aiHint: 'couple talking',
     moduleNumber: '02',
-    href: '#',
+    href: '/courses/olho-no-olho',
   },
   {
     subtitle: 'FASE 03',
