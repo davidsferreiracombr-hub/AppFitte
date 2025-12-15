@@ -60,32 +60,22 @@ export default function CoursesPage() {
           <div className="relative p-8 bg-gray-900/50 rounded-3xl border-2 border-primary/50 shadow-[0_0_30px_theme(colors.primary/0.3)] max-w-7xl mx-auto">
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {courseModules.map((item, index) => {
-                  if (index === 0 && item.imageUrl) {
-                    return (
-                      <div key={item.title} className="group relative p-6 bg-gray-900 rounded-2xl border border-white/10 transition-all duration-300 hover:border-primary/80 hover:bg-primary/5 hover:-translate-y-2 flex flex-col h-80">
-                          <div className="relative flex items-center justify-center h-32 mb-4 flex-shrink-0">
-                           <Image
-                              src={item.imageUrl}
-                              alt={item.title}
-                              fill
-                              className="object-contain" // Garante que a imagem apareça inteira
-                              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                              priority
-                            />
-                          </div>
-                          <div className="flex flex-col flex-grow text-left">
-                              <h3 className="mt-4 text-lg font-bold text-white uppercase tracking-wider">{item.title}</h3>
-                              <p className="mt-2 text-sm text-slate-400 flex-grow">{item.description}</p>
-                          </div>
-                      </div>
-                    );
-                  }
-                  
                   return (
                     <div key={item.title} className="group relative p-6 bg-gray-900 rounded-2xl border border-white/10 transition-all duration-300 hover:border-primary/80 hover:bg-primary/5 hover:-translate-y-2 flex flex-col h-80">
                         <div className="relative flex items-center justify-center h-32 mb-4 flex-shrink-0">
                            <div className="absolute inset-0 bg-primary/10 blur-2xl group-hover:bg-primary/20 transition-all duration-300"></div>
-                           {item.icon && <item.icon className="h-12 w-12 text-primary relative" />}
+                           {item.imageUrl ? (
+                             <Image
+                                src={item.imageUrl}
+                                alt={item.title}
+                                fill
+                                className="object-contain"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                priority
+                              />
+                           ) : (
+                             item.icon && <item.icon className="h-12 w-12 text-primary relative" />
+                           )}
                         </div>
                         <div className="flex flex-col flex-grow text-left">
                           <h3 className="mt-4 text-lg font-bold text-white uppercase tracking-wider">{item.title}</h3>
