@@ -31,7 +31,7 @@ const memberModules = [
     imageUrl: 'https://i.imgur.com/PoAvRtJ.jpg',
     aiHint: 'man suit',
     moduleNumber: '03',
-    href: '#',
+    href: '/courses/vendas-digitais',
   },
   {
     subtitle: 'FASE 04',
