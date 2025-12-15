@@ -62,13 +62,13 @@ export default function CoursesPage() {
                 {courseModules.map((item, index) => {
                   if (index === 0 && item.imageUrl) {
                     return (
-                      <div key={item.title} className="group relative rounded-2xl overflow-hidden shadow-lg h-80 transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col justify-end md:col-span-2">
+                      <div key={item.title} className="group relative rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col justify-end md:col-span-2 lg:col-span-1">
                         <Image
                           src={item.imageUrl}
                           alt={item.title}
                           fill
-                          className="object-cover object-top transition-transform duration-300 group-hover:scale-110"
-                          sizes="(max-width: 768px) 100vw, 66vw"
+                          className="object-cover object-center transition-transform duration-300 group-hover:scale-110"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           priority
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
