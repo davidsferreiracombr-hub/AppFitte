@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
-import { GraduationCap, Cake, Wheat, Cookie } from 'lucide-react';
+import { GraduationCap, Cake, Wheat, Cookie, Camera, Package } from 'lucide-react';
 
 const courseModules = [
   {
@@ -26,6 +26,16 @@ const courseModules = [
     icon: Cookie,
     description: "Transforme sua paixão em um negócio lucrativo com estratégias de venda."
   },
+   {
+    title: "Módulo 5: Fotografia e Marketing",
+    icon: Camera,
+    description: "Crie fotos incríveis dos seus doces e aprenda a divulgá-los nas redes sociais."
+  },
+  {
+    title: "Módulo 6: Embalagens e Apresentação",
+    icon: Package,
+    description: "Encante seus clientes com embalagens que valorizam seu produto e sua marca."
+  },
 ];
 
 export default function CoursesPage() {
@@ -47,7 +57,7 @@ export default function CoursesPage() {
           </div>
 
           <div className="relative p-8 bg-gray-900/50 rounded-3xl border-2 border-primary/50 shadow-[0_0_30px_theme(colors.primary/0.3)]">
-             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 {courseModules.map((item) => (
                     <div key={item.title} className="group relative p-6 bg-gray-900 rounded-2xl border border-white/10 transition-all duration-300 hover:border-primary/80 hover:bg-primary/5 hover:-translate-y-2">
                         <div className="relative flex items-center justify-center h-24">
