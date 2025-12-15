@@ -63,8 +63,8 @@ const conservationStats = [
 export default function PowerOfEconomyPage() {
   return (
     <AppLayout>
-      <div className="flex-1 bg-background text-foreground">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="flex-1 bg-black text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="max-w-4xl mx-auto">
             
             <header className="text-center mb-16">
@@ -84,13 +84,13 @@ export default function PowerOfEconomyPage() {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {benefitCards.map(card => (
-                    <Card key={card.title} className="text-center p-6 border-2 border-transparent hover:border-primary/50 hover:shadow-lg transition-all">
+                    <Card key={card.title} className="text-center p-6 bg-secondary/5 border-border/20 hover:border-primary/50 hover:shadow-lg transition-all">
                         <div className="flex justify-center mb-4">
                             <div className="bg-primary/10 p-3 rounded-full">
                                 <card.icon className="h-8 w-8 text-primary" />
                             </div>
                         </div>
-                        <CardTitle className="text-xl mb-2">{card.title}</CardTitle>
+                        <CardTitle className="text-xl mb-2 text-white">{card.title}</CardTitle>
                         <CardContent className="p-0 text-muted-foreground text-sm">
                             {card.description}
                         </CardContent>
@@ -100,15 +100,15 @@ export default function PowerOfEconomyPage() {
               </section>
 
               {/* Planejamento é a chave */}
-              <section className="bg-secondary p-8 md:p-12 rounded-3xl">
+              <section className="bg-secondary/10 p-8 md:p-12 rounded-3xl border border-border/10">
                 <h2 className="text-3xl font-bold mb-8 text-center">Planejamento é a Chave</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
                     {planningTips.map(tip => (
                         <div key={tip.title} className="flex flex-col items-center text-center">
-                            <div className="bg-background p-3 rounded-full mb-3 shadow-sm">
+                            <div className="bg-black/30 p-3 rounded-full mb-3 shadow-sm border border-border/10">
                                 <tip.icon className="h-7 w-7 text-primary" />
                             </div>
-                            <h3 className="font-semibold text-lg">{tip.title}</h3>
+                            <h3 className="font-semibold text-lg text-white">{tip.title}</h3>
                             <p className="text-muted-foreground text-sm">{tip.description}</p>
                         </div>
                     ))}
@@ -124,17 +124,17 @@ export default function PowerOfEconomyPage() {
               <section>
                  <h2 className="text-3xl font-bold mb-10 text-center">Substituições Inteligentes</h2>
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <Card className="p-6">
+                    <Card className="p-6 bg-secondary/5 border-border/20">
                         <CardHeader className="p-0 mb-4">
-                            <CardTitle>Equivalentes mais baratos</CardTitle>
+                            <CardTitle className="text-white">Equivalentes mais baratos</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0 space-y-2 text-muted-foreground">
                             <p>Troque ingredientes caros por opções nutricionalmente equivalentes, como quinoa por arroz integral, amêndoas por amendoim e salmão por sardinha.</p>
                         </CardContent>
                     </Card>
-                     <Card className="p-6">
+                     <Card className="p-6 bg-secondary/5 border-border/20">
                         <CardHeader className="p-0 mb-4">
-                            <CardTitle>Ingredientes Sazonais</CardTitle>
+                            <CardTitle className="text-white">Ingredientes Sazonais</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0 space-y-2 text-muted-foreground">
                             <p>Use frutas e vegetais da estação. São mais baratos, frescos e saborosos. No verão, mangas e tomates. No inverno, laranjas e brócolis.</p>
@@ -148,54 +148,54 @@ export default function PowerOfEconomyPage() {
                 <h2 className="text-3xl font-bold mb-10 text-center">Compras Estratégicas no Mercado</h2>
                 <div className="space-y-6">
                     <div>
-                        <h3 className="font-semibold text-xl mb-1">Feiras e Mercados Locais</h3>
+                        <h3 className="font-semibold text-xl mb-1 text-white">Feiras e Mercados Locais</h3>
                         <p className="text-muted-foreground">Prefira feiras para comprar frutas e vegetais. São mais baratos, frescos e no final da feira os preços caem ainda mais.</p>
                     </div>
                     <div>
-                        <h3 className="font-semibold text-xl mb-1">Compras a Granel</h3>
+                        <h3 className="font-semibold text-xl mb-1 text-white">Compras a Granel</h3>
                         <p className="text-muted-foreground">Compre grãos, sementes, temperos e cereais a granel. Os preços por quilo são muito mais baixos.</p>
                     </div>
                      <div>
-                        <h3 className="font-semibold text-xl mb-1">Compare e Escolha Marcas Próprias</h3>
+                        <h3 className="font-semibold text-xl mb-1 text-white">Compare e Escolha Marcas Próprias</h3>
                         <p className="text-muted-foreground">Experimente marcas próprias de supermercados. Em muitos casos, a qualidade é equivalente, mas o preço pode ser até 40% menor.</p>
                     </div>
                 </div>
-                <div className="mt-10 p-6 bg-card border-l-4 border-primary italic text-center rounded-r-xl shadow-sm">
-                    <p className="text-lg text-foreground/90">"Economia inteligente não é comprar o mais barato, mas sim obter o melhor custo-benefício."</p>
+                <div className="mt-10 p-6 bg-secondary/5 border-l-4 border-primary italic text-center rounded-r-xl shadow-sm">
+                    <p className="text-lg text-white/90">"Economia inteligente não é comprar o mais barato, mas sim obter o melhor custo-benefício."</p>
                 </div>
               </section>
 
                {/* Conservar e Evitar Desperdício */}
-              <section className="bg-secondary p-8 md:p-12 rounded-3xl">
+              <section className="bg-secondary/10 p-8 md:p-12 rounded-3xl border border-border/10">
                 <h2 className="text-3xl font-bold mb-10 text-center">Dicas para Conservar e Evitar Desperdício</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                     <div className="flex gap-4 items-start">
                         <Package className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
                         <div>
-                            <h3 className="font-semibold text-lg">Armazenamento Correto</h3>
+                            <h3 className="font-semibold text-lg text-white">Armazenamento Correto</h3>
                             <p className="text-muted-foreground text-sm">Aprenda a armazenar cada tipo de alimento da forma adequada para que durem mais tempo.</p>
                         </div>
                     </div>
                      <div className="flex gap-4 items-start">
                         <Clock className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
                         <div>
-                            <h3 className="font-semibold text-lg">Congele Porções Extras</h3>
+                            <h3 className="font-semibold text-lg text-white">Congele Porções Extras</h3>
                             <p className="text-muted-foreground text-sm">Cozinhe em maior quantidade e congele o excedente em porções individuais. Isso economiza tempo e dinheiro.</p>
                         </div>
                     </div>
                      <div className="flex gap-4 items-start">
                         <CheckCircle className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
                         <div>
-                            <h3 className="font-semibold text-lg">Controle de Validade</h3>
+                            <h3 className="font-semibold text-lg text-white">Controle de Validade</h3>
                             <p className="text-muted-foreground text-sm">Organize sua geladeira com o método "Primeiro que Entra, Primeiro que Sai" para consumir os alimentos mais antigos primeiro.</p>
                         </div>
                     </div>
                 </div>
                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                     {conservationStats.map(stat => (
-                        <div key={stat.label} className="bg-background p-6 rounded-2xl shadow-sm">
+                        <div key={stat.label} className="bg-black/30 p-6 rounded-2xl shadow-sm border border-border/10">
                             <p className="text-4xl font-extrabold text-primary">{stat.value}</p>
-                            <p className="font-semibold mt-1">{stat.label}</p>
+                            <p className="font-semibold mt-1 text-white">{stat.label}</p>
                             <p className="text-xs text-muted-foreground">{stat.description}</p>
                         </div>
                     ))}
