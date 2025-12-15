@@ -10,56 +10,56 @@ import Link from 'next/link';
 
 const memberModules = [
   {
-    subtitle: 'MÓDULO 01',
+    subtitle: 'FASE 01',
     title: 'Introdução à Imersão',
     imageUrl: 'https://picsum.photos/seed/m1/400/500',
     aiHint: 'man thinking',
     moduleNumber: '01',
   },
   {
-    subtitle: 'MÓDULO 02',
+    subtitle: 'FASE 02',
     title: 'Pilares da Atração',
     imageUrl: 'https://picsum.photos/seed/m2/400/500',
     aiHint: 'couple talking',
     moduleNumber: '02',
   },
   {
-    subtitle: 'MÓDULO 03',
+    subtitle: 'FASE 03',
     title: 'Magnetismo Pessoal',
     imageUrl: 'https://picsum.photos/seed/m3/400/500',
     aiHint: 'man suit',
     moduleNumber: '03',
   },
   {
-    subtitle: 'MÓDULO 04',
+    subtitle: 'FASE 04',
     title: 'Desapego Emocional',
     imageUrl: 'https://picsum.photos/seed/m4/400/500',
     aiHint: 'man shadow',
     moduleNumber: '04',
   },
   {
-    subtitle: 'MÓDULO 05',
+    subtitle: 'FASE 05',
     title: 'Poder e Elegância',
     imageUrl: 'https://picsum.photos/seed/m5/400/500',
     aiHint: 'man wine',
     moduleNumber: '05',
   },
   {
-    subtitle: 'MÓDULO 06',
+    subtitle: 'FASE 06',
     title: 'Solitude e Confiança',
     imageUrl: 'https://picsum.photos/seed/m6/400/500',
     aiHint: 'man walking alone',
     moduleNumber: '06',
   },
   {
-    subtitle: 'MÓDULO 07',
+    subtitle: 'FASE 07',
     title: 'Estilo Pessoal',
     imageUrl: 'https://picsum.photos/seed/m7/400/500',
     aiHint: 'man fixing clothes',
     moduleNumber: '07',
   },
   {
-    subtitle: 'MÓDULO 08',
+    subtitle: 'FASE 08',
     title: 'Conversas',
     imageUrl: 'https://picsum.photos/seed/m8/400/500',
     aiHint: 'couple sunset',
@@ -81,7 +81,7 @@ export default function MembersPage() {
               Área de Membros
             </h2>
             <p className="text-muted-foreground mt-4 text-lg md:text-xl">
-              Sua jornada de desenvolvimento começa aqui. Acesse os módulos e transforme-se.
+              Sua jornada de desenvolvimento começa aqui. Acesse as fases e transforme-se.
             </p>
           </div>
 
@@ -105,7 +105,7 @@ export default function MembersPage() {
                   <h3 className="text-xl lg:text-2xl font-bold tracking-tight mt-1" style={{ textShadow: '2px 2px 6px rgba(0,0,0,0.8)' }}>
                     {item.title}
                   </h3>
-                  <p className="text-sm font-semibold text-white/50 mt-2">{`MÓDULO ${item.moduleNumber}`}</p>
+                  <p className="text-sm font-semibold text-white/50 mt-2">{`FASE ${item.moduleNumber}`}</p>
                 </div>
               </div>
             ))}
