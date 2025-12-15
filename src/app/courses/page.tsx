@@ -51,20 +51,6 @@ const memberModules = [
     aiHint: 'man walking alone',
     moduleNumber: '06',
   },
-  {
-    subtitle: 'FASE 07',
-    title: 'Estilo Pessoal',
-    imageUrl: 'https://picsum.photos/seed/m7/400/500',
-    aiHint: 'man fixing clothes',
-    moduleNumber: '07',
-  },
-  {
-    subtitle: 'FASE 08',
-    title: 'Conversas',
-    imageUrl: 'https://picsum.photos/seed/m8/400/500',
-    aiHint: 'couple sunset',
-    moduleNumber: '08',
-  },
 ];
 
 
