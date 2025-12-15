@@ -11,7 +11,7 @@ import Link from 'next/link';
 const memberModules = [
   {
     subtitle: 'FASE 01',
-    title: 'Introdução à Imersão',
+    title: 'O poder da economia',
     imageUrl: 'https://i.imgur.com/zunuzGd.jpg',
     aiHint: 'man thinking',
     moduleNumber: '01',
