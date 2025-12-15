@@ -62,22 +62,21 @@ export default function CoursesPage() {
                 {courseModules.map((item, index) => {
                   if (index === 0 && item.imageUrl) {
                     return (
-                      <div key={item.title} className="group relative rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col justify-end md:col-span-2 lg:col-span-1">
-                        <Image
-                          src={item.imageUrl}
-                          alt={item.title}
-                          fill
-                          className="object-cover object-center transition-transform duration-300 group-hover:scale-110"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          priority
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                        <div className="relative p-6 text-white text-left">
-                          <h3 className="text-2xl font-bold tracking-tight" style={{ textShadow: '2px 2px 6px rgba(0,0,0,0.8)' }}>
-                            {item.title}
-                          </h3>
-                          <p className="mt-1 text-sm font-medium opacity-90 max-w-xs">{item.description}</p>
-                        </div>
+                      <div key={item.title} className="group relative p-6 bg-gray-900 rounded-2xl border border-white/10 transition-all duration-300 hover:border-primary/80 hover:bg-primary/5 hover:-translate-y-2 flex flex-col h-80">
+                          <div className="relative flex items-center justify-center h-32 mb-4 flex-shrink-0">
+                           <Image
+                              src={item.imageUrl}
+                              alt={item.title}
+                              fill
+                              className="object-contain" // Garante que a imagem apareça inteira
+                              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              priority
+                            />
+                          </div>
+                          <div className="flex flex-col flex-grow text-left">
+                              <h3 className="mt-4 text-lg font-bold text-white uppercase tracking-wider">{item.title}</h3>
+                              <p className="mt-2 text-sm text-slate-400 flex-grow">{item.description}</p>
+                          </div>
                       </div>
                     );
                   }
