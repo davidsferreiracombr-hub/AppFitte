@@ -10,7 +10,7 @@ export default function CoursesPage() {
     <AppLayout>
       <div className="relative flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8">
         {/* Fundo Gradiente */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-background to-primary/20" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-primary/10 to-primary/30" />
 
         <div className="max-w-2xl mx-auto text-center">
           <div className="mb-12">
