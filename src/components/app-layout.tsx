@@ -127,7 +127,7 @@ function Header() {
                 {/* Logo */}
                 <div className="text-center absolute left-1/2 -translate-x-1/2">
                      <Link href="/" className="flex items-center gap-2">
-                        <span className={cn("font-extrabold text-3xl", isTransparentPage ? "text-white" : "text-primary")}>Fitte</span>
+                        <span className={cn("font-extrabold text-3xl", isTransparentPage && pathname !== '/courses' ? "text-white" : "text-primary")}>Fitte</span>
                     </Link>
                 </div>
                 
