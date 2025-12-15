@@ -9,7 +9,7 @@ import Image from 'next/image';
 const courseModules = [
   {
     title: "Curso de Economia do Fitte",
-    imageUrl: "https://i.imgur.com/zunuzGd.jpg",
+    imageUrl: "https://i.imgur.com/mIojegW.jpg",
     description: "Aprenda a precificar, gerenciar custos e transformar sua paixão em um negócio de sucesso."
   },
   {
@@ -62,12 +62,12 @@ export default function CoursesPage() {
                 {courseModules.map((item, index) => {
                   if (index === 0 && item.imageUrl) {
                     return (
-                      <div key={item.title} className="group relative rounded-2xl overflow-hidden shadow-lg h-80 transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col justify-end">
+                      <div key={item.title} className="group relative rounded-2xl overflow-hidden shadow-lg h-80 transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col justify-end md:col-span-2 lg:col-span-1">
                         <Image
                           src={item.imageUrl}
                           alt={item.title}
                           fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-110"
+                          className="object-cover object-center transition-transform duration-300 group-hover:scale-110"
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           priority
                         />
