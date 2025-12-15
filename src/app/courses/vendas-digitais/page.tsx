@@ -11,12 +11,12 @@ const whyOnlineBenefits = [
   {
     icon: TrendingUp,
     title: "Mercado em Expansão",
-    description: "O mercado brasileiro de doces movimenta bilhões, com crescimento constante no delivery e compras online."
+    description: "O mercado brasileiro de sobremesas movimenta bilhões, com crescimento constante no delivery e compras online."
   },
   {
     icon: Award,
     title: "Produtos Campeões",
-    description: "Pudim, bolo em porção e brigadeiros lideram as vendas no delivery, oferecendo alta demanda e boa margem de lucro."
+    description: "Pudim, bolo em porção и brigadeiros lideram as vendas no delivery, oferecendo alta demanda e boa margem de lucro."
   },
   {
     icon: DollarSign,
@@ -26,9 +26,9 @@ const whyOnlineBenefits = [
 ];
 
 const niches = [
-    { title: "Doces Artesanais Tradicionais", description: "Pudins caseiros, bolos de festa, brigadeiros clássicos." },
+    { title: "Sobremesas Artesanais Tradicionais", description: "Pudins caseiros, bolos de festa, brigadeiros clássicos." },
     { title: "Sobremesas Diet & Fit", description: "Opções sem açúcar, low carb, com adoçantes naturais." },
-    { title: "Doces Veganos", description: "Crescimento exponencial de consumidores buscando alternativas sem leite e ovos." },
+    { title: "Sobremesas Veganas", description: "Crescimento exponencial de consumidores buscando alternativas sem leite e ovos." },
     { title: "Linha Gourmet Premium", description: "Ingredientes nobres, apresentação sofisticada, embalagens diferenciadas." },
     { title: "Sobremesas Funcionais", description: "Com proteína, probióticos ou ingredientes que agregam benefícios à saúde." },
 ];
@@ -87,7 +87,7 @@ export default function VendasDigitaisPage() {
               <p className="text-primary font-semibold tracking-wider mb-2">FASE 03: CURSO PRÁTICO</p>
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">Como Vender Sobremesas Online</h1>
               <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-                Transforme sua paixão por doces em um negócio lucrativo com estratégias práticas para conquistar clientes no ambiente digital.
+                Transforme sua paixão por sobremesas em um negócio lucrativo com estratégias práticas para conquistar clientes no ambiente digital.
               </p>
             </header>
 
