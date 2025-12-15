@@ -4,7 +4,8 @@
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Lightbulb, BarChart3, ListChecks, CalendarDays, ShoppingCart, Leaf, Trash2, Package, Clock, Scale, DollarSign } from 'lucide-react';
+import { CheckCircle, Lightbulb, ListChecks, CalendarDays, ShoppingCart, Leaf, Package, Clock, Scale, DollarSign, ArrowRight, BookOpen, Target, Users } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
 
 const benefitCards = [
   {
@@ -80,7 +81,7 @@ export default function PowerOfEconomyPage() {
               <section>
                 <h2 className="text-3xl font-bold mb-4 text-center">Por que economizar nos ingredientes?</h2>
                 <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto">
-                  Economizar é uma estratégia inteligente para tornar a alimentação saudável mais acessível e sustentável. Você cuida do seu bolso e desenvolve uma relação mais consciente com os alimentos.
+                  Economizar nos ingredientes não significa abrir mão da qualidade ou do sabor. É uma estratégia inteligente para tornar a alimentação saudável mais acessível, desenvolvendo uma relação mais consciente com os alimentos.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {benefitCards.map(card => (
@@ -119,17 +120,18 @@ export default function PowerOfEconomyPage() {
                     </p>
                 </div>
               </section>
-
-              {/* Substituições Inteligentes */}
+              
+              {/* Seção de Substituições */}
               <section>
-                 <h2 className="text-3xl font-bold mb-10 text-center">Substituições Inteligentes</h2>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <h2 className="text-3xl font-bold mb-10 text-center">Substituições Inteligentes</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <Card className="p-6 bg-secondary/5 border-border/20">
                         <CardHeader className="p-0 mb-4">
                             <CardTitle className="text-white">Equivalentes mais baratos</CardTitle>
                         </CardHeader>
-                        <CardContent className="p-0 space-y-2 text-muted-foreground">
+                        <CardContent className="p-0 space-y-3 text-muted-foreground">
                             <p>Troque ingredientes caros por opções nutricionalmente equivalentes, como quinoa por arroz integral, amêndoas por amendoim e salmão por sardinha.</p>
+                            <p className="font-mono text-sm text-white/70">Quinoa → Arroz integral<br/>Amêndoas → Amendoim<br/>Salmão → Sardinha</p>
                         </CardContent>
                     </Card>
                      <Card className="p-6 bg-secondary/5 border-border/20">
@@ -138,9 +140,10 @@ export default function PowerOfEconomyPage() {
                         </CardHeader>
                         <CardContent className="p-0 space-y-2 text-muted-foreground">
                             <p>Use frutas e vegetais da estação. São mais baratos, frescos e saborosos. No verão, mangas e tomates. No inverno, laranjas e brócolis.</p>
+                             <p>Aproveite sobras: um frango assado pode virar recheio de tapioca, e arroz vira um belo arroz de forno.</p>
                         </CardContent>
                     </Card>
-                 </div>
+                </div>
               </section>
 
               {/* Compras Estratégicas */}
@@ -201,6 +204,130 @@ export default function PowerOfEconomyPage() {
                     ))}
                  </div>
               </section>
+
+              {/* Exemplo Prático */}
+              <section>
+                <h2 className="text-3xl font-bold mb-4 text-center">Exemplo Prático: Receita Econômica no Fitte</h2>
+                <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto">
+                    Vamos analisar uma receita popular e mostrar como economizar significativamente fazendo escolhas inteligentes.
+                </p>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <Card className="bg-secondary/5 border-red-500/20">
+                        <CardHeader>
+                            <CardTitle className="text-red-400">Receita Original: Bowl de Quinoa com Salmão</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-2 text-sm text-muted-foreground">
+                            <p>• Quinoa importada</p>
+                            <p>• Salmão fresco</p>
+                            <p>• Abacate</p>
+                            <p>• Mix de folhas orgânicas</p>
+                            <p>• Azeite extra virgem</p>
+                            <p>• Tahine</p>
+                            <p className="font-bold text-lg text-white pt-2">Custo por porção: R$ 28,00</p>
+                        </CardContent>
+                    </Card>
+                     <Card className="bg-secondary/5 border-green-500/20">
+                        <CardHeader>
+                            <CardTitle className="text-green-400">Versão Econômica: Bowl de Arroz com Sardinha</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-2 text-sm text-muted-foreground">
+                            <p>• Arroz integral (granel)</p>
+                            <p>• Sardinha em conserva</p>
+                            <p>• Abóbora assada (sazonal)</p>
+                            <p>• Alface e rúcula (feira)</p>
+                            <p>• Óleo de girassol</p>
+                            <p>• Pasta de amendoim</p>
+                             <p className="font-bold text-lg text-white pt-2">Custo por porção: R$ 9,50</p>
+                        </CardContent>
+                    </Card>
+                </div>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center mt-8">
+                    <div className="bg-primary/10 p-6 rounded-2xl shadow-sm border border-border/10">
+                        <p className="text-4xl font-extrabold text-primary">66%</p>
+                        <p className="font-semibold mt-1 text-white">Economia total</p>
+                        <p className="text-xs text-muted-foreground">Por porção, mantendo qualidade nutricional</p>
+                    </div>
+                     <div className="bg-primary/10 p-6 rounded-2xl shadow-sm border border-border/10">
+                        <p className="text-4xl font-extrabold text-primary">R$74</p>
+                        <p className="font-semibold mt-1 text-white">Economia mensal</p>
+                        <p className="text-xs text-muted-foreground">Fazendo essa receita 4x por mês</p>
+                    </div>
+                 </div>
+              </section>
+              
+              {/* Benefícios */}
+              <section>
+                <h2 className="text-3xl font-bold mb-10 text-center">Benefícios de Economizar nos Ingredientes</h2>
+                 <div className="space-y-8">
+                    <div className="flex gap-5 items-start">
+                        <div className="flex-shrink-0 bg-secondary/10 p-3 rounded-full border border-border/10"><DollarSign className="h-6 w-6 text-primary" /></div>
+                        <div>
+                            <h3 className="font-semibold text-xl text-white">Mais dinheiro disponível</h3>
+                            <p className="text-muted-foreground">Com as estratégias certas, você pode economizar entre R$ 300 e R$ 600 por mês. Esse dinheiro extra pode ser direcionado para outras prioridades importantes.</p>
+                        </div>
+                    </div>
+                     <div className="flex gap-5 items-start">
+                        <div className="flex-shrink-0 bg-secondary/10 p-3 rounded-full border border-border/10"><CheckCircle className="h-6 w-6 text-primary" /></div>
+                        <div>
+                            <h3 className="font-semibold text-xl text-white">Alimentação de qualidade</h3>
+                            <p className="text-muted-foreground">Economizar não significa comer pior. Você prova que é possível cuidar da saúde sem comprometer o orçamento.</p>
+                        </div>
+                    </div>
+                     <div className="flex gap-5 items-start">
+                        <div className="flex-shrink-0 bg-secondary/10 p-3 rounded-full border border-border/10"><Leaf className="h-6 w-6 text-primary" /></div>
+                        <div>
+                            <h3 className="font-semibold text-xl text-white">Impacto ambiental positivo</h3>
+                            <p className="text-muted-foreground">Menos desperdício significa menos lixo produzido. Ao comprar apenas o necessário e aproveitar sobras, você contribui para um planeta mais sustentável.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div className="mt-10 p-6 bg-secondary/5 border-l-4 border-primary italic text-center rounded-r-xl shadow-sm">
+                    <p className="text-lg text-white/90">"Economizar nos ingredientes é uma forma de empoderamento financeiro. É ganhar em todas as frentes."</p>
+                </div>
+              </section>
+              
+              <Separator className="bg-border/20"/>
+
+              {/* Conclusão */}
+              <section>
+                 <h2 className="text-3xl font-bold mb-4 text-center">Conclusão e Próximos Passos</h2>
+                 <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto">
+                    Agora você tem as ferramentas para começar a economizar. O segredo está em aplicar consistentemente as estratégias que aprendeu.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <Card className="p-6 bg-secondary/5 border-border/20">
+                        <Target className="h-8 w-8 text-primary mx-auto mb-3" />
+                        <h3 className="font-semibold text-lg text-white">Comece hoje mesmo</h3>
+                        <p className="text-muted-foreground text-sm mt-1">Abra o app Fitte, escolha uma receita e aplique pelo menos três dicas que aprendeu.</p>
+                    </Card>
+                     <Card className="p-6 bg-secondary/5 border-border/20">
+                        <BookOpen className="h-8 w-8 text-primary mx-auto mb-3" />
+                        <h3 className="font-semibold text-lg text-white">Desenvolva seu estilo</h3>
+                        <p className="text-muted-foreground text-sm mt-1">Use o planejamento semanal para criar seu próprio sistema econômico de alimentação.</p>
+                    </Card>
+                     <Card className="p-6 bg-secondary/5 border-border/20">
+                        <Users className="h-8 w-8 text-primary mx-auto mb-3" />
+                        <h3 className="font-semibold text-lg text-white">Compartilhe conquistas</h3>
+                        <p className="text-muted-foreground text-sm mt-1">Use as ferramentas sociais do app para inspirar outros e se motivar com a comunidade.</p>
+                    </Card>
+                </div>
+              </section>
+
+              {/* Recursos Adicionais */}
+               <section className="bg-secondary/10 p-8 md:p-12 rounded-3xl border border-border/10">
+                <h2 className="text-3xl font-bold mb-8 text-center">Recursos Adicionais no Fitte</h2>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 max-w-2xl mx-auto">
+                    <li className="flex items-center gap-3"><ArrowRight className="h-5 w-5 text-primary"/> Guia de substituições de ingredientes</li>
+                    <li className="flex items-center gap-3"><ArrowRight className="h-5 w-5 text-primary"/> Calculadora de economia mensal</li>
+                    <li className="flex items-center gap-3"><ArrowRight className="h-5 w-5 text-primary"/> Comunidade de usuários econômicos</li>
+                    <li className="flex items-center gap-3"><ArrowRight className="h-5 w-5 text-primary"/> Receitas da semana com ingredientes em promoção</li>
+                    <li className="flex items-center gap-3"><ArrowRight className="h-5 w-5 text-primary"/> Dicas semanais de economia por email</li>
+                </ul>
+                <div className="mt-10 text-center">
+                    <p className="text-xl font-bold text-white">Sua jornada de economia começa agora!</p>
+                    <p className="text-muted-foreground">Pequenas mudanças consistentes geram grandes resultados.</p>
+                </div>
+               </section>
 
             </main>
           </div>
