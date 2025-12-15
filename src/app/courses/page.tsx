@@ -3,33 +3,33 @@
 
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
-import { GraduationCap, Cake, Wheat, Cookie, Camera, Package } from 'lucide-react';
+import { GraduationCap, Cake, Wheat, Cookie, Camera, Package, BarChart } from 'lucide-react';
 
 const courseModules = [
   {
-    title: "Módulo 1: Confeitaria Low Carb",
+    title: "Módulo 1: Fundamentos da Culinária Fit",
     icon: Wheat,
-    description: "Domine as técnicas para criar doces deliciosos com baixo teor de carboidratos."
+    description: "Domine as técnicas para criar pratos deliciosos com baixo teor de carboidratos e ingredientes funcionais."
   },
   {
-    title: "Módulo 2: Bolos e Tortas Fit",
+    title: "Módulo 2: Bolos e Tortas Saudáveis",
     icon: Cake,
-    description: "Aprenda a fazer bolos e tortas estruturados em versões saudáveis e funcionais."
+    description: "Aprenda a fazer bolos e tortas estruturados em versões saudáveis e com muito sabor."
   },
   {
-    title: "Módulo 3: Doces Veganos",
-    icon: GraduationCap,
-    description: "Descubra como substituir ingredientes de origem animal sem perder o sabor."
+    title: "Módulo 3: Doces e Sobremesas Veganas",
+    icon: Cookie,
+    description: "Descubra como substituir ingredientes de origem animal sem perder a textura e o sabor."
   },
   {
     title: "Módulo 4: Precificação e Vendas",
-    icon: Cookie,
-    description: "Transforme sua paixão em um negócio lucrativo com estratégias de venda."
+    icon: BarChart,
+    description: "Transforme sua paixão em um negócio lucrativo com estratégias de precificação e venda."
   },
    {
-    title: "Módulo 5: Fotografia e Marketing",
+    title: "Módulo 5: Fotografia e Marketing de Alimentos",
     icon: Camera,
-    description: "Crie fotos incríveis dos seus doces e aprenda a divulgá-los nas redes sociais."
+    description: "Crie fotos incríveis dos seus pratos e aprenda a divulgá-los nas redes sociais."
   },
   {
     title: "Módulo 6: Embalagens e Apresentação",
@@ -49,15 +49,15 @@ export default function CoursesPage() {
                 ✨ FORMAÇÃO COMPLETA ✨
             </div>
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-              Escola Fitte de Confeitaria
+              Escola Fitte
             </h2>
             <p className="text-slate-300 mt-4 text-lg md:text-xl">
-              Tudo que você precisa para sair do zero e lucrar com doces saudáveis.
+              Tudo que você precisa para transformar suas receitas em um negócio lucrativo.
             </p>
           </div>
 
           <div className="relative p-8 bg-gray-900/50 rounded-3xl border-2 border-primary/50 shadow-[0_0_30px_theme(colors.primary/0.3)]">
-             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {courseModules.map((item) => (
                     <div key={item.title} className="group relative p-6 bg-gray-900 rounded-2xl border border-white/10 transition-all duration-300 hover:border-primary/80 hover:bg-primary/5 hover:-translate-y-2">
                         <div className="relative flex items-center justify-center h-24">
