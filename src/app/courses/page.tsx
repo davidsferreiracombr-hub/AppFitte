@@ -12,7 +12,7 @@ const memberModules = [
   {
     subtitle: 'FASE 01',
     title: 'Introdução à Imersão',
-    imageUrl: 'https://picsum.photos/seed/m1/400/500',
+    imageUrl: 'https://i.imgur.com/zunuzGd.jpg',
     aiHint: 'man thinking',
     moduleNumber: '01',
   },
