@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Home, LayoutGrid, Heart, Star, Search, Menu, User } from 'lucide-react';
+import { Home, LayoutGrid, Heart, Star, Search, Menu, GraduationCap } from 'lucide-react';
 import { Input } from './ui/input';
 import { FloatingBackButton } from './floating-back-button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from './ui/sheet';
@@ -40,6 +40,7 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
 export const navItems = [
     { href: '/', label: 'Início', icon: Home },
     { href: '/categories', label: 'Categorias', icon: LayoutGrid },
+    { href: '/courses', label: 'Cursos', icon: GraduationCap },
     { href: '/favorites', label: 'Favoritos', icon: Heart },
     { href: '/reviews', label: 'Avaliações', icon: Star },
     { href: '/search', label: 'Busca', icon: Search },
