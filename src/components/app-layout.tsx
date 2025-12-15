@@ -90,7 +90,7 @@ function Header() {
   const [searchTerm, setSearchTerm] = useState('');
   const { isMobileSheetOpen, setMobileSheetOpen } = useSidebar();
   
-  const isTransparentPage = pathname === '/' || pathname.startsWith('/recipe/');
+  const isTransparentPage = pathname === '/' || pathname.startsWith('/recipe/') || pathname === '/courses';
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -192,11 +192,14 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
   
+  const pagesWithTransparentHeader = ['/', '/courses'];
+  const isTransparentPage = pagesWithTransparentHeader.includes(pathname) || pathname.startsWith('/recipe/');
+
   return (
     <div className="flex min-h-screen w-full bg-background">
         <div className="flex flex-col flex-1">
           <Header />
-          <main className={cn("flex-1", !(pathname === '/' || pathname.startsWith('/recipe/')) && "pt-12")}>
+          <main className={cn("flex-1", !isTransparentPage && "pt-12")}>
             {children}
           </main>
           {!(isHomePage) && <FloatingBackButton />}
