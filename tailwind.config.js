@@ -87,21 +87,11 @@ module.exports = {
           },
         },
         'float': {
-          '0%': {
-            transform: 'translateY(0px) translateX(0px) rotate(0deg)',
-          },
-          '25%': {
-            transform: 'translateY(-20px) translateX(20px) rotate(45deg)',
-          },
-          '50%': {
-            transform: 'translateY(0px) translateX(40px) rotate(90deg)',
-          },
-          '75%': {
-            transform: 'translateY(20px) translateX(20px) rotate(135deg)',
-          },
-          '100%': {
-            transform: 'translateY(0px) translateX(0px) rotate(180deg)',
-          }
+          '0%': { transform: 'translateY(0px) translateX(0px)' },
+          '25%': { transform: 'translateY(-20px) translateX(20px)' },
+          '50%': { transform: 'translateY(0px) translateX(40px)' },
+          '75%': { transform: 'translateY(20px) translateX(20px)' },
+          '100%': { transform: 'translateY(0px) translateX(0px)' },
         },
         'fade-in-scale': {
           '0%': { opacity: '0', transform: 'scale(0.95)' },
