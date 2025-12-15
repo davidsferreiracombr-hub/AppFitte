@@ -71,8 +71,8 @@ const memberModules = [
 export default function MembersPage() {
   return (
     <AppLayout>
-      <div className="flex-1 p-4 sm:p-6 lg:p-8 bg-black pt-24">
-        <div className="container mx-auto">
+      <div className="flex-1 p-4 sm:p-6 lg:p-8 bg-black">
+        <div className="container mx-auto pt-24">
           <div className="text-center mb-12 max-w-3xl mx-auto">
              <div className="inline-block bg-primary/10 text-primary text-sm font-bold px-4 py-1 rounded-full mb-4">
                 ✨ CONTEÚDO EXCLUSIVO ✨

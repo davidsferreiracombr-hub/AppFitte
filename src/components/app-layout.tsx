@@ -92,6 +92,13 @@ function Header() {
   
   const isTransparentPage = pathname === '/' || pathname.startsWith('/recipe/') || pathname === '/courses';
 
+  const headerClasses = cn(
+    "left-0 right-0 z-40 py-4",
+    isTransparentPage ? "absolute top-0" : "sticky top-0 bg-background/80 backdrop-blur-sm border-b"
+  );
+  
+  const textClasses = isTransparentPage ? "text-white" : "text-foreground";
+
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {
@@ -99,13 +106,6 @@ function Header() {
       setSearchTerm('');
     }
   };
-
-  const headerClasses = cn(
-    "left-0 right-0 z-40 py-4",
-    isTransparentPage ? "absolute top-0" : "sticky top-0 bg-background/80 backdrop-blur-sm border-b"
-  );
-  
-  const textClasses = isTransparentPage ? "text-white" : "text-foreground";
 
   return (
     <header className={headerClasses}>
@@ -127,7 +127,7 @@ function Header() {
                 {/* Logo */}
                 <div className="text-center absolute left-1/2 -translate-x-1/2">
                      <Link href="/" className="flex items-center gap-2">
-                        <span className="font-extrabold text-3xl text-primary">Fitte</span>
+                        <span className={cn("font-extrabold text-3xl", isTransparentPage ? "text-white" : "text-primary")}>Fitte</span>
                     </Link>
                 </div>
                 
@@ -199,7 +199,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-screen w-full bg-background">
         <div className="flex flex-col flex-1">
           <Header />
-          <main className={cn("flex-1", !isTransparentPage && "pt-12")}>
+          <main className={cn("flex-1", !isTransparentPage && "pt-24")}>
             {children}
           </main>
           {!(isHomePage) && <FloatingBackButton />}
