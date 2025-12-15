@@ -4,24 +4,24 @@
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Lightbulb, Users, BarChart2, Zap, Smile, UserCheck, Search, MessageSquare, Hand, Handshake, ThumbsDown, DollarSign, Gift, Star, Target, CheckCircle, ArrowRight } from 'lucide-react';
+import { Lightbulb, Users, BarChart2, Zap, Smile, UserCheck, Search, MessageSquare, Hand, Handshake, ThumbsDown, DollarSign, Gift, Star, Target, CheckCircle, ArrowRight, Package, Palette, Heart, ThumbsUp, TrendingUp, Notebook, ShoppingBag, Eye } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const whySellBenefits = [
   {
     icon: BarChart2,
     title: "Aumento do Ticket Médio",
-    description: "Sobremesas elevam o valor médio das compras e incentivam vendas adicionais, especialmente com técnicas de cross-selling."
+    description: "Sobremesas elevam o valor médio das compras e incentivam vendas adicionais, especialmente com técnicas adequadas de cross-selling."
   },
   {
     icon: Users,
     title: "Fidelização Natural",
-    description: "Doces bem apresentados criam experiências emocionais que transformam compradores ocasionais em clientes fiéis."
+    description: "Doces bem apresentados criam experiências emocionais positivas que transformam compradores ocasionais em clientes fiéis e promotores da sua marca."
   },
   {
     icon: Handshake,
     title: "Conexão Pessoal",
-    description: "A venda presencial permite estabelecer vínculos de confiança, entender necessidades e criar relacionamentos duradouros."
+    description: "A venda presencial permite estabelecer vínculos de confiança, entender necessidades específicas e criar relacionamentos duradouros com cada cliente."
   }
 ];
 
@@ -29,7 +29,7 @@ const mentalTriggers = [
     {
         icon: Zap,
         title: "Escassez",
-        description: `"Preparei apenas 5 unidades deste bolo hoje — quando acabar, só na semana que vem!"`
+        description: `"Preparei apenas 5 unidades deste bolo hoje com ingredientes premium — quando acabar, só na semana que vem!"`
     },
     {
         icon: Star,
@@ -46,7 +46,7 @@ const mentalTriggers = [
 const objectionsStrategies = [
     {
         title: '"Está muito caro"',
-        strategy: "Divida o valor por porção, compare com produtos industrializados e enfatize ingredientes premium. Ofereça degustação para o sabor justificar o preço.",
+        strategy: "Divida o valor por porção, compare com produtos industrializados de qualidade inferior e enfatize ingredientes premium. Ofereça degustação para que o sabor justifique o preço.",
         example: `"Comparado ao valor de um café por dia, este bolo artesanal serve 10 pessoas com qualidade incomparável. Que tal experimentar um pedacinho?"`
     },
     {
@@ -57,8 +57,36 @@ const objectionsStrategies = [
     {
         title: '"Não sei se vai agradar"',
         strategy: "Reduza o risco com garantias, degustações ou opções menores para teste. Compartilhe depoimentos de outros clientes satisfeitos.",
-        example: `"Ofereço uma pequena porção para você experimentar agora mesmo. Se não gostar, não leva. Mas garanto que este é o pudim mais elogiado!"`
+        example: `"Ofereço uma pequena porção para você experimentar agora mesmo. Se não gostar, você não leva. Mas posso garantir que este é o pudim mais elogiado pelos meus clientes!"`
     }
+]
+
+const extraTips = [
+    {
+        icon: ShoppingBag,
+        title: "Crie Combos Irresistíveis",
+        description: `Agrupe produtos complementares com desconto atrativo: "Kit Fim de Semana" com bolo + pudim + bombons por um preço especial. Combos aumentam o ticket médio.`
+    },
+    {
+        icon: Heart,
+        title: "Implemente Programa de Fidelidade",
+        description: `Recompense clientes recorrentes com cartões de fidelidade: "A cada 5 compras, ganhe 1 sobremesa grátis". Isso incentiva retorno frequente.`
+    },
+    {
+        icon: Gift,
+        title: "Surpreenda com Generosidade",
+        description: `Ofereça pequenas porções grátis, brindes surpresa ou upgrades inesperados para clientes fiéis. Estes gestos criam encantamento genuíno.`
+    },
+    {
+        icon: ThumbsUp,
+        title: "Use Linguagem Positiva",
+        description: `Substitua "não é caro" por "é um excelente investimento". Troque "você não vai se arrepender" por "você vai adorar cada pedaço".`
+    },
+    {
+        icon: Notebook,
+        title: "Colete e Use Depoimentos",
+        description: `Peça feedback de clientes satisfeitos e use essas histórias reais nas vendas futuras. Prova social é um dos gatilhos mentais mais poderosos.`
+    },
 ]
 
 export default function OlhoNoOlhoPage() {
@@ -72,7 +100,7 @@ export default function OlhoNoOlhoPage() {
               <p className="text-primary font-semibold tracking-wider mb-2">FASE 02: CURSO PRÁTICO</p>
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">Como Vender Sobremesas Pessoalmente</h1>
               <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-                Aprenda as melhores técnicas de venda e comunicação corporal para conquistar clientes e transformar cada interação em uma experiência memorável.
+                Aprenda as melhores técnicas de venda pessoal e comunicação corporal para conquistar clientes e transformar cada interação em uma experiência memorável e lucrativa.
               </p>
             </header>
 
@@ -81,7 +109,7 @@ export default function OlhoNoOlhoPage() {
               <section>
                 <h2 className="text-3xl font-bold mb-4 text-center">Por que vender pessoalmente é uma oportunidade doce?</h2>
                 <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto">
-                  Diferentemente de produtos industrializados, sobremesas caseiras despertam emoções, memórias afetivas e conexões profundas com os clientes. Você não está apenas oferecendo um produto — está proporcionando um momento de prazer.
+                  Diferentemente de produtos industrializados, sobremesas caseiras despertam emoções, memórias afetivas e conexões profundas. Você não está apenas oferecendo um produto — está proporcionando um momento de prazer.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {whySellBenefits.map(card => (
@@ -234,6 +262,57 @@ export default function OlhoNoOlhoPage() {
                 </div>
               </section>
 
+              <section className="bg-secondary/10 p-8 md:p-12 rounded-3xl border border-border/10">
+                <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3"><Eye className="h-8 w-8" />Técnica 5: A importância da apresentação visual</h2>
+                 <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto">Comemos primeiro com os olhos! Uma apresentação impecável pode aumentar o valor percebido em até 40%. Não é desperdício, é estratégia.</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="flex flex-col items-center text-center">
+                        <div className="bg-black/30 p-3 rounded-full mb-3 shadow-sm border border-border/10">
+                            <Package className="h-7 w-7 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-lg text-white">Embalagens que Encantam</h3>
+                        <p className="text-muted-foreground text-sm">Use caixas e laços que valorizem seus produtos e criem uma experiência de unboxing memorável.</p>
+                    </div>
+                     <div className="flex flex-col items-center text-center">
+                        <div className="bg-black/30 p-3 rounded-full mb-3 shadow-sm border border-border/10">
+                            <Palette className="h-7 w-7 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-lg text-white">Cores Estratégicas</h3>
+                        <p className="text-muted-foreground text-sm">Escolha paletas que harmonizem com seus doces e transmitam a mensagem certa: sofisticação, energia ou delicadeza.</p>
+                    </div>
+                     <div className="flex flex-col items-center text-center">
+                        <div className="bg-black/30 p-3 rounded-full mb-3 shadow-sm border border-border/10">
+                            <Gift className="h-7 w-7 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-lg text-white">Detalhes que Fazem Diferença</h3>
+                        <p className="text-muted-foreground text-sm">Adicione etiquetas personalizadas, cartões com mensagens ou pequenos brindes que surpreendam e criem conexão.</p>
+                    </div>
+                </div>
+                <div className="mt-10 p-6 bg-secondary/5 border-l-4 border-primary italic text-center rounded-r-xl shadow-sm">
+                    <p className="text-lg text-white/90">"A apresentação visual não é sobre enganar, mas sim fazer justiça à qualidade do seu produto e criar uma experiência completa."</p>
+                </div>
+              </section>
+
+              <section>
+                <h2 className="text-3xl font-bold mb-4 text-center flex items-center justify-center gap-3"><TrendingUp className="h-8 w-8" />Dicas extras para vender mais</h2>
+                <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto">
+                    Transforme transações únicas em relacionamentos lucrativos com estas táticas aprovadas por especialistas em varejo.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {extraTips.map(tip => (
+                         <Card key={tip.title} className="p-6 bg-secondary/5 border-border/20">
+                            <CardHeader className="p-0 mb-3 flex-row items-center gap-3">
+                                <tip.icon className="h-6 w-6 text-primary" />
+                                <CardTitle className="text-lg text-white">{tip.title}</CardTitle>
+                            </CardHeader>
+                            <CardContent className="p-0 text-sm text-muted-foreground">
+                                {tip.description}
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+              </section>
+
               <Separator className="bg-border/20"/>
               
               <section>
@@ -278,3 +357,5 @@ export default function OlhoNoOlhoPage() {
     </AppLayout>
   );
 }
+
+    
