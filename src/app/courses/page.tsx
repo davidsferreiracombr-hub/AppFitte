@@ -42,7 +42,7 @@ export default function CoursesPage() {
   return (
     <AppLayout>
       <div className="flex-1 bg-black text-white">
-        <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8 text-center">
+        <div className="mx-auto px-4 py-16 sm:px-6 lg:px-8 text-center">
           
           <div className="mb-12 max-w-3xl mx-auto">
              <div className="inline-block bg-primary/10 text-primary text-sm font-bold px-4 py-1 rounded-full mb-4">
@@ -57,7 +57,7 @@ export default function CoursesPage() {
           </div>
 
           <div className="relative p-8 bg-gray-900/50 rounded-3xl border-2 border-primary/50 shadow-[0_0_30px_theme(colors.primary/0.3)]">
-             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
                 {courseModules.map((item) => (
                     <div key={item.title} className="group relative p-6 bg-gray-900 rounded-2xl border border-white/10 transition-all duration-300 hover:border-primary/80 hover:bg-primary/5 hover:-translate-y-2">
                         <div className="relative flex items-center justify-center h-24">
