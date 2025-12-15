@@ -61,20 +61,23 @@ function MobileSheet() {
                     <h2 className="text-3xl font-extrabold text-primary">Fitte</h2>
                 </Link>
                 <nav className="flex flex-col gap-4">
-                    {navItems.map(({ href, label, icon: Icon }) => (
+                    {navItems.map(({ href, label, icon: Icon }) => {
+                       const isCourses = label === 'Cursos';
+                       const linkClasses = cn(
+                            "flex items-center gap-3 rounded-lg px-3 py-3 text-lg font-semibold transition-all",
+                            pathname === href && !isCourses ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-secondary",
+                            isCourses && "bg-primary text-primary-foreground hover:bg-primary/90 animate-pulse"
+                        );
+
+                       return (
                          <SheetClose asChild key={href}>
-                            <Link
-                                href={href}
-                                className={cn(
-                                    "flex items-center gap-3 rounded-lg px-3 py-3 text-lg font-semibold transition-all",
-                                    pathname === href ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-secondary"
-                                )}
-                            >
+                            <Link href={href} className={linkClasses}>
                                 <Icon className="h-5 w-5" />
                                 {label}
                             </Link>
                         </SheetClose>
-                    ))}
+                       );
+                    })}
                 </nav>
             </div>
         </SheetContent>
@@ -135,19 +138,32 @@ function Header() {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex flex-col items-center gap-4 w-full">
               <div className="flex items-center justify-center gap-8 text-sm font-medium w-full max-w-lg">
-                  {navItems.filter(item => item.href !== '/search').map(({ href, label }) => (
-                  <Link
-                      key={href}
-                      href={href}
-                      className={cn(
-                        "transition-colors",
-                        isTransparentPage ? "text-white/80 hover:text-white" : "text-muted-foreground hover:text-foreground",
-                        pathname === href && (isTransparentPage ? "font-semibold text-white" : "font-semibold text-primary")
-                      )}
-                  >
-                      {label}
-                  </Link>
-                  ))}
+                  {navItems.filter(item => item.href !== '/search').map(({ href, label, icon: Icon }) => {
+                      const isCourses = label === 'Cursos';
+                      if (isCourses) {
+                          return (
+                              <Button asChild key={href} size="sm" className="rounded-full animate-pulse">
+                                  <Link href={href}>
+                                      <Icon className="h-4 w-4 mr-2" />
+                                      {label}
+                                  </Link>
+                              </Button>
+                          );
+                      }
+                      return (
+                          <Link
+                              key={href}
+                              href={href}
+                              className={cn(
+                                "transition-colors",
+                                isTransparentPage ? "text-white/80 hover:text-white" : "text-muted-foreground hover:text-foreground",
+                                pathname === href && (isTransparentPage ? "font-semibold text-white" : "font-semibold text-primary")
+                              )}
+                          >
+                              {label}
+                          </Link>
+                      );
+                  })}
                   <form onSubmit={handleSearchSubmit} className="relative w-full max-w-sm ml-auto">
                       <Input
                           type="search"
@@ -177,8 +193,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const isHomePage = pathname === '/';
   
   return (
-    <SidebarProvider>
-      <div className="flex min-h-screen w-full bg-background">
+    <div className="flex min-h-screen w-full bg-background">
         <div className="flex flex-col flex-1">
           <Header />
           <main className={cn("flex-1", !(pathname === '/' || pathname.startsWith('/recipe/')) && "pt-12")}>
@@ -186,7 +201,6 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           </main>
           {!(isHomePage) && <FloatingBackButton />}
         </div>
-      </div>
-    </SidebarProvider>
+    </div>
   );
 }
