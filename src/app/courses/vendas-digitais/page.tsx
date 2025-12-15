@@ -4,7 +4,7 @@
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { TrendingUp, Award, DollarSign, ClipboardList, Calculator, ShoppingCart, Megaphone, Truck, XCircle, CheckCircle, Lightbulb } from 'lucide-react';
+import { TrendingUp, Award, DollarSign, ClipboardList, Calculator, ShoppingCart, Megaphone, Truck, XCircle, CheckCircle, Lightbulb, UserCheck, Tv, Smartphone, Smile } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const whyOnlineBenefits = [
@@ -26,37 +26,55 @@ const whyOnlineBenefits = [
 ];
 
 const niches = [
-    { title: "Doces Tradicionais", description: "Pudins, bolos de festa, brigadeiros." },
-    { title: "Linha Diet & Fit", description: "Opções sem açúcar, low carb, com adoçantes naturais." },
-    { title: "Doces Veganos", description: "Alternativas sem leite e ovos para um público crescente." },
-    { title: "Gourmet Premium", description: "Ingredientes nobres e apresentação sofisticada." },
-    { title: "Sobremesas Funcionais", description: "Com proteína, probióticos ou benefícios à saúde." },
+    { title: "Doces Artesanais Tradicionais", description: "Pudins caseiros, bolos de festa, brigadeiros clássicos." },
+    { title: "Sobremesas Diet & Fit", description: "Opções sem açúcar, low carb, com adoçantes naturais." },
+    { title: "Doces Veganos", description: "Crescimento exponencial de consumidores buscando alternativas sem leite e ovos." },
+    { title: "Linha Gourmet Premium", description: "Ingredientes nobres, apresentação sofisticada, embalagens diferenciadas." },
+    { title: "Sobremesas Funcionais", description: "Com proteína, probióticos ou ingredientes que agregam benefícios à saúde." },
 ];
 
 const marketingStrategies = [
-    { title: "Diferencial Único", description: "Sabores exclusivos, embalagens personalizadas ou a história por trás da receita." },
-    { title: "Domínio das Redes Sociais", description: "Use Instagram e TikTok para mostrar os bastidores, depoimentos e criar conexão." },
-    { title: "Parcerias Estratégicas", description: "Colabore com microinfluenciadores locais para divulgação e aumento de reconhecimento." },
-    { title: "Promoções Inteligentes", description: "Crie combos, descontos e programas de fidelidade para gerar urgência e vendas recorrentes." },
+    { title: "Crie um Diferencial Único", description: "Sabores exclusivos (ex: brigadeiro de pistache com flor de sal), embalagens personalizadas e instagramáveis, combos temáticos ou até a história por trás da receita da vovó." },
+    { title: "Domine as Redes Sociais", description: "Instagram e TikTok são suas vitrines principais. Mostre o processo de produção (os bastidores vendem!), publique depoimentos de clientes satisfeitos e crie conexão com a audiência." },
+    { title: "Parcerias Estratégicas", description: "Identifique microinfluenciadores locais (5-20 mil seguidores) do seu nicho. Ofereça produtos em troca de divulgação. Uma parceria bem feita pode gerar dezenas de pedidos imediatos." },
+    { title: "Promoções Inteligentes", description: "Lance combos promocionais, descontos para primeira compra, programa de fidelidade (a cada 5 compras, ganhe 10% off) e ofertas relâmpago nos stories para gerar urgência." },
 ];
 
 const commonErrors = [
     {
         title: "Erro #1: Precificação Irreal",
-        problem: "Calcular apenas o custo dos ingredientes, esquecendo embalagem, tempo, energia e taxas. Resultado: prejuízo mesmo vendendo muito.",
-        solution: "Use planilhas completas com TODOS os custos. Lembre-se: preço baixo não é vantagem se você não lucra!"
+        problem: "Calcular apenas o custo dos ingredientes e esquecer embalagem, tempo, energia e taxas. Resultado: vender muito e ter prejuízo.",
+        solution: "Use planilhas completas com TODOS os custos. Revise seus preços trimestralmente considerando inflação e feedback do mercado. Lembre-se: preço baixo não é vantagem se você não lucra!"
     },
     {
         title: "Erro #2: Negligenciar Embalagem e Entrega",
         problem: "Produto excelente que chega amassado, derretido ou com apresentação ruim. Isso gera avaliações negativas e perda de clientes.",
-        solution: "Invista em embalagens adequadas e teste o transporte. Uma entrega perfeita gera marketing gratuito nas redes sociais do cliente."
+        solution: "Invista em embalagens adequadas mesmo que custem um pouco mais. Teste tudo antes! Uma entrega perfeita gera foto no Instagram do cliente = propaganda gratuita."
     },
     {
-        title: "Erro #3: Marketing Inexistente",
-        problem: "Contar apenas com indicações e não investir em presença digital consistente. Resultado: invisibilidade no mercado.",
-        solution: "Dedique tempo diário às redes sociais. Crie um calendário de conteúdo e seja consistente, mesmo quando as vendas estiverem boas."
+        title: "Erro #3: Marketing Inexistente ou Inconsistente",
+        problem: "Contar apenas com indicações boca a boca e não investir em presença digital. Ficar invisível em um mercado competitivo.",
+        solution: "Dedique pelo menos 30 minutos diários às redes sociais. Crie calendário de conteúdo simples. Seja consistente mesmo quando as vendas estão boas - marketing é investimento contínuo, não emergencial."
     }
 ]
+
+const successCases = [
+    {
+        icon: Smile,
+        title: "Doceria Vegana Explode nas Redes",
+        description: "Uma empreendedora focou em brigadeiros veganos exóticos. Com Instagram estratégico e parcerias com influencers, cresceu 300% em 6 meses."
+    },
+    {
+        icon: Smartphone,
+        title: "WhatsApp e Pudins: Combinação de Sucesso",
+        description: "Um negócio familiar apostou em pudins caseiros vendidos pelo WhatsApp. Com atendimento rápido e embalagens marcantes, expandiram para cidades vizinhas."
+    },
+    {
+        icon: Tv,
+        title: "Combos para Festas Triplicam Ticket Médio",
+        description: "Uma loja virtual criou kits de festa (bolo + docinhos). Com isso, aumentou o ticket médio de R$ 50 para R$ 180 e conquistou clientes corporativos."
+    }
+];
 
 export default function VendasDigitaisPage() {
   return (
@@ -78,7 +96,7 @@ export default function VendasDigitaisPage() {
               <section>
                 <h2 className="text-3xl font-bold mb-4 text-center">Por que vender sobremesas online funciona?</h2>
                 <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto">
-                  O momento é ideal para empreendedores que querem aproveitar o boom do comércio digital. Com as ferramentas certas, é possível construir um negócio rentável e sustentável.
+                  O momento é ideal para empreendedores que querem aproveitar o boom do comércio digital. Com as ferramentas certas e estratégia focada, é possível construir um negócio rentável e sustentável vendendo aquilo que você ama fazer.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {whyOnlineBenefits.map(card => (
@@ -99,69 +117,97 @@ export default function VendasDigitaisPage() {
 
               <section className="bg-secondary/10 p-8 md:p-12 rounded-3xl border border-border/10">
                 <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3"><ClipboardList className="h-8 w-8" />Passo 1: Escolha seu Nicho e Produto</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                <p className="text-muted-foreground text-center mb-6 text-lg">Nichos lucrativos para explorar</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
                     {niches.map(niche => (
-                        <Card key={niche.title} className="p-4 bg-black/20 border-border/20">
-                            <CardTitle className="text-lg font-semibold text-white mb-2">{niche.title}</CardTitle>
-                            <CardContent className="p-0 text-sm text-muted-foreground">{niche.description}</CardContent>
+                        <Card key={niche.title} className="p-4 bg-black/20 border-border/20 text-center">
+                            <CardTitle className="text-base font-semibold text-white mb-1">{niche.title}</CardTitle>
+                            <CardContent className="p-0 text-xs text-muted-foreground">{niche.description}</CardContent>
                         </Card>
                     ))}
                 </div>
+                <div className='text-center space-y-4 mb-10'>
+                    <h3 className='text-xl font-bold text-white'>Defina seu Produto Carro-Chefe</h3>
+                    <p className='text-muted-foreground max-w-2xl mx-auto text-sm'>Escolha 1 ou 2 produtos para serem sua especialidade. Isso facilita a produção, reduz custos com ingredientes, cria identidade forte e ajuda na divulgação. Exemplos: "a rainha do pudim de leite condensado" ou "os melhores brownies veganos da cidade".</p>
+                </div>
                  <div className="bg-primary/10 border-l-4 border-primary p-5 rounded-r-lg text-center">
                     <p className="font-semibold text-primary-foreground/90">
-                        <Lightbulb className="inline-block h-5 w-5 mr-2" /> Use o Google Trends para pesquisar a demanda por "pudim delivery" ou "bolo de pote" na sua região e valide seu produto carro-chefe.
+                        <Lightbulb className="inline-block h-5 w-5 mr-2" /> Use o Google Trends para pesquisar termos como "pudim delivery" ou "bolo de pote" na sua região e valide seu produto carro-chefe.
                     </p>
                 </div>
               </section>
               
               <section>
                 <h2 className="text-3xl font-bold mb-10 text-center flex items-center justify-center gap-3"><Calculator className="h-8 w-8" />Passo 2: Planejamento Financeiro e Preços</h2>
-                <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto">Nunca precifique pensando apenas nos ingredientes! A fórmula básica é Custo Total × 3 = Preço de Venda, mas considere também o valor percebido pelo cliente.</p>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <Card className="p-6 bg-secondary/5 border-border/20">
+                        <CardHeader className="p-0 mb-3"><CardTitle className="text-white text-lg">Calcule Todos os Custos</CardTitle></CardHeader>
+                        <CardContent className="p-0 text-muted-foreground text-sm">Liste absolutamente todos os gastos: ingredientes (incluindo perdas e testes), embalagens, etiquetas, gás/energia, taxas de plataformas digitais, custos de entrega e seu próprio tempo de produção.</CardContent>
+                    </Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20">
+                        <CardHeader className="p-0 mb-3"><CardTitle className="text-white text-lg">Precifique com Inteligência</CardTitle></CardHeader>
+                        <CardContent className="p-0 text-muted-foreground text-sm">A fórmula básica: Custo Total × 3 = Preço de Venda. Considere também o valor percebido (qualidade, apresentação, exclusividade) e não apenas o preço mais baixo do mercado.</CardContent>
+                    </Card>
+                </div>
+                 <Card className="bg-secondary/10 border-border/20 p-6 mb-8">
+                    <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-center text-lg">Exemplo Prático de Precificação</CardTitle></CardHeader>
+                    <CardContent className="p-0 text-sm text-muted-foreground grid grid-cols-2 gap-x-4 gap-y-2">
+                        <p>Ingredientes de um bolo: <span className='text-white font-semibold'>R$ 15,00</span></p>
+                        <p>Embalagem: <span className='text-white font-semibold'>R$ 3,00</span></p>
+                        <p>Energia/gás: <span className='text-white font-semibold'>R$ 2,00</span></p>
+                        <p>Taxa de plataforma (10%): <span className='text-white font-semibold'>R$ 4,50</span></p>
+                        <p>Seu tempo (2 horas): <span className='text-white font-semibold'>R$ 20,00</span></p>
+                        <p className='col-span-2 text-center mt-2 border-t border-border/20 pt-2 font-bold'>Custo Total: <span className='text-white text-base'>R$ 44,50</span></p>
+                        <p className='col-span-2 text-center mt-1 font-bold'>Preço Sugerido: <span className='text-primary text-base'>R$ 130-150</span></p>
+                    </CardContent>
+                </Card>
                 <Card className="bg-destructive/10 border-destructive/30 p-6">
                     <CardHeader className="p-0 mb-4 flex-row items-center gap-3">
                          <XCircle className="h-6 w-6 text-destructive" />
                          <CardTitle className="text-destructive/90">Erro Fatal na Precificação</CardTitle>
                     </CardHeader>
                     <CardContent className="p-0 text-destructive/80 text-sm">
-                        Muitos empreendedores falham por esquecer de incluir no custo: **seu tempo de produção, embalagens, gás/energia e taxas de plataformas digitais**. Isso leva a prejuízos mesmo vendendo muito.
+                        Nunca precifique pensando apenas nos ingredientes! Muitos empreendedores falham por esquecer de incluir tempo, embalagem, energia e taxas no cálculo. Isso leva a prejuízos mesmo vendendo muito.
                     </CardContent>
                 </Card>
               </section>
 
               <section className="bg-secondary/10 p-8 md:p-12 rounded-3xl border border-border/10">
                 <h2 className="text-3xl font-bold mb-10 text-center flex items-center justify-center gap-3"><ShoppingCart className="h-8 w-8" />Passo 3: Sua Loja Virtual</h2>
-                <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto">As fotos são responsáveis por 80% da decisão de compra online. Use luz natural, fundos neutros e mostre detalhes que despertem desejo.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
                      <Card className="p-6 bg-black/20 border-border/20">
-                        <CardHeader className="p-0 mb-4">
-                            <CardTitle className="text-white">Plataformas Recomendadas</CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-0 text-muted-foreground text-sm">
-                            Nuvemshop e Yampi são ideais para iniciantes. Começar com WhatsApp Business com catálogo digital tem custo zero.
-                        </CardContent>
+                        <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-lg">Plataformas Recomendadas</CardTitle></CardHeader>
+                        <CardContent className="p-0 text-muted-foreground text-sm">Nuvemshop e Yampi são ideais para iniciantes. Começar com WhatsApp Business com catálogo digital tem custo zero.</CardContent>
                     </Card>
                      <Card className="p-6 bg-black/20 border-border/20">
-                        <CardHeader className="p-0 mb-4">
-                            <CardTitle className="text-white">Descrição Apetitosa</CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-0 text-muted-foreground text-sm">
-                           Descreva sabores, texturas, peso e diferenciais. Ex: "Pudim cremoso (400g) com calda artesanal. Serve 4 pessoas."
-                        </CardContent>
+                        <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-lg">Meios de Pagamento</CardTitle></CardHeader>
+                        <CardContent className="p-0 text-muted-foreground text-sm">Integre Pix e cartões via Mercado Pago ou PagSeguro. Oferecer parcelamento aumenta o ticket médio.</CardContent>
+                    </Card>
+                     <Card className="p-6 bg-black/20 border-border/20">
+                        <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-lg">Opções de Entrega</CardTitle></CardHeader>
+                        <CardContent className="p-0 text-muted-foreground text-sm">Defina claramente: retirada no local, entrega própria ou apps de delivery (iFood, Rappi). Comece com o mais simples.</CardContent>
                     </Card>
                 </div>
+                <Card className="p-6 bg-black/20 border-border/20 mb-8">
+                    <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-lg">A Importância das Fotos Profissionais</CardTitle></CardHeader>
+                    <CardContent className="p-0 text-muted-foreground text-sm space-y-2">
+                        <p>Invista em fotografias de qualidade! As fotos são responsáveis por 80% da decisão de compra online. Use luz natural, fundos neutros e mostre detalhes que despertem desejo.</p>
+                        <p className='text-primary-foreground/80'><Lightbulb className="inline-block h-4 w-4 mr-1" /> Dica: Aprenda fotografia básica no YouTube e use seu smartphone. Os resultados podem ser excelentes!</p>
+                    </CardContent>
+                </Card>
+                 <Card className="p-6 bg-black/20 border-border/20">
+                    <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-lg">Descrição Apetitosa dos Produtos</CardTitle></CardHeader>
+                    <CardContent className="p-0 text-muted-foreground text-sm">Seja clara e apetitosa! Descreva sabores, textura, peso e diferenciais. Ex: "Pudim cremoso (400g) com calda artesanal. Serve 4 pessoas. Entrega em pote resistente."</CardContent>
+                </Card>
               </section>
               
               <section>
-                <h2 className="text-3xl font-bold mb-10 text-center flex items-center justify-center gap-3"><Megaphone className="h-8 w-8" />Passo 4: Marketing Digital e Diferencial</h2>
+                <h2 className="text-3xl font-bold mb-10 text-center flex items-center justify-center gap-3"><Megaphone className="h-8 w-8" />Passo 4: Diferencial e Marketing Digital</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {marketingStrategies.map(item => (
                         <Card key={item.title} className="p-6 bg-secondary/5 border-border/20">
-                            <CardHeader className="p-0 mb-3">
-                                <CardTitle className="text-lg text-white">{item.title}</CardTitle>
-                            </CardHeader>
-                            <CardContent className="p-0 text-sm text-muted-foreground">
-                                {item.description}
-                            </CardContent>
+                            <CardHeader className="p-0 mb-3"><CardTitle className="text-lg text-white">{item.title}</CardTitle></CardHeader>
+                            <CardContent className="p-0 text-sm text-muted-foreground">{item.description}</CardContent>
                         </Card>
                     ))}
                 </div>
@@ -170,7 +216,7 @@ export default function VendasDigitaisPage() {
               <section className="bg-secondary/10 p-8 md:p-12 rounded-3xl border border-border/10">
                 <h2 className="text-3xl font-bold mb-10 text-center flex items-center justify-center gap-3"><Truck className="h-8 w-8" />Passo 5: Logística e Entrega de Qualidade</h2>
                 <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto">A embalagem é a primeira impressão física do seu produto. Ela deve proteger, preservar e encantar.</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div className="flex flex-col items-center text-center gap-3">
                         <h3 className="font-semibold text-lg text-white">Defina sua Área</h3>
                         <p className="text-muted-foreground text-sm">Comece com um raio de entrega próximo (3-5 km) para garantir agilidade e expanda gradualmente.</p>
@@ -185,21 +231,47 @@ export default function VendasDigitaisPage() {
                     </div>
                 </div>
               </section>
+
+              <section>
+                <h2 className="text-3xl font-bold mb-10 text-center flex items-center justify-center gap-3"><UserCheck className="h-8 w-8" />Casos de Sucesso Reais</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    {successCases.map(item => (
+                        <Card key={item.title} className="p-6 bg-secondary/5 border-border/20 text-center">
+                            <CardHeader className="p-0 mb-3 flex-col items-center gap-3">
+                                <div className="bg-primary/10 p-3 rounded-full"><item.icon className="h-6 w-6 text-primary" /></div>
+                                <CardTitle className="text-lg text-white">{item.title}</CardTitle>
+                            </CardHeader>
+                            <CardContent className="p-0 text-sm text-muted-foreground">{item.description}</CardContent>
+                        </Card>
+                    ))}
+                </div>
+                <div className="bg-primary/10 border-l-4 border-primary p-5 rounded-r-lg text-center">
+                    <p className="font-semibold text-primary-foreground/90">O que todos têm em comum? Foco, excelência na execução, marketing consistente e atendimento impecável. Não é preciso ser grande para ser lucrativo.</p>
+                </div>
+              </section>
               
                <section>
                 <h2 className="text-3xl font-bold mb-10 text-center flex items-center justify-center gap-3"><XCircle className="h-8 w-8" />Erros Comuns e Como Evitar</h2>
                  <div className="space-y-6">
                     {commonErrors.map(item => (
                         <Card key={item.title} className="bg-secondary/5 border-border/20">
-                            <CardHeader>
-                                <CardTitle className="text-xl text-white">{item.title}</CardTitle>
-                            </CardHeader>
+                            <CardHeader><CardTitle className="text-xl text-white">{item.title}</CardTitle></CardHeader>
                             <CardContent className="space-y-3 text-sm">
                                 <p><span className="font-semibold text-primary">O Problema:</span> <span className="text-muted-foreground">{item.problem}</span></p>
                                 <p><span className="font-semibold text-green-400">A Solução:</span> <span className="text-white/80">{item.solution}</span></p>
                             </CardContent>
                         </Card>
                     ))}
+                 </div>
+                 <div className="mt-8">
+                    <h3 className="font-semibold text-lg text-white mb-3 text-center">Outros erros a evitar:</h3>
+                    <ul className="text-sm text-muted-foreground grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 list-disc list-inside max-w-2xl mx-auto">
+                        <li>Aceitar encomendas além da sua capacidade</li>
+                        <li>Não ter termos claros de cancelamento</li>
+                        <li>Ignorar feedback negativo</li>
+                        <li>Não separar finanças pessoais e do negócio</li>
+                        <li>Copiar concorrentes sem criar identidade</li>
+                    </ul>
                  </div>
               </section>
               
@@ -227,6 +299,9 @@ export default function VendasDigitaisPage() {
                         </div>
                     </div>
                 </Card>
+                <div className="mt-10 p-6 bg-secondary/5 border-l-4 border-primary italic text-center rounded-r-xl shadow-sm">
+                    <p className="text-lg text-white/90">"O segredo do sucesso não está em ter a receita perfeita, mas em começar com o que você tem e melhorar continuamente."</p>
+                </div>
               </section>
 
             </main>
