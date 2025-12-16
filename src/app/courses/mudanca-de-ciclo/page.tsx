@@ -4,7 +4,7 @@
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Award, Zap, BarChart, BookOpen, Search, Wallet, ShoppingCart, TrendingUp, Lightbulb, Users, CheckCircle, Target, FileText } from 'lucide-react';
+import { Award, Zap, BarChart, BookOpen, Search, Wallet, ShoppingCart, TrendingUp, Lightbulb, Users, CheckCircle, Target, FileText, Star } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const marketBenefits = [
@@ -14,23 +14,23 @@ const marketBenefits = [
 ];
 
 const bestSellers = [
-  { title: "Brigadeiros Gourmet e Doces de Festa", description: "Baixo custo de produção, alta aceitação e facilidade de venda. Margem de lucro: 55-65%.", icon: Award },
+  { title: "Brigadeiros Gourmet e Doces de Festa", description: "Baixo custo de produção, alta aceitação no mercado e facilidade de venda. Margem de lucro: 55-65%.", icon: Award },
   { title: "Bolos no Pote e Brownies", description: "Produtos premium com apresentação sofisticada e ótima durabilidade. Margem de lucro: 50-60%.", icon: Award },
   { title: "Salgados Artesanais", description: "Coxinhas, quibes e mini pastéis têm custo acessível e alta saída. Margem de lucro: 45-55%.", icon: Award }
 ];
 
 const step1Items = [
-    { icon: BookOpen, title: "Aprendizado Técnico", description: "Invista em cursos para dominar receitas e técnicas profissionais." },
+    { icon: BookOpen, title: "Aprendizado Técnico", description: "Invista em cursos para dominar receitas e técnicas profissionais. Pratique até atingir a perfeição." },
     { icon: Search, title: "Pesquisa de Mercado", description: "Analise a concorrência local e identifique oportunidades na sua região." },
     { icon: Wallet, title: "Investimento Inicial", description: "Calcule custos de ingredientes, embalagens e divulgação. Média: R$500 a R$1.500." },
     { icon: BarChart, title: "Precificação Estratégica", description: "Estabeleça preços que cubram custos, garantam lucro e sejam competitivos." },
 ];
 
 const step2Items = [
-    { icon: Target, title: "Defina Metas Diárias", description: "Ex: produzir 100 brigadeiros/dia. Metas claras mantêm o foco." },
-    { icon: CheckCircle, title: "Organize Seu Espaço", description: "Um ambiente limpo e eficiente é fundamental. Higiene é prioridade." },
-    { icon: FileText, title: "Controle Financeiro", description: "Registre todas as receitas e despesas diariamente em planilhas ou apps." },
-    { icon: ShoppingCart, title: "Gestão de Estoque", description: "Compre em quantidade adequada para evitar desperdício e ter bons preços." },
+    { icon: Target, title: "Defina Metas Diárias e Semanais", description: "Ex: produzir 100 brigadeiros/dia. Metas claras mantêm o foco." },
+    { icon: CheckCircle, title: "Organize Seu Espaço de Trabalho", description: "Um ambiente limpo e eficiente é fundamental. Higiene é prioridade." },
+    { icon: FileText, title: "Sistema de Controle Financeiro", description: "Registre todas as receitas e despesas diariamente em planilhas ou apps." },
+    { icon: ShoppingCart, title: "Gestão de Estoque Inteligente", description: "Compre em quantidade adequada para evitar desperdício e ter bons preços." },
 ];
 
 const step3Strategies = [
@@ -127,12 +127,17 @@ export default function MudancaDeCicloPage() {
                         </Card>
                     ))}
                  </div>
+                <Card className="mt-6 p-4 bg-secondary/5 border-border/20">
+                  <CardContent className="p-0 text-sm text-muted-foreground">
+                    <p><strong>Recursos de aprendizado:</strong> Cursos do SEBRAE, plataformas como Hotmart e Udemy, canais no YouTube e grupos de empreendedores para trocar experiências.</p>
+                  </CardContent>
+                </Card>
               </section>
               
               <section>
                  <h2 className="text-3xl font-bold mb-8 text-center">Passo 2: Organização e Produção</h2>
                  <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto">
-                    A eficiência operacional é o que separa um hobby de um negócio lucrativo. Processe claros e disciplina são essenciais.
+                    A eficiência operacional é o que separa um hobby de um negócio lucrativo. Processos claros e disciplina são essenciais.
                  </p>
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {step2Items.map(item => (
@@ -146,6 +151,20 @@ export default function MudancaDeCicloPage() {
                             </div>
                         </Card>
                     ))}
+                    <Card className="p-6 bg-secondary/5 border-border/20 flex items-start gap-4">
+                        <div className="bg-purple-400/10 p-3 rounded-full mt-1"><Star className="h-6 w-6 text-purple-400" /></div>
+                        <div>
+                            <CardTitle className="text-lg text-white mb-1">Qualidade Constante</CardTitle>
+                            <CardContent className="p-0 text-sm text-muted-foreground">Padronize suas receitas com medidas exatas. Cada lote deve ter o mesmo sabor e aparência impecável.</CardContent>
+                        </div>
+                    </Card>
+                     <Card className="p-6 bg-secondary/5 border-border/20 flex items-start gap-4">
+                        <div className="bg-purple-400/10 p-3 rounded-full mt-1"><Zap className="h-6 w-6 text-purple-400" /></div>
+                        <div>
+                            <CardTitle className="text-lg text-white mb-1">Disciplina Operacional</CardTitle>
+                            <CardContent className="p-0 text-sm text-muted-foreground">Estabeleça uma rotina consistente. Comece com 3-4 horas diárias dedicadas e aumente gradualmente.</CardContent>
+                        </div>
+                    </Card>
                  </div>
               </section>
 
@@ -160,12 +179,12 @@ export default function MudancaDeCicloPage() {
                   ))}
                 </div>
                 <Card className="p-6 bg-black/20 border-border/20">
-                  <CardTitle className="text-lg text-white mb-2">Estratégias de Crescimento</CardTitle>
+                  <CardTitle className="text-lg text-white mb-2">Estratégias de Crescimento de Vendas</CardTitle>
                   <ul className="list-disc list-inside text-muted-foreground text-sm space-y-1">
-                    <li>Depoimentos de Clientes para construir credibilidade.</li>
+                    <li>Depoimentos de Clientes para construir credibilidade social.</li>
                     <li>Programa de Indicação para incentivar o boca a boca.</li>
-                    <li>Promoções Estratégicas para gerar urgência.</li>
-                    <li>Parcerias Locais com cafeterias e salões.</li>
+                    <li>Promoções Estratégicas para gerar urgência e experimentar produtos.</li>
+                    <li>Parcerias Locais com cafeterias, academias e salões.</li>
                     <li>Participação em Eventos e Feiras para ganhar visibilidade.</li>
                   </ul>
                 </Card>
@@ -181,6 +200,14 @@ export default function MudancaDeCicloPage() {
                     <Card className="p-6 bg-secondary/5 border-border/20 text-center"><Users className="h-8 w-8 text-purple-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Parcerias Estratégicas</h3><p className="text-muted-foreground text-sm mt-1">Busque estabelecimentos locais (cafeterias, padarias) para revender seus produtos.</p></Card>
                     <Card className="p-6 bg-secondary/5 border-border/20 text-center"><Award className="h-8 w-8 text-purple-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Fortalecimento de Marca</h3><p className="text-muted-foreground text-sm mt-1">Invista em embalagens personalizadas e logo profissional para criar fidelização.</p></Card>
                  </div>
+                 <Card className="mt-8 p-6 bg-secondary/5 border-border/20">
+                    <CardHeader className="p-0 mb-3"><CardTitle className="text-white text-center text-lg">Indicadores de Que Você Está Pronto Para Escalar</CardTitle></CardHeader>
+                    <CardContent className="p-0 text-sm text-muted-foreground space-y-2">
+                        <p><strong>Demanda Consistente:</strong> Você vende regularmente toda sua produção e tem lista de espera.</p>
+                        <p><strong>Processos Estabelecidos:</strong> Suas receitas estão padronizadas e você controla custos e qualidade.</p>
+                        <p><strong>Capital de Giro:</strong> Você acumulou reserva financeira para investir em crescimento.</p>
+                    </CardContent>
+                </Card>
               </section>
               
                <section className="bg-secondary/10 p-8 md:p-12 rounded-3xl border border-border/10">
@@ -222,24 +249,35 @@ export default function MudancaDeCicloPage() {
                         </Card>
                     ))}
                 </div>
+                 <Card className="mt-6 p-4 bg-secondary/5 border-border/20">
+                    <CardHeader className="p-0 mb-2"><CardTitle className="text-white text-center text-lg">Mentalidade Para Superar Obstáculos</CardTitle></CardHeader>
+                    <CardContent className="p-0 text-sm text-muted-foreground space-y-1">
+                        <p><strong>Aprendizado Contínuo:</strong> Veja cada erro como lição. Peça feedback e adapte-se rapidamente.</p>
+                        <p><strong>Resiliência e Persistência:</strong> Os primeiros meses podem ser lentos. Não desanime. Celebre pequenas vitórias.</p>
+                    </CardContent>
+                </Card>
               </section>
               
               <Separator className="bg-border/20"/>
 
               <section>
                  <h2 className="text-3xl font-bold mb-4 text-center">Você Pode Mudar Sua Vida em 1 Ano!</h2>
+                 <p className="text-muted-foreground text-center mb-10 max-w-3xl mx-auto">
+                    A transformação que você busca não é apenas possível — ela está ao seu alcance. A diferença entre sonhar e realizar está em dar o primeiro passo hoje.
+                 </p>
                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mt-10">
                     <Card className="p-6 bg-secondary/5 border-border/20"><Zap className="h-8 w-8 text-purple-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Esforço Direcionado</h3><p className="text-muted-foreground text-sm mt-1">Trabalhe com propósito claro. Cada passo é um tijolo na construção do seu futuro.</p></Card>
                     <Card className="p-6 bg-secondary/5 border-border/20"><Target className="h-8 w-8 text-purple-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Foco Inabalável</h3><p className="text-muted-foreground text-sm mt-1">Sua visão de liberdade deve ser maior que qualquer obstáculo temporário.</p></Card>
                     <Card className="p-6 bg-secondary/5 border-border/20"><Award className="h-8 w-8 text-purple-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Paixão Pelo Que Faz</h3><p className="text-muted-foreground text-sm mt-1">Clientes sentem e valorizam o cuidado e a dedicação em cada detalhe.</p></Card>
                  </div>
                  <Card className="mt-10 p-6 bg-secondary/10 border-border/20">
-                    <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-center text-lg">Seu Plano de Ação Imediato</CardTitle></CardHeader>
+                    <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-center text-lg">Comece Hoje: Seu Plano de Ação Imediato</CardTitle></CardHeader>
                     <CardContent className="p-0 text-sm text-muted-foreground space-y-3">
-                        <p><strong>Próximas 24 Horas:</strong> Escolha 2-3 produtos, faça a lista de compras e calcule o investimento inicial.</p>
+                        <p><strong>Próximas 24 Horas:</strong> Escolha seus 2-3 produtos principais, faça a lista de compras e calcule o investimento inicial.</p>
                         <p><strong>Primeira Semana:</strong> Pratique as receitas, crie seu perfil no Instagram e fotografe os produtos.</p>
                         <p><strong>Primeiro Mês:</strong> Faça as primeiras 50 vendas, colete feedback e estabeleça uma rotina de produção.</p>
-                        <p><strong>Primeiro Ano:</strong> Construa uma marca sólida, uma base de clientes fiéis e um faturamento consistente.</p>
+                        <p><strong>Primeiros 3 Meses:</strong> Alcance 100 unidades/dia, reinvista lucros e busque parcerias.</p>
+                        <p><strong>Primeiro Ano:</strong> Construa uma marca sólida, clientes fiéis e faturamento consistente de R$ 5.000+.</p>
                     </CardContent>
                 </Card>
                  <div className="mt-10 p-6 bg-secondary/5 border-l-4 border-purple-400 italic text-center rounded-r-xl shadow-sm">
