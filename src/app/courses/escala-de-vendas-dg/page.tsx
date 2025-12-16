@@ -4,7 +4,7 @@
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart, Users, Star, PieChart, Store, Truck, Briefcase, Package, Sparkles, CheckCircle, XCircle, Target, BookOpen, UserCheck, TrendingUp, Lightbulb, Wallet, ShoppingCart, Percent, BarChart2, DollarSign, Award, ClipboardList, Calculator, Megaphone } from 'lucide-react';
+import { BarChart, Users, Star, PieChart, Store, Truck, Briefcase, Package, Sparkles, CheckCircle, XCircle, Target, BookOpen, UserCheck, TrendingUp, Lightbulb, Wallet, ShoppingCart, Percent, BarChart2, DollarSign, Award, ClipboardList, Calculator, Megaphone, Smartphone } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const marketStats = [
@@ -279,3 +279,5 @@ export default function EscalaVendasDgPage() {
     </AppLayout>
   );
 }
+
+    
