@@ -39,7 +39,7 @@ const memberModules = [
     imageUrl: 'https://i.imgur.com/JRBhdyc.jpg',
     aiHint: 'man shadow',
     moduleNumber: '04',
-    href: '#',
+    href: '/courses/escala-de-vendas-fs',
   },
   {
     subtitle: 'FASE 05',
