@@ -47,7 +47,7 @@ const memberModules = [
     imageUrl: 'https://i.imgur.com/yegtRWL.jpg',
     aiHint: 'man wine',
     moduleNumber: '05',
-    href: '#',
+    href: '/courses/escala-de-vendas-dg',
   },
   {
     subtitle: 'FASE 06',
