@@ -4,7 +4,7 @@
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart, Users, Star, PieChart, Store, Truck, Briefcase, Package, Sparkles, CheckCircle, XCircle, Target, BookOpen, UserCheck, TrendingUp, Lightbulb, Wallet, ShoppingCart, Percent, BarChart2, DollarSign, Award, ClipboardList, Calculator, Megaphone, Smartphone } from 'lucide-react';
+import { BarChart, Users, Star, Store, Package, Briefcase, Sparkles, CheckCircle, XCircle, Target, Lightbulb, Wallet, ShoppingCart, Percent, BarChart2, DollarSign, Award, ClipboardList, Calculator, Megaphone, Smartphone } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const marketStats = [
@@ -73,7 +73,7 @@ export default function EscalaVendasDgPage() {
           <div className="max-w-4xl mx-auto">
             
             <header className="text-center mb-16 pt-16">
-              <p className="text-primary font-semibold tracking-wider mb-2">FASE 05: CURSO PRÁTICO</p>
+              <p className="text-neutral-400 font-semibold tracking-wider mb-2">FASE 05: CURSO PRÁTICO</p>
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">Como Escalar Vendas Digitais de Sobremesas</h1>
               <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
                 Um guia completo para transformar sua produção artesanal em um negócio digital escalável e lucrativo no mercado de doces e salgados.
@@ -89,10 +89,10 @@ export default function EscalaVendasDgPage() {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   {marketStats.map(card => (
-                    <Card key={card.title} className="text-center p-6 bg-secondary/5 border-border/20 hover:border-primary/50 hover:shadow-lg transition-all">
+                    <Card key={card.title} className="text-center p-6 bg-secondary/5 border-border/20 hover:border-neutral-400/50 hover:shadow-lg transition-all">
                         <div className="flex justify-center mb-4">
-                            <div className="bg-primary/10 p-3 rounded-full">
-                                <card.icon className="h-8 w-8 text-primary" />
+                            <div className="bg-neutral-400/10 p-3 rounded-full">
+                                <card.icon className="h-8 w-8 text-neutral-400" />
                             </div>
                         </div>
                         <CardTitle className="text-xl mb-2 text-white">{card.title}</CardTitle>
@@ -106,7 +106,7 @@ export default function EscalaVendasDgPage() {
                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                     {businessModels.map(model => (
                         <Card key={model.title} className="p-4 bg-secondary/10 border-border/10">
-                            <model.icon className="h-6 w-6 text-primary mx-auto mb-2" />
+                            <model.icon className="h-6 w-6 text-neutral-400 mx-auto mb-2" />
                             <p className="text-sm font-semibold text-white">{model.title}</p>
                             <p className="text-xs text-muted-foreground">{model.description}</p>
                         </Card>
@@ -120,8 +120,8 @@ export default function EscalaVendasDgPage() {
                   {productChoices.map(product => (
                     <Card key={product.title} className="p-6 bg-black/20 border-border/20 text-center">
                         <div className="flex justify-center mb-4">
-                            <div className="bg-primary/10 p-3 rounded-full">
-                                <product.icon className="h-7 w-7 text-primary" />
+                            <div className="bg-neutral-400/10 p-3 rounded-full">
+                                <product.icon className="h-7 w-7 text-neutral-400" />
                             </div>
                         </div>
                         <CardTitle className="text-lg mb-2 text-white">{product.title}</CardTitle>
@@ -131,8 +131,8 @@ export default function EscalaVendasDgPage() {
                     </Card>
                   ))}
                 </div>
-                <div className="mt-8 bg-primary/10 border-l-4 border-primary p-5 rounded-r-lg text-center">
-                    <p className="font-semibold text-primary-foreground/90"><Lightbulb className="inline-block h-5 w-5 mr-2" />
+                <div className="mt-8 bg-neutral-400/10 border-l-4 border-neutral-400 p-5 rounded-r-lg text-center">
+                    <p className="font-semibold text-white/90"><Lightbulb className="inline-block h-5 w-5 mr-2 text-neutral-400" />
                        Estratégia de Foco: Comece com 1-3 produtos principais e expanda apenas após dominar produção, logística e marketing.
                     </p>
                 </div>
@@ -206,7 +206,7 @@ export default function EscalaVendasDgPage() {
                                     <tr className="border-b border-border/10"><td className="py-2">Frete médio por unidade</td><td className="text-right">R$ 0,30</td></tr>
                                     <tr className="border-b border-border/10"><td className="py-2">Marketing/comissão</td><td className="text-right">R$ 0,70</td></tr>
                                     <tr className="font-bold text-white"><td className="py-2">CUSTO TOTAL</td><td className="text-right">R$ 3,50</td></tr>
-                                    <tr className="font-bold text-primary"><td className="py-2">PREÇO DE VENDA (margem 50%)</td><td className="text-right">R$ 7,00</td></tr>
+                                    <tr className="font-bold text-neutral-400"><td className="py-2">PREÇO DE VENDA (margem 50%)</td><td className="text-right">R$ 7,00</td></tr>
                                     <tr className="font-bold text-green-400"><td className="py-2">LUCRO LÍQUIDO</td><td className="text-right">R$ 3,50</td></tr>
                                 </tbody>
                             </table>
@@ -221,7 +221,7 @@ export default function EscalaVendasDgPage() {
                   {marketingStrategies.map(model => (
                     <div key={model.title} className="flex gap-4">
                         <div className="bg-black/30 p-3 rounded-full shadow-sm border border-border/10 h-fit">
-                            <model.icon className="h-6 w-6 text-primary" />
+                            <model.icon className="h-6 w-6 text-neutral-400" />
                         </div>
                         <div>
                             <h3 className="font-semibold text-lg text-white">{model.title}</h3>
@@ -290,15 +290,15 @@ export default function EscalaVendasDgPage() {
                     {successCases.map(item => (
                         <Card key={item.title} className="p-6 bg-black/20 border-border/20 text-center">
                             <div className="flex justify-center mb-4">
-                                <div className="bg-primary/10 p-3 rounded-full"><item.icon className="h-7 w-7 text-primary" /></div>
+                                <div className="bg-neutral-400/10 p-3 rounded-full"><item.icon className="h-7 w-7 text-neutral-400" /></div>
                             </div>
                             <CardTitle className="text-lg mb-2 text-white">{item.title}</CardTitle>
                             <CardContent className="p-0 text-muted-foreground text-sm">{item.description}</CardContent>
                         </Card>
                     ))}
                 </div>
-                <div className="mt-8 bg-primary/10 border-l-4 border-primary p-5 rounded-r-lg text-center">
-                    <p className="font-semibold text-primary-foreground/90"><Lightbulb className="inline-block h-5 w-5 mr-2" />
+                <div className="mt-8 bg-neutral-400/10 border-l-4 border-neutral-400 p-5 rounded-r-lg text-center">
+                    <p className="font-semibold text-white/90"><Lightbulb className="inline-block h-5 w-5 mr-2 text-neutral-400" />
                        Lição Universal: Foco em qualidade, processos sólidos, relacionamento com o cliente e uso inteligente de dados são os pilares do crescimento.
                     </p>
                 </div>
@@ -309,12 +309,12 @@ export default function EscalaVendasDgPage() {
               <section>
                  <h2 className="text-3xl font-bold mb-4 text-center">Conclusão e Próximos Passos</h2>
                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center mt-10">
-                    <Card className="p-6 bg-secondary/5 border-border/20"><Target className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Comece Pequeno</h3><p className="text-muted-foreground text-sm mt-1">Valide 1-2 produtos com 20-50 clientes iniciais.</p></Card>
-                    <Card className="p-6 bg-secondary/5 border-border/20"><Megaphone className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Invista em Marketing</h3><p className="text-muted-foreground text-sm mt-1">Fotos boas e R$10/dia em anúncios para começar.</p></Card>
-                    <Card className="p-6 bg-secondary/5 border-border/20"><BarChart2 className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Use Dados</h3><p className="text-muted-foreground text-sm mt-1">Tome decisões baseadas em números, não em intuição.</p></Card>
-                    <Card className="p-6 bg-secondary/5 border-border/20"><CheckCircle className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Foque no Cliente</h3><p className="text-muted-foreground text-sm mt-1">Entrega, embalagem e pós-venda são cruciais.</p></Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20"><Target className="h-8 w-8 text-neutral-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Comece Pequeno</h3><p className="text-muted-foreground text-sm mt-1">Valide 1-2 produtos com 20-50 clientes iniciais.</p></Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20"><Megaphone className="h-8 w-8 text-neutral-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Invista em Marketing</h3><p className="text-muted-foreground text-sm mt-1">Fotos boas e R$10/dia em anúncios para começar.</p></Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20"><BarChart2 className="h-8 w-8 text-neutral-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Use Dados</h3><p className="text-muted-foreground text-sm mt-1">Tome decisões baseadas em números, não em intuição.</p></Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20"><CheckCircle className="h-8 w-8 text-neutral-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Foque no Cliente</h3><p className="text-muted-foreground text-sm mt-1">Entrega, embalagem e pós-venda são cruciais.</p></Card>
                  </div>
-                 <div className="mt-10 p-6 bg-secondary/5 border-l-4 border-primary italic text-center rounded-r-xl shadow-sm">
+                 <div className="mt-10 p-6 bg-secondary/5 border-l-4 border-neutral-400 italic text-center rounded-r-xl shadow-sm">
                     <p className="text-lg text-white/90">Lembre-se: Todo grande negócio começou pequeno. A diferença está em dar o primeiro passo hoje e manter a consistência.</p>
                 </div>
                  <Card className="mt-10 p-6 bg-secondary/10 border-border/20">
