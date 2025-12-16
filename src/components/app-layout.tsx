@@ -91,21 +91,22 @@ function Header() {
   const { isMobileSheetOpen, setMobileSheetOpen } = useSidebar();
   
   const isRecipePage = pathname.startsWith('/recipe/');
-  const isCoursesPage = pathname.startsWith('/courses');
   const isHomePage = pathname === '/';
+  const isCoursesPage = pathname.startsWith('/courses');
 
   const isTransparentHeader = isHomePage || isRecipePage;
-  const isDarkHeader = isCoursesPage;
-  const isNormalHeader = !isTransparentHeader && !isDarkHeader;
+  const isDarkThemed = isCoursesPage || isTransparentHeader;
 
   const headerClasses = cn(
     "left-0 right-0 z-40 py-4",
     isTransparentHeader ? "absolute top-0" : "sticky top-0",
-    isDarkHeader && "bg-black",
-    isNormalHeader && "bg-background/80 backdrop-blur-sm border-b"
+    {
+      "bg-black": isCoursesPage,
+      "bg-background/80 backdrop-blur-sm border-b": !isTransparentHeader && !isCoursesPage
+    }
   );
   
-  const iconTextClasses = isTransparentHeader || isDarkHeader ? "text-white" : "text-foreground";
+  const iconTextClasses = isDarkThemed ? "text-white" : "text-foreground";
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -135,7 +136,7 @@ function Header() {
                 {/* Logo */}
                 <div className="text-center absolute left-1/2 -translate-x-1/2">
                      <Link href="/" className="flex items-center gap-2">
-                        <span className={cn("font-extrabold text-3xl", isDarkHeader || isTransparentHeader ? "text-primary" : "text-foreground")}>Fitte</span>
+                        <span className="font-extrabold text-3xl text-primary">Fitte</span>
                     </Link>
                 </div>
                 
@@ -164,9 +165,8 @@ function Header() {
                               href={href}
                               className={cn(
                                 "transition-colors",
-                                isTransparentHeader ? "text-white/80 hover:text-white" : "text-muted-foreground hover:text-foreground",
-                                isDarkHeader ? "text-white/80 hover:text-white" : "text-muted-foreground hover:text-foreground",
-                                pathname === href && (isTransparentHeader || isDarkHeader ? "font-semibold text-white" : "font-semibold text-primary")
+                                isDarkThemed ? "text-white/80 hover:text-white" : "text-muted-foreground hover:text-foreground",
+                                pathname === href && (isDarkThemed ? "font-semibold text-white" : "font-semibold text-primary")
                               )}
                           >
                               {label}
@@ -181,11 +181,11 @@ function Header() {
                           onChange={(e) => setSearchTerm(e.target.value)}
                           className={cn(
                           "h-9 pr-10 rounded-full border-transparent text-sm w-full",
-                          isTransparentHeader || isDarkHeader ? "bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30" : "bg-secondary text-foreground"
+                          isDarkThemed ? "bg-white/20 text-white placeholder:text-white/70 focus:bg-white/30" : "bg-secondary text-foreground"
                           )}
                       />
                       <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2">
-                          <Search className={cn("h-4 w-4", isTransparentHeader || isDarkHeader ? "text-white/70" : "text-muted-foreground")} />
+                          <Search className={cn("h-4 w-4", isDarkThemed ? "text-white/70" : "text-muted-foreground")} />
                       </button>
                   </form>
               </div>
