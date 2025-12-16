@@ -96,14 +96,16 @@ function Header() {
 
   const isTransparentHeader = isHomePage || isRecipePage;
   const isDarkHeader = isCoursesPage;
+  const isNormalHeader = !isTransparentHeader && !isDarkHeader;
 
   const headerClasses = cn(
     "left-0 right-0 z-40 py-4",
     isTransparentHeader ? "absolute top-0" : "sticky top-0",
-    isDarkHeader ? "bg-black" : "bg-background/80 backdrop-blur-sm border-b"
+    isDarkHeader && "bg-black",
+    isNormalHeader && "bg-background/80 backdrop-blur-sm border-b"
   );
   
-  const textClasses = isTransparentHeader || isDarkHeader ? "text-white" : "text-foreground";
+  const iconTextClasses = isTransparentHeader || isDarkHeader ? "text-white" : "text-foreground";
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -122,7 +124,7 @@ function Header() {
                 {/* Mobile Menu Icon */}
                 <Sheet open={isMobileSheetOpen} onOpenChange={setMobileSheetOpen}>
                     <SheetTrigger asChild>
-                        <Button variant="ghost" size="icon" className={cn("lg:hidden", textClasses)}>
+                        <Button variant="ghost" size="icon" className={cn("lg:hidden", iconTextClasses)}>
                             <Menu className="h-6 w-6" />
                             <span className="sr-only">Abrir menu</span>
                         </Button>
@@ -133,7 +135,7 @@ function Header() {
                 {/* Logo */}
                 <div className="text-center absolute left-1/2 -translate-x-1/2">
                      <Link href="/" className="flex items-center gap-2">
-                        <span className={cn("font-extrabold text-3xl", isDarkHeader ? "text-primary" : textClasses)}>Fitte</span>
+                        <span className={cn("font-extrabold text-3xl", isDarkHeader || isTransparentHeader ? "text-primary" : "text-foreground")}>Fitte</span>
                     </Link>
                 </div>
                 
