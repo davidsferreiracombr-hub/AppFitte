@@ -55,7 +55,7 @@ const memberModules = [
     imageUrl: 'https://i.imgur.com/54eawaO.jpg',
     aiHint: 'man walking alone',
     moduleNumber: '06',
-    href: '#',
+    href: '/courses/mudanca-de-ciclo',
   },
 ];
 
