@@ -16,7 +16,7 @@ const whyOnlineBenefits = [
   {
     icon: Award,
     title: "Produtos Campeões",
-    description: "Pudim, bolo em porção и brigadeiros lideram as vendas no delivery, oferecendo alta demanda e boa margem de lucro."
+    description: "Pudim, bolo em porção e brigadeiros lideram as vendas no delivery, oferecendo alta demanda e boa margem de lucro."
   },
   {
     icon: DollarSign,
@@ -84,7 +84,7 @@ export default function VendasDigitaisPage() {
           <div className="max-w-4xl mx-auto">
             
             <header className="text-center mb-16 pt-16">
-              <p className="text-primary font-semibold tracking-wider mb-2">FASE 03: CURSO PRÁTICO</p>
+              <p className="text-red-500 font-semibold tracking-wider mb-2">FASE 03: CURSO PRÁTICO</p>
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">Como Vender Sobremesas Online</h1>
               <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
                 Transforme sua paixão por sobremesas em um negócio lucrativo com estratégias práticas para conquistar clientes no ambiente digital.
@@ -100,10 +100,10 @@ export default function VendasDigitaisPage() {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {whyOnlineBenefits.map(card => (
-                    <Card key={card.title} className="text-center p-6 bg-secondary/5 border-border/20 hover:border-primary/50 hover:shadow-lg transition-all">
+                    <Card key={card.title} className="text-center p-6 bg-secondary/5 border-border/20 hover:border-red-500/50 hover:shadow-lg transition-all">
                         <div className="flex justify-center mb-4">
-                            <div className="bg-primary/10 p-3 rounded-full">
-                                <card.icon className="h-8 w-8 text-primary" />
+                            <div className="bg-red-500/10 p-3 rounded-full">
+                                <card.icon className="h-8 w-8 text-red-500" />
                             </div>
                         </div>
                         <CardTitle className="text-xl mb-2 text-white">{card.title}</CardTitle>
@@ -130,8 +130,8 @@ export default function VendasDigitaisPage() {
                     <h3 className='text-xl font-bold text-white'>Defina seu Produto Carro-Chefe</h3>
                     <p className='text-muted-foreground max-w-2xl mx-auto text-sm'>Escolha 1 ou 2 produtos para serem sua especialidade. Isso facilita a produção, reduz custos com ingredientes, cria identidade forte e ajuda na divulgação. Exemplos: "a rainha do pudim de leite condensado" ou "os melhores brownies veganos da cidade".</p>
                 </div>
-                 <div className="bg-primary/10 border-l-4 border-primary p-5 rounded-r-lg text-center">
-                    <p className="font-semibold text-primary-foreground/90">
+                 <div className="bg-red-500/10 border-l-4 border-red-500 p-5 rounded-r-lg text-center">
+                    <p className="font-semibold text-red-100/90">
                         <Lightbulb className="inline-block h-5 w-5 mr-2" /> Use o Google Trends para pesquisar termos como "pudim delivery" ou "bolo de pote" na sua região e valide seu produto carro-chefe.
                     </p>
                 </div>
@@ -158,7 +158,7 @@ export default function VendasDigitaisPage() {
                         <p>Taxa de plataforma (10%): <span className='text-white font-semibold'>R$ 4,50</span></p>
                         <p>Seu tempo (2 horas): <span className='text-white font-semibold'>R$ 20,00</span></p>
                         <p className='col-span-2 text-center mt-2 border-t border-border/20 pt-2 font-bold'>Custo Total: <span className='text-white text-base'>R$ 44,50</span></p>
-                        <p className='col-span-2 text-center mt-1 font-bold'>Preço Sugerido: <span className='text-primary text-base'>R$ 130-150</span></p>
+                        <p className='col-span-2 text-center mt-1 font-bold'>Preço Sugerido: <span className='text-red-500 text-base'>R$ 130-150</span></p>
                     </CardContent>
                 </Card>
                 <Card className="bg-destructive/10 border-destructive/30 p-6">
@@ -181,7 +181,7 @@ export default function VendasDigitaisPage() {
                     </Card>
                      <Card className="p-6 bg-black/20 border-border/20">
                         <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-lg">Meios de Pagamento</CardTitle></CardHeader>
-                        <CardContent className="p-0 text-muted-foreground text-sm">Integre Pix e cartões via Mercado Pago ou PagSeguro. Oferecer parcelamento aumenta o ticket médio.</CardContent>
+                        <CardContent className="p-0 text-muted-foreground text-sm">Integre Pix e cartões via Mercado Pago ou PagSeguro. Ofereça parcelamento aumenta o ticket médio.</CardContent>
                     </Card>
                      <Card className="p-6 bg-black/20 border-border/20">
                         <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-lg">Opções de Entrega</CardTitle></CardHeader>
@@ -192,7 +192,7 @@ export default function VendasDigitaisPage() {
                     <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-lg">A Importância das Fotos Profissionais</CardTitle></CardHeader>
                     <CardContent className="p-0 text-muted-foreground text-sm space-y-2">
                         <p>Invista em fotografias de qualidade! As fotos são responsáveis por 80% da decisão de compra online. Use luz natural, fundos neutros e mostre detalhes que despertem desejo.</p>
-                        <p className='text-primary-foreground/80'><Lightbulb className="inline-block h-4 w-4 mr-1" /> Dica: Aprenda fotografia básica no YouTube e use seu smartphone. Os resultados podem ser excelentes!</p>
+                        <p className='text-white/80'><Lightbulb className="inline-block h-4 w-4 mr-1 text-red-500" /> Dica: Aprenda fotografia básica no YouTube e use seu smartphone. Os resultados podem ser excelentes!</p>
                     </CardContent>
                 </Card>
                  <Card className="p-6 bg-black/20 border-border/20">
@@ -238,15 +238,15 @@ export default function VendasDigitaisPage() {
                     {successCases.map(item => (
                         <Card key={item.title} className="p-6 bg-secondary/5 border-border/20 text-center">
                             <CardHeader className="p-0 mb-3 flex-col items-center gap-3">
-                                <div className="bg-primary/10 p-3 rounded-full"><item.icon className="h-6 w-6 text-primary" /></div>
+                                <div className="bg-red-500/10 p-3 rounded-full"><item.icon className="h-6 w-6 text-red-500" /></div>
                                 <CardTitle className="text-lg text-white">{item.title}</CardTitle>
                             </CardHeader>
                             <CardContent className="p-0 text-sm text-muted-foreground">{item.description}</CardContent>
                         </Card>
                     ))}
                 </div>
-                <div className="bg-primary/10 border-l-4 border-primary p-5 rounded-r-lg text-center">
-                    <p className="font-semibold text-primary-foreground/90">O que todos têm em comum? Foco, excelência na execução, marketing consistente e atendimento impecável. Não é preciso ser grande para ser lucrativo.</p>
+                <div className="bg-red-500/10 border-l-4 border-red-500 p-5 rounded-r-lg text-center">
+                    <p className="font-semibold text-red-100/90">O que todos têm em comum? Foco, excelência na execução, marketing consistente e atendimento impecável. Não é preciso ser grande para ser lucrativo.</p>
                 </div>
               </section>
               
@@ -254,10 +254,10 @@ export default function VendasDigitaisPage() {
                 <h2 className="text-3xl font-bold mb-10 text-center flex items-center justify-center gap-3"><XCircle className="h-8 w-8" />Erros Comuns e Como Evitar</h2>
                  <div className="space-y-6">
                     {commonErrors.map(item => (
-                        <Card key={item.title} className="bg-secondary/5 border-border/20">
-                            <CardHeader><CardTitle className="text-xl text-white">{item.title}</CardTitle></CardHeader>
+                        <Card key={item.title} className="bg-destructive/5 border-destructive/20">
+                            <CardHeader><CardTitle className="text-xl text-destructive/90">{item.title}</CardTitle></CardHeader>
                             <CardContent className="space-y-3 text-sm">
-                                <p><span className="font-semibold text-primary">O Problema:</span> <span className="text-muted-foreground">{item.problem}</span></p>
+                                <p><span className="font-semibold text-red-400">O Problema:</span> <span className="text-muted-foreground">{item.problem}</span></p>
                                 <p><span className="font-semibold text-green-400">A Solução:</span> <span className="text-white/80">{item.solution}</span></p>
                             </CardContent>
                         </Card>
@@ -286,20 +286,20 @@ export default function VendasDigitaisPage() {
                     <CardTitle className="text-xl mb-6 text-center text-white">Seu Plano de Ação Imediato</CardTitle>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                         <div>
-                            <h3 className="font-semibold text-lg text-primary mb-2">Esta Semana</h3>
+                            <h3 className="font-semibold text-lg text-red-500 mb-2">Esta Semana</h3>
                             <p className="text-sm text-muted-foreground">Defina seu produto carro-chefe, calcule os custos e crie seu perfil no Instagram e WhatsApp Business.</p>
                         </div>
                         <div>
-                            <h3 className="font-semibold text-lg text-primary mb-2">Próximos 7 Dias</h3>
+                            <h3 className="font-semibold text-lg text-red-500 mb-2">Próximos 7 Dias</h3>
                             <p className="text-sm text-muted-foreground">Tire fotos profissionais dos produtos e comece a divulgar para amigos e familiares para conseguir os primeiros feedbacks.</p>
                         </div>
                          <div>
-                            <h3 className="font-semibold text-lg text-primary mb-2">Primeiro Mês</h3>
+                            <h3 className="font-semibold text-lg text-red-500 mb-2">Primeiro Mês</h3>
                             <p className="text-sm text-muted-foreground">Faça as primeiras vendas, peça avaliações, ajuste processos e comece a testar parcerias com microinfluenciadores.</p>
                         </div>
                     </div>
                 </Card>
-                <div className="mt-10 p-6 bg-secondary/5 border-l-4 border-primary italic text-center rounded-r-xl shadow-sm">
+                <div className="mt-10 p-6 bg-secondary/5 border-l-4 border-red-500 italic text-center rounded-r-xl shadow-sm">
                     <p className="text-lg text-white/90">"O segredo do sucesso não está em ter a receita perfeita, mas em começar com o que você tem e melhorar continuamente."</p>
                 </div>
               </section>
