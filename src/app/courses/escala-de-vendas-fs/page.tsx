@@ -4,7 +4,7 @@
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart, Users, Star, PieChart, Store, Truck, Briefcase, Package, Sparkles, Tv, CheckCircle, XCircle, Target, BookOpen, UserCheck, TrendingUp, Lightbulb } from 'lucide-react';
+import { BarChart, Users, Star, PieChart, Store, Truck, Briefcase, Package, Sparkles, CheckCircle, XCircle, Target, BookOpen, UserCheck, TrendingUp, Lightbulb } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const marketBenefits = [
@@ -101,14 +101,14 @@ export default function EscalaVendasFsPage() {
                  <h2 className="text-3xl font-bold mb-4 text-center">Os doces mais vendidos para renda extra e escala</h2>
                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {sweetProducts.map(product => (
-                    <Card key={product.title} className="p-6 bg-black/20 border-border/20">
+                    <Card key={product.title} className="p-6 bg-black/20 border-border/20 text-center">
                         <div className="flex justify-center mb-4">
                             <div className="bg-primary/10 p-3 rounded-full">
                                 <product.icon className="h-7 w-7 text-primary" />
                             </div>
                         </div>
-                        <CardTitle className="text-lg mb-2 text-white text-center">{product.title}</CardTitle>
-                        <CardContent className="p-0 text-muted-foreground text-sm text-center">
+                        <CardTitle className="text-lg mb-2 text-white">{product.title}</CardTitle>
+                        <CardContent className="p-0 text-muted-foreground text-sm">
                             {product.description}
                         </CardContent>
                     </Card>
@@ -120,14 +120,14 @@ export default function EscalaVendasFsPage() {
                  <h2 className="text-3xl font-bold mb-8 text-center">Sobremesas salgadas que vendem bem e são fáceis de escalar</h2>
                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {savoryProducts.map(product => (
-                        <Card key={product.title} className="p-6 bg-secondary/5 border-border/20">
+                        <Card key={product.title} className="p-6 bg-secondary/5 border-border/20 text-center">
                             <div className="flex justify-center mb-4">
                                 <div className="bg-primary/10 p-3 rounded-full">
                                     <product.icon className="h-7 w-7 text-primary" />
                                 </div>
                             </div>
-                            <CardTitle className="text-lg mb-2 text-white text-center">{product.title}</CardTitle>
-                            <CardContent className="p-0 text-muted-foreground text-sm text-center">
+                            <CardTitle className="text-lg mb-2 text-white">{product.title}</CardTitle>
+                            <CardContent className="p-0 text-muted-foreground text-sm">
                                 {product.description}
                             </CardContent>
                         </Card>
@@ -170,9 +170,18 @@ export default function EscalaVendasFsPage() {
               <section className="bg-secondary/10 p-8 md:p-12 rounded-3xl border border-border/10">
                 <h2 className="text-3xl font-bold mb-8 text-center">Controle de custos e qualidade para manter lucro na escala</h2>
                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-                    <Card className="p-6 bg-black/20 border-border/20"><CardHeader><CardTitle>Fornecedores Estratégicos</CardTitle></CardHeader><CardContent><p>Parcerias para compras em atacado reduzem custos.</p></CardContent></Card>
-                    <Card className="p-6 bg-black/20 border-border/20"><CardHeader><CardTitle>Padronização de Receitas</CardTitle></CardHeader><CardContent><p>Documente medidas exatas para garantir consistência.</p></CardContent></Card>
-                    <Card className="p-6 bg-black/20 border-border/20"><CardHeader><CardTitle>Treinamento da Equipe</CardTitle></CardHeader><CardContent><p>Capacite para produção eficiente e atendimento de qualidade.</p></CardContent></Card>
+                    <Card className="p-6 bg-black/20 border-border/20">
+                      <CardHeader className="p-0 mb-2"><CardTitle className="text-white">Fornecedores Estratégicos</CardTitle></CardHeader>
+                      <CardContent className="p-0 text-sm text-muted-foreground"><p>Parcerias para compras em atacado reduzem custos.</p></CardContent>
+                    </Card>
+                    <Card className="p-6 bg-black/20 border-border/20">
+                      <CardHeader className="p-0 mb-2"><CardTitle className="text-white">Padronização de Receitas</CardTitle></CardHeader>
+                      <CardContent className="p-0 text-sm text-muted-foreground"><p>Documente medidas exatas para garantir consistência.</p></CardContent>
+                    </Card>
+                    <Card className="p-6 bg-black/20 border-border/20">
+                      <CardHeader className="p-0 mb-2"><CardTitle className="text-white">Treinamento da Equipe</CardTitle></CardHeader>
+                      <CardContent className="p-0 text-sm text-muted-foreground"><p>Capacite para produção eficiente e atendimento de qualidade.</p></CardContent>
+                    </Card>
                  </div>
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <Card className="p-6 bg-black/20 border-border/20">
@@ -197,9 +206,21 @@ export default function EscalaVendasFsPage() {
               <section>
                 <h2 className="text-3xl font-bold mb-8 text-center">Exemplos reais de sucesso no mercado</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <Card className="p-6 bg-secondary/5 border-border/20 text-center"><Sparkles className="mx-auto h-8 w-8 text-primary mb-2" /><CardTitle>Docerias Gourmet</CardTitle><CardContent className="mt-2 text-sm text-muted-foreground">Faturamentos superiores a R$30 mil/mês começando da própria cozinha.</CardContent></Card>
-                    <Card className="p-6 bg-secondary/5 border-border/20 text-center"><TrendingUp className="mx-auto h-8 w-8 text-primary mb-2" /><CardTitle>Salgaderias Expandindo</CardTitle><CardContent className="mt-2 text-sm text-muted-foreground">Multiplicaram receita em menos de um ano com delivery e eventos.</CardContent></Card>
-                    <Card className="p-6 bg-secondary/5 border-border/20 text-center"><Store className="mx-auto h-8 w-8 text-primary mb-2" /><CardTitle>Da Casa ao Ponto Fixo</CardTitle><CardContent className="mt-2 text-sm text-muted-foreground">Iniciaram em casa e hoje possuem lojas físicas e franquias.</CardContent></Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20 text-center">
+                        <Sparkles className="mx-auto h-8 w-8 text-primary mb-2" />
+                        <CardTitle className="text-white">Docerias Gourmet em Alta</CardTitle>
+                        <CardContent className="mt-2 text-sm text-muted-foreground p-0">Faturamentos superiores a R$30 mil/mês começando da própria cozinha.</CardContent>
+                    </Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20 text-center">
+                        <TrendingUp className="mx-auto h-8 w-8 text-primary mb-2" />
+                        <CardTitle className="text-white">Salgaderias Expandindo</CardTitle>
+                        <CardContent className="mt-2 text-sm text-muted-foreground p-0">Multiplicaram receita em menos de um ano com delivery e eventos.</CardContent>
+                    </Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20 text-center">
+                        <Store className="mx-auto h-8 w-8 text-primary mb-2" />
+                        <CardTitle className="text-white">Da Casa ao Ponto Fixo</CardTitle>
+                        <CardContent className="mt-2 text-sm text-muted-foreground p-0">Iniciaram em casa e hoje possuem lojas físicas e franquias.</CardContent>
+                    </Card>
                 </div>
                 <div className="p-6 bg-secondary/5 border-l-4 border-primary italic text-center rounded-r-xl shadow-sm">
                     <p className="text-lg text-white/90">"Comecei fazendo 50 brigadeiros por fim de semana. Hoje produzo mais de 2.000 unidades por semana e tenho três funcionários. O segredo foi manter a qualidade e investir em marketing digital."</p>
@@ -247,3 +268,5 @@ export default function EscalaVendasFsPage() {
     </AppLayout>
   );
 }
+
+    
