@@ -20,7 +20,7 @@ const businessModels = [
 ];
 
 const productChoices = [
-    { title: "Doces Gourmet", description: "Brigadeiros gourmet lideram com margens de 40-60%. Sabores como pistache e limão siciliano são destaque.", icon: Sparkles },
+    { title: "Doces Gourmet", description: "Brigadeiros gourmet lideram com margens de 40-60%. Sabores como pistache e limão siciliano são destaque. Bolos no pote oferecem praticidade e ticket médio alto (R$15-25).", icon: Sparkles },
     { title: "Salgados Tradicionais Elevados", description: "Coxinhas gourmet (camarão, costela) podem ter markup de 200%. Pastéis criativos e empadas premium são ideais para eventos.", icon: Star },
     { title: "Nicho Saudável", description: "Produtos veganos, sem glúten ou fitness atendem demanda crescente e permitem precificação premium, com margens de até 70%.", icon: CheckCircle },
 ];
@@ -138,6 +138,44 @@ export default function EscalaVendasDgPage() {
                 </div>
               </section>
 
+              <section>
+                 <h2 className="text-3xl font-bold mb-8 text-center">Modelos de Negócio Digitais Lucrativos</h2>
+                 <div className="space-y-6">
+                    <Card className="p-6 bg-secondary/5 border-border/20">
+                      <CardHeader className="p-0 mb-3"><CardTitle className="text-lg text-white">Delivery via Apps (iFood, Rappi)</CardTitle></CardHeader>
+                      <CardContent className="p-0 text-sm text-muted-foreground space-y-1">
+                        <p><strong>Vantagens:</strong> Alcance imediato, sistema de pagamento integrado.</p>
+                        <p><strong>Desafios:</strong> Comissões altas (20-35%), alta concorrência.</p>
+                        <p><strong>Dica:</strong> Use o app para captar clientes para seu canal próprio (WhatsApp/site).</p>
+                      </CardContent>
+                    </Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20">
+                      <CardHeader className="p-0 mb-3"><CardTitle className="text-lg text-white">Loja Virtual Própria</CardTitle></CardHeader>
+                      <CardContent className="p-0 text-sm text-muted-foreground space-y-1">
+                        <p><strong>Vantagens:</strong> Zero comissão, controle total da marca, margem máxima.</p>
+                        <p><strong>Desafios:</strong> Necessidade de gerar tráfego próprio via marketing.</p>
+                        <p><strong>Investimento:</strong> R$500-2.000 para site básico. ROI em 3-6 meses.</p>
+                      </CardContent>
+                    </Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20">
+                      <CardHeader className="p-0 mb-3"><CardTitle className="text-lg text-white">Assinaturas e Kits Mensais</CardTitle></CardHeader>
+                      <CardContent className="p-0 text-sm text-muted-foreground space-y-1">
+                        <p><strong>Vantagens:</strong> Receita recorrente previsível, produção planejada.</p>
+                        <p><strong>Exemplo:</strong> Kit com 20 doces variados por R$89/mês.</p>
+                        <p><strong>Meta:</strong> Reter 60-70% dos assinantes após 3 meses.</p>
+                      </CardContent>
+                    </Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20">
+                      <CardHeader className="p-0 mb-3"><CardTitle className="text-lg text-white">Fornecimento B2B</CardTitle></CardHeader>
+                      <CardContent className="p-0 text-sm text-muted-foreground space-y-1">
+                        <p><strong>Vantagens:</strong> Volume alto, pagamento garantido, operação previsível.</p>
+                        <p><strong>Precificação:</strong> Margem menor (20-30%) compensada pelo volume.</p>
+                        <p><strong>Exemplo:</strong> Fornecer 500 salgados/semana para 5 lanchonetes.</p>
+                      </CardContent>
+                    </Card>
+                 </div>
+              </section>
+
                <section>
                  <h2 className="text-3xl font-bold mb-8 text-center">Precificação Detalhada para Garantir Lucro</h2>
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
@@ -192,6 +230,15 @@ export default function EscalaVendasDgPage() {
                     </div>
                   ))}
                 </div>
+                 <Card className="mt-8 p-6 bg-black/20 border-border/20">
+                    <CardHeader className="p-0 mb-3"><CardTitle className="text-lg text-white">Funil de Vendas Simplificado</CardTitle></CardHeader>
+                    <CardContent className="p-0 text-sm text-muted-foreground space-y-1">
+                        <p><strong>Atenção:</strong> Conteúdo viral/anúncio atrai a pessoa.</p>
+                        <p><strong>Interesse:</strong> Stories e posts educam sobre o produto.</p>
+                        <p><strong>Desejo:</strong> Promoção ou depoimento gera urgência.</p>
+                        <p><strong>Ação:</strong> Link direto para WhatsApp/site facilita a compra.</p>
+                    </CardContent>
+                </Card>
               </section>
 
               <section>
@@ -270,6 +317,15 @@ export default function EscalaVendasDgPage() {
                  <div className="mt-10 p-6 bg-secondary/5 border-l-4 border-primary italic text-center rounded-r-xl shadow-sm">
                     <p className="text-lg text-white/90">Lembre-se: Todo grande negócio começou pequeno. A diferença está em dar o primeiro passo hoje e manter a consistência.</p>
                 </div>
+                 <Card className="mt-10 p-6 bg-secondary/10 border-border/20">
+                    <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-center text-lg">Seu Plano de Ação Imediato (7 Dias)</CardTitle></CardHeader>
+                    <CardContent className="p-0 text-sm text-muted-foreground space-y-2">
+                        <p><strong>1. Defina 2-3 produtos principais:</strong> Baseado em margem, facilidade e demanda.</p>
+                        <p><strong>2. Calcule a precificação real:</strong> Use uma planilha incluindo todos os custos.</p>
+                        <p><strong>3. Crie presença digital básica:</strong> Perfil no Instagram/WhatsApp Business com fotos iniciais.</p>
+                        <p><strong>4. Teste com 10 primeiros clientes:</strong> Peça feedback detalhado a amigos e familiares.</p>
+                    </CardContent>
+                </Card>
               </section>
               
             </main>
@@ -279,5 +335,3 @@ export default function EscalaVendasDgPage() {
     </AppLayout>
   );
 }
-
-    
