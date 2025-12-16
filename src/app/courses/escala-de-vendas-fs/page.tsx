@@ -67,7 +67,7 @@ export default function EscalaVendasFsPage() {
             
             <header className="text-center mb-16 pt-16">
               <p className="text-primary font-semibold tracking-wider mb-2">FASE 04: CURSO PRÁTICO</p>
-              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">Escala de Vendas Físicas: Sobremesas Salgadas e Doces</h1>
+              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">Escala de Vendas Físicas</h1>
               <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
                 Aprenda estratégias comprovadas para transformar sua produção de sobremesas em um negócio escalável e lucrativo.
               </p>
@@ -268,5 +268,3 @@ export default function EscalaVendasFsPage() {
     </AppLayout>
   );
 }
-
-    
