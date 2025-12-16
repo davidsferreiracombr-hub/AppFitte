@@ -4,7 +4,7 @@
 import React from 'react';
 import { AppLayout } from '@/components/app-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart, Users, Star, Store, Package, Briefcase, Sparkles, CheckCircle, XCircle, Target, Lightbulb, Wallet, ShoppingCart, Percent, BarChart2, DollarSign, Award, ClipboardList, Calculator, Megaphone, Smartphone } from 'lucide-react';
+import { BarChart, Users, Star, Store, Package, Briefcase, Sparkles, CheckCircle, XCircle, Target, Lightbulb, Wallet, ShoppingCart, Percent, BarChart2, DollarSign, Award, ClipboardList, Calculator, Megaphone, Smartphone, TrendingUp } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const marketStats = [
@@ -224,7 +224,7 @@ export default function EscalaVendasDgPage() {
                             <model.icon className="h-6 w-6 text-neutral-400" />
                         </div>
                         <div>
-                            <h3 className="font-semibold text-lg text-white">{model.title}</h3>
+                            <h3 className="font-semibold text-lg text-white">{model.title}</h3 >
                             <p className="text-muted-foreground text-sm mt-1">{model.description}</p>
                         </div>
                     </div>
