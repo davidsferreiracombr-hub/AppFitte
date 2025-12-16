@@ -54,7 +54,7 @@ export default function MudancaDeCicloPage() {
           <div className="max-w-4xl mx-auto">
             
             <header className="text-center mb-16 pt-16">
-              <p className="text-purple-400 font-semibold tracking-wider mb-2">FASE 06: CURSO PRÁTICO</p>
+              <p className="text-orange-500 font-semibold tracking-wider mb-2">FASE 06: CURSO PRÁTICO</p>
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">Mude Sua Vida em 1 Ano</h1>
               <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
                 Descubra como o mercado de doces e salgados artesanais pode ser a chave para sua independência financeira e transformação pessoal.
@@ -70,10 +70,10 @@ export default function MudancaDeCicloPage() {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {marketBenefits.map(card => (
-                    <Card key={card.title} className="text-center p-6 bg-secondary/5 border-border/20 hover:border-purple-400/50 hover:shadow-lg transition-all">
+                    <Card key={card.title} className="text-center p-6 bg-secondary/5 border-border/20 hover:border-orange-500/50 hover:shadow-lg transition-all">
                         <div className="flex justify-center mb-4">
-                            <div className="bg-purple-400/10 p-3 rounded-full">
-                                <card.icon className="h-8 w-8 text-purple-400" />
+                            <div className="bg-orange-500/10 p-3 rounded-full">
+                                <card.icon className="h-8 w-8 text-orange-500" />
                             </div>
                         </div>
                         <CardTitle className="text-xl mb-2 text-white">{card.title}</CardTitle>
@@ -91,8 +91,8 @@ export default function MudancaDeCicloPage() {
                   {bestSellers.map(product => (
                     <Card key={product.title} className="p-6 bg-black/20 border-border/20 text-center">
                         <div className="flex justify-center mb-4">
-                            <div className="bg-purple-400/10 p-3 rounded-full">
-                                <product.icon className="h-7 w-7 text-purple-400" />
+                            <div className="bg-orange-500/10 p-3 rounded-full">
+                                <product.icon className="h-7 w-7 text-orange-500" />
                             </div>
                         </div>
                         <CardTitle className="text-lg mb-2 text-white">{product.title}</CardTitle>
@@ -102,8 +102,8 @@ export default function MudancaDeCicloPage() {
                     </Card>
                   ))}
                 </div>
-                 <div className="mt-8 bg-purple-400/10 border-l-4 border-purple-400 p-5 rounded-r-lg text-center">
-                    <p className="font-semibold text-white/90"><Lightbulb className="inline-block h-5 w-5 mr-2 text-purple-400" />
+                 <div className="mt-8 bg-orange-500/10 border-l-4 border-orange-500 p-5 rounded-r-lg text-center">
+                    <p className="font-semibold text-white/90"><Lightbulb className="inline-block h-5 w-5 mr-2 text-orange-500" />
                        Dica Profissional: Comece com 2-3 produtos, domine-os e expanda depois. Qualidade consistente vale mais que variedade.
                     </p>
                 </div>
@@ -117,8 +117,8 @@ export default function MudancaDeCicloPage() {
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {step1Items.map(item => (
                         <Card key={item.title} className="p-6 bg-secondary/5 border-border/20 flex items-start gap-4">
-                            <div className="bg-purple-400/10 p-3 rounded-full mt-1">
-                                <item.icon className="h-6 w-6 text-purple-400" />
+                            <div className="bg-orange-500/10 p-3 rounded-full mt-1">
+                                <item.icon className="h-6 w-6 text-orange-500" />
                             </div>
                             <div>
                                 <CardTitle className="text-lg text-white mb-1">{item.title}</CardTitle>
@@ -142,8 +142,8 @@ export default function MudancaDeCicloPage() {
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {step2Items.map(item => (
                         <Card key={item.title} className="p-6 bg-secondary/5 border-border/20 flex items-start gap-4">
-                            <div className="bg-purple-400/10 p-3 rounded-full mt-1">
-                                <item.icon className="h-6 w-6 text-purple-400" />
+                            <div className="bg-orange-500/10 p-3 rounded-full mt-1">
+                                <item.icon className="h-6 w-6 text-orange-500" />
                             </div>
                             <div>
                                 <CardTitle className="text-lg text-white mb-1">{item.title}</CardTitle>
@@ -152,14 +152,14 @@ export default function MudancaDeCicloPage() {
                         </Card>
                     ))}
                     <Card className="p-6 bg-secondary/5 border-border/20 flex items-start gap-4">
-                        <div className="bg-purple-400/10 p-3 rounded-full mt-1"><Star className="h-6 w-6 text-purple-400" /></div>
+                        <div className="bg-orange-500/10 p-3 rounded-full mt-1"><Star className="h-6 w-6 text-orange-500" /></div>
                         <div>
                             <CardTitle className="text-lg text-white mb-1">Qualidade Constante</CardTitle>
                             <CardContent className="p-0 text-sm text-muted-foreground">Padronize suas receitas com medidas exatas. Cada lote deve ter o mesmo sabor e aparência impecável.</CardContent>
                         </div>
                     </Card>
                      <Card className="p-6 bg-secondary/5 border-border/20 flex items-start gap-4">
-                        <div className="bg-purple-400/10 p-3 rounded-full mt-1"><Zap className="h-6 w-6 text-purple-400" /></div>
+                        <div className="bg-orange-500/10 p-3 rounded-full mt-1"><Zap className="h-6 w-6 text-orange-500" /></div>
                         <div>
                             <CardTitle className="text-lg text-white mb-1">Disciplina Operacional</CardTitle>
                             <CardContent className="p-0 text-sm text-muted-foreground">Estabeleça uma rotina consistente. Comece com 3-4 horas diárias dedicadas e aumente gradualmente.</CardContent>
@@ -196,9 +196,9 @@ export default function MudancaDeCicloPage() {
                     Após validar seu produto, o próximo passo é aumentar a receita sem comprometer a qualidade ou sobrecarregar sua operação.
                  </p>
                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <Card className="p-6 bg-secondary/5 border-border/20 text-center"><TrendingUp className="h-8 w-8 text-purple-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Reinvestimento Inteligente</h3><p className="text-muted-foreground text-sm mt-1">Separe 30-40% do lucro para reinvestir em equipamentos, embalagens e marketing.</p></Card>
-                    <Card className="p-6 bg-secondary/5 border-border/20 text-center"><Users className="h-8 w-8 text-purple-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Parcerias Estratégicas</h3><p className="text-muted-foreground text-sm mt-1">Busque estabelecimentos locais (cafeterias, padarias) para revender seus produtos.</p></Card>
-                    <Card className="p-6 bg-secondary/5 border-border/20 text-center"><Award className="h-8 w-8 text-purple-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Fortalecimento de Marca</h3><p className="text-muted-foreground text-sm mt-1">Invista em embalagens personalizadas e logo profissional para criar fidelização.</p></Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20 text-center"><TrendingUp className="h-8 w-8 text-orange-500 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Reinvestimento Inteligente</h3><p className="text-muted-foreground text-sm mt-1">Separe 30-40% do lucro para reinvestir em equipamentos, embalagens e marketing.</p></Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20 text-center"><Users className="h-8 w-8 text-orange-500 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Parcerias Estratégicas</h3><p className="text-muted-foreground text-sm mt-1">Busque estabelecimentos locais (cafeterias, padarias) para revender seus produtos.</p></Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20 text-center"><Award className="h-8 w-8 text-orange-500 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Fortalecimento de Marca</h3><p className="text-muted-foreground text-sm mt-1">Invista em embalagens personalizadas e logo profissional para criar fidelização.</p></Card>
                  </div>
                  <Card className="mt-8 p-6 bg-secondary/5 border-border/20">
                     <CardHeader className="p-0 mb-3"><CardTitle className="text-white text-center text-lg">Indicadores de Que Você Está Pronto Para Escalar</CardTitle></CardHeader>
@@ -219,7 +219,7 @@ export default function MudancaDeCicloPage() {
                                 <tbody>
                                     <tr className="border-b border-border/10"><td className="py-2">Custo por Unidade</td><td className="text-right font-semibold text-white">R$ 1,40</td></tr>
                                     <tr className="border-b border-border/10"><td className="py-2">Preço de Venda</td><td className="text-right font-semibold text-white">R$ 3,50</td></tr>
-                                    <tr className="border-b border-border/10"><td className="py-2">Lucro Unitário (60%)</td><td className="text-right font-semibold text-purple-400">R$ 2,10</td></tr>
+                                    <tr className="border-b border-border/10"><td className="py-2">Lucro Unitário (60%)</td><td className="text-right font-semibold text-orange-500">R$ 2,10</td></tr>
                                     <tr className="border-b border-border/10"><td className="py-2">Meta Diária</td><td className="text-right font-semibold text-white">100 unidades</td></tr>
                                     <tr className="font-bold text-white"><td className="py-2">PROJEÇÃO MENSAL (28 DIAS)</td><td className="text-right text-lg text-green-400">R$ 5.880,00</td></tr>
                                 </tbody>
@@ -266,9 +266,9 @@ export default function MudancaDeCicloPage() {
                     A transformação que você busca não é apenas possível — ela está ao seu alcance. A diferença entre sonhar e realizar está em dar o primeiro passo hoje.
                  </p>
                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mt-10">
-                    <Card className="p-6 bg-secondary/5 border-border/20"><Zap className="h-8 w-8 text-purple-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Esforço Direcionado</h3><p className="text-muted-foreground text-sm mt-1">Trabalhe com propósito claro. Cada passo é um tijolo na construção do seu futuro.</p></Card>
-                    <Card className="p-6 bg-secondary/5 border-border/20"><Target className="h-8 w-8 text-purple-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Foco Inabalável</h3><p className="text-muted-foreground text-sm mt-1">Sua visão de liberdade deve ser maior que qualquer obstáculo temporário.</p></Card>
-                    <Card className="p-6 bg-secondary/5 border-border/20"><Award className="h-8 w-8 text-purple-400 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Paixão Pelo Que Faz</h3><p className="text-muted-foreground text-sm mt-1">Clientes sentem e valorizam o cuidado e a dedicação em cada detalhe.</p></Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20"><Zap className="h-8 w-8 text-orange-500 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Esforço Direcionado</h3><p className="text-muted-foreground text-sm mt-1">Trabalhe com propósito claro. Cada passo é um tijolo na construção do seu futuro.</p></Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20"><Target className="h-8 w-8 text-orange-500 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Foco Inabalável</h3><p className="text-muted-foreground text-sm mt-1">Sua visão de liberdade deve ser maior que qualquer obstáculo temporário.</p></Card>
+                    <Card className="p-6 bg-secondary/5 border-border/20"><Award className="h-8 w-8 text-orange-500 mx-auto mb-3" /><h3 className="font-semibold text-lg text-white">Paixão Pelo Que Faz</h3><p className="text-muted-foreground text-sm mt-1">Clientes sentem e valorizam o cuidado e a dedicação em cada detalhe.</p></Card>
                  </div>
                  <Card className="mt-10 p-6 bg-secondary/10 border-border/20">
                     <CardHeader className="p-0 mb-4"><CardTitle className="text-white text-center text-lg">Comece Hoje: Seu Plano de Ação Imediato</CardTitle></CardHeader>
@@ -280,7 +280,7 @@ export default function MudancaDeCicloPage() {
                         <p><strong>Primeiro Ano:</strong> Construa uma marca sólida, clientes fiéis e faturamento consistente de R$ 5.000+.</p>
                     </CardContent>
                 </Card>
-                 <div className="mt-10 p-6 bg-secondary/5 border-l-4 border-purple-400 italic text-center rounded-r-xl shadow-sm">
+                 <div className="mt-10 p-6 bg-secondary/5 border-l-4 border-orange-500 italic text-center rounded-r-xl shadow-sm">
                     <p className="text-lg text-white/90">"O sucesso não é acidente. É trabalho duro, perseverança, aprendizado, estudo, sacrifício e, acima de tudo, amor pelo que você está fazendo." — Pelé</p>
                 </div>
               </section>
